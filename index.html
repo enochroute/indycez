@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="es" ng-app="MainModule" ng-init="theme=0">
+<head>
+  <meta charset="utf-8">
+  <!-- This file has been downloaded from Bootsnipp.com. Enjoy! -->
+  <title>InDyCE | Zacatecas</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!--<link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet"> -->
+  <link rel="stylesheet" type="text/css" href="../css/estilos.css">
+  <link href="./css/bootstrap.min.css" rel="stylesheet">
+  <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+  <!-- <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script> -->
+  <script src="./js/bootstrap.min.js"></script>
+  <script src="./js/angular.js"></script>
+  <script src="app.js"></script>
+  <script src="./lista-temas/temas.component.js"></script>
+  <script src="./lista-indicadores/indicadores.component.js"></script>
+</head>
+<body>
+
+
+  <!-- <header style="background-color:#59c143">
+    Hola header <br>
+    otro renglon <br>
+    y otro
+  </header> -->
+  <div id="wrapper">
+    <div class="overlay"></div>
+    <div id="sticky-anchor"> </div>
+    <div id="sticky">
+
+  </div>
+
+    <!-- Sidebar -->
+    <nav class="navbar navbar-inverse navbar-fixed-top" id="sidebar-wrapper" role="navigation">
+      <lista-temas></lista-temas>
+  </nav>
+<!-- /#sidebar-wrapper -->
+
+
+<!-- Page Content -->
+<div id="page-content-wrapper">
+  <button type="button" class="hamburger is-closed" data-toggle="offcanvas">
+    <span class="hamb-top"></span>
+    <span class="hamb-middle"></span>
+    <span class="hamb-bottom"></span>
+  </button>
+  <div class="container">
+    <div class="row" id="contenidoPrincipal">
+      <div class="col-lg-8 col-lg-offset-2">
+        <!-- <p> El tema seleccionado es: {{theme}} </p> -->
+        <h2 style="text-align:right; color:#696969;">Indicadores de Desarrollo y Componentes Estadísticos de Zacatecas <strong style="font-size:80%">(InDyCEZ)</strong></h2>
+        <hr style=" border-top: 2px solid #438748; border-bottom: 2px solid #a1da72; border-left:none; border-right:none; height: 6px; ">
+        <p style="padding-left:2em; font-size:110%; text-align: justify">
+					La evaluación requiere de un Sistema de Indicadores para la adecuada recolección de información que permita definir la situación y evolución de las variables estadísticas.
+        </p>
+        <p style="padding-left:2em; font-size:110%; text-align: justify">
+					En esa perspectiva, el Gobierno del Estado de Zacatecas, a través de la Coordinación Estatal de Planeación, ha desarrollado InDyCEZ que es una herramienta que facilitará el establecimiento de líneas base, para el seguimiento y evaluación del Plan Estatal de Desarrollo.
+        </p>
+        <p style="padding-left:2em; font-size:110%; text-align: justify">
+					InDyCEZ es una aplicación diseñada con la finalidad de brindar transparencia a todos aquellos procesos inherentes a la administración pública del Estado de Zacatecas, además de ser un medio a través de cual la ciudadanía tenga la oportunidad de dar seguimiento puntual de datos estadísticos generados en el quehacer diario de la administración pública estatal.
+        </p>
+					<p style="padding-left:2em; font-size:110%; text-align: justify">
+          La información de los indicadores se encuentra agrupada en 14 temas, dentro de estos temas es más sencillo ubicar los datos estadísticos que representen mayor interés para el usuario.
+        </p>
+					<p style="padding-left:2em; font-size:110%; text-align: justify">
+          Finalmente, los 84 indicadores plasmados en el Plan Estatal de Desarrollo 2017 - 2021 que son indicativos para los procesos de evaluación quedan identificados por el icono <span><img src="../img/iconoPED.png" height="22px"/></span>
+          <lista-indicadores></lista-indicadores>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- /#page-content-wrapper -->
+
+<footer style="width: 100%; bottom: 0; margin: auto; position: initial;" class="botton_bar">
+  <div class="row">
+    <div class="col-sm-3 image_footer">
+      <img src="../img/logo_zacatecas.png">
+    </div>
+    <div class="col-sm-3">
+      <div ><h2 style="font-size: 10px;font-size: 1.65vw;">Telefonos</h2>
+        <ul class="list_telefonos" style="font-size: 10px;font-size: 1.1vw;">
+          <li><a ng-href="tel://4929223005" style="text-decoration:none"><span style="color: #90A4AE;">922 3005</span></a>	Cruz Roja Mexicana</li>
+          <li><a ng-href="tel://4929225350" style="text-decoration:none"><span style="color: #90A4AE;">922 5350</span></a>	Bomberos</li>
+          <li><a ng-href="tel://4929220180" style="text-decoration:none"><span style="color: #90A4AE;">922 0180</span></a>	Policía Estatal Preventiva</li>
+          <li><a ng-href="tel://4929225320" style="text-decoration:none"><span style="color: #90A4AE;">924 5320</span></a>	Tránsito del Estado</li>
+          <li><a ng-href="tel://4929225000" style="text-decoration:none"><span style="color: #90A4AE;">491 5000</span></a>	Ciudad Administrativa</li>
+          <li><a ng-href="tel://911" style="text-decoration:none"><span style="color: #90A4AE;">911</span></a>	Emergencias</li>
+          <li><a ng-href="tel://089" style="text-decoration:none"><span style="color: #90A4AE;">089</span></a>	Denuncia Anónima</li>
+        </ul>
+      </div>
+    </div>
+    <div class="col-sm-3">
+      <div><h2 style="font-size: 10px;font-size: 1.65vw;">Sitios de interés</h2>
+        <ul class="list_links"  style="font-size: 10px;font-size: 1.1vw;">
+          <li><a ng-href="http://www.zacatecas.gob.mx" target="blank">Gobierno del Estado de Zacatecas</a></li>
+          <li><a ng-href="http://upla.zacatecas.gob.mx" target="blank">Coordinación Estatal de Población</a></li>
+          <li><a ng-href="http://cozcyt.gob.mx/site2" target="blank" >COZCyT</a></li>
+          <li><a ng-href="http://www.finanzas.gob.mx" target="blank" >Secretaría de Finanzas</a></li>
+          <li><a ng-href="http://www.seduzac.gob.mx/portal" target="blank">Secretaría de Educación</a></li>
+          <li><a ng-href="http://www.zacatecastravel.com" target="blank">Secretaría de Turismo</a></li>
+          <li><a ng-href="http://www.saludzac.gob.mx/home" target="blank">Secretaría de Salud</a></li>
+          <li><a ng-href="http://www.issstezac.gob.mx" target="blank">ISSSTEZAC</a></li>
+          <li><a ng-href="http://www.pgje.zacatecas.gob.mx/sitio" target="blank">PGJE</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="col-sm-3" style="margin-left:-1em;">
+      <div><h2 style="font-size: 10px;font-size: 1.65vw;">Contacto</h2>
+        <p style="font-size: 10px;font-size: 1.1vw;">
+          Coordinación Estatal de Planeación
+          Circuito Cerro del Gato s/n
+          Colonia Ciudad Gobierno
+          Edificio H | Segundo Piso
+          C.P. 98160
+          Zacatecas, Zac.
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</div>
+
+
+
+<!-- /#wrapper -->
+
+<script type="text/javascript">
+$(document).ready(function () {
+  var trigger = $('.hamburger'),
+  overlay = $('.overlay'),
+  isClosed = false;
+
+  trigger.click(function () {
+    hamburger_cross();
+  });
+
+  function hamburger_cross() {
+
+    if (isClosed == true) {
+      overlay.hide();
+      trigger.removeClass('is-open');
+      trigger.addClass('is-closed');
+      isClosed = false;
+    } else {
+      overlay.show();
+      trigger.removeClass('is-closed');
+      trigger.addClass('is-open');
+      isClosed = true;
+    }
+  }
+
+  $('[data-toggle="offcanvas"]').click(function () {
+    $('#wrapper').toggleClass('toggled');
+  });
+});
+</script>
+
+<!--<script type="text/javascript">
+  $(document).on('click','#barraLateral a',function(e){
+      e.preventDefault();
+      console.log("Botón oprimido"+$(this).attr('href'));
+      $('#contenidoPrincipal').addClass('hide');
+  });
+</script> -->
+</body>
+</html>
