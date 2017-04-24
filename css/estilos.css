@@ -1413,10 +1413,10 @@ z-index: 1;
 }
 
 .icono-listado{
-  width: 4em;
-  float: left;
-  position: relative;
-  left: 25%;
+  width: 3em;
+  float: right;
+  /*position: relative;
+  left: 25%;*/
 }
 
 .nombre-tema{
