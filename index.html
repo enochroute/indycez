@@ -2,13 +2,11 @@
 <html lang="es" ng-app="MainModule" ng-init="temaID=0">
 <head>
   <meta charset="utf-8">
-  <!-- This file has been downloaded from Bootsnipp.com. Enjoy! -->
   <title>InDyCE | Zacatecas</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Archivos css -->
   <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="css/estilos.css">
-
   <!-- Archivos js -->
   <script src="bower_components/jquery/dist/jquery.min.js"></script>
   <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
@@ -20,30 +18,19 @@
   <script src="lista-temas/lista-temas.component.js"></script>
   <script src="lista-indicadores/lista-indicadores.module.js"></script>
   <script src="lista-indicadores/lista-indicadores.component.js"></script>
-
 </head>
 <body>
-
-
-  <!-- <header style="background-color:#59c143">
-    Hola header <br>
-    otro renglon <br>
-    y otro
-  </header> -->
   <div id="wrapper">
     <div class="overlay"></div>
     <div id="sticky-anchor"> </div>
     <div id="sticky">
 
   </div>
-
     <!-- Sidebar -->
     <nav class="navbar navbar-inverse navbar-fixed-top" id="sidebar-wrapper" role="navigation">
       <lista-temas></lista-temas>
   </nav>
 <!-- /#sidebar-wrapper -->
-
-
 <!-- Page Content -->
 <div id="page-content-wrapper">
   <button type="button" class="hamburger is-closed" data-toggle="offcanvas">
@@ -109,18 +96,9 @@
     </div>
   </footer>
 </div>
-
-
 <!-- /#page-content-wrapper -->
-
-
-
 </div>
-
-
-
 <!-- /#wrapper -->
-
 <script type="text/javascript">
 $(document).ready(function () {
   var trigger = $('.hamburger'),
