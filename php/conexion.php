@@ -5,7 +5,7 @@
 $host="localhost";
 $user="midezuser";
 $pass="zac5*s_61B.D1";
-$nbd="midez";
+$nbd="indyce";
 
 
 $con=mysqli_connect("localhost","$user","$pass","$nbd") or die ("No se pudo conectar con el servidor");

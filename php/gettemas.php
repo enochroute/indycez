@@ -3,7 +3,7 @@
 include 'conexion.php';
 
 
-$query="select * from temas";
+$query="SELECT * FROM temas_interes";
 
 
 $resultado=mysqli_query($con,$query);
