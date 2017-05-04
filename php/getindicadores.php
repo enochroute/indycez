@@ -3,7 +3,13 @@
 include 'conexion.php';
 
 
-$query="select * from indicadores";
+$query=
+"SELECT
+    it.id_tema, i.nombre, i.id_indicador
+FROM
+    indicadores AS i
+        JOIN
+    indicador_tema AS it ON i.id_indicador = it.id_indicador;";
 
 
 $resultado=mysqli_query($con,$query);
