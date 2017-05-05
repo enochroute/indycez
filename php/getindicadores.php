@@ -5,7 +5,7 @@ include 'conexion.php';
 
 $query=
 "SELECT
-    it.id_tema, i.nombre, i.id_indicador
+    it.id_tema, i.nombre, i.id_indicador, i.sistema_consulta
 FROM
     indicadores AS i
         JOIN

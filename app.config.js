@@ -44,7 +44,7 @@ var angularIndyce = angular.module('MainModule',[
     */
   angularIndyce.controller('IndicadoresCtrl', ['$scope','$routeParams', function IndicadoresCtrl($scope, $routeParams) {
     $scope.temaID = $routeParams;
-    console.log("El tema seleccionado es: " + $scope.temaID);
+    //console.log("El tema seleccionado es: " + $scope.temaID);
   }]);
 
   angularIndyce.controller('DetallesCtrl', ['$scope', '$routeParams', function DetallesCtrl($scope, $routeParams) {
@@ -52,7 +52,7 @@ var angularIndyce = angular.module('MainModule',[
     $scope.options = {
             chart: {
                 type: 'discreteBarChart',
-                height: 450,
+                height: 250,
                 margin : {
                     top: 20,
                     right: 20,
@@ -63,14 +63,14 @@ var angularIndyce = angular.module('MainModule',[
                 y: function(d){return d.value;},
                 showValues: true,
                 valueFormat: function(d){
-                    return d3.format(',.4f')(d);
+                    return d3.format(',.2f')(d);
                 },
                 duration: 500,
                 xAxis: {
-                    axisLabel: 'X Axis'
+                    axisLabel: 'Año'
                 },
                 yAxis: {
-                    axisLabel: 'Y Axis',
+                    axisLabel: 'Porcentaje',
                     axisLabelDistance: -10
                 }
             }
@@ -81,40 +81,21 @@ var angularIndyce = angular.module('MainModule',[
                 key: "Cumulative Return",
                 values: [
                     {
-                        "label" : "A" ,
-                        "value" : -29.765957771107
+                        "label" : "2015" ,
+                        "value" : 29.77
                     } ,
                     {
-                        "label" : "B" ,
-                        "value" : 0
+                        "label" : "2016" ,
+                        "value" : 30.70
                     } ,
                     {
-                        "label" : "C" ,
-                        "value" : 32.807804682612
-                    } ,
-                    {
-                        "label" : "D" ,
-                        "value" : 196.45946739256
-                    } ,
-                    {
-                        "label" : "E" ,
-                        "value" : 0.19434030906893
-                    } ,
-                    {
-                        "label" : "F" ,
-                        "value" : -98.079782601442
-                    } ,
-                    {
-                        "label" : "G" ,
-                        "value" : -13.925743130903
-                    } ,
-                    {
-                        "label" : "H" ,
-                        "value" : -5.1387322875705
+                        "label" : "2017" ,
+                        "value" : 32.81
                     }
+
                 ]
             }
         ];
 
-    console.log($scope.data);
+    //console.log($scope.data);
   } ]);

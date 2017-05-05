@@ -292,7 +292,7 @@ md-content.md-default-theme, md-content {
 .logo_app {
   width: 15em;
   margin-top:-5ex;
-  /* para centrar la imagen
+  /* para centrar la imagen *
   float: left;
   position: relative;
   left: 50%;
@@ -1414,9 +1414,13 @@ z-index: 1;
 .separa-arriba{
   margin-top: 2.2ex;
 }
+.separa-ambos{
+  margin-top: 2.2ex;
+  margin-bottom: 2.2ex;
+}
 
 .icono-listado{
-  width: 4em;
+  height: 4.25ex;
   float: left;
   position: relative;
   left: 25%;
@@ -1441,6 +1445,7 @@ z-index: 1;
 
 .notice {
     padding: 15px;
+    color: #2d2d2d;
     background-color: #fafafa;
     border-left: 6px solid #7f7f84;
     margin-bottom: 10px;
@@ -1454,9 +1459,9 @@ z-index: 1;
 }
 .notice-lg {
     padding: 35px;
-    font-size: large;
-    border-color: #244e6e;
-    color: #244e6e;
+    font-size: 1.5em;
+    border-color: #438748;
+    color: #438748;
 }
 .notice-success {
     border-color: #80D651;
@@ -1495,13 +1500,36 @@ z-index: 1;
 }
 .notice-verde1 {
     border-color: #59c143;
+    color: #6c6c6c;
+    font-size: 1.15em;
 }
 .notice-verde1>strong {
     color: #59c143;
+    font-size: 1.05em;
+}
+.notice-verde2 {
+    border-color: #82cf56;
+}
+.notice-verde2>strong {
+    color: #82cf56;
+}
+.notice-verde3 {
+    border-color: #a1da72;
+}
+.notice-verde3>strong {
+    color: #a1da72;
 }
 .notice-naranja1 {
     border-color: #ee2e26;
 }
 .notice-naranja1>strong {
     color: #ee2e26;
+}
+
+.izquierda{
+  float: left;
+}
+
+.icono-texto{
+  height:22px;
 }
