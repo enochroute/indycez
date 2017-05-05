@@ -10,7 +10,6 @@ class conexion {
         $this->db = "indyce";
         $this->usuario = "midezuser";
         $this->clave = "zac5*s_61B.D1";
-        }
        $conn = new mysqli($this->host,$this->usuario,$this->clave,$this->db);
        return $conn;
     }

@@ -3,9 +3,31 @@ session_start();
 unset($_SESSION);
 session_destroy();
 if(isset($_POST['usuario'])){
-
-    require_once('')
-
+    require_once('class/conexion.php');
+    $conn = new conexion();
+    $conexion = $conn->conectar();
+    $query = 'call login("'.$_POST['usuario'].'","'.md5($_POST['clave']).'")';
+    $exQuery = $conexion->query($query);
+    unset($query);
+    $conexion->close();
+    $Res = $exQuery->fetch_array(MYSQLI_NUM);
+    unset($exQuery);
+    if($Res[0] == 1){
+        $conexion = $conn->conectar();
+        $query = 'call user_id("'.$_POST['usuario'].'","'.md5($_POST['clave']).'")';
+        $exQuery = $conexion->query($query);
+        unset($query);
+        $conexion->close();
+        $ResUser = $exQuery->fetch_array(MYSQLI_NUM);
+        session_start();
+        $_SESSION['idUser'] = $ResUser[0];
+        $_SESSION['key'] = md5("labor vincit omnia");
+        unset($exQuery);
+        unset($ResUser);
+        header("Location:main.php");
+    }else{
+        $msg = "Su nombre de usuario o contraseña no son válidos.";
+    }
 }
 ?>
 <!DOCTYPE html>
@@ -62,6 +84,12 @@ if(isset($_POST['usuario'])){
 			<button type="submit" class="btn btn-success pull-right">
 			Ingresar </button>
 		</div>
+        <?php if(isset($msg)){ ?>
+       <div class="alert alert-danger">
+								<strong>Error!</strong> <?php echo $msg; ?>
+							</div>
+
+        <?php } ?>
 	</form>
 	</div>
 </body>
