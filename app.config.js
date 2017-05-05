@@ -49,7 +49,7 @@ var angularIndyce = angular.module('MainModule',[
 
   angularIndyce.controller('DetallesCtrl', ['$scope', '$routeParams', function DetallesCtrl($scope, $routeParams) {
     $scope.indicadorID = $routeParams;
-    $scope.options = {
+    /*$scope.options = {
             chart: {
                 type: 'discreteBarChart',
                 height: 250,
@@ -74,9 +74,9 @@ var angularIndyce = angular.module('MainModule',[
                     axisLabelDistance: -10
                 }
             }
-        };
+        }; */
 
-        $scope.data = [
+        /*$scope.data = [
             {
                 key: "Cumulative Return",
                 values: [
@@ -95,7 +95,7 @@ var angularIndyce = angular.module('MainModule',[
 
                 ]
             }
-        ];
+        ];*/
 
     //console.log($scope.data);
   } ]);

@@ -39,14 +39,8 @@
             <tr>
               <th>Año</th><th>Valor</th>
             </tr>
-            <tr>
-              <td>2015</td><td>29.77</td>
-            </tr>
-            <tr>
-              <td>2016</td><td>30.70</td>
-            </tr>
-            <tr>
-              <td>2017</td><td>32.81</td>
+            <tr ng-repeat="dato in datos">
+              <td>{{dato.ejercicio}}</td><td>{{dato.resultado}}</td>
             </tr>
           </table>
       </div>
