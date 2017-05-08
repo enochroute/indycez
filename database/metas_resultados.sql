@@ -1,6 +1,7 @@
 /*
 -- Query: SELECT * FROM indyce.metas_resultados
 LIMIT 0, 50000
+
 -- Date: 2017-05-08 12:58
 */
 INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (1,1,'anual','0','136497',60,10,'2010');
