@@ -40,7 +40,7 @@
               <th>Año</th><th>Valor</th>
             </tr>
             <tr ng-repeat="dato in datos">
-              <td>{{dato.ejercicio}}</td><td>{{dato.resultado}}</td>
+              <td>{{dato.ejercicio}}</td><td>{{dato.resultado|number}}</td>
             </tr>
           </table>
       </div>
