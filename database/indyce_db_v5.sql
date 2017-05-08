@@ -543,7 +543,7 @@ CREATE TABLE `temas_interes` (
 
 LOCK TABLES `temas_interes` WRITE;
 /*!40000 ALTER TABLE `temas_interes` DISABLE KEYS */;
-INSERT INTO `temas_interes` VALUES (1,'Gobierno','iconoGobierno.png','-',1),(2,'Rezago social','iconoRezago.png','-',1),(3,'Salud','iconoSalud.png','-',1),(4,'Seguridad','iconoSeguridad.png','-',1),(5,'Género','iconoGenero.png','-',1),(6,'Educación','iconoEducacion.png','-',1),(7,'Innovación','iconoInnovacion.png','-',1),(8,'Economía','iconoEconomia.png','-',1),(9,'Infraestructura','iconoInfraestructura.png','-',1),(10,'Campo','iconoCampo.png','-',1),(11,'Turismo','iconoTurismo.png','-',1),(12,'Medio ambiente','iconoUrbano.png','-',1),(13,'Desarrollo urbano','n.a.','-',1),(14,'Cultura','n.a.','-',1),(15,'Población','n.a.','-',1);
+INSERT INTO `temas_interes` VALUES (1,'Gobierno','iconoGobierno.png','-',1),(2,'Rezago social','iconoRezago.png','-',1),(3,'Salud','iconoSalud.png','-',1),(4,'Seguridad','iconoSeguridad.png','-',1),(5,'Género','iconoGenero.png','-',1),(6,'Educación','iconoEducacion.png','-',1),(7,'Innovación','iconoInnovacion.png','-',1),(8,'Economía','iconoEconomia.png','-',1),(9,'Infraestructura','iconoInfraestructura.png','-',1),(10,'Campo','iconoCampo.png','-',1),(11,'Turismo','iconoTurismo.png','-',1),(12,'Medio ambiente','iconoAmbiente.png','-',1),(13,'Desarrollo urbano','iconoUrbano.png','-',1),(14,'Cultura','iconoCultura.png','-',1),(15,'Población','iconoPoblacion.png','-',1);
 /*!40000 ALTER TABLE `temas_interes` ENABLE KEYS */;
 UNLOCK TABLES;
 
