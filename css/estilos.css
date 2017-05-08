@@ -284,10 +284,11 @@ md-content.md-default-theme, md-content {
   position: relative;
 }
 .image_footer img{
-  max-width: 90%;
+  width: 17em;
   height: auto;
   margin-left: 2em;
   margin-top: 2ex;
+  margin-bottom: 2ex;
 }
 .logo_app {
   width: 15em;
