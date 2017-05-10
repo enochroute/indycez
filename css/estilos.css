@@ -1458,8 +1458,8 @@ z-index: 1;
     padding: 10px;
     font-size: 80%;
 }
-.notice-lg {
-    padding: 35px;
+.notice-titulo {
+    padding: 25px;
     font-size: 1.5em;
     border-color: #438748;
     color: #438748;
