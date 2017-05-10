@@ -1,9 +1,1230 @@
-/*
--- Query: SELECT * FROM indyce.metas_resultados
-LIMIT 0, 50000
+-- Datos para el Sistema de indicadores Indycez
+-- debe respetarse la insercion en la base de datos en el orden aqui descrito, esto por la referencia de llaves foraneas y creacion de indices.
+-- creado por informatica - COEPLA -Gobierno del Estado de Zacatecas
+use indyce;
+INSERT INTO `datos_estadisticos` (`id_dato`,`nombre`,`descripcion`,`valor`) VALUES
+ (1,'Población Total','Representa el 1.3 % de la población nacional','1 579 209'),
+ (2,'Relación hombres - mujeres','Existen 95 hombres por cada 100 mujeres','95.2'),
+ (3,'Edad mediana','La mitad de la población tiene 26 años o menos','26'),
+ (4,'Razón de dependencia por edad','Existen 60 personas en edad de dependencia por cada 100 en edad productiva','60.1'),
+ (5,'Población mujeres','Población mujeres','51.2%'),
+ (6,'Población hombres','Población hombres','48.8%'),
+ (7,'Superficie','Representa el 3.8% del territorio nacional','75 275.4'),
+ (8,'Densidad de población','','21.0'),
+ (9,'Total de viviendas particulares habitadas','Representa el 1.3% del total nacional','418 850'),
+ (10,'Promedio de ocupantes por vivienda','','3.8'),
+ (11,'Promedio de ocupantes por cuarto','','0.9'),
+ (12,'Disponibilidad de servicios en la vivienda','Agua entubada','76.3%'),
+ (13,'Disponibilidad de servicios en la vivienda','Drenaje','93.1%'),
+ (14,'Disponibilidad de servicios en la vivienda','Servicio sanitario','95.0%'),
+ (15,'Disponibilidad de servicios en la vivienda','Electricidad','99.2%'),
+ (16,'Tenencia de la vivienda','Propia','70.0%'),
+ (17,'Tenencia de la vivienda','Alquilada','12.5%'),
+ (18,'Tenencia de la vivienda','Familiar o prestada','15.7%'),
+ (19,'Tenencia de la vivienda','Otra situación','1.2%'),
+ (20,'Tenencia de la vivienda','No especificado','0.6%'),
+ (21,'Inscripción en el registro civil','Tiene acta de nacimiento','98.4%'),
+ (22,'Inscripción en el registro civil','No tiene acta de nacimiento','0.6%'),
+ (23,'Inscripción en el registro civil','Registrado en otro país','0.5%'),
+ (24,'Inscripción en el registro civil','No especificado','0.5%'),
+ (25,'Inscripción en el registro civil','Población que no tiene nacionalidad mexicana','0.5%'),
+ (26,'Fecundidad y mortalidad','Promedio de hijos nacidos vivos','1.8'),
+ (27,'Fecundidad y mortalidad','Porcentaje de hijos fallecidos','2.8%'),
+ (28,'Viviendas con materiales de construcción precarios','En paredes','0.1%'),
+ (29,'Viviendas con materiales de construcción precarios','En techos','0.3%'),
+ (30,'Viviendas con materiales de construcción precarios','Piso de tierra','1.3%'),
+ (31,'Disponibilidad de TIC','Internet','24.0%'),
+ (32,'Disponibilidad de TIC','Televisión de paga','41.8%'),
+ (33,'Disponibilidad de TIC','Pantalla plana','35.1%'),
+ (34,'Disponibilidad de TIC','Computadora','26.9%'),
+ (35,'Disponibilidad de TIC','Teléfono celular','70.7%'),
+ (36,'Disponibilidad de TIC','Teléfono fijo','33.3%'),
+ (37,'Ahorro de energía y separación de residuos','Panel solar','0.4%'),
+ (38,'Ahorro de energía y separación de residuos','Calentador solar','13.2%'),
+ (39,'Ahorro de energía y separación de residuos','Focos Ahorradores','31.5%'),
+ (40,'Ahorro de energía y separación de residuos','Separación de residuos','43.5%'),
+ (41,'Población de 15 años y más según nivel de escolaridad','Sin escolaridad','4.9%'),
+ (42,'Población de 15 años y más según nivel de escolaridad','Básica','63.5'),
+ (43,'Población de 15 años y más según nivel de escolaridad','Media superior','16.4%'),
+ (44,'Población de 15 años y más según nivel de escolaridad','No especificado','0.2%'),
+ (45,'Tasa de alfabetización por grupos de edad','15 a 24 años','98.8%'),
+ (46,'Tasa de alfabetización por grupos de edad','25 años y más','93.5%'),
+ (47,'Asistencia y movilidad escolar por grupos de edad','Asistencia escolar 3 a 5 años','67.0%'),
+ (48,'Asistencia y movilidad escolar por grupos de edad','Asistencia escolar 6 a 11 años','98.6%'),
+ (49,'Asistencia y movilidad escolar por grupos de edad','Asistencia escolar 12 a 14 años','93.6%'),
+ (50,'Asistencia y movilidad escolar por grupos de edad','Asistencia escolar 15 a 24 años','42.8%'),
+ (51,'Asistencia y movilidad escolar por grupos de edad','Asistencia escolar en otro municipio 3 a 5 años','0.7%'),
+ (52,'Asistencia y movilidad escolar por grupos de edad','Asistencia escolar en otro municipio 6 a 11 años','1.2%'),
+ (53,'Asistencia y movilidad escolar por grupos de edad','Asistencia escolar en otro municipio 12 a 14 años','2.4%'),
+ (54,'Asistencia y movilidad escolar por grupos de edad','Asistencia escolar en otro municipio 15 a 24 años','8.3%'),
+ (55,'Población de 12 años y más Ecnomicamente activa (PEA)','Mujeres','30.8%'),
+ (56,'Población de 12 años y más Ecnomicamente activa (PEA)','Hombres','69.2%'),
+ (57,'Población de 12 años y más Ecnomicamente activa (PEA)','PEA','42.0%'),
+ (58,'Población de 12 años y más Ecnomicamente activa (PEA) Ocupada','Total','94.8%'),
+ (59,'Población de 12 años y más Ecnomicamente activa (PEA) Ocupada','Hombres','93.5%'),
+ (60,'Población de 12 años y más Ecnomicamente activa (PEA) Ocupada','Mujeres','97.8%'),
+ (61,'Población no económica activa (PNEA)','PNEA','57.8%'),
+ (62,'Población no económica activa (PNEA)','Estudiantes','28.0%'),
+ (63,'Población no económica activa (PNEA)','Personas dedicadas a los quehaceres del hogar','47.2%'),
+ (64,'Población no económica activa (PNEA)','Jubilados o pensionados','3.1%'),
+ (65,'Población no económica activa (PNEA)','Personas con alguna limitación física o mental que les impide trabajar','3.9%'),
+ (66,'Población no económica activa (PNEA)','Personas en otras actividades no económicas','17.8%'),
+ (67,'Población no económica activa (PNEA)','Porcentaje de la población de 12 años y más con condicion de actividad no especificada','0.2%'),
+ (68,'Población de 12 años y más según situación conyugal','Casada','48.0%'),
+ (69,'Población de 12 años y más según situación conyugal','Soltera','33.1%'),
+ (70,'Población de 12 años y más según situación conyugal','Unión libre','10.0%'),
+ (71,'Población de 12 años y más según situación conyugal','Separada','2.6%'),
+ (72,'Población de 12 años y más según situación conyugal','Divorciada','1.5%'),
+ (73,'Población de 12 años y más según situación conyugal','Viuda','4.6%'),
+ (74,'Población de 12 años y más según situación conyugal','No especificado','0.2%'),
+ (75,'Afiliación a servicios de salud','Población afiliada','86.9%'),
+ (76,'Afiliación a servicios de salud','Seguro popular','63.2%'),
+ (77,'Afiliación a servicios de salud','IMSS','30.5%'),
+ (78,'Afiliación a servicios de salud','ISSSTE','7.9%'),
+ (79,'Afiliación a servicios de salud','PEMEX, SEDENA, MARINA','0.3%'),
+ (80,'Afiliación a servicios de salud','Seguro Privado','1.0%'),
+ (81,'Afiliación a servicios de salud','Otra Institución','0.6%'),
+ (82,'Etnicidad','Población que se considera indígena','7.61%'),
+ (83,'Etnicidad','Población que se considera afrodescendiente','0.02%'),
+ (84,'Etnicidad','Población de 3 años y más que habla alguna lengua indígena','0.25%'),
+ (85,'Etnicidad','Habitantes de lengua indígena que no hablan español','1.74%');
 
--- Date: 2017-05-08 12:58
-*/
+ INSERT INTO `dependencias` (`id_dependencia`,`nombre`,`acronimo`) VALUES
+ (1,'Jefatura de Oficina del C. Gobernador','JEFATURA'),
+ (2,'Secretaría General de Gobierno','SEGOB'),
+ (3,'Secretaría de Finanzas','SEFIN'),
+ (4,'Secretaría de Seguridad Pública','SSP'),
+ (5,'Secretaría de Administración','SAD'),
+ (6,'Secretaría de la Función Pública','SFP'),
+ (7,'Secretaría de Economía','SEZAC'),
+ (8,'Secretaría de Turismo','SECTURZ'),
+ (9,'Secretaría de Infraestructura','SINFRA'),
+ (10,'Secretaría de Educación','SEDUZAC'),
+ (11,'Secretaría de Desarrollo Social','SEDESOL'),
+ (12,'Secretaría de Salud','SSALUD'),
+ (13,'Secretaría de Desarrollo Urbano, Vivienda y Ordenamiento Territorial','SEDUVIT'),
+ (14,'Secretaría del Agua y Medio Ambiente','SAMA'),
+ (15,'Secretaría del Campo','SECAMPO'),
+ (16,'Secretaría de las Mujeres','SEMUJER'),
+ (17,'Secretaría de Migración','SEZAMI'),
+ (18,'Coordinación General Jurídica','CGJ'),
+ (19,'Coordinación Estatal de Planeación','CEPLAN'),
+ (21,'Poder Legislativo del Estado de Zacatecas','PLEZ'),
+ (31,'Poder Judicial del Estado de Zacatecas','PJEZ'),
+ (41,'Comisión Estatal de Derechos Humanos','CEDH'),
+ (42,'Comisión Estatal para el Acceso a la Información Pública','CEAIP'),
+ (43,'Instituto Electoral del Estado de Zacatecas','IEEZ'),
+ (44,'Universidad Autónoma de Zacatecas','UAZ'),
+ (45,'Tribunal de Justicia Electoral del Estado de Zacatecas','TRIJEEZ'),
+ (46,'Procuraduria General de Justicia del Estado','PGJE'),
+ (60,'Instituto de Seguridad y Servicios Sociales para el Estado de Zacatecas','ISSSTEZAC'),
+ (61,'Sistema Estatal para el Desarrollo Integral de la Familia','SDIF'),
+ (62,'Consejo Estatal de Desarrollo Económico','CEDEZ'),
+ (63,'Consejo Zacatecano de Ciencia, Tecnología e Innovación','COZCYT'),
+ (64,'Servicios de Salud de Zacatecas','SSZ'),
+ (65,'Regimen Estatal de Protección Social en Salud','REPSS'),
+ (66,'Centro Estatal de Trasplantes de Órganos y Tejidos','CETOT'),
+ (67,'Instituto Regional del Patrimonio Mundial','UNESCO'),
+ (68,'Instituto de la Defensoría Pública','IDP'),
+ (69,'Instituto de Cultura Física y Deporte del Estado de Zacatecas','INCUFIDEZ'),
+ (70,'Sistema Zacatecano de Radio y Televisión','SIZART'),
+ (71,'Patronato Estatal de promotores Voluntarios','VOL'),
+ (72,'Instituto Zacatecano de Educación para Adultos','IZEA'),
+ (73,'Instituto de Capacitación para el Trabajo','ICATEZ'),
+ (74,'Instituto Zacatecano de Cultura \"Ramón López Velarde\"','IZC'),
+ (75,'Instituto Zacatecano de Construcción de Escuelas','INZACE'),
+ (76,'Junta de Protección y Conservación de Monumentos y Zonas Típicas del Estado de Zacatecas','JPCMCZT'),
+ (77,'Instituto de la Juventud del Estado de Zacatecas','INJUZAC'),
+ (78,'Instituto para la Atención e Inclusión de las Personas Con Discapacidad en el Estado de Zacatecas','INCLUSION'),
+ (79,'Universidad Politécnica de Zacatecas','UPZ'),
+ (80,'Universidad Politécnica del Sur de Zacatecas','UPSZ'),
+ (81,'Instituto Tecnológico Superior de Nochistlán','ITSN'),
+ (82,'Instituto Tecnológico Superior de Fresnillo','ITSF'),
+ (83,'Instituto Tecnológico Superior de Tlaltenango','ITSZS'),
+ (84,'Instituto Tecnológico Superior de Loreto','ITSL'),
+ (85,'Instituto Tecnológico Superior de Río Grande','ITSZN'),
+ (86,'Instituto Tecnológico Superior de Jerez','ITSJ'),
+ (87,'Instituto Tecnológico Superior de Sombrerete','ITSZO'),
+ (88,'Escuela de Conservación y Restauración de Zacatecas \"Refugio Reyes\"','EECRZ'),
+ (89,'Colegio de Bachilleres del Estado de Zacatecas','COBAEZ'),
+ (90,'Colegio de Educación Profesional Técnica de Zacatecas','CONALEP'),
+ (91,'Colegio de Estudios Científicos y Tecnológicos del Estado de Zacatecas','CECYTEZ'),
+ (92,'Instituto de Selección y Capacitación del Estado de Zacatecas','INSELCAP'),
+ (93,'Universidad Tecnológica del Estado de Zacatecas','UTEZ');
+
+ INSERT INTO `eje` (`id_eje`,`eje`) VALUES
+(1,'1. Gobierno Abierto y de Resultados'),
+(2,'2. Seguridad Humana'),
+(3,'3. Competitividad y Prosperidad'),
+(4,'4. Medio Ambiente y Desarrollo Territorial');
+
+INSERT INTO `linea` (`id_linea`,`id_eje`,`nombre`) VALUES
+(1,1,'1.1 Democracia y participación ciudadana'),
+(2,1,'1.2 Gestión pública basada en resultados'),
+(3,1,'1.3 Gobernanza electrónica'),
+(4,1,'1.4 Transparencia y rendición de cuentas'),
+(5,1,'1.5 Combate a la corrupción'),
+(6,1,'1.6 Fortalecimiento municipal'),
+(7,1,'1.7 Colaboración internacional'),
+(8,2,'2.1 Derechos Humanos'),
+(9,2,'2.2 Pobreza y desigualdad'),
+(10,2,'2.3 Cohesión social'),
+(11,2,'2.4 Salud y bienestar'),
+(12,2,'2.5 Seguridad Pública'),
+(13,2,'2.6 Acceso a la Justicia para Todos'),
+(14,2,'2.7 Igualdad sustantiva entre mujeres y hombres'),
+(15,2,'2.8 Oportunidades para las y los jóvenes'),
+(16,2,'2.9 Gobierno promotor de la inclusión de las personas con discapacidad'),
+(17,2,'2.10 Vinculación con las y los zacatecanos radicados en otras latitudes'),
+(18,2,'2.11 Cultura física y deporte'),
+(19,3,'3.1 Educación de Calidad'),
+(20,3,'3.2 Innovación, Ciencia y Tecnología'),
+(21,3,'3.3 Inversión Local, Nacional y Extranjera'),
+(22,3,'3.4 Empleo'),
+(23,3,'3.5 Infraestructura y equipamiento'),
+(24,3,'3.6 Productividad en el Sector Agropecuario'),
+(25,3,'3.7 Productividad en los sectores industrial y de servicios'),
+(26,3,'3.8 Minería Sostenible'),
+(27,3,'3.9 Turismo'),
+(28,3,'3.10 Cultura y Economía Creativa'),
+(29,4,'4.1 Recursos Naturales'),
+(30,4,'4.2 Agua'),
+(31,4,'4.3 Cambio Climático'),
+(32,4,'4.4 Energías renovables'),
+(33,4,'4.5 Manejo de residuos'),
+(34,4,'4.6 Riesgos, vulnerabilidad y prevención de desastres'),
+(35,4,'4.7 Desarrollo territorial y urbano'),
+(36,4,'4.8 Vivienda digna y sustentable'),
+(37,4,'4.9 Movilidad');
+
+INSERT INTO `estrategias` (`id_estrategia`,`id_linea`,`nombre`) VALUES
+(1,1,'1.1.1 Fomentar la participación e involucramiento de la sociedad en los asuntos públicos'),
+(2,1,'1.1.2 Fortalecer la colaboración entre los poderes del Estado y órdenes de gobierno, a fin de garantizar la gobernanza democrática'),
+(3,1,'1.1.3 Implementar la participación social en la evaluación de la gestión pública'),
+(4,1,'1.1.4 Fomentar la legalidad y certeza jurídica en la acción gubernamental'),
+(5,2,'1.2.1 Implementar la planeación estratégica del Gobierno del Estado para una gestión transparente basada en resultados y con perspectiva de género'),
+(6,2,'1.2.2 Ejercer finanzas públicas honestas,, eficientes y eficaces'),
+(7,2,'1.2.3 Optimizar el funcionamiento de la capacidad institucional de la Administración Pública Estatal'),
+(8,2,'1.2.4 Profesionalización, actualización y evaluación de los servidores públicos'),
+(9,3,'1.3.1 Implementar un modelo de Gobernanza Electrónica'),
+(10,3,'1.3.2 Ampliar la red de infraestructura de telecomunicaciones en el territorio estatal'),
+(11,4,'1.4.1 Fortalecer la capacidad institucional para garantizar el acceso a la información, la rendición de cuentas y la transparencia proactiva'),
+(12,4,'1.4.2 Incentivar la participación ciudadana en el aprovechamiento de los medios de transparencia y acceso a la información'),
+(13,5,'1.5.1 Implementar y consolidar el Sistema Estatal Anticorrupción'),
+(14,5,'1.5.2 Fortalecer a las instituciones para la prevención y el combate a la corrupción'),
+(15,6,'1.6.1 Fortalecer las capacidades institucionales de los Municipios'),
+(16,6,'1.6.2 Impulsar la colaboración regional y territorial'),
+(17,6,'1.6.3 Promover la insersión municipal en el ámbito internacional'),
+(18,7,'1.7.1 Fortalecer la colaboración con organismos internacionales promotores del desarrollo'),
+(19,7,'1.7.2 Fortalecer la promoción integral del Estado en el ámbito internacional'),
+(20,8,'2.1.1 Institucionalizar el enfoque de derechos humanos'),
+(21,8,'2.1.2 Promover la cultura de derechos humanos'),
+(22,8,'2.1.3 Garantizar el goce y ejercicio de los derechos humanos de las niñas, niños, adolescentes, jóvenes, mujeres y adultos mayores'),
+(23,9,'2.2.1 Implementar programas de reducción de la pobreza en todas sus dimensiones'),
+(24,9,'2.2.2 Impulsar la inversión pública para ampliar la infraestructura social'),
+(25,9,'2.2.3 Implementar el Sistema Estatal de Evaluación de la Política Social'),
+(26,9,'2.2.4 Impulsar la economía social'),
+(27,10,'2.3.1 Promover redes de intercambio social'),
+(28,10,'2.3.2 Reducir las brechas de marginación'),
+(29,10,'2.3.3 Convivencia social para el progreso de nuestras comunidades'),
+(30,11,'2.4.1 Garantizar que las y los zacatecanos tengan acceso efectivo a los servicios de salud'),
+(31,11,'2.4.2 Garantizar el acceso integral a la salud de la mujer'),
+(32,11,'2.4.3 Mejorar la calidad, eficiencia y coordinación sectorial en la prestación de servicios de salud'),
+(33,11,'2.4.4 Promover la cultura de la prevención y detección oportuna de enfermedades'),
+(34,11,'2.4.5 Fortalecer las acciones orientadas a la inocuidad y sanidad alimentaria'),
+(35,12,'2.5.1 Fortalecer la infraestructura y los mecanismos de actuación y colaboración de las funciones de seguridad pública'),
+(36,12,'2.5.2 Impulsar la prevención de la violencia y delincuencia en el Estado'),
+(37,12,'2.5.3 Promover la readaptación y reinsersión social de indiviudos'),
+(38,13,'2.6.1 Consolidar el nuevo sistema de justicia penal'),
+(39,13,'2.6.2 Promover el acceso inclusivo a la justicia'),
+(40,13,'2.6.3 Fortalecer el acceso a la justicia para las mujeres'),
+(41,14,'2.7.1 Institucionalizar la perspectiva de género en la administración pública estatal y municipal'),
+(42,14,'2.7.2 Garantizar el acceso a las mujeres a una vida libre de violencia'),
+(43,14,'2.7.3 Promover la participación plena y efectiva de las mujeres y la igualdad de oportunidades en todos los ambitos de la vida política, económica y pública'),
+(44,15,'2.8.1 Fomentar el desarrollo integral de los jóvenes para insertarlos en todos los ámbitos productivo, social y cultural'),
+(45,15,'2.8.2 Desorrollar mecanismos de coordinación y evaluación de acciones transisntitucionales a favor de la juventud'),
+(46,16,'2.9.1 Impulsar la inclusión de hombres y mujeres con discapacidad al desarrollo cultural, académico, productivo y social en el Estado'),
+(47,16,'2.9.2 Incrementar la accesibilidad universal'),
+(48,16,'2.9.3 Instalar centros de rehabilitación y centros geriátricos en los municipios del Estado'),
+(49,16,'2.9.4 Impulsar el derecho al cuidado'),
+(50,17,'2.10.1 Impulsar la protección y ejercicio pleno de los derechos de los migrantes'),
+(51,17,'2.10.2 Fortalecer los programas y mecanismos de cooperación con la comunidad migrante para promover su reinserción económica y social'),
+(52,17,'2.10.3 Promover la inversión productiva de las remesas'),
+(53,18,'2.11.1 Desarrollar el deporte de alto rendimiento'),
+(54,18,'2.11.2 Incrementar las actividades físicas y deportivas'),
+(55,18,'2.11.3 Incentivar el uso de la infraestructura deportiva como espacio de convivencia para contribuir a la cohesión social e integración familiar'),
+(56,19,'3.1.1 Implementar un nuevo modelo de enseñanza–aprendizaje para formar estudiantes responsables de su entorno, innovadores y dinámicos.'),
+(57,19,'3.1.2 Fortalecer la gestión administrativa de la educación'),
+(58,19,'3.1.3 Ampliar la infraestructura física educativa pertinente y de calidad para dignificar la vida escolar'),
+(59,19,'3.1.4 Incrementar la inclusión, el acceso y la permanencia de la población en el sistema educativo'),
+(60,19,'3.1.5 Disminuir el rezago educativo en la población de 15 años y más'),
+(61,20,'3.2.1 Fomentar la formación de recursos humanos con perfil científico-tecnológico en el Estado'),
+(62,20,'3.2.2 Impulsar el emprendimiento de empresas de innovación tecnológica en la entidad'),
+(63,20,'3.2.3 Fortalecer el parque científico tecnológico y su vinculación con la economía zacatecana'),
+(64,20,'3.2.4 Promover la apropiación social y la divulgación de la ciencia, tecnología e innovación en la sociedad zacatecana'),
+(65,20,'3.2.5 Fortalecer el sector de tecnologías de la información, industrial y de servicios, a través de certificaciones internacionales en tecnologías de información'),
+(66,21,'3.3.1 Estimular la inversión local en sectores estratégicos'),
+(67,21,'3.3.2 Estimular la inversión nacional y extranjera'),
+(68,21,'3.3.3 Fortalecer las instituciones y agencias de promoción de inversiones y las incubadoras de proyectos'),
+(69,22,'3.4.1 Fomentar la formación de habilidades laborales óptimas entre la población económicamente activa'),
+(70,22,'3.4.2 Vincular al sector educativo de la entidad (público y privado) con el sector productivo'),
+(71,22,'3.4.3 Potenciar de manera interinstitucional el talento para la creación de autoempleo'),
+(72,22,'3.4.4 Impulsar estrategias para la reducción del desempleo y el subempleo (subocupación)'),
+(73,22,'3.4.5 Aumentar la formalización de la economía, con un carácter social y distributivo'),
+(74,23,'3.5.1 Incrementar y conservar la conectividad intra e inter estatal'),
+(75,23,'3.5.2 Crear infraestructura tecnológica y productiva para el impulso industrial, comercial y de servicios'),
+(76,24,'3.6.1 Fortalecer y diversificar la agricultura sostenible'),
+(77,24,'3.6.2 Incrementar la productividad en la ganadería, silvicultura y pesca'),
+(78,24,'3.6.3 Impulsar alianzas estratégicas para promover la agroindustria'),
+(79,24,'3.6.4 Garantizar la sostenibilidad del recurso hídrico en el sector'),
+(80,25,'3.7.1 Ampliar el uso de la tecnología y la innovación en el sector industrial y empresarial'),
+(81,25,'3.7.2 Fortalecer el acceso a los esquemas de financiamiento para MIPyMES'),
+(82,25,'3.7.3 Fomentar la industrialización de procesos que proporcionen valor agregado a productos locales'),
+(83,25,'3.7.4 Fomentar el emprendimiento mediante asesoría y mecanismos de financiamiento'),
+(84,25,'3.7.5 Promover el encadenamiento de las MIPYMES a los sectores estratégicos'),
+(85,25,'3.7.6 Apertura de nuevos mercados nacionales e internacionales y cadenas de valor para los productos locales'),
+(86,26,'3.8.1 Promover la inversión del sector minero, privilegiando la que tenga una visión y manejo sustentable.'),
+(87,26,'3.8.2 Fortalecer la cadena de valor del sector minero y su productividad'),
+(88,26,'3.8.3 Ampliar y diversificar las actividades económicas y productivas en los distritos mineros que permitan su desarrollo sostenible.'),
+(89,26,'3.8.4 Implementar vínculos con el sector educativo estatal para la formación de profesionistas y técnicos de alto desempeño en el sector minero'),
+(90,27,'3.9.1 Ampliar la oferta turística, la profesionalización y capacitación del sector'),
+(91,27,'3.9.2 Incrementar la inversión y aprovechar la infraestructura con potencial turístico en áreas potenciales del sector'),
+(92,28,'3.10.1 Proteger, crear, preservar y difundir la cultura y el patrimonio cultural tanto material como inmaterial de la entidad'),
+(93,28,'3.10.2 Incrementar la formación de docentes, talentos, artistas y artesanos'),
+(94,28,'3.10.3 Construir y rehabilitar espacios dignos y apropiados para el acceso y difusión de las manifestaciones artísticas y populares'),
+(95,28,'3.10.4 Desarrollar la industria cultural y creativa'),
+(96,29,'4.1.1 Promover el uso sostenible de los ecosistemas del Estado'),
+(97,29,'4.1.2 Fomentar la rehabilitación de ecosistemas degradados'),
+(98,29,'4.1.3 Impulsar mecanismos para la protección y conservación de ecosistemas'),
+(99,30,'4.2.1 Gestión integrada del agua'),
+(100,30,'4.2.2 Incrementar la seguridad hídrica'),
+(101,30,'4.2.3 Fortalecer el abastecimiento de agua y el acceso a los servicios de agua potable'),
+(102,30,'4.2.4 Fortalecer el saneamiento y reuso del agua'),
+(103,30,'4.2.5 Fortalecer la cultura del cuidado del agua'),
+(104,31,'4.3.1 Diseñar programas encaminados a la mitigación y adaptación de los efectos negativos del cambio climático'),
+(105,31,'4.3.2 Fomentar la educación, el desarrollo e investigación científica y transferencia de tecnología para hacer frente al cambio climático.'),
+(106,31,'4.3.3 Adoptar el compromiso contraido en el Convenio Marco de la Naciones Unidas sobre Cambio Climático'),
+(107,32,'4.4.1 Aprovechar el potencial de la entidad en la generación de energías alternativas'),
+(108,32,'4.4.2 Impulsar la participación de instituciones de educación en la investigación, capacitación, desarrollo y uso de tecnologías en energías renovables'),
+(109,32,'4.4.3 Establecer un marco institucional para fomentar el uso masivo de energías alternativas'),
+(110,33,'4.5.1 Prevención y gestión integral de los residuos solidos a nivel municipal y regional'),
+(111,33,'4.5.2 Promover el manejo integral de los diferentes tipos de residuos generados en la entidad'),
+(112,33,'4.5.3 Desarrollo de capacidades locales en materia de gestión integral de residuos'),
+(113,33,'4.5.4 Disposición final de residuos solidos en cumplimiento de la normatividad ambiental'),
+(114,33,'4.5.5 Aprovechamiento y valorización de los residuos solidos'),
+(115,33,'4.5.6 Participación social en el manejo de residuos'),
+(116,34,'4.6.1 Identificar las amenazas que pueden tener consecuencias desastrosas y determinar formas de prevención.'),
+(117,34,'4.6.2 Impulsar la prevención como mecanismo para mitigar y reducir oportunamente el impacto de los desastres a los que está expuesta la población'),
+(118,34,'4.6.3 Fortalecer los protocolos de atención inmediata ante situaciones de desastre'),
+(119,35,'4.7.1 Impulsar el desarrollo territorial equilibrado'),
+(120,35,'4.7.2 Implementar una política de desarrollo urbano integral y sostenible'),
+(121,35,'4.7.3 Consolidar el desarrollo metropolitano'),
+(122,35,'4.7.4 Impulsar la regularización de la tenencia de la tierra en predios urbanos y fraccionamientos rurales.'),
+(123,35,'4.7.5 Modernización catastral y registral'),
+(124,35,'4.7.6 Ampliar y complementar el equipamiento urbano para el desarrollo de ciudades sustentables y modernas'),
+(125,36,'4.8.1 Promover la construcción de vivienda ordenada y sustentable'),
+(126,36,'4.8.2 Promover programas de apoyos para el mejoramiento de vivienda'),
+(127,37,'4.9.1 Impulsar el dinamismo del transporte a través de Planes Integrales de Movilidad'),
+(128,37,'4.9.2 Modernizar y dar mantenimiento a la infraestructura vial en la entidad'),
+(129,37,'4.9.3 Proponer nuevas alternativas de movilidad urbana'),
+(130,1,'No Registrado');
+
+INSERT INTO `u_medida_indicadores` (`id_u_medida`,`u_medida`) VALUES
+ (1,'no registrado'),
+ (2,'Afiliados'),
+ (3,'Asistentes'),
+ (4,'Camiones'),
+ (5,'Denuncias'),
+ (6,'Estudiantes'),
+ (7,'Héctareas'),
+ (8,'Hogares'),
+ (9,'Inventario'),
+ (10,'Investigadores'),
+ (11,'Kilogramos'),
+ (12,'Kilómetros'),
+ (13,'Millones de pesos'),
+ (14,'Patentes'),
+ (15,'Plantas'),
+ (16,'Posicion'),
+ (17,'Porcentaje'),
+ (18,'Puntos'),
+ (19,'Sementales'),
+ (20,'Visitas'),
+ (21,'PM2.5 Microgramos por metro cubico'),
+ (22,'Vehiculos'),
+ (23,'Camiones');
+
+INSERT INTO `sistemas_consulta` (`id_sistema_consulta`,`sistema_consulta`) VALUES
+(1,'Plan Estatal de Desarrollo'),
+(2,'Desarrollo Sostenible'),
+(3,'Bienestar'),
+(4,'Cátalogo Nacional de indicadores'),
+(5,'Objetivos del Milenio'),
+(6,'No Registrado');
+
+INSERT INTO `temas_interes` (`id_tema`,`nombre_tema`,`icono`,`descripcion`,`activo`) VALUES
+(1,'Gobierno','iconoGobierno.png','-',1),
+(2,'Rezago social','iconoRezago.png','-',1),
+(3,'Salud','iconoSalud.png','-',1),
+(4,'Seguridad','iconoSeguridad.png','-',1),
+(5,'Género','iconoGenero.png','-',1),
+(6,'Educación','iconoEducacion.png','-',1),
+(7,'Innovación','iconoInnovacion.png','-',1),
+(8,'Economía','iconoEconomia.png','-',1),
+(9,'Infraestructura','iconoInfraestructura.png','-',1),
+(10,'Campo','iconoCampo.png','-',1),
+(11,'Turismo','iconoTurismo.png','-',1),
+(12,'Medio ambiente','iconoUrbano.png','-',1),
+(13,'Desarrollo urbano','n.a.','-',1),
+(14,'Cultura','n.a.','-',1),
+(15,'Población','n.a.','-',1);
+
+INSERT INTO `regiones` (`id_region`,`nombre`,`sede`) VALUES
+(1,'Centro ( Zacatecas)','Zacatecas'),
+(2,'Centro Sur (Jerez)','Jerez'),
+(3,'Suroeste (Valparaiso)','Valparaiso'),
+(4,'Oeste (Sombrerete)','Sombrerete'),
+(5,'Noroeste (Río Grande)','Rio Grande'),
+(6,'Norte (Concepción del Oro)','Concepción del Oro'),
+(7,'Sureste (Ojocaliente)','Ojocaliente'),
+(8,'Sur (Tlaltenango)','Tlaltenango'),
+(9,'Cobertura Regional',''),
+(10,'Cobertura Estatal','');
+
+INSERT INTO `municipios` (`id_municipio`,`id_region`,`nombre`) VALUES
+(1,8,'Apozol'),
+(2,8,'Apulco'),
+(3,8,'Atolinga'),
+(4,8,'Benito Juárez'),
+(5,1,'Calera'),
+(6,5,'Cañitas de Felipe Pescador'),
+(7,6,'Concepción del Oro'),
+(8,7,'Cuauhtémoc'),
+(9,4,'Chalchihuites'),
+(10,1,'Fresnillo'),
+(11,8,'Trinidad García de la Cadena'),
+(12,1,'Genaro Codina'),
+(13,1,'General Enrique Estrada'),
+(14,5,'General Francisco R. Murguia'),
+(15,8,'El Plateado de Joaquin Amaro'),
+(16,7,'General Pánfilo Natera'),
+(17,1,'Guadalupe'),
+(18,8,'Huanusco'),
+(19,8,'Jalpa'),
+(20,2,'Jerez'),
+(21,4,'Jiménez del Teul'),
+(22,5,'Juan Aldama'),
+(23,8,'Juchipila'),
+(24,7,'Loreto'),
+(25,7,'Luis Moya'),
+(26,6,'Mazapil'),
+(27,6,'Melchor Ocampo'),
+(28,8,'Mezquital del Oro'),
+(29,5,'Miguel Auza'),
+(30,8,'Momax'),
+(31,3,'Monte Escobedo'),
+(32,1,'Morelos'),
+(33,8,'Moyahua de Estrada'),
+(34,8,'Nochistlán de Mejía'),
+(35,7,'Noria de Ángeles'),
+(36,7,'Ojocaliente'),
+(37,1,'Pánuco'),
+(38,7,'Pinos'),
+(39,5,'Río Grande'),
+(40,4,'Saín Alto'),
+(41,6,'Salvador, El'),
+(42,4,'Sombrerete'),
+(43,2,'Susticacán'),
+(44,8,'Tabasco'),
+(45,8,'Tepechitlán'),
+(46,2,'Tepetongo'),
+(47,8,'Teúl de González Ortega'),
+(48,8,'Tlaltenango de Sanchez Román'),
+(49,3,'Valparaíso'),
+(50,1,'Vetagrande'),
+(51,6,'Villa de Cos'),
+(52,7,'Villa García'),
+(53,7,'Villa González Ortega'),
+(54,7,'Villa Hidalgo'),
+(55,2,'Villanueva'),
+(56,1,'Zacatecas'),
+(57,1,'Trancoso'),
+(58,8,'Santa María de la Paz'),
+(59,9,'Cobertura Regional'),
+(60,10,'Cobertura Estatal');
+
+INSERT INTO `origen` (`id_origen`,`origen`) VALUES (1,'No registrado');
+INSERT INTO `niveles` (`id_nivel`,`nivel`) VALUES (1,'Actividad');
+INSERT INTO `niveles` (`id_nivel`,`nivel`) VALUES (2,'Componente');
+INSERT INTO `niveles` (`id_nivel`,`nivel`) VALUES (3,'Propósito');
+INSERT INTO `niveles` (`id_nivel`,`nivel`) VALUES (4,'Fin');
+INSERT INTO `niveles` (`id_nivel`,`nivel`) VALUES (5,'No registrado');
+INSERT INTO `tendencias_deseables` (`id_tendencia`,`tendencia`,`descripcion`) VALUES (1,'Constante','-');
+INSERT INTO `tendencias_deseables` (`id_tendencia`,`tendencia`,`descripcion`) VALUES (2,'Ascendente','-');
+INSERT INTO `tendencias_deseables` (`id_tendencia`,`tendencia`,`descripcion`) VALUES (3,'Descendente','-');
+INSERT INTO `periodicidad_indicador` (`id_periodicidad`,`peiodicidad`) VALUES (1,'Mensual');
+INSERT INTO `periodicidad_indicador` (`id_periodicidad`,`peiodicidad`) VALUES (2,'Bimestral');
+INSERT INTO `periodicidad_indicador` (`id_periodicidad`,`peiodicidad`) VALUES (3,'Trimestral');
+INSERT INTO `periodicidad_indicador` (`id_periodicidad`,`peiodicidad`) VALUES (4,'Semestral');
+INSERT INTO `periodicidad_indicador` (`id_periodicidad`,`peiodicidad`) VALUES (5,'Anual');
+INSERT INTO `periodicidad_indicador` (`id_periodicidad`,`peiodicidad`) VALUES (6,'Bienal');
+INSERT INTO `periodicidad_indicador` (`id_periodicidad`,`peiodicidad`) VALUES (7,'Trienal');
+INSERT INTO `periodicidad_indicador` (`id_periodicidad`,`peiodicidad`) VALUES (8,'Quinquenal');
+INSERT INTO `periodicidad_indicador` (`id_periodicidad`,`peiodicidad`) VALUES (9,'Decenal');
+INSERT INTO `periodicidad_indicador` (`id_periodicidad`,`peiodicidad`) VALUES (10,'No Registrado');
+INSERT INTO `usuarios` (`id_usuario`,`usuario`,`clave`,`nombre`,`dependencia`,`perfil`,`correo`) VALUES (1,'admin','21232f297a57a5a743894a0e4a801fc3','Admin',1,1,'admin@indyce');
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (1,'Año Agricola OI+PV Riego + Riego, Sup. Cosechada (Ha)','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (2,'Año Agricola OI+PV Riego + Riego, Sup. Sembrada (Ha)','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (3,'Año Agricola OI+PV Riego + Temporal, Sup. Cosechada (Ha)','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (4,'Año Agricola OI+PV Riego + Temporal, Sup. Sembrada (Ha)','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (5,'Ciclicos y Perennes, Riego Sup. Cosechada (Ha)','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (6,'Ciclicos y Perennes, Riego Sup. Sembrada (Ha)','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (7,'Ciclicos y Perennes, Temporal Sup. Cosechada (Ha)','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (8,'Ciclicos y Perennes, Temporal Sup. Sembrada (Ha)','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (9,'Número de Cabezas Ganado Bovino ','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (10,'Número de Cabezas Ganado Caprino ','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (11,'Número de Cabezas Ganado Ovino ','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (12,'Número de Cabezas Ganado Porcino','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (13,'Porcentaje de Población ocupada en el sector primaro','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (14,'Sup. Sembrada Con acciones fitosanitarias (Ha)','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (15,'Sup. Sembrada Con asistencia técnica (Ha)','0',1,1,'2011',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (16,'Sup. Sembrada Fertilizada (Ha)','0',1,1,'2011',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (17,'Sup. Sembrada mecanizada  (Ha)','0',1,1,'2011',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (18,'Automoviles','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (19,'Camiones de pasajeros*','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (20,'Ingresos en las empresas constructoras por administración o supervición de obras','0',1,1,'2011',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (21,'Ingresos en las empresas constructoras por alquiler de bienes muebles e inmuebles','0',1,1,'2011',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (22,'Ingresos en las empresas constructoras por anticipos','0',1,1,'2011',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (23,'Ingresos en las empresas constructoras por ejecución de obras como contratista principal','0',1,1,'2011',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (24,'Ingresos en las empresas constructoras por la prestación de servicios','0',1,1,'2011',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (25,'Longitud de la Red Carretera (km)','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (26,'Número de suscripciones a teléfonos celulares móviles por cada 100 habitantes','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (27,'Otros ingresos en las empresas constructoras por la ejecución de obras y servicios','0',1,1,'2011',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (28,'Distribución de los ingresos por remesas familiares','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (29,'Financiamiento otorgado por el Banco Nacional de Obras y Servicios Públicos (millones de pesos)','0',1,1,'2012',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (30,'Financiamiento otorgado por Financiera Nacional de Desarrollo Agropecuario, Rural, Forestal y Pesquero para Zacatecas (Millones de pesos)','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (31,'Financiamiento otorgado por Nacional Financiera (Millones de pesos)','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (32,'Hasta 1 salario mínimo - Ingresos de la población ocupada (Miles de personas) -Hombres','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (33,'Hasta 1 salario mínimo - Ingresos de la población ocupada (Miles de personas)-Mujeres','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (34,'Hasta 1 salario mínimo - Ingresos de la población ocupada (Miles de personas)-Total','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (35,'IED trimestral Nuevas inversiones (millones de dolares)','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (36,'IED trimestral por sector, subsector, rama, subrama y clase de actividad económica (millones de dólares); 212 Minería de minerales metálicos y no metálicos, excepto petróleo y gas','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (37,'IED trimestral por sector, subsector, rama, subrama y clase de actividad económica (millones de dólares); 2122 Minería de minerales metálicos','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (38,'IED trimestral por sector, subsector, rama, subrama y clase de actividad económica (millones de dólares); 21221 Minería de hierro','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (39,'IED trimestral por sector, subsector, rama, subrama y clase de actividad económica (millones de dólares); 212210 Minería de hierro ','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (40,'IED trimestral por sector, subsector, rama, subrama y clase de actividad económica (millones de dólares); 21222 Minería de oro y plata','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (41,'IED trimestral por sector, subsector, rama, subrama y clase de actividad económica (millones de dólares); 21223 Minería de cobre, plomo y zinc','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (42,'IED trimestral por sector, subsector, rama, subrama y clase de actividad económica (millones de dólares); 21229 Minería de otros minerales metálicos','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (43,'IED trimestral Reinversión de utilidades (millones de dolares)','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (44,'Inversión del Programa de Fomento a la Economía Social en las Zonas de Atención Prioritarias ','0',1,1,'2014',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (45,'Inversión extranjera directa (Flujos anuales en millones de dólares)','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (46,'Más de 1 y hasta 2 salarios mínimos - Ingresos de la población ocupada (Miles de personas)-Hombres','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (47,'Más de 1 y hasta 2 salarios mínimos - Ingresos de la población ocupada (Miles de personas)-Mujeres','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (48,'Más de 1 y hasta 2 salarios mínimos - Ingresos de la población ocupada (Miles de personas)-Total','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (49,'Más de 2 y hasta 3 salarios mínimos - Ingresos de la población ocupada (Miles de personas)-Hombres','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (50,'Más de 2 y hasta 3 salarios mínimos - Ingresos de la población ocupada (Miles de personas)-Mujeres','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (51,'Más de 2 y hasta 3 salarios mínimos - Ingresos de la población ocupada (Miles de personas)-Total','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (52,'Más de 3 y hasta 5 salarios mínimos - Ingresos de la población ocupada (Miles de personas)-Hombres','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (53,'Más de 3 y hasta 5 salarios mínimos - Ingresos de la población ocupada (Miles de personas)-Mujeres','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (54,'Más de 3 y hasta 5 salarios mínimos - Ingresos de la población ocupada (Miles de personas)-Total','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (55,'Más de 5 salarios mínimos - Ingresos de la población ocupada (Miles de personas)-Hombres','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (56,'Más de 5 salarios mínimos - Ingresos de la población ocupada (Miles de personas)-Mujeres','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (57,'Más de 5 salarios mínimos - Ingresos de la población ocupada (Miles de personas)-Total','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (58,'No percibe ingresos - Ingresos de la población ocupada (Miles de personas)- Mujeres','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (59,'No percibe ingresos - Ingresos de la población ocupada (Miles de personas)-Hombres','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (60,'No percibe ingresos - Ingresos de la población ocupada (Miles de personas)-Total','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (61,'Número de sociedades que presentaron flujos de IED hacia Zacatecas (sociedades mexicanas con inversión extranjera en su capital social)','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (62,'PIB de la Minería','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (63,'PIB del sector de la Construcción','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (64,'PIB per cápita ','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (65,'Porcentajes del PIB con que participa Zacatecas','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (66,'Producto interno bruto a precios básicos (Millones de pesos) Sector   31-33. Industrias manufactureras','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (67,'Producto interno bruto a precios básicos (Millones de pesos) Sector   48-49. Transpotes, correos y almacenamiento','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (68,'Producto interno bruto a precios básicos (Millones de pesos) Sector 21. Minería','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (69,'Producto interno bruto a precios básicos (Millones de pesos) Sector 22. Gen., trans. y distrib. energía eléc., suminis. de agua y de gas por ductos al consum. final','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (70,'Producto interno bruto a precios básicos (Millones de pesos) Sector 23. Construcción','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (71,'Producto interno bruto a precios básicos (Millones de pesos) Sector 51. Información en medios masivos','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (72,'Producto interno bruto a precios básicos (Millones de pesos) Sector 52. Servicios financieros y de seguros','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (73,'Producto interno bruto a precios básicos (Millones de pesos) Sector 53. Servicios inmobiliarios y de alquiler de bienes muebles e intangibles','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (74,'Producto interno bruto a precios básicos (Millones de pesos) Sector 54. Servicios profesionales, científicos y técnicos','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (75,'Producto interno bruto a precios básicos (Millones de pesos) Sector 55. Corporativos','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (76,'Producto interno bruto a precios básicos (Millones de pesos) Sector 56. Servicios de apoyo a los negocios y manejo de desechos y servicios de remediación','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (77,'Producto interno bruto a precios básicos (Millones de pesos) Sector 61. Servicios educativos','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (78,'Producto interno bruto a precios básicos (Millones de pesos) Sector 62. Servicios de salud y de asistencia social','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (79,'Producto interno bruto a precios básicos (Millones de pesos) Sector 71. Servicios de esparcimiento culturales y deportivos, y otros serv. recreativos','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (80,'Producto interno bruto a precios básicos (Millones de pesos) Sector 72. Servicios de alojamiento temporal y de preparación de alimentos y bebidas','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (81,'Producto interno bruto a precios básicos (Millones de pesos) Sector 81. Otros servicios excepto actividades gubernamentales','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (82,'Producto interno bruto a precios básicos (Millones de pesos) Sector 93. Act. legislativas, gub., impart. justicia y de org. Internales. y extraterritoriales','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (83,'Producto interno bruto a precios básicos (Millones de pesos) Sectores 43 y 46. Comercio','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (84,'Producto interno bruto a precios básicos (Millones de pesos)Sector 11. Agricultura, cría y explotación de animales, aprovechamiento forestal, pesca y caza','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (85,'Producto interno bruto total a precios básicos (Millones de pesos)','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (86,'Promedio de Trabajadores de la actividad Industrias Extractivas afiliados en el IMSS','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (87,'Salario base de cotización de asegurados trabajadores en el IMSS (Pesos diarios)','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (88,'Tasa de desocupación de jóvenes','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (89,'Tasa de desocupación total','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (90,'Total de Trabajadores  asegurados al IMSS Zacatecas (Cifras al 31 de diciembre de cada año)','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (91,'Trabajadores del sector Agropecuario asegurados al IMSS (Cifras al 31 de diciembre de cada año)','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (92,'Trabajadores del sector Comercio asegurados al IMSS (Cifras al 31 de diciembre de cada año)','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (93,'Trabajadores del sector Construcción asegurados al IMSS (Cifras al 31 de diciembre de cada año)','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (94,'Trabajadores del sector Electricidad y agua potable asegurados al IMSS (Cifras al 31 de diciembre de cada año)','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (95,'Trabajadores del sector Extracción asegurados al IMSS (Cifras al 31 de diciembre de cada año)','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (96,'Trabajadores del sector Industria manufacturera asegurados al IMSS (Cifras al 31 de diciembre de cada año)','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (97,'Trabajadores del sector Servicio para empresas, personas y hogares asegurados al IMSS (Cifras al 31 de diciembre de cada año)','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (98,'Trabajadores del sector Servicios sociales y comunitarios asegurados al IMSS (Cifras al 31 de diciembre de cada año)','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (99,'Trabajadores del sector Transporte y comunicaciones  asegurados al IMSS (Cifras al 31 de diciembre de cada año)','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (100,'Volumen de la producción de Cobre (Ton)','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (101,'Volumen de la producción de Oro (kg)','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (102,'Volumen de la producción de Plata  (kg)','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (103,'Volumen de la producción de Plomo (Ton)','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (104,'Volumen de la producción de Zinc (Ton)','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (105,'Años de estudio','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (106,'Becarios PRONABES Manutención Educ. Sup.','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (107,'Cobertura Educ. Básica','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (108,'Cobertura Educ. Media Superior','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (109,'Cobertura Educ. Superior','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (110,'Escuelas de Calidad-Alumnos atendidos ','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (111,'Escuelas de Calidad-Escuelas Apoyadas','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (112,'Escuelas de Calidad-Recursos Ejercidos (mdp)','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (113,'Indice nacional de analfabetismo de la mujer','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (114,'Indice nacional de analfabetismo de la población total','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (115,'Indice nacional de analfabetismo del hombre','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (116,'Otras Becas Educación  básica','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (117,'Otras Becas Educación media superior','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (118,'Otras Becas Educación superior ','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (119,'Porcentaje de asistencia escolar (12 a 14 años de edad)','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (120,'Porcentaje de asistencia escolar (6 a 11 años de edad)','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (121,'Programa de Escuelas de Tiempo Completo-Alumnos (Número)','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (122,'Programa de Escuelas de Tiempo Completo-Docentes (Número)','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (123,'Programa de Escuelas de Tiempo Completo-Escuelas primarias (Número)','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (124,'Programa de Escuelas de Tiempo Completo-Inversión (Millones de pesos)','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (125,'Programa de la Reforma Educativa-Alumnos atendidos (Número)','0',1,1,'2014',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (126,'Programa de la Reforma Educativa-Escuelas apoyadas (Número)','0',1,1,'2014',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (127,'Programa de la Reforma Educativa-Recursos ejercidos (Millones de pesos)','0',1,1,'2014',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (128,'Tot. Becas Oportunidades','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (129,'Esperanza de vida al nacer de las mujeres','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (130,'Hogares con Jefatura femenina','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (131,'Mujeres en ayuntamientos','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (132,'Mujeres Muertas Accidentales y violentas','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (133,'Mujeres muertas por homicidio','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (134,'Porcentaje de Hogares con jefatura femenina','0',1,1,'2015',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (135,'Porcentaje de mujeres ocupadas en el sector gobierno','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (136,'Porcentaje de mujeres ocupadas que no recibe remuneración','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (137,'Porcentaje de mujeres ocupadas que se desempeña como empleadora','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (138,'Porcentaje Diputados Mayoría Relativa','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (139,'Porcentaje Diputados Representación Proporcional','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (140,'Porcentaje Total','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (141,'Razón entre mujeres y hombres en la enseñanza media superior','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (142,'Razón entre mujeres y hombres en la enseñanza superior','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (143,'Razón entre niñas y niños en la enseñanza primaria','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (144,'Tasa de desocupación de las mujeres','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (145,'Tasa de ocupación de mujeres en el sector informal','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (146,'Tasa de participación económica de las mujeres','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (147,'Dependencia Financiera (Ingresos propios/ingresos federales)','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (148,'Dependencia Financiera (Ingresos propios/ingresos totales)','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (149,'Dimensión Calidad institucional y eficiencia política','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (150,'Dimensión Respeto de los derechos políticos y libertades civiles','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (151,'Fondo de Desastres Naturales: Gasto federal autorizado con cargo al Ramo 23 y  al Fideicomiso FONDEN  (Millones de pesos)','0',1,1,'2012',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (152,'Gasto programable del sector público presupuestario (Millones de pesos)','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (153,'Impuestos, derechos, productos, aprovechamientos y contribución de mejoras (millones de pesos)','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (154,'Indice de Desarrollo Democrático','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (155,'Índice de Información Presupuestal (Cumplimiento)','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (156,'Índice de Información Presupuestal (Posición)','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (157,'Ingresos no tributarios Zacatecas (Millones de pesos)','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (158,'Ingresos Totales (Millones de pesos)','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (159,'Ingresos tributarios (millones de pesos)','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (160,'Lista Nominal','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (161,'Organizaciones de la Sociedad Civil','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (162,'Porcentaje de participación','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (163,'Ramo 28  Participaciones a Entidades Federativas y Municipios  (Millones de pesos)','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (164,'Saldos de la deuda total  a diciembre de cada año Zacatecas (Millones de pesos)','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (165,'Saldos Per Cápita de la deuda total a diciembre de cada año (pesos)','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (166,'Subdimensión Capacidad para generar políticas que aseguren bienestar','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (167,'Subdimensión Capacidad para generar políticas que aseguren eficiencia económica','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (168,'Votos','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (169,'Consumo de energía eléctrica por entidad federativa (Gigawatts-hora)','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (170,'Red de carreteras (Kilómetros)','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (171,'Número de Becas nacionales del CONACYT','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (172,'SNI-I Ciencias físico matemáticas  y de la tierra ','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (173,'SNI-II Biología y química','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (174,'SNI-III Medicina y ciencias de la salud','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (175,'SNI-IV Humanidades y ciencias de la conducta','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (176,'SNI-V Ciencias sociales','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (177,'SNI-VI Biotecnología y ciencias agropecuarias','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (178,'SNI-VII Ingeniería','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (179,'Total de investigadores en el SNI','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (180,'Caudal de agua potabilizada (Lps)','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (181,'Caudal de tratamiento de aguas residuales (Lps)','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (182,'Caudal desinfectado (Metros cúbicos por segundo)','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (183,'Caudal suministrado (Metros cúbicos por segundo)','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (184,'Cobertura de los servicios de agua potable (porcentaje)','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (185,'Cobertura de los servicios de alcantarillado (porcentaje)','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (186,'Denuncias ambientales','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (187,'Denuncias ambientales por cada 100 000','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (188,'Población con acceso al agua potable','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (189,'Porcentaje anual de tratamiento de aguas residuales','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (190,'Promedio diario de residuos solidos urbanos diarios (kilogramos)','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (191,'Proporción de la población con acceso sostenible a fuentes mejoradas de abastecimiento de agua','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (192,'Total de plantas de tratamiento de aguas residuales','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (193,'Total de plantas de tratamiento de aguas residuales  en operación','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (194,'Total de plantas potabilizadoras','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (195,'Densidad de población','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (196,'Esperanza de vida','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (197,'Extranjeros no residentes en México-Registro y control migratorio de entradas','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (198,'Extranjeros residentes en México Permanentes-Registro y control migratorio de entradas','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (199,'Extranjeros residentes en México Temporales-Registro y control migratorio de entradas','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (200,'Proyecciones de población de 0-14 años (miles de personas)','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (201,'Proyecciones de población de 15-64 años (miles de personas)','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (202,'Proyecciones de población de 65 y más  años (miles de personas)','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (203,'Proyecciones de población de Hombres (miles de personas)','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (204,'Proyecciones de población Mujeres (miles de personas)','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (205,'Proyecciones de población Rural (miles de personas)','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (206,'Proyecciones de población Urbana (miles de personas)','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (207,'Registro y control migratorio de entradas de Mexicanos','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (208,'Registro y control migratorio de entradas totales','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (209,'Saldo neto migratorio','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (210,'Tasa de crecimiento Natural','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (211,'Tasa de crecimiento Total','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (212,'Tasa de natalidad','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (213,'Tasa global de fecundidad','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (214,'Acceso a la alimentación (porcentaje)','0',1,1,'2012',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (215,'Acceso a la alimentación carencia promedio','0',1,1,'2012',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (216,'Acceso a la seguridad social  carencia promedio','0',1,1,'2012',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (217,'Acceso a la seguridad social (porcentaje)','0',1,1,'2012',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (218,'Acceso a los servicios de salud (porcentaje)','0',1,1,'2012',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (219,'Acceso a los servicios de salud carencia promedio','0',1,1,'2012',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (220,'Calidad y espacios de la vivienda (porcentaje)','0',1,1,'2012',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (221,'Calidad y espacios de la vivienda carencia (porcentaje)','0',1,1,'2012',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (222,'Familias atendidas por PROSPERA Programa de Inclusión Social respecto al total de familias','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (223,'Gasto federal de PROSPERA Programa de Inclusión Social (Millones de pesos)','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (224,'Inseguridad alimentaria leve (porcentaje)','0',1,1,'2012',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (225,'Inseguridad alimentaria moderada (porcentaje)','0',1,1,'2012',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (226,'Inseguridad alimentaria severa (porcentaje)','0',1,1,'2012',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (227,'Número de personas en situación de Pobreza multidimensional extrema (millones de personas)','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (228,'Número de personas en situación de Pobreza multidimensional moderada (millones de personas)','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (229,'Población en situación de pobreza (porcentaje)','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (230,'Población vulnerable  por carencia social (millones de personas)','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (231,'Población vulnerable por  carencia social  (porcentaje)','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (232,'Población vulnerable por ingreso  (porcentaje)','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (233,'Población vulnerable por ingreso (millones de personas)','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (234,'Pobreza multidimensional extrema (porcentaje)','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (235,'Pobreza multidimensional moderada (porcentaje)','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (236,'Porcentaje de Familias atendidas por PROSPERA Programa de Inclusión Social respecto al total de familias','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (237,'Porcentaje de mujeres en control prenatal - Porcentaje de avance de PROSPERA Programa de Inclusión Social en sus Componentes de Salud y Alimentario','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (238,'Porcentaje de niños entre 2 y 4 años de edad bajo control nutricional - Porcentaje de avance de PROSPERA Programa de Inclusión Social en sus Componentes de Salud y Alimentario','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (239,'Porcentaje de niños menores de 2 años bajo control nutricional - Porcentaje de avance de PROSPERA Programa de Inclusión Social en sus Componentes de Salud y Alimentario','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (240,'Porcentaje de recién nacidos con bajo peso al nacer - Porcentaje de avance de PROSPERA Programa de Inclusión Social en sus Componentes de Salud y Alimentario','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (241,'Porcentaje total de personas en situación de pobreza multidimensional y vulnerables','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (242,'Total de personas en situación de pobreza multidimensional (millones de personas)','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (243,'Numero de consultas de especialidad  x cada 1000 habitantes','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (244,'Numero de consultas externas  x cada 1000 habitantes','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (245,'Numero de enfermeras  x cada 1000 habitantes','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (246,'Numero de médicos  x cada 1000 habitantes','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (247,'Número de personas afiliadas en el Seguro Popular','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (248,' Población con Seguridad Social 2011 ','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (249,' Población de Responsabilidad de Los SSZ 2011 ','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (250,' Población de Responsabilidad del IMSS-OP 2011 ','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (251,' Población Derechohabiente del IMSS regimen ordinario 2011 ','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (252,' Población Derechohabiente del ISSSTE 2011 ','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (253,' Población sin Seguridad Social 2011 ','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (254,'Porcentaje de la relación  del  pago  de  pensiones  del  IMSS respecto a su gasto programable devengado','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (255,'Porcentaje de la relación  del  pago  de  pensiones  del ISSSTE respecto a su gasto programable devengado','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (256,'Promedio de consultas prenatales por embarazada atendida en las instituciones del Sistema Nacional de Salud','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (257,'Proporción de niños de un año de edad con esquema básico completo de vacunación','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (258,'Recursos ejercidos en el Seguro Popular (Millones de pesos)','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (259,'Tasa de mortalidad en niños menores de 5 años','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (260,'Tasa de mortalidad general                    ','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (261,'Tasa de mortalidad infantil                     ','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (262,'Tasa de mortalidad materna                           ','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (263,'Delitos donde la víctima estuvo presente (total','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (264,'Elementos de las policias preventivas por cada cien mil habitantes','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (265,'Homicidios-Cifras absolutas','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (266,'Índice de efectividad del ministerio Público (compara número de everiguaciones previas efectivamente concluidas contra el total de averiguaciones previas iniciadas)','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (267,'Número de policias por cada 100,000 habitantes','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (268,'Organos de seguridad y justicia estatales por cada cien mil habitantes','0',1,1,'2011',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (269,'Percepción sobre la Inseguridad pública','0',1,1,'2011',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (270,'Personal activo evaluado en control de confianza (puede ser en cualquier nivel de gobierno)','0',1,1,'2011',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (271,'Personal de seguridad y justicia','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (272,'Población interna de sentenciados y procesados del Fuero Común-Cifras absolutas','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (273,'Población interna de sentenciados y procesados del Fuero Común-Tasa por cada 100 000 habitantes','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (274,'Población interna de sentenciados y procesados del Fuero federal-Cifras absolutas','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (275,'Población interna de sentenciados y procesados del Fuero federal-Tasa por cada 100 000 habitantes','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (276,'Población interna de sentenciados y procesados-Cifras absolutas','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (277,'Población interna de sentenciados y procesados-Tasa por cada100 000 habitantes','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (278,'Posibles hechos delictivos denunciados en el fuero común-Cifras absolutas','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (279,'Posibles hechos delictivos denunciados en el fuero común-Tasa por cada 100 000 habitantes','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (280,'Posibles hechos delictivos denunciados en el fuero federal-Cifras absolutas','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (281,'Posibles hechos delictivos denunciados en el fuero federal-Tasa por cada 100 000 habitantes','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (282,'Posibles hechos delictivos denunciados en los fueros federal y común-Cifras absolutas','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (283,'\"Posibles hechos delictivos denunciados en los fueros federal y común-Tasa por cada 100 000 habitantes 3/\"','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (284,'Privación de la libertad (secuestro)','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (285,'Robo común','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (286,'Tasa de homicidios por cada 100 000 habitantes','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (287,'Tasa de incidencia delictiva (número de delitos por cada 100 000)','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (288,'Tasa de prevalencia delictiva por cada 100,000 habitantes','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (289,'Cuartos disponibles anual','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (290,'Estadía promedio estatal anual(noches)','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (291,'Llegada de pasajeros en vuelos al aeropuerto internacional “Gral. Leobardo C. Ruiz” anual','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (292,'Llegada de turistas a hoteles anual','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (293,'Porcentaje de ocupación hotelera estatal anual','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (294,'Recursos estatales canalizados a la actividad turística a través de los convenios de coordinación en materia de reasignación de recursos (Miles de pesos)','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (295,'Recursos federales canalizados a la actividad turística a través de los convenios de coordinación en materia de reasignación de recursos (Miles de pesos)','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (296,'Recursos totales canalizados a la actividad turística a través de los convenios de coordinación en materia de reasignación de recursos (Miles de pesos)','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (297,'Reporte anual de estadística de visitas a Museo de Guadalupe','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (298,'Reporte anual de estadística de visitas a Z.A. de Altavista o Chalchihuites con museo de sitio','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (299,'Reporte anual de estadística de visitas a Z.A. de La Quemada con museo de sitio','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (300,'Turistas Internacionales anual','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (301,'Turistas Nacionales anual','0',1,1,'2010',5,NULL,NULL,1,130,6,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (302,'Índice de Desempaño Financiero de las Entidades Federativas','0',1,16,NULL,5,NULL,'Índice que proporciona una visión integral la situación que guardan las finanzas públicas en los gobiernos estatales de México, elaborado por la revista Aregional.',NULL,1,1,1,NULL,NULL,NULL,NULL,NULL,5,NULL,'IMCO, Índice de Competitividad Estatal');
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (303,'Índice General de Avance de PbR-SED en el ámbito Estatal','0',1,16,NULL,5,NULL,'Índice que permite conocer el nivel de capacidades existentes en los ámbitos clave de la gestión del gasto y del estado en el que se encuentra la implementación del PBR-SED enl los gobiernos locales.',NULL,1,1,1,NULL,NULL,NULL,NULL,NULL,5,NULL,'SHCP, Diagnóstico sobre el grado de avance de la implementación del PbR/SED en las Entidades Federativas');
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (304,'Índice de gobierno electrónico estatal','0',1,16,NULL,5,NULL,'Índice que presenta información comparativa del nivel de funcionalidad que tienen los partales de los gobiernos estatales en México, a través de la evaluación de los componentes de Inforamción, Interacción, Transacción, Integración y Participación.',NULL,1,1,1,NULL,NULL,NULL,NULL,NULL,5,NULL,'Arregional, Índice de Transparencia y Disponibilidad de la Información Fiscal');
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (305,'Índice de Calidad del Gobierno Electrónico, Índice de Competitividad Estatal','0',1,16,NULL,6,NULL,'Índice que mide el nivel de funcionalidad que tienen los portales electrónicos de las entidades federativas',NULL,1,1,1,NULL,NULL,NULL,NULL,NULL,5,NULL,'IMCO, Índice de Competitividad Estatal');
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (306,'Componente de Transparencia y Lenguaje Ciudadano; Índice Geenral de Avance de PbR-SED en el ámbito estatal','0',1,17,NULL,6,NULL,'Componente que mide el nivel de transparencia y lenguaje ciudadanao en el proceso de implemementación y operación del PbR-SED en las entidades federativas.',NULL,1,1,1,NULL,NULL,NULL,NULL,NULL,5,NULL,'Anexo Estadístico del Informe de Gobierno Federal');
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (307,'Índice de Transparencia y Disponibilidad de la Información Fiscal','0',1,16,NULL,5,NULL,'Índice que cuantifica la disponibilidad y calidad de la información fiscal generada por los gobiernos estatales en sus páginas electrónicas.',NULL,1,1,1,NULL,NULL,NULL,NULL,NULL,5,NULL,'Anexo Estadístico del Informe de Gobierno Federal');
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (308,'Percepción de corrupción en actos de gobierno, del Subíndice de \"Sistema Político Estable y Funcional\"; Índice de Competitividad Estatal','0',1,16,NULL,6,NULL,'Componente del Subíndice de \"Sistema político Estable y Funcional\", le \"Índice de Competitividad Estatal\", que mide la percepción ciudadana respecto a actos de corrupción en los actos de gobierno.',NULL,1,1,1,NULL,NULL,NULL,NULL,NULL,5,NULL,'Anexo Estadístico del Informe de Gobierno Federal');
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (309,'Ingresos netos y propios de los municipios (Proporción, Municipio)','0',1,17,NULL,5,NULL,'Mide la proporción de los ingresos propios de los municipios respecto al neto de sus ingresos',NULL,1,1,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,'IMCO, Índice de Competitividad Estatal');
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (310,'a. Ingresos netos de los municipios','0',1,13,NULL,5,NULL,NULL,NULL,1,1,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (311,'b. Ingresos propios de los municipios','0',1,13,NULL,5,NULL,NULL,NULL,1,1,1,NULL,NULL,NULL,NULL,NULL,5,NULL,'CONEVAL');
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (312,'Subíndice \"Aprovechamiento de las relaciones internacionales\"; Índice de Competitividad Estatal','0',1,16,NULL,6,NULL,'Califica el grado con el cual los estado capitalizan su relación con el exterior para elevar su competitividad.',NULL,1,1,1,NULL,NULL,NULL,NULL,NULL,5,NULL,'CONEVAL');
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (313,'Porcentaje de instituciones del Ejecutivo que cuentan con protocolos o lineamientos para garantizar el ejercicio de derechos con enfoque de género','0',1,17,NULL,5,NULL,NULL,NULL,1,1,1,NULL,NULL,NULL,NULL,NULL,5,NULL,'ENSANUT');
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (314,'Proporción de la población con ingresos inferiores a 1.25 dólares diarios','0',1,17,NULL,6,NULL,'Población que vive con menos de 1.5 dolares diarios con base en la paridad del poder adquisitivo, con respecto a la población nacional.',NULL,1,1,1,NULL,NULL,NULL,NULL,NULL,5,NULL,'CONAPO');
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (315,'Indice de la tendencia laboral de la pobreza','0',1,16,NULL,3,NULL,'Mide el porcentaje de personas que no puede adquirir la canasta alimentaria con el ingreso laboral.',NULL,1,1,1,NULL,NULL,NULL,NULL,NULL,5,NULL,'CONEVAL');
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (316,'Proporción de la población con inseguridad alimentaria severa y moderada','0',1,17,NULL,6,NULL,NULL,NULL,1,1,2,NULL,NULL,NULL,NULL,NULL,5,NULL,'SSA');
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (317,'Índice de Marginación por municipio','0',1,17,NULL,8,NULL,'Permite diferenciar entidades y municipios según el impacto global de las carencias que padece la población como resultados de la falta de acceso a la educación, residencia en viviendas inadecuadas, precepción de ingresos monetarios insuficienes y recidencia en localidades pequeñas.',NULL,1,1,2,NULL,NULL,NULL,NULL,NULL,5,NULL,'SSA');
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (318,'Proporción de la población en pobreza con acceso a la seguridad social','0',1,17,NULL,6,NULL,NULL,NULL,1,1,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,'ENDIREH-INEGI');
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (319,'Razón de mortalidad materna (defunciones por cada 100 mil nacidos vivos estimados)','0',1,17,NULL,5,NULL,'Mide el número de mujeres que fallecen durante un año determinado a causa de complicaciones con el embarazo o el parto.',NULL,1,1,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,'ENVIPE-INEGI');
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (320,'Camas por cada 1000 habitantes','0',1,17,NULL,5,NULL,'Relación del número de camas censables disponibles en instituciones del sector público para atender a la población.',NULL,1,1,1,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (321,'Mujeres que han sufrido violencia por parte de cualquier agresor en los últimos 12 meses','0',1,17,NULL,6,NULL,NULL,NULL,1,1,1,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (322,'Índice de efectividad del ministerio Público','0',1,16,NULL,5,NULL,'Número de averiguaciones previas concluidas sobre el número de averiguaciones previas iniciadas.',NULL,1,1,1,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (323,'Porcentaje de mujeres sin ingresos propios','0',1,17,NULL,6,NULL,NULL,NULL,1,1,1,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (324,'Porcentaje de centros de trabajo registrados para obtener el Distintivo Empresa Incluyente “Gilberto Rincón Gallardo” por incluir a personas con discapacidad en un trabajo digno','0',1,17,NULL,5,NULL,NULL,NULL,1,1,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,'INEGI/SEP');
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (325,'Mexicanos repatriados por la frontera norte con destino al Estado de Zacatecas','0',1,17,NULL,3,NULL,NULL,NULL,1,1,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,'SEDUZAC');
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (326,'Posición del estado en el medallero general de la olimpiada nacional','0',1,16,NULL,5,NULL,NULL,NULL,1,1,2,NULL,NULL,NULL,NULL,NULL,5,NULL,'CEMABE/SEDUZAC');
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (327,'Grado Promedio de Escolaridad','0',1,17,NULL,5,NULL,NULL,NULL,1,1,2,NULL,NULL,NULL,NULL,NULL,5,NULL,'SEDUZAC');
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (328,'Porcentaje de Escuelas de Tiempo Completo incorporadas','0',1,17,NULL,5,NULL,NULL,NULL,1,1,2,NULL,NULL,NULL,NULL,NULL,5,NULL,'SEDUZAC');
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (329,'Porcentaje de escuelas con accesibilidad para personas con discapacidad','0',1,17,NULL,5,NULL,NULL,NULL,1,1,2,NULL,NULL,NULL,NULL,NULL,5,NULL,'SEDUZAC');
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (330,'Porcentaje de eficiencia terminal en educación media superior','0',1,17,NULL,5,NULL,NULL,NULL,1,1,2,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (331,'Porcentaje de absorción en educación media superior','0',1,17,NULL,5,NULL,NULL,NULL,1,1,2,NULL,NULL,NULL,NULL,NULL,5,NULL,'COZCYT/CONACYT');
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (332,'Índice de rezago educativo en nivel primaria y secundaria','0',1,16,NULL,5,NULL,NULL,NULL,1,1,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,'COZCYT/CONACYT');
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (333,'Tasa de disminución de casos de discriminación y violencia de género en los centros educativos','0',1,16,NULL,5,NULL,NULL,NULL,1,1,1,NULL,NULL,NULL,NULL,NULL,5,NULL,'INEGI');
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (334,'Número de investigadores en el Sistema Nacional de Investigadores','0',1,10,NULL,5,NULL,NULL,NULL,1,1,1,NULL,NULL,NULL,NULL,NULL,5,NULL,'INEGI/MODUTHI');
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (335,'Número de estudiantes que ingresan carreras científico tecnológicas','0',1,6,NULL,5,NULL,NULL,NULL,1,1,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,'IMCO');
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (336,'Hogares con conexión a internet','0',1,8,NULL,5,NULL,NULL,NULL,1,1,1,NULL,NULL,NULL,NULL,NULL,5,NULL,'INEGI/ENOE/CENSO');
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (337,'Indicador trimestral de la actividad económica estatal índice base (tasa de crecimiento del PIB)','0',1,18,NULL,3,NULL,NULL,NULL,1,1,1,NULL,NULL,NULL,NULL,NULL,5,NULL,'SE');
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (338,'Índice de Competitividad','0',1,16,NULL,5,NULL,'Mide el conjunto de instituciones, políticas y factores que difinen los niveles de prosperidad económica sostenible hoy y a medio plazo',NULL,1,1,2,NULL,NULL,NULL,NULL,NULL,5,NULL,'SINFRA');
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (339,'Tasa de desocupación total por entidad federativa (porcentaje de la PEA)','0',1,17,NULL,5,NULL,NULL,NULL,1,1,2,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (340,'Afiliados al IMSS','0',1,2,NULL,5,NULL,NULL,NULL,1,1,1,NULL,NULL,NULL,NULL,NULL,5,NULL,'SECAMPO');
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (341,'Número de kilómetros de caminos rurales y carreteras alimentadoras rehabilitados','0',1,12,NULL,5,NULL,NULL,NULL,1,1,1,NULL,NULL,NULL,NULL,NULL,5,NULL,'SECAMPO');
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (342,'Porcentaje de avance en la construcción de un Centro Logística y de Transferencia con un recinto interior fiscalizado','0',1,17,NULL,5,NULL,NULL,NULL,1,1,2,NULL,NULL,NULL,NULL,NULL,5,NULL,'NAFIN');
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (343,'Porcentaje de hectáreas con riego tecnificado y porcentaje de hectáreas con agricultura protegida','0',1,17,NULL,5,NULL,NULL,NULL,1,1,2,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (344,'Número de sementales para mejora genética entregados','0',1,19,NULL,5,NULL,NULL,NULL,1,1,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,'SECTUR');
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (345,'Financiamiento otorgado por Nacional Financiera','0',1,17,NULL,5,NULL,NULL,NULL,1,1,1,NULL,NULL,NULL,NULL,NULL,5,NULL,'SECTUR');
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (346,'Índice global de la productividad laboral de la economía basado en horas trabajadas.','0',1,16,NULL,5,NULL,'Mide la productividad de los trabajadores y los costos de la mano de obra en sectores clave de la economía.',NULL,1,1,1,NULL,NULL,NULL,NULL,NULL,5,NULL,'IZC');
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (347,'Porcentaje de ocupación hotelera estatal','0',1,17,NULL,5,NULL,NULL,NULL,1,1,1,NULL,NULL,NULL,NULL,NULL,5,NULL,'IZC');
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (348,'Estadía promedio estatal (Número de noches)','0',1,17,NULL,5,NULL,NULL,NULL,1,1,1,NULL,NULL,NULL,NULL,NULL,5,NULL,'SAMA/PROFEPA');
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (349,'Número de visitas registradas en museos','0',1,20,NULL,5,NULL,NULL,NULL,1,1,1,NULL,NULL,NULL,NULL,NULL,5,NULL,'SAMA');
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (350,'Número de asistentes a los festivales.','0',1,3,NULL,5,NULL,NULL,NULL,1,1,1,NULL,NULL,NULL,NULL,NULL,5,NULL,'SAMA/CONAFOR');
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (351,'Denuncias ambientales, Denuncias ambientales por cada 100,000','0',3,5,NULL,5,NULL,'Mide el número de denuncias por habitante',NULL,1,1,1,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (352,'Porcentaje de la superficie estatal clasificada como área natural protegida','0',2,17,NULL,5,NULL,'Mide el porcentaje de la superficie decretada como área natural protegica respecto a la superficie total del estado',NULL,1,1,2,NULL,NULL,NULL,NULL,NULL,5,NULL,'INEGI/CENSO');
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (353,'Superficie reforestada (hectáreas)','0',2,7,NULL,5,NULL,'Mide el total de héctareas en las que se llevo a cabo una plantación forestal en una superficie dterminada',NULL,1,1,1,NULL,NULL,NULL,NULL,NULL,5,NULL,'SAMA');
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (354,'Índice Global de Acceso a los Servicios Básicos del Agua (IGASA)','0',2,16,NULL,5,NULL,'Este índice permitirá evaluar el impacto de la política hídrica en tres dimensiones: cobertura, calidad y eficiencia, de los servicios agua potable y saneamiento.',NULL,1,1,2,NULL,NULL,NULL,NULL,NULL,5,NULL,'SAMA');
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (355,'Porcentaje de Cobertura de Servicios de Agua Potable','0',1,17,NULL,8,NULL,NULL,NULL,1,1,1,NULL,NULL,NULL,NULL,NULL,5,NULL,'SAMA');
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (356,'Plantas potabilizadoras en operación','0',2,15,NULL,5,NULL,'Es el total de plantas existentes en el estado que acondicionana la calidad del agua de las fuentes superficiales y/o subterraneas al uso público urbano',NULL,1,1,2,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (357,'Contaminación del aire','0',3,21,NULL,7,NULL,'La exposición de la población a la contaminación del aire se calcula tomando el valor promedio ponderado de las partículas PM2.5 registradas por las celdas con respecto a la población ubicada en la cuadrícula geográfica donde se localizan las celdas',NULL,1,1,1,NULL,NULL,NULL,NULL,NULL,5,NULL,'INEGI/SEDUVOT');
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (358,'Inventario de emisiones a la atmósfera','0',3,9,NULL,5,NULL,'Inventario de emisiones contaminantes',NULL,1,1,1,NULL,NULL,NULL,NULL,NULL,5,NULL,'SAMA');
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (359,'Producción de energía eólica en el estado','0',1,17,NULL,5,NULL,NULL,NULL,1,1,2,NULL,NULL,NULL,NULL,NULL,5,NULL,'INEGI');
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (360,'Porcentaje de viviendas equipadas con calentador solar','0',2,17,NULL,10,NULL,'Es el valor porcentual de las viviendas particulares habitadas que disponen de calentador solar',NULL,1,1,2,NULL,NULL,NULL,NULL,NULL,5,NULL,'PC');
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (361,'Promedio diario de residuos sólidos urbanos (kilogramos)','0',3,11,NULL,5,NULL,'Mide el volumen que de residuos generados diariamente',NULL,1,1,2,NULL,NULL,NULL,NULL,NULL,5,NULL,'SEDUVOT');
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (362,'Porcentaje viviendas particulares habitadas en las que sus ocupantes entregan los residuos al servicio público de recolección o los colocan en un contenedor y que separan los residuos.','0',2,17,NULL,10,NULL,'Mide el porcentaje de viviendas que disponen de servicio de recolección de residuos',NULL,1,1,1,NULL,NULL,NULL,NULL,NULL,5,NULL,'SEDUVOT');
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (363,'Porcentaje de actualización del atlas de riesgo en el estado','0',2,17,NULL,5,NULL,'Mide el porcentaje de actualizaciónde las variables que lo conforman',NULL,1,1,1,NULL,NULL,NULL,NULL,NULL,5,NULL,'SEDUVOT');
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (364,'Espacios verdes permanentes de la ciudad Ha/100 mil habitantes','0',1,17,NULL,5,NULL,NULL,NULL,1,1,2,NULL,NULL,NULL,NULL,NULL,5,NULL,'SEDUVOT');
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (365,'Espacios de recreación al aire libre y de acceso público Ha/100 mil habitantes','0',1,17,NULL,5,NULL,NULL,NULL,1,1,1,NULL,NULL,NULL,NULL,NULL,5,NULL,'SEDUVOT');
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (366,'Porcentaje de programas de ordenamiento territorial actualizados','0',2,17,NULL,5,NULL,'Mide el porcentaje de actualización de los programas',NULL,1,1,1,NULL,NULL,NULL,NULL,NULL,5,NULL,'INEGI/OCDE');
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (367,'Porcentaje de programas de desarrollo urbano municipal actualizados','0',2,17,NULL,5,NULL,'Mide el porcentaje de actualización de los programas',NULL,1,1,1,NULL,NULL,NULL,NULL,NULL,5,NULL,'INEGI/OCDE');
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (368,'Viviendas equipadas con al menos una ecotecnia','0',1,17,NULL,5,NULL,NULL,NULL,1,1,1,NULL,NULL,NULL,NULL,NULL,5,NULL,'INEGI/AE');
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (369,'Porcentaje de viviendas con techos de materiales resistentes','0',2,17,NULL,8,NULL,'Porcentaje de viviendas habitadas cuyo elemento de construcción predominante en los techos es losa de concreto, o viguetas con bovedilla',NULL,1,1,1,NULL,NULL,NULL,NULL,NULL,5,NULL,'INEGI/AE');
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (370,'Viviendas con acceso a servicios básicos','0',2,17,NULL,6,NULL,'Las viviendas con todos los servicios son aquellas que cumplen con red pública de agua dentro y fuera de la vivienda, red pública de agua de otra vivienda y de una llave pública o hidrante, red pública de drenaje, fosa séptica y servicio público de electricidad, de una planta particular de electricidad, de un panel solar y de alguna otra fuente.',NULL,1,1,1,NULL,NULL,NULL,NULL,NULL,5,NULL,'INEGI/ei');
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (371,'Vehículos registrados en circulación','0',1,22,NULL,5,NULL,'Se refiere al total de vehiculos registradosen circulación',NULL,1,1,1,NULL,NULL,NULL,NULL,NULL,5,NULL,'INEGI/ei');
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (372,'Camiones de pasajeros registrados en circulación','0',1,23,NULL,5,NULL,'Se refiere al total de camiones de pasajeros en circulación',NULL,1,1,2,NULL,NULL,NULL,NULL,NULL,5,NULL,'INEGI/ei');
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (373,'Porcentaje de la población que invierte menos de 30 min en desplazarse hacia su centro de trabajo.','0',3,17,NULL,10,NULL,'Duración del desplazamiento entre el lugar de residencia y el lugar trabajo sin visitar otros lugares durante el trayecto.',NULL,1,1,2,NULL,NULL,NULL,NULL,NULL,5,NULL,'CONEVAL');
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (374,'Porcentaje de población de 15 años o más analfabeta','0',1,17,NULL,8,NULL,NULL,NULL,1,4,2,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (375,'Porcentaje de población de 15 años o más sin primaria completa','0',1,17,NULL,8,NULL,NULL,NULL,1,4,1,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicadores` (`id_indicador`,`nombre`,`identificador`,`tendencia_deseable`,`u_medida`,`a_base`,`periodicidad`,`fecha_actualizacion`,`definicion`,`origen`,`alineacion_ped`,`sistema_consulta`,`cobertura_geografica`,`notas`,`metodologia`,`formula`,`variables`,`icono`,`nivel`,`objetivo`,`responsable`) VALUES (376,'Índice de monitoreo y evaluación según entidad federativa','0',1,NULL,NULL,6,NULL,NULL,NULL,1,1,NULL,NULL,NULL,NULL,NULL,NULL,5,NULL,NULL);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (1,1,10);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (2,2,10);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (3,3,10);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (4,4,10);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (5,5,10);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (6,6,10);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (7,7,10);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (8,8,10);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (9,9,10);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (10,10,10);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (11,11,10);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (12,12,10);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (13,13,10);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (14,14,10);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (15,15,10);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (16,16,10);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (17,17,10);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (18,18,13);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (19,19,13);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (20,20,13);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (21,21,13);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (22,22,13);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (23,23,13);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (24,24,13);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (25,25,13);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (26,26,13);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (27,27,13);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (28,28,8);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (29,29,8);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (30,30,8);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (31,31,8);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (32,32,8);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (33,33,8);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (34,34,8);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (35,35,8);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (36,36,8);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (37,37,8);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (38,38,8);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (39,39,8);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (40,40,8);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (41,41,8);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (42,42,8);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (43,43,8);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (44,44,8);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (45,45,8);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (46,46,8);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (47,47,8);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (48,48,8);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (49,49,8);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (50,50,8);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (51,51,8);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (52,52,8);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (53,53,8);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (54,54,8);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (55,55,8);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (56,56,8);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (57,57,8);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (58,58,8);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (59,59,8);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (60,60,8);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (61,61,8);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (62,62,8);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (63,63,8);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (64,64,8);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (65,65,8);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (66,66,8);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (67,67,8);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (68,68,8);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (69,69,8);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (70,70,8);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (71,71,8);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (72,72,8);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (73,73,8);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (74,74,8);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (75,75,8);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (76,76,8);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (77,77,8);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (78,78,8);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (79,79,8);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (80,80,8);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (81,81,8);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (82,82,8);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (83,83,8);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (84,84,8);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (85,85,8);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (86,86,8);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (87,87,8);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (88,88,8);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (89,89,8);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (90,90,8);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (91,91,8);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (92,92,8);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (93,93,8);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (94,94,8);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (95,95,8);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (96,96,8);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (97,97,8);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (98,98,8);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (99,99,8);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (100,100,8);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (101,101,8);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (102,102,8);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (103,103,8);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (104,104,8);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (105,105,6);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (106,106,6);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (107,107,6);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (108,108,6);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (109,109,6);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (110,110,6);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (111,111,6);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (112,112,6);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (113,113,6);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (114,114,6);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (115,115,6);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (116,116,6);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (117,117,6);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (118,118,6);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (119,119,6);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (120,120,6);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (121,121,6);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (122,122,6);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (123,123,6);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (124,124,6);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (125,125,6);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (126,126,6);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (127,127,6);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (128,128,6);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (129,129,5);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (130,130,5);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (131,131,5);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (132,132,5);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (133,133,5);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (134,134,5);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (135,135,5);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (136,136,5);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (137,137,5);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (138,138,5);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (139,139,5);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (140,140,5);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (141,141,5);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (142,142,5);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (143,143,5);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (144,144,5);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (145,145,5);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (146,146,5);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (147,147,1);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (148,148,1);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (149,149,1);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (150,150,1);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (151,151,1);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (152,152,1);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (153,153,1);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (154,154,1);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (155,155,1);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (156,156,1);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (157,157,1);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (158,158,1);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (159,159,1);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (160,160,1);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (161,161,1);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (162,162,1);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (163,163,1);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (164,164,1);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (165,165,1);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (166,166,1);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (167,167,1);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (168,168,1);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (169,169,9);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (170,170,9);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (171,171,7);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (172,172,7);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (173,173,7);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (174,174,7);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (175,175,7);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (176,176,7);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (177,177,7);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (178,178,7);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (179,179,7);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (180,180,12);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (181,181,12);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (182,182,12);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (183,183,12);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (184,184,12);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (185,185,12);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (186,186,12);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (187,187,12);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (188,188,12);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (189,189,12);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (190,190,12);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (191,191,12);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (192,192,12);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (193,193,12);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (194,194,12);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (195,195,15);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (196,196,15);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (197,197,15);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (198,198,15);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (199,199,15);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (200,200,15);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (201,201,15);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (202,202,15);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (203,203,15);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (204,204,15);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (205,205,15);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (206,206,15);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (207,207,15);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (208,208,15);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (209,209,15);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (210,210,15);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (211,211,15);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (212,212,15);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (213,213,15);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (214,214,2);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (215,215,2);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (216,216,2);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (217,217,2);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (218,218,2);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (219,219,2);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (220,220,2);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (221,221,2);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (222,222,2);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (223,223,2);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (224,224,2);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (225,225,2);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (226,226,2);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (227,227,2);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (228,228,2);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (229,229,2);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (230,230,2);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (231,231,2);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (232,232,2);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (233,233,2);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (234,234,2);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (235,235,2);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (236,236,2);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (237,237,2);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (238,238,2);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (239,239,2);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (240,240,2);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (241,241,2);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (242,242,2);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (243,243,3);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (244,244,3);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (245,245,3);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (246,246,3);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (247,247,3);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (248,248,3);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (249,249,3);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (250,250,3);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (251,251,3);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (252,252,3);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (253,253,3);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (254,254,3);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (255,255,3);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (256,256,3);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (257,257,3);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (258,258,3);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (259,259,3);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (260,260,3);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (261,261,3);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (262,262,3);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (263,263,4);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (264,264,4);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (265,265,4);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (266,266,4);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (267,267,4);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (268,268,4);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (269,269,4);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (270,270,4);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (271,271,4);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (272,272,4);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (273,273,4);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (274,274,4);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (275,275,4);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (276,276,4);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (277,277,4);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (278,278,4);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (279,279,4);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (280,280,4);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (281,281,4);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (282,282,4);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (283,283,4);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (284,284,4);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (285,285,4);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (286,286,4);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (287,287,4);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (288,288,4);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (289,289,11);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (290,290,11);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (291,291,11);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (292,292,11);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (293,293,11);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (294,294,11);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (295,295,11);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (296,296,11);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (297,297,11);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (298,298,11);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (299,299,11);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (300,300,11);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (301,301,11);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (302,302,1);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (303,303,1);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (304,304,1);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (305,305,1);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (306,306,1);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (307,307,1);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (308,308,1);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (309,309,1);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (310,310,1);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (311,311,1);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (312,312,1);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (313,313,1);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (314,314,2);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (315,315,2);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (316,316,2);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (317,317,2);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (318,318,3);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (319,319,3);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (320,320,3);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (321,321,5);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (322,322,4);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (323,323,2);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (324,324,1);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (325,325,1);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (326,326,6);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (327,327,6);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (328,328,6);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (329,329,6);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (330,330,6);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (331,331,6);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (332,332,6);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (333,333,6);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (334,334,6);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (335,335,6);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (336,336,2);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (337,337,8);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (338,338,8);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (339,339,8);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (340,340,3);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (341,341,9);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (342,342,9);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (343,343,10);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (344,344,10);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (345,345,10);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (346,346,1);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (347,347,11);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (348,348,11);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (349,349,11);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (350,350,11);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (351,351,12);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (352,352,12);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (353,353,12);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (354,354,12);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (355,355,12);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (356,356,12);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (357,357,12);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (358,358,12);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (359,359,7);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (360,360,13);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (361,361,12);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (362,362,12);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (363,363,12);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (364,364,13);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (365,365,13);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (366,366,13);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (367,367,13);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (368,368,13);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (369,369,13);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (370,370,13);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (371,371,1);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (372,372,1);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (373,373,1);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (374,374,2);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (375,375,2);
+INSERT INTO `indicador_tema` (`id_indicador_tema`,`id_indicador`,`id_tema`) VALUES (376,376,2);
 INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (1,1,'anual','0','136497',60,10,'2010');
 INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2,2,'anual','0','136679',60,10,'2010');
 INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (3,3,'anual','0','1002508',60,10,'2010');
@@ -2052,3 +3273,459 @@ INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resul
 INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2046,299,'anual','0','0',60,10,'2016');
 INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2047,300,'anual','0','0',60,10,'2016');
 INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2048,301,'anual','0','0',60,10,'2016');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2049,374,'Anual','0','4.30',1,8,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2050,374,'Anual','0','1.87',2,8,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2051,374,'Anual','0','3.43',3,8,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2052,374,'Anual','0','1.03',4,8,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2053,374,'Anual','0','-0.69',5,1,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2054,374,'Anual','0','-0.29',6,5,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2055,374,'Anual','0','0.95',9,4,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2056,374,'Anual','0','0.40',7,6,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2057,374,'Anual','0','1.06',8,7,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2058,374,'Anual','0','4.48',15,8,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2059,374,'Anual','0','10.14',41,6,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2060,374,'Anual','0','-0.80',10,1,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2061,374,'Anual','0','1.94',12,1,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2062,374,'Anual','0','0.53',13,1,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2063,374,'Anual','0','1.82',14,5,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2064,374,'Anual','0','3.09',16,7,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2065,374,'Anual','0','-2.40',17,1,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2066,374,'Anual','0','1.93',18,8,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2067,374,'Anual','0','1.90',19,8,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2068,374,'Anual','0','-0.41',20,2,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2069,374,'Anual','0','6.89',21,4,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2070,374,'Anual','0','-1.32',22,5,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2071,374,'Anual','0','1.45',23,8,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2072,374,'Anual','0','-0.24',24,7,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2073,374,'Anual','0','1.47',25,7,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2074,374,'Anual','0','5.40',26,6,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2075,374,'Anual','0','6.19',27,6,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2076,374,'Anual','0','3.16',28,8,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2077,374,'Anual','0','-0.94',29,5,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2078,374,'Anual','0','1.35',30,8,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2079,374,'Anual','0','1.65',31,3,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2080,374,'Anual','0','-1.80',32,1,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2081,374,'Anual','0','2.30',33,8,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2082,374,'Anual','0','1.79',34,8,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2083,374,'Anual','0','2.16',35,7,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2084,374,'Anual','0','1.70',36,7,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2085,374,'Anual','0','1.68',37,1,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2086,374,'Anual','0','4.43',38,7,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2087,374,'Anual','0','0.02',39,5,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2088,374,'Anual','0','0.72',40,4,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2089,374,'Anual','0','1.05',58,8,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2090,374,'Anual','0','-0.43',42,4,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2091,374,'Anual','0','3.65',43,2,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2092,374,'Anual','0','2.00',44,8,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2093,374,'Anual','0','1.61',45,8,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2094,374,'Anual','0','2.54',46,2,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2095,374,'Anual','0','-0.37',47,8,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2096,374,'Anual','0','-0.08',48,8,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2097,374,'Anual','0','1.22',57,1,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2098,374,'Anual','0','1.57',11,8,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2099,374,'Anual','0','1.40',49,3,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2100,374,'Anual','0','0.49',50,1,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2101,374,'Anual','0','1.14',51,6,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2102,374,'Anual','0','-0.71',52,7,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2103,374,'Anual','0','1.44',53,7,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2104,374,'Anual','0','3.81',54,7,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2105,374,'Anual','0','0.41',55,2,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2106,374,'Anual','0','-3.17',56,1,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2107,375,'Anual','0','11.84',1,8,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2108,375,'Anual','0','10.99',2,8,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2109,375,'Anual','0','21.15',3,8,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2110,375,'Anual','0','6.87',4,8,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2111,375,'Anual','0','-1.47',5,1,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2112,375,'Anual','0','-0.65',6,5,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2113,375,'Anual','0','5.23',9,4,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2114,375,'Anual','0','-0.70',7,6,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2115,375,'Anual','0','4.50',8,7,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2116,375,'Anual','0','25.82',15,8,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2117,375,'Anual','0','17.49',41,6,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2118,375,'Anual','0','-2.11',10,1,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2119,375,'Anual','0','3.37',12,1,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2120,375,'Anual','0','1.93',13,1,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2121,375,'Anual','0','9.44',14,5,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2122,375,'Anual','0','11.66',16,7,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2123,375,'Anual','0','-10.82',17,1,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2124,375,'Anual','0','12.07',18,8,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2125,375,'Anual','0','3.89',19,8,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2126,375,'Anual','0','3.42',20,2,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2127,375,'Anual','0','9.71',21,4,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2128,375,'Anual','0','1.29',22,5,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2129,375,'Anual','0','5.62',23,8,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2130,375,'Anual','0','-0.96',24,7,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2131,375,'Anual','0','3.25',25,7,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2132,375,'Anual','0','10.71',26,6,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2133,375,'Anual','0','8.76',27,6,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2134,375,'Anual','0','15.48',28,8,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2135,375,'Anual','0','-0.89',29,5,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2136,375,'Anual','0','10.91',30,8,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2137,375,'Anual','0','10.80',31,3,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2138,375,'Anual','0','-2.79',32,1,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2139,375,'Anual','0','15.37',33,8,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2140,375,'Anual','0','7.42',34,8,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2141,375,'Anual','0','5.36',35,7,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2142,375,'Anual','0','1.12',36,7,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2143,375,'Anual','0','7.56',37,1,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2144,375,'Anual','0','4.97',38,7,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2145,375,'Anual','0','2.88',39,5,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2146,375,'Anual','0','4.45',40,4,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2147,375,'Anual','0','11.74',58,8,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2148,375,'Anual','0','1.70',42,4,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2149,375,'Anual','0','15.20',43,2,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2150,375,'Anual','0','5.72',44,8,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2151,375,'Anual','0','10.65',45,8,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2152,375,'Anual','0','21.58',46,2,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2153,375,'Anual','0','4.41',47,8,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2154,375,'Anual','0','0.78',48,8,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2155,375,'Anual','0','-1.18',57,1,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2156,375,'Anual','0','13.58',11,8,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2157,375,'Anual','0','5.51',49,3,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2158,375,'Anual','0','0.85',50,1,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2159,375,'Anual','0','7.18',51,6,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2160,375,'Anual','0','-1.83',52,7,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2161,375,'Anual','0','6.38',53,7,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2162,375,'Anual','0','4.24',54,7,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2163,375,'Anual','0','7.79',55,2,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2164,375,'Anual','0','-10.99',56,1,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2165,351,'Anual','0','14.51',60,10,'2011');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2166,351,'Anual','0','15.03',60,10,'2012');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2167,351,'Anual','0','12.99',60,10,'2013');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2168,351,'Anual','0','14.34',60,10,'2014');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2169,351,'Anual','0','12.53',60,10,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2170,352,'Anual','0','32.37',60,10,'2016');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2171,353,'Anual','0','17796',60,10,'2011');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2172,353,'Anual','0','30164',60,10,'2012');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2173,353,'Anual','0','2869',60,10,'2013');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2174,353,'Anual','0','3901',60,10,'2014');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2175,353,'Anual','0','2137',60,10,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2176,354,'Anual','0','0.743',60,10,'2012');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2177,354,'Anual','0','0.787',60,10,'2013');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2178,354,'Anual','0','0.838',60,10,'2014');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2179,354,'Anual','0','0.806',60,10,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2180,191,'Anual','0','97.6',60,10,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2181,191,'Anual','0','99.4',1,8,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2182,191,'Anual','0','96.9',2,8,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2183,191,'Anual','0','99.3',3,8,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2184,191,'Anual','0','99.3',4,8,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2185,191,'Anual','0','99.9',5,1,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2186,191,'Anual','0','99.3',6,5,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2187,191,'Anual','0','94.5',7,6,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2188,191,'Anual','0','98.4',8,7,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2189,191,'Anual','0','97.1',9,4,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2190,191,'Anual','0','98.1',10,1,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2191,191,'Anual','0','99.6',11,8,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2192,191,'Anual','0','95.9',12,1,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2193,191,'Anual','0','99.5',13,1,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2194,191,'Anual','0','97.7',14,5,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2195,191,'Anual','0','95.5',15,8,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2196,191,'Anual','0','99.0',16,7,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2197,191,'Anual','0','98.9',17,1,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2198,191,'Anual','0','99.6',18,8,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2199,191,'Anual','0','98.9',19,8,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2200,191,'Anual','0','99.5',20,2,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2201,191,'Anual','0','95.3',21,4,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2202,191,'Anual','0','99.7',22,5,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2203,191,'Anual','0','99.6',23,8,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2204,191,'Anual','0','97.8',24,7,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2205,191,'Anual','0','99.8',25,7,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2206,191,'Anual','0','77.5',26,6,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2207,191,'Anual','0','94.5',27,6,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2208,191,'Anual','0','95.2',28,8,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2209,191,'Anual','0','98.9',29,5,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2210,191,'Anual','0','99.9',30,8,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2211,191,'Anual','0','98.7',31,3,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2212,191,'Anual','0','99.8',32,1,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2213,191,'Anual','0','99.2',33,8,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2214,191,'Anual','0','98.3',34,8,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2215,191,'Anual','0','98.4',35,7,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2216,191,'Anual','0','96.3',36,7,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2217,191,'Anual','0','97.6',37,1,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2218,191,'Anual','0','87.9',38,7,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2219,191,'Anual','0','98.6',39,5,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2220,191,'Anual','0','97.4',40,4,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2221,191,'Anual','0','94.3',41,6,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2222,191,'Anual','0','98.3',42,4,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2223,191,'Anual','0','100.0',43,2,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2224,191,'Anual','0','98.9',44,8,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2225,191,'Anual','0','98.7',45,8,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2226,191,'Anual','0','99.7',46,2,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2227,191,'Anual','0','99.3',47,8,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2228,191,'Anual','0','96.7',48,8,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2229,191,'Anual','0','92.9',49,3,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2230,191,'Anual','0','99.1',50,1,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2231,191,'Anual','0','99.2',51,6,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2232,191,'Anual','0','97.0',52,7,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2233,191,'Anual','0','97.8',53,7,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2234,191,'Anual','0','97.0',54,7,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2235,191,'Anual','0','99.1',55,2,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2236,191,'Anual','0','98.8',56,1,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2237,191,'Anual','0','98.6',57,1,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2238,191,'Anual','0','98.5',58,8,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2239,189,'Anual','0','43.63',60,10,'2011');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2240,189,'Anual','0','67.31',60,10,'2012');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2241,189,'Anual','0','72.51',60,10,'2013');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2242,189,'Anual','0','80.52',60,10,'2014');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2243,189,'Anual','0','81.38',60,10,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2244,356,'Anual','0','66',60,10,'2011');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2245,356,'Anual','0','82',60,10,'2012');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2246,356,'Anual','0','85',60,10,'2013');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2247,356,'Anual','0','92',60,10,'2014');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2248,356,'Anual','0','93',60,10,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2249,356,'Anual','0','93',60,10,'2016');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2250,193,'Anual','0','68',60,10,'2011');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2251,193,'Anual','0','73',60,10,'2012');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2252,193,'Anual','0','69',60,10,'2013');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2253,193,'Anual','0','70',60,10,'2014');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2254,193,'Anual','0','71',60,10,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2255,357,'Anual','0','11.5',60,10,'2012');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2256,358,'Anual','0','1',60,10,'2016');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2257,360,'Anual','0','13.23',60,10,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2258,360,'Anual','0','7.00',1,8,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2259,360,'Anual','0','16.41',2,8,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2260,360,'Anual','0','32.14',3,8,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2261,360,'Anual','0','17.63',4,8,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2262,360,'Anual','0','14.75',5,1,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2263,360,'Anual','0','7.14',6,5,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2264,360,'Anual','0','11.05',9,4,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2265,360,'Anual','0','0.69',7,6,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2266,360,'Anual','0','9.02',8,7,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2267,360,'Anual','0','37.92',15,8,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2268,360,'Anual','0','13.31',41,6,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2269,360,'Anual','0','11.72',10,1,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2270,360,'Anual','0','13.21',12,1,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2271,360,'Anual','0','19.09',13,1,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2272,360,'Anual','0','9.51',14,5,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2273,360,'Anual','0','8.46',16,7,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2274,360,'Anual','0','20.07',17,1,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2275,360,'Anual','0','14.11',18,8,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2276,360,'Anual','0','11.96',19,8,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2277,360,'Anual','0','11.92',20,2,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2278,360,'Anual','0','20.38',21,4,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2279,360,'Anual','0','12.60',22,5,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2280,360,'Anual','0','13.43',23,8,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2281,360,'Anual','0','13.27',24,7,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2282,360,'Anual','0','10.83',25,7,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2283,360,'Anual','0','3.09',26,6,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2284,360,'Anual','0','16.92',27,6,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2285,360,'Anual','0','3.64',28,8,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2286,360,'Anual','0','18.44',29,5,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2287,360,'Anual','0','42.92',30,8,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2288,360,'Anual','0','36.47',31,3,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2289,360,'Anual','0','27.52',32,1,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2290,360,'Anual','0','9.68',33,8,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2291,360,'Anual','0','29.77',34,8,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2292,360,'Anual','0','9.15',35,7,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2293,360,'Anual','0','7.50',36,7,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2294,360,'Anual','0','9.00',37,1,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2295,360,'Anual','0','6.87',38,7,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2296,360,'Anual','0','12.75',39,5,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2297,360,'Anual','0','8.39',40,4,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2298,360,'Anual','0','17.03',58,8,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2299,360,'Anual','0','7.80',42,4,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2300,360,'Anual','0','4.05',43,2,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2301,360,'Anual','0','14.85',44,8,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2302,360,'Anual','0','13.05',45,8,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2303,360,'Anual','0','10.96',46,2,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2304,360,'Anual','0','26.48',47,8,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2305,360,'Anual','0','13.02',48,8,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2306,360,'Anual','0','4.08',57,1,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2307,360,'Anual','0','40.86',11,8,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2308,360,'Anual','0','15.27',49,3,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2309,360,'Anual','0','18.28',50,1,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2310,360,'Anual','0','6.16',51,6,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2311,360,'Anual','0','18.10',52,7,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2312,360,'Anual','0','6.92',53,7,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2313,360,'Anual','0','5.86',54,7,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2314,360,'Anual','0','9.47',55,2,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2315,360,'Anual','0','14.32',56,1,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2316,361,'Anual','0','1,178,805',60,10,'2012');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2317,361,'Anual','0','1,066,213',60,10,'2014');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2318,362,'Anual','0','79.42',60,10,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2319,363,'Anual','0','40',60,10,'2011');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2320,364,'Anual','0','0',60,10,'2010');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2321,365,'Anual','0','0',60,10,'2010');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2322,366,'Anual','0','100',60,10,'2012');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2323,367,'Anual','0','100',60,10,'2011');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2324,368,'Anual','0','492',60,10,'2013');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2325,368,'Anual','0','188',60,10,'2014');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2326,368,'Anual','0','0',60,10,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2327,369,'Anual','0','0',60,10,'2010');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2328,370,'Anual','0','90.89',60,10,'2012');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2329,370,'Anual','0','89.41',60,10,'2014');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2330,371,'Anual','0','211,577',60,10,'2011');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2331,371,'Anual','0','200,252',60,10,'2012');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2332,371,'Anual','0','194,042',60,10,'2013');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2333,371,'Anual','0','185,563',60,10,'2014');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2334,371,'Anual','0','195,406',60,10,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2335,372,'Anual','0','2,180',60,10,'2011');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2336,372,'Anual','0','2,154',60,10,'2012');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2337,372,'Anual','0','2,044',60,10,'2013');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2338,372,'Anual','0','1,892',60,10,'2014');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2339,372,'Anual','0','1,885',60,10,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2340,373,'Anual','0','75.62',60,10,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2341,366,'Anual','0','100',60,10,'2013');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2342,366,'Anual','0','100',60,10,'2014');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2343,366,'Anual','0','100',60,10,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2344,366,'Anual','0','100',60,10,'2016');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2345,366,'Anual','0','86.2',60,10,'2017');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2346,367,'Anual','0','100',60,10,'2012');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2347,367,'Anual','0','100',60,10,'2013');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2348,367,'Anual','0','100',60,10,'2014');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2349,367,'Anual','0','100',60,10,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2350,367,'Anual','0','82.75',60,10,'2016');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2351,367,'Anual','0','82.75',60,10,'2017');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2352,363,'Anual','0','50',60,10,'2012');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2353,363,'Anual','0','60',60,10,'2013');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2354,363,'Anual','0','80',60,10,'2014');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2355,363,'Anual','0','100',60,10,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2356,363,'Anual','0','100',60,10,'2016');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2357,314,'Anual','0','8.12',60,10,'2012');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2358,314,'Anual','0','5.02',60,10,'2014');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2359,319,'Anual','0','39.13',60,10,'2011');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2360,319,'Anual','0','32.05',60,10,'2012');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2361,319,'Anual','0','44.15',60,10,'2013');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2362,319,'Anual','0','32.50',60,10,'2014');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2363,319,'Anual','0','32.55',60,10,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2364,325,'Anual','0','4897',60,10,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2365,325,'Anual','0','5245',60,10,'2016');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2366,325,'Anual','0','986',60,10,'2017');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2367,326,'Anual','0','35',60,10,'2011');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2368,326,'Anual','0','30',60,10,'2012');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2369,326,'Anual','0','27',60,10,'2013');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2370,326,'Anual','0','33',60,10,'2014');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2371,326,'Anual','0','29',60,10,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2372,326,'Anual','0','29',60,10,'2016');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2373,320,'Anual','0','1.0',60,10,'2011');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2374,320,'Anual','0','0.9',60,10,'2012');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2375,320,'Anual','0','0.9',60,10,'2013');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2376,320,'Anual','0','1.0',60,10,'2014');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2377,320,'Anual','0','1.0',60,10,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2378,320,'Anual','0','1.0',60,10,'2016');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2379,315,'Trimestre1','0','1.04',60,10,'2011');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2380,315,'Trimestre2','0','0.99',60,10,'2011');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2381,315,'Trimestre3','0','1.00',60,10,'2011');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2382,315,'Trimestre4','0','1.06',60,10,'2011');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2383,315,'Trimestre1','0','1.09',60,10,'2012');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2384,315,'Trimestre2','0','1.00',60,10,'2012');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2385,315,'Trimestre3','0','1.02',60,10,'2012');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2386,315,'Trimestre4','0','1.07',60,10,'2012');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2387,315,'Trimestre1','0','1.11',60,10,'2013');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2388,315,'Trimestre2','0','1.06',60,10,'2013');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2389,315,'Trimestre3','0','1.04',60,10,'2013');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2390,315,'Trimestre4','0','1.07',60,10,'2013');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2391,315,'Trimestre1','0','1.12',60,10,'2014');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2392,315,'Trimestre2','0','1.07',60,10,'2014');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2393,315,'Trimestre3','0','1.13',60,10,'2014');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2394,315,'Trimestre4','0','1.11',60,10,'2014');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2395,315,'Trimestre1','0','1.12',60,10,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2396,315,'Trimestre2','0','1.10',60,10,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2397,315,'Trimestre3','0','1.02',60,10,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2398,315,'Trimestre4','0','1.05',60,10,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2399,315,'Trimestre1','0','1.11',60,10,'2016');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2400,315,'Trimestre2','0','0.99',60,10,'2016');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2401,315,'Trimestre3','0','0.97',60,10,'2016');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2402,315,'Trimestre4','0','1.01',60,10,'2016');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2403,269,'Anual','0','83.1',60,10,'2011');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2404,302,'Anual','0','13',60,10,'2011');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2405,302,'Anual','0','26',60,10,'2012');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2406,302,'Anual','0','17',60,10,'2014');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2407,302,'Anual','0','10',60,10,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2408,302,'Anual','0','8',60,10,'2016');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2409,303,'Anual','0','25',60,10,'2013');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2410,303,'Anual','0','25',60,10,'2014');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2411,303,'Anual','0','28',60,10,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2412,303,'Anual','0','25',60,10,'2016');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2413,304,'Anual','0','24',60,10,'2011');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2414,304,'Anual','0','22',60,10,'2012');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2415,304,'Anual','0','25',60,10,'2013');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2416,304,'Anual','0','23',60,10,'2014');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2417,304,'Anual','0','28',60,10,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2418,305,'Anual','0','26',60,10,'2012');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2419,305,'Anual','0','22',60,10,'2014');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2420,306,'Anual','0','40.6',60,10,'2016');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2421,307,'Anual','0','28',60,10,'2013');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2422,307,'Anual','0','20',60,10,'2014');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2423,307,'Anual','0','15',60,10,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2424,307,'Anual','0','13',60,10,'2016');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2425,308,'Anual','0','19',60,10,'2012');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2426,308,'Anual','0','19',60,10,'2014');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2427,310,'Anual','0','5407',60,10,'2011');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2428,311,'Anual','0','768.3',60,10,'2011');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2429,309,'Anual','0','14.2',60,10,'2011');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2430,310,'Anual','0','5709.8',60,10,'2012');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2431,311,'Anual','0','880.4',60,10,'2012');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2432,309,'Anual','0','15.4',60,10,'2012');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2433,310,'Anual','0','5791.2',60,10,'2013');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2434,311,'Anual','0','856.7',60,10,'2013');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2435,309,'Anual','0','14.8',60,10,'2013');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2436,310,'Anual','0','2023.4',60,10,'2014');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2437,311,'Anual','0','244.2',60,10,'2014');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2438,309,'Anual','0','12.1',60,10,'2014');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2439,317,'Anual','0','-0.32',1,8,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2440,317,'Anual','0','-0.25',2,8,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2441,317,'Anual','0','-0.45',3,8,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2442,317,'Anual','0','-0.65',4,8,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2443,317,'Anual','0','-1.14',5,1,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2444,317,'Anual','0','-0.90',6,5,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2445,317,'Anual','0','-1.04',7,6,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2446,317,'Anual','0','-0.52',8,7,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2447,317,'Anual','0','-0.62',9,4,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2448,317,'Anual','0','-1.01',10,1,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2449,317,'Anual','0','-0.74',11,8,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2450,317,'Anual','0','-0.05',12,1,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2451,317,'Anual','0','-0.71',13,1,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2452,317,'Anual','0','-0.37',14,5,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2453,317,'Anual','0','-0.28',15,8,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2454,317,'Anual','0','-0.15',16,7,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2455,317,'Anual','0','-1.65',17,1,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2456,317,'Anual','0','-0.46',18,8,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2457,317,'Anual','0','-0.82',19,8,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2458,317,'Anual','0','-1.09',20,2,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2459,317,'Anual','0','0.41',21,4,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2460,317,'Anual','0','-0.93',22,5,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2461,317,'Anual','0','-1.04',23,8,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2462,317,'Anual','0','-0.81',24,7,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2463,317,'Anual','0','-0.71',25,7,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2464,317,'Anual','0','0.11',26,6,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2465,317,'Anual','0','-0.16',27,6,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2466,317,'Anual','0','-0.33',28,8,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2467,317,'Anual','0','-0.96',29,5,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2468,317,'Anual','0','-0.60',30,8,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2469,317,'Anual','0','-0.50',31,3,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2470,317,'Anual','0','-1.31',32,1,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2471,317,'Anual','0','-0.68',33,8,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2472,317,'Anual','0','-0.96',34,8,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2473,317,'Anual','0','-0.37',35,7,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2474,317,'Anual','0','-0.51',36,7,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2475,317,'Anual','0','-0.42',37,1,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2476,317,'Anual','0','-0.01',38,7,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2477,317,'Anual','0','-0.93',39,5,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2478,317,'Anual','0','-0.35',40,4,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2479,317,'Anual','0','0.26',41,6,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2480,317,'Anual','0','-0.80',42,4,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2481,317,'Anual','0','-0.29',43,2,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2482,317,'Anual','0','-0.64',44,8,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2483,317,'Anual','0','-0.46',45,8,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2484,317,'Anual','0','-0.28',46,2,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2485,317,'Anual','0','-0.83',47,8,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2486,317,'Anual','0','-0.97',48,8,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2487,317,'Anual','0','-0.44',49,3,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2488,317,'Anual','0','-0.69',50,1,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2489,317,'Anual','0','-0.44',51,6,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2490,317,'Anual','0','-0.78',52,7,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2491,317,'Anual','0','-0.64',53,7,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2492,317,'Anual','0','-0.19',54,7,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2493,317,'Anual','0','-0.74',55,2,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2494,317,'Anual','0','-1.78',56,1,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2495,317,'Anual','0','-0.91',57,1,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2496,317,'Anual','0','-0.43',58,8,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2497,324,'Anual','0','2',60,10,'2012');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2498,324,'Anual','0','3',60,10,'2013');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2499,324,'Anual','0','8',60,10,'2014');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2500,324,'Anual','0','6',60,10,'2015');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2501,324,'Anual','0','8',60,10,'2016');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2502,376,'Anual','0','30.8',60,10,'2011');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2503,376,'Anual','0','41.7',60,10,'2013');
+INSERT INTO `metas_resultados` (`id_meta`,`id_indicador`,`periodo`,`meta`,`resultado`,`municipio`,`region`,`ejercicio`) VALUES (2504,376,'Anual','0','57.4',60,10,'2015');
