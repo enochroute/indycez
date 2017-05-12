@@ -281,7 +281,7 @@ $conexion->set_charset("utf8");
      <img src="../img/loading_verde.gif">
     </div>
 </div>
-<div class="modal-footer">
+<div class="modal-footer" id="modal_footer">
 <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
 </div>
 
@@ -304,6 +304,7 @@ $conexion->set_charset("utf8");
 	</div>
 </div>
     </div>
+<input type="hidden" id="indicadorActivo" name="indicadorActivo">
 <script src="js/jquery-1.11.0.min.js" type="text/javascript"></script>
 <script src="js/jquery-migrate-1.2.1.min.js" type="text/javascript"></script>
 <script src="js/jquery-ui-1.10.3.custom.min.js" type="text/javascript"></script>
@@ -327,10 +328,9 @@ $conexion->set_charset("utf8");
 <script src="js/table-managed.js"></script>
 
 <script>
-    function TableManagedCustomize(){
+function TableManagedCustomize(){
          TableManaged.init();
     }
-
 jQuery(document).ready(function() {
    App.init(); // initlayout and core plugins
    Index.init();
@@ -338,9 +338,7 @@ jQuery(document).ready(function() {
    Index.initKnowElements();
   // TableManagedCustomize();
 });
-
-
-    function loadList(v){
+function loadList(v){
         if(v == 0){
             return false;
         }
@@ -353,10 +351,10 @@ jQuery(document).ready(function() {
         document.getElementById('listaIndicadores').innerHTML = msg;
     });
     }
-
 function loadInfoInd(v){
-    $("#infoIndModal").modal();
+    document.getElementById('modal_footer').innerHTML = "<button type='button' class='btn btn-default' data-dismiss='modal'>Cerrar</button>";
 
+    $("#infoIndModal").modal();
      $.ajax({
         method: "POST",
         url: "class/info_indicador.php",
@@ -364,7 +362,80 @@ function loadInfoInd(v){
     }) .done(function(msg) {
         document.getElementById('infoIndicador').innerHTML = msg;
     });
+}
+function EditIndicador(v){
+    document.getElementById('modal_footer').innerHTML = "<button type='button' class='btn btn-success' onclick='guardandoIndicador();'>Actualizar</button> <button type='button' class='btn btn-danger' data-dismiss='modal'>Cancelar</button>";
+    document.getElementById('infoIndicador').innerHTML = "<div align='center'><br>Cargando info<br><img src='../img/loading_verde.gif'></div>";
+        $("#infoIndModal").modal();
+     $.ajax({
+        method: "POST",
+        url: "class/edit_indicador.php",
+        data: { idIndicador: v }
+    }) .done(function(msg) {
+        document.getElementById('infoIndicador').innerHTML = msg;
+         $('#indicadorActivo').val(v);
+    });
+}
+function guardandoIndicador(){
+     document.getElementById('msg_estado').innerHTML="<div style='position: absolute; padding:70px; top: 30%; width:90%; z-index: 99; background-color:#50a649; color:#fff;'> <i class='fa fa-refresh fa-spin fa-3x fa-fw'></i> Actualizando Información del Indicador, porfavor espere. </div>";
+       $.ajax({
+        method: "POST",
+        url: "class/indicadores.php",
+        data: {accion: 1, id_indicador: $('#indicadorActivo').val(), nombre: $('#nombre').val(), identificador: $('#identificador').val(), tendencia_deseable: $('#tendencia_deseable').val(), u_medida: $('#u_medida').val(), a_base: $('#a_base').val(), periodicidad: $('#periodicidad').val(), fecha_act: $('#fecha_act').val(), definicion: $('#definicion').val(), origen: $('#origen').val(), ped: 1, sistema_consulta: $('#sistema_consulta').val(), cobertura_geografica: $('#cobertura_geografica').val(), notas: $('#notas').val(), metodo: $('#metodo').val(), formula: $('#formula').val(), variables: $('#variables').val(), nivel: $('#nivel').val(), objetivo: $('#objetivo').val(), responsable: $('#responsable').val()}
+    }) .done(function(msg) {
+        if(msg == "hecho"){
+            document.getElementById('msg_estado').innerHTML="<div style='position: absolute; padding:70px; top: 30%; width:90%; z-index: 99; background-color:#50a649; color:#fff;'> <i class='fa fa-refresh fa-spin fa-3x fa-fw'></i> Actualizando Temas Asociados, porfavor espere. </div>";
+            guardandoTemasAsociados();
+            return true;
+        }else{
+          document.getElementById('msg_estado').innerHTML="";
+          alert(msg);
+          $('#infoIndModal').modal('hide');
+          return false;
+        }
+    });
+}
+function guardandoTemasAsociados(){
+    var arreglo = "";
+    if($('#chkGobierno').is(':checked')){arreglo = "1 ";}
+    if($('#chkRezago').is(':checked')){arreglo = arreglo+"2 ";}
+     if($('#chkSalud').is(':checked')){arreglo = arreglo+"3 ";}
+     if($('#chkSeguridad').is(':checked')){arreglo = arreglo+"4 ";}
+     if($('#chkGenero').is(':checked')){arreglo = arreglo+"5 ";}
+     if($('#chkEducacion').is(':checked')){arreglo = arreglo+"6 ";}
+     if($('#chkInnovacion').is(':checked')){arreglo = arreglo+"7 ";}
+     if($('#chkEconomia').is(':checked')){arreglo = arreglo+"8 ";}
+     if($('#chkInfraestructura').is(':checked')){arreglo = arreglo+"9 ";}
+     if($('#chkCampo').is(':checked')){arreglo = arreglo+"10 ";}
+     if($('#chkTurismo').is(':checked')){arreglo = arreglo+"11 ";}
+     if($('#chkMedio').is(':checked')){arreglo = arreglo+"12 ";}
+     if($('#chkDesarrollo').is(':checked')){arreglo = arreglo+"13 ";}
+     if($('#chkCultura').is(':checked')){arreglo = arreglo+"14 ";}
+     if($('#chkPoblacion').is(':checked')){arreglo = arreglo+"15 ";}
 
+
+
+
+        $.ajax({
+        method: "POST",
+        url: "class/indicadores.php",
+        data: {accion: 2, id_indicador: $('#indicadorActivo').val(),informacion: arreglo }
+    }) .done(function(msg) {
+        if(msg == "hecho"){
+            document.getElementById('msg_estado').innerHTML="<div style='position: absolute; padding:70px; top: 30%; width:90%; z-index: 99; background-color:#50a649; color:#fff;'> <i class='fa fa-refresh fa-spin fa-3x fa-fw'></i> Actualizando Fuentes de Información, porfavor espere. </div>";
+            guardandoFuentesInformacion();
+            return true;
+        }else{
+          document.getElementById('msg_estado').innerHTML="";
+          alert(msg);
+          $('#infoIndModal').modal('hide');
+          return false;
+        }
+    });
+
+}
+function guardandoFuentesInformacion(){
+    console.log("fuentes llamado");
 }
 
 </script>

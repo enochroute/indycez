@@ -10,7 +10,8 @@ require_once("conexion.php");
 $conn = new conexion();
 $conexion = $conn->conectar();
 $conexion->set_charset("utf8");
-$query = 'SELECT i.id_indicador, i.nombre, i.fecha_actualizacion  FROM indicadores i INNER JOIN indicador_tema it on(i.id_indicador = it.id_indicador) WHERE it.id_tema = '.$_POST['idTema'];
+$query = 'SELECT i.id_indicador, i.nombre, i.fecha_actualizacion
+FROM indicadores i INNER JOIN indicador_tema it on(i.id_indicador = it.id_indicador) WHERE it.id_tema = '.$_POST['idTema'].' ORDER BY i.id_indicador ASC';
 $ExQuery = $conexion->query($query);
 $conexion->close();
 unset($conexion);
@@ -33,7 +34,7 @@ unset($conn);
             <td>
                 <div class="btn-group">
                     <button type="button" class="btn btn-default" onclick="loadInfoInd(<?php echo $Res[0]; ?>)"><span class="text-success"><i class="fa fa-info-circle"></i></span> Información</button>
-                    <button type="button" class="btn btn-default"><span class="text-success"><i class="fa fa-pencil-square-o"></i></span> Editar</button>
+                    <button type="button" class="btn btn-default" onclick="EditIndicador(<?php echo $Res[0]; ?>)"><span class="text-success"><i class="fa fa-pencil-square-o"></i></span> Editar</button>
                     <button type="button" class="btn btn-default"><span class="text-danger"><i class="fa fa-trash"></i></span> Eliminar</button>
                 </div>
             </td>
