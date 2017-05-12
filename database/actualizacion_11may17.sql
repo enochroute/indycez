@@ -2,7 +2,6 @@
 UPDATE  indicadores SET origen = 1;
 ALTER TABLE `indyce`.`indicador_tema`  CHANGE COLUMN `id_indicador_tema` `id_indicador_tema` INT(11) NOT NULL AUTO_INCREMENT ;
 
-
 -- CATALOGO DE FUENTES
 
 INSERT INTO `fuentes` (`id_fuente`,`fuente`) VALUES (1,'AE');
@@ -50,5 +49,77 @@ INSERT INTO `fuentes` (`id_fuente`,`fuente`) VALUES (42,'SSA');
 
 
 
--- Cargar procedimientos alamcenados
+-- Cargar procedimientos alamcenados para el funcionamiento del backend
+
+
+DELIMITER $$
+CREATE  PROCEDURE `actualiza_info_indicador`(
+in id_i int,
+in nombre_i varchar(128),
+in identificador_i varchar(16),
+in tendencia_deseable_i tinyint,
+in u_medida_i int,
+in abase_i varchar(4),
+in periodo_i tinyint,
+in fecha_i date,
+ in definicion_i text,
+ in origen_i int,
+ in ped_i smallint,
+ in sconsulta_i tinyint,
+ in cobertura_i tinyint,
+ in notas_i text,
+ in metodo_i text,
+ in formula_i text,
+ in vars_i text,
+ in nivel_i tinyint,
+ in objetivo_i text,
+ in responsable_i text
+ )
+BEGIN
+
+	UPDATE indicadores SET
+    nombre = nombre_i,
+    identificador = identificador_i,
+    tendencia_deseable = tendencia_deseable_i,
+    u_medida =  u_medida_i,
+    a_base = abase_i,
+    periodicidad =  periodo_i,
+    fecha_actualizacion = fecha_i,
+    definicion = definicion_i,
+    origen = origen_i,
+    alineacion_ped = ped_i,
+    sistema_consulta = sconsulta_i,
+    cobertura_geografica = cobertura_i,
+    notas = notas_i,
+    metodologia = metodo_i,
+    formula = formula_i,
+    variables = vars_i,
+    nivel = nivel_i,
+    objetivo = objetivo_i,
+    responsable = responsable_i
+    where id_indicador = id_i;
+
+END$$
+DELIMITER ;
+
+DELIMITER $$
+CREATE PROCEDURE `login`(in u varchar(32), in c varchar(32))
+begin
+	SELECT COUNT(*) FROM usuarios WHERE usuario = u AND clave=c;
+end$$
+DELIMITER ;
+
+DELIMITER $$
+CREATE procedure `user_id`(in u varchar(32), in c varchar(32))
+BEGIN
+	SELECT id_usuario,nombre,dependencia,perfil,correo FROM usuarios WHERE  usuario = u AND clave=c LIMIT 1;
+END$$
+DELIMITER ;
+
+DELIMITER $$
+CREATE  PROCEDURE `user_info`(in i int)
+BEGIN
+	SELECT id_usuario,nombre,dependencia,perfil,correo FROM usuarios WHERE  id_usuario = i LIMIT 1;
+END$$
+DELIMITER ;
 
