@@ -374,10 +374,10 @@ INSERT INTO `temas_interes` (`id_tema`,`nombre_tema`,`icono`,`descripcion`,`acti
 (9,'Infraestructura','iconoInfraestructura.png','-',1),
 (10,'Campo','iconoCampo.png','-',1),
 (11,'Turismo','iconoTurismo.png','-',1),
-(12,'Medio ambiente','iconoUrbano.png','-',1),
-(13,'Desarrollo urbano','n.a.','-',1),
-(14,'Cultura','n.a.','-',1),
-(15,'Población','n.a.','-',1);
+(12,'Medio ambiente','iconoAmbiente.png','-',1),
+(13,'Desarrollo urbano','iconoUrbano.png','-',1),
+(14,'Cultura','iconoCultura.png','-',1),
+(15,'Población','iconoPoblacion.png','-',1);
 
 INSERT INTO `regiones` (`id_region`,`nombre`,`sede`) VALUES
 (1,'Centro ( Zacatecas)','Zacatecas'),

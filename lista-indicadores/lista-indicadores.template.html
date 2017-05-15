@@ -20,7 +20,7 @@
   <div class="panel-body" id="contenedorLista">
     <a  class="btn btn-default btn-block" href="#!/detalleIndicador/{{indicador.id_indicador}}"
     ng-repeat = "indicador in indicadores | filter:{ id_tema: temaElegido} : true "> <!-- | orderBy:'nombre' -->
-      <span ng-if="indicador.sistema_consulta" class="izquierda"> <img ng-src="img/iconoPED.png" class="icono-texto"/> </span>
+      <span ng-if="indicador.sistema_consulta == 1" class="izquierda"> <img ng-src="img/iconoPED.png" class="icono-texto"/> </span>
       {{indicador.nombre}}
     </a>
   </div>
