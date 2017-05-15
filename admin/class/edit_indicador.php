@@ -52,6 +52,7 @@ $infoIndicador = $ExConsulta->fetch_array(MYSQLI_NUM);
 $conexion->close();
 unset($ExConsulta);
 ?>
+
 <div id="msg_estado"></div>
 <div class="portlet">
 <div class="portlet-title">
@@ -191,10 +192,10 @@ unset($ExConsulta);
                <div class="form-group">
                    <div class="row">
                        <div class="col-md-3">
-                   <label for="fecha_act">Fecha Actualización:</label>
+                   <label for="fecha_act">Fecha Actualización: </label>
                        </div>
                        <div class="col-md-9">
-				   <input type="date" class="form-control" id="fecha_act" name="fecha_act" value="<?php echo $infoIndicador[9]; ?>">
+				   <input type="date" class="form-control" id="fecha_act" name="fecha_act" value="<?php echo substr($infoIndicador[9],0,10); ?>">
                        </div></div>
                </div>
                 <div class="form-group">
@@ -242,12 +243,64 @@ unset($ExConsulta);
     <div class="col-md-6">
      <div class="portlet-body form">
            <form role="form">
+               <?php
+                $conexion = $conn->conectar();
+                $conexion->set_charset("utf8");
+                $Query = 'select e.nombre as estrategia, l.id_linea as idlinea, l.nombre as linea, j.id_eje as ideje, j.eje as eje from estrategias e inner join linea l on (l.id_linea = e.id_linea) inner join eje j on (l.id_eje = j.id_eje) WHERE e.id_estrategia = '.$infoIndicador[13];
+               $ExConsulta = $conexion->query($Query);
+                $ResPED = $ExConsulta->fetch_array(MYSQLI_NUM);
+                 unset($Query);
+                 unset($ExConsulta);
+                 $conexion->close();
+               ?>
+
+
                               <div class="form-group">
                    <label for="nombre">Alineación PED:</label>
 				   <div class="row">
-                    <div class="col-md-4">EJE</div>
-                    <div class="col-md-4">LINEA</div>
-                    <div class="col-md-4">ESTRATEGIA</div>
+                    <div class="col-md-4">
+                     <select  class="form-control" id="eje" name="eje" onChange="carga_lineas(this.value);">
+                         <option vlaue="<?php echo $ResPED[3]; ?>"><?php echo $ResPED[4]; ?></option>
+                         <?php
+                         $conexion = $conn->conectar();
+                $conexion->set_charset("utf8");
+                $Query = 'select * FROM eje';
+               $ExConsulta = $conexion->query($Query);
+                         unset($Query);
+                         $conexion->close();
+                while($ResEje = $ExConsulta->fetch_array(MYSQLI_NUM)){
+                    echo '<option value="'.$ResEje[0].'">'.$ResEje[1].'</option>';
+                }
+                 unset($ResEje);
+
+                 unset($ExConsulta);
+
+                         ?>
+                        </select>
+                    </div>
+                    <div class="col-md-4">
+                        <select  class="form-control" id="linea" name="linea">
+                         <option vlaue="<?php echo $ResPED[1]; ?>"><?php echo $ResPED[2]; ?></option>
+                                                    <?php
+                         $conexion = $conn->conectar();
+                $conexion->set_charset("utf8");
+                $Query = 'select id_linea,nombre FROM linea where id_eje = '.$ResPED[3];
+               $ExConsulta = $conexion->query($Query);
+                         unset($Query);
+                         $conexion->close();
+                while($ResEje = $ExConsulta->fetch_array(MYSQLI_NUM)){
+                    echo '<option value="'.$ResEje[0].'">'.$ResEje[1].'</option>';
+                }
+                 unset($ResEje);
+
+                 unset($ExConsulta);
+
+                         ?>
+                        </select> </div>
+                    <div class="col-md-4">
+                        <select  class="form-control" id="estrategia" name="estrategia">
+                         <option vlaue="$infoIndicador[13]"><?php echo $ResPED[0]; ?></option>
+                        </select> </div>
                    </div>
                </div>
                        <div class="form-group">
@@ -318,7 +371,7 @@ unset($ExConsulta);
                 <div class="form-group">
                     <div class="row">
                         <div class="col-md-3">
-                            <label for="formula">Formula:</label>
+                            <label for="formula">Fórmula:</label>
                         </div>
                         <div class="col-md-9">
 				   <input type="text" class="form-control" id="formula" name="formula" value="<?php echo $infoIndicador[20]; ?>">
@@ -524,7 +577,112 @@ unset($ExConsulta);
 
 </div>
 <div class="tab-pane fade" id="tab_1_3">
+<?php
+        $conexion = $conn->conectar();
+        $conexion->set_charset("utf8");
+        $Query = "SELECT id_fuente FROM fuente_indicador WHERE id_indicador = ".$_POST['idIndicador'];
+        $ExConsulta = $conexion->query($Query);
+        unset($Query);
+        $array_fuentes = $ExConsulta->fetch_array(MYSQLI_NUM);
+        if(count($array_fuentes) < 1){
+            $array_fuentes[0] = 0;
+        }
+        unset($ExConsulta);
+        $conexion->close();
+?>
+<div class="row">
+  <div class="col-md-1"></div>
+  <div class="col-md-11">
+   <div class="row">
+        <div class="col-md-3">
+         <div class="form-group">
+           <div class="checkbox-list">
+				<?php
+          $conexion = $conn->conectar();
+          $conexion->set_charset("utf8");
+          $Query =  "SELECT id_fuente,fuente FROM fuentes LIMIT 11";
+          $ExConsulta = $conexion->query($Query);
+          unset($Query);
+          while($Resultado = $ExConsulta->fetch_array(MYSQLI_NUM)){ ?>
+              <label><input <?php echo "id='fuente".$Resultado[0]."'"; ?> type="checkbox" <?php if(in_array($Resultado[0],$array_fuentes)){ echo "checked"; }?>> <?php echo $Resultado[1]; ?></label>
+        <?php
+            }
+               unset($Resultado);
+               unset($ExConsulta);
+               $conexion->close();
+            ?>
+            </div>
+         </div>
+     </div>
 
+    <div class="col-md-3">
+      <div class="form-group">
+           <div class="checkbox-list">
+				<?php
+          $conexion = $conn->conectar();
+          $conexion->set_charset("utf8");
+          $Query =  "SELECT id_fuente,fuente FROM fuentes LIMIT 11,10";
+
+          $ExConsulta = $conexion->query($Query);
+               unset($Query);
+          while($Resultado = $ExConsulta->fetch_array(MYSQLI_NUM)){ ?>
+              <label><input type="checkbox" <?php echo "id='fuente".$Resultado[0]."'"; ?> <?php if(in_array($Resultado[0],$array_fuentes)){ echo "checked"; }?>> <?php echo $Resultado[1]; ?></label>
+        <?php
+            }
+               unset($Resultado);
+               unset($ExConsulta);
+               $conexion->close();
+            ?>
+            </div>
+         </div>
+
+    </div>
+        <div class="col-md-3">
+          <div class="form-group">
+           <div class="checkbox-list">
+				<?php
+          $conexion = $conn->conectar();
+          $conexion->set_charset("utf8");
+          $Query =  "SELECT id_fuente,fuente FROM fuentes LIMIT 21,10";
+
+          $ExConsulta = $conexion->query($Query);
+               unset($Query);
+          while($Resultado = $ExConsulta->fetch_array(MYSQLI_NUM)){ ?>
+              <label><input type="checkbox" <?php echo "id='fuente".$Resultado[0]."'"; ?> <?php if(in_array($Resultado[0],$array_fuentes)){ echo "checked"; }?>> <?php echo $Resultado[1]; ?></label>
+        <?php
+            }
+               unset($Resultado);
+               unset($ExConsulta);
+               $conexion->close();
+            ?>
+            </div>
+         </div>
+    </div>
+        <div class="col-md-3">
+          <div class="form-group">
+           <div class="checkbox-list">
+				<?php
+          $conexion = $conn->conectar();
+          $conexion->set_charset("utf8");
+          $Query =  "SELECT id_fuente,fuente FROM fuentes LIMIT 31,11";
+
+          $ExConsulta = $conexion->query($Query);
+               unset($Query);
+          while($Resultado = $ExConsulta->fetch_array(MYSQLI_NUM)){ ?>
+              <label><input type="checkbox" <?php echo "id='fuente".$Resultado[0]."'"; ?> <?php if(in_array($Resultado[0],$array_fuentes)){ echo "checked"; }?>> <?php echo $Resultado[1]; ?></label>
+        <?php
+            }
+               unset($Resultado);
+               unset($ExConsulta);
+               $conexion->close();
+            ?>
+            </div>
+         </div>
+       </div>
+
+    </div>
+  </div>
+</div>
 </div>
 <div class="tab-pane fade" id="tab_1_4">
     <?php

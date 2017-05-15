@@ -435,7 +435,28 @@ function guardandoTemasAsociados(){
 
 }
 function guardandoFuentesInformacion(){
-    console.log("fuentes llamado");
+      var arreglo = "";
+      if($('#fuente1').is(':checked')){arreglo = "1 ";}
+     for(x=2;x < 43;x++){
+      if($('#fuente'+x).is(':checked')){arreglo = arreglo+x+" ";}
+     }
+
+     $.ajax({
+        method: "POST",
+        url: "class/indicadores.php",
+        data: {accion: 3, id_indicador: $('#indicadorActivo').val(),informacion: arreglo }
+    }) .done(function(msg) {
+        if(msg == "hecho"){
+            document.getElementById('msg_estado').innerHTML="<div style='position: absolute; padding:70px; top: 30%; width:90%; z-index: 99; background-color:#50a649; color:#fff;'> <i class='fa fa-refresh fa-spin fa-3x fa-fw'></i> Actualizando Depenendencias, porfavor espere. </div>";
+            return true;
+        }else{
+          document.getElementById('msg_estado').innerHTML="";
+         console.log(msg);
+            alert(msg);
+          $('#infoIndModal').modal('hide');
+          return false;
+        }
+    });
 }
 
 </script>

@@ -57,7 +57,6 @@ class indicador {
         $conexion = $conn->conectar();
         $query_del = 'DELETE FROM indicador_tema WHERE id_indicador = '.$i['id_indicador'];
         if(!$conexion->query($query_del)){
-            echo "error linea 57: ".$conexion->error;
             die();
         }
         $conexion->close();
@@ -67,7 +66,30 @@ class indicador {
             if($id_tema != ''){
             $query_insert = 'INSERT INTO indicador_tema (id_indicador,id_tema) VALUES ('.$i['id_indicador'].','.$id_tema.')';
             if(!$conexion->query($query_insert)){
-              echo "error linea 70: ".$conexion->error;
+              die();
+            }
+            }
+            $conexion->close();
+        }
+        return "hecho";
+    }
+    function actualizar_fuentes_informacion($i){
+        print_r($i);
+        die();
+       include("conexion.php");
+        $conn = new conexion();
+        $conexion = $conn->conectar();
+        $query_del = 'DELETE FROM fuente_indicador WHERE id_indicador = '.$i['id_indicador'];
+        if(!$conexion->query($query_del)){
+            die();
+        }
+        $conexion->close();
+        $rows = explode(" ",$i['informacion']);
+        foreach ($rows as &$id_fuente) {
+            $conexion = $conn->conectar();
+            if($id_fuente != ''){
+            $query_insert = 'INSERT INTO fuente_indicador (id_indicador,id_fuente) VALUES ('.$i['id_indicador'].','.$id_fuente.')';
+            if(!$conexion->query($query_insert)){
               die();
             }
             }
