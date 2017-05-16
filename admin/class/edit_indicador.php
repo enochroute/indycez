@@ -299,9 +299,10 @@ unset($ExConsulta);
 ?>
 </select>
                                                 </div>
-                                                <div class="col-md-4" id="slctEstrategia" name="slctEstrategia">
-                                                    <select class="form-control" id="estrategia" name="estrategia">
-<option vlaue="<?php echo $infoIndicador[13]; ?>"><?php echo $ResPED[0]; ?></option>
+
+<div class="col-md-4" id="slctEstrategia" name="slctEstrategia">
+    <select class="form-control" id="estrategia" name="estrategia">
+<option value="<?php echo $infoIndicador[13]; ?>"><?php echo $ResPED[0]; ?></option>
 <?php
 $conexion = $conn->conectar();
 $conexion->set_charset("utf8");
