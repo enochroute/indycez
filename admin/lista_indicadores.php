@@ -198,16 +198,7 @@ $conexion->set_charset("utf8");
                                     <div class="caption">
                                         <i class="fa fa-dashboard"></i> Indicadores
                                     </div>
-                                    <div class="tools">
-                                        <a href="javascript:;" class="collapse">
-                                        </a>
-                                        <a href="#portlet-config" data-toggle="modal" class="config">
-                                        </a>
-                                        <a href="javascript:;" class="reload">
-                                        </a>
-                                        <a href="javascript:;" class="remove">
-                                        </a>
-                                    </div>
+
                                 </div>
                                 <div class="portlet-body">
                                     <div class="table-toolbar">
@@ -519,10 +510,47 @@ $conexion->set_charset("utf8");
                 }).done(function(msg) {
                     if (msg == "hecho") {
                         document.getElementById('msg_estado').innerHTML = "<div style='position: absolute; padding:70px; top: 30%; width:90%; z-index: 99; background-color:#50a649; color:#fff;'> <i class='fa fa-refresh fa-spin fa-3x fa-fw'></i> Actualizando Depenendencias, porfavor espere. </div>";
+                        guardandoDependencias();
                         return true;
                     } else {
                         document.getElementById('msg_estado').innerHTML = "";
-                        console.log(msg);
+                        console.log("error al actualizar fuente de informacion:" + msg);
+                        alert(msg);
+                        $('#infoIndModal').modal('hide');
+                        return false;
+                    }
+                });
+            }
+
+            function guardandoDependencias(){
+                var arreglo = "";
+                if ($('#dependencia1').is(':checked')) {
+                    arreglo = "1 ";
+                }
+
+                var dependencias_arr = ["2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","21","31","41","42","43","44","45","46","60","61","62","63","64","65","66","67","68","69","70","71","72","73","74","75","76","77","78","79","80","81","82","83","84","85","86","87","88","89","90","91","92","93"];
+
+
+                for (x = 0; x < dependencias_arr.length; x++) {
+                    if ($('#dependencia' + dependencias_arr[x]).is(':checked')) {
+                        arreglo = arreglo + dependencias_arr[x] + " ";
+                    }
+                }
+
+                $.ajax({
+                    method: "POST",
+                    url: "class/indicadores.php",
+                    data: {
+                        accion: 4,
+                        id_indicador: $('#indicadorActivo').val(),
+                        informacion: arreglo
+                    }
+                }).done(function(msg) {
+                    if (msg == "hecho") {
+                        document.getElementById('msg_estado').innerHTML = "<div style='position: absolute; padding:70px; top: 30%; width:90%; z-index: 99; background-color:#50a649; color:#fff;'> <i class='fa fa-refresh fa-spin fa-3x fa-fw'></i> Actualizando Registros, porfavor espere. </div>";
+                        return true;
+                    } else {
+                        document.getElementById('msg_estado').innerHTML = "";
                         alert(msg);
                         $('#infoIndModal').modal('hide');
                         return false;
@@ -549,6 +577,10 @@ $conexion->set_charset("utf8");
 
                 });
                 console.log($('#estrategia').val());
+            }
+            function loadResultado(){
+                 document.getElementById('infoIndicador').innerHTML = "<div align='center'><br>Cargando info<br><img src='../img/loading_verde.gif'></div>";
+
             }
 
             function carga_estrategias() {
