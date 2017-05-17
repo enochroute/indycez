@@ -576,10 +576,22 @@ $conexion->set_charset("utf8");
                         .val('130');
 
                 });
-                console.log($('#estrategia').val());
+
             }
-            function loadResultado(){
+            function loadResultado(v){
                  document.getElementById('infoIndicador').innerHTML = "<div align='center'><br>Cargando info<br><img src='../img/loading_verde.gif'></div>";
+                 $.ajax({
+                    method: "POST",
+                    url: "class/resultados.php",
+                    data: {
+                        accion: 1,
+                        indicador: $('#indicadorActivo').val(),
+                        meta: v
+                    }
+                }).done(function(msg) {
+                   document.getElementById('infoIndicador').innerHTML = msg;
+                   return true;
+                });
 
             }
 
