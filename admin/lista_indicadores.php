@@ -548,6 +548,7 @@ $conexion->set_charset("utf8");
                 }).done(function(msg) {
                     if (msg == "hecho") {
                         document.getElementById('msg_estado').innerHTML = "<div style='position: absolute; padding:70px; top: 30%; width:90%; z-index: 99; background-color:#50a649; color:#fff;'> <i class='fa fa-refresh fa-spin fa-3x fa-fw'></i> Actualizando Registros, porfavor espere. </div>";
+                        location.reload();
                         return true;
                     } else {
                         document.getElementById('msg_estado').innerHTML = "";
@@ -576,10 +577,22 @@ $conexion->set_charset("utf8");
                         .val('130');
 
                 });
-                console.log($('#estrategia').val());
+
             }
-            function loadResultado(){
+            function loadResultado(v){
                  document.getElementById('infoIndicador').innerHTML = "<div align='center'><br>Cargando info<br><img src='../img/loading_verde.gif'></div>";
+                 $.ajax({
+                    method: "POST",
+                    url: "class/resultados.php",
+                    data: {
+                        accion: 1,
+                        indicador: $('#indicadorActivo').val(),
+                        meta: v
+                    }
+                }).done(function(msg) {
+                   document.getElementById('infoIndicador').innerHTML = msg;
+                   return true;
+                });
 
             }
 

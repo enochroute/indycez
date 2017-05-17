@@ -136,9 +136,7 @@ switch($_POST['accion']){
     case 4:
     $resultado = $indicador->actualizar_dependencias($_POST);
     break;
-    case 5:
-    $resultado = $indicador->actualizar_resultados($_POST);
-    break;
+
 }
 unset($_POST);
 
