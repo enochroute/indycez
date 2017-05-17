@@ -548,6 +548,7 @@ $conexion->set_charset("utf8");
                 }).done(function(msg) {
                     if (msg == "hecho") {
                         document.getElementById('msg_estado').innerHTML = "<div style='position: absolute; padding:70px; top: 30%; width:90%; z-index: 99; background-color:#50a649; color:#fff;'> <i class='fa fa-refresh fa-spin fa-3x fa-fw'></i> Actualizando Registros, porfavor espere. </div>";
+                        window.reload();
                         return true;
                     } else {
                         document.getElementById('msg_estado').innerHTML = "";
