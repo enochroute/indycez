@@ -31,7 +31,7 @@ n.nivel,
 i.objetivo,
 i.responsable
 FROM
- Indicadores i
+ indicadores i
 INNER JOIN tendencias_deseables td on(i.tendencia_deseable = td.id_tendencia)
 INNER JOIN u_medida_indicadores um on(i.u_medida = um.id_u_medida)
 INNER JOIN periodicidad_indicador pind on(i.periodicidad = pind.id_periodicidad)
