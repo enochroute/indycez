@@ -74,14 +74,12 @@ class indicador {
         return "hecho";
     }
     function actualizar_fuentes_informacion($i){
-        print_r($i);
-        die();
        include("conexion.php");
         $conn = new conexion();
         $conexion = $conn->conectar();
         $query_del = 'DELETE FROM fuente_indicador WHERE id_indicador = '.$i['id_indicador'];
         if(!$conexion->query($query_del)){
-            die();
+            die($conexion->error);
         }
         $conexion->close();
         $rows = explode(" ",$i['informacion']);
@@ -91,6 +89,29 @@ class indicador {
             $query_insert = 'INSERT INTO fuente_indicador (id_indicador,id_fuente) VALUES ('.$i['id_indicador'].','.$id_fuente.')';
             if(!$conexion->query($query_insert)){
               die();
+            }
+            }
+            $conexion->close();
+        }
+        return "hecho";
+    }
+    function actualizar_dependencias($i){
+       include("conexion.php");
+        $conn = new conexion();
+        $conexion = $conn->conectar();
+        $query_del = 'DELETE FROM indicador_dependencia WHERE id_indicador = '.$i['id_indicador'];
+        if(!$conexion->query($query_del)){
+            die($conexion->error);
+        }
+        $conexion->close();
+        $rows = explode(" ",$i['informacion']);
+        foreach ($rows as &$id_dependencia) {
+            $conexion = $conn->conectar();
+            if($id_dependencia != ''){
+            $query_insert = 'INSERT INTO indicador_dependencia (id_indicador,id_dependencia) VALUES ('.$i['id_indicador'].','.$id_dependencia.')';
+            if(!$conexion->query($query_insert)){
+              echo  $query_insert;
+                die($conexion->error);
             }
             }
             $conexion->close();
