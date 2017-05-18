@@ -1,4 +1,5 @@
 <?php
+header("Access-Control-Allow-Origin: *");
 include 'conexion.php';
 
 $query="SELECT * FROM temas_interes";

@@ -1,56 +1,58 @@
-<div class="row separa-arriba">
-  <div class="col-xs-12">
-    <div class="notice notice-lg">
-      <strong>Nombre</strong> <br>
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-    </div>
-  </div>
-  <div class="col-md-6">
-        <div class="notice notice-verde1">
-          <strong>Descripción</strong> <br>
-          Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-        </div>
-        <div class="notice notice-naranja1">
-          <strong>Unidad de medida</strong><br>
-          Porcentage
-        </div>
-        <div class="notice notice-azul1">
-          <strong>Tendencia deseada</strong><br>
-          Descendente
-        </div>
-        <div class="notice notice-morado1">
-          <strong>Periodicidad</strong> <br>
-          Anual
-        </div>
-        <div class="notice notice-warning">
-          <strong>Fuente:</strong><br>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-        </div>
-  </div>
+<div class="row separa-ambos" ng-repeat="metadato in metadatos">
 
-  <div class="col-md-6" ng-controller="DetallesCtrl">
-    <div class="notice notice-azul1">
+<div class="row">
+  <div class="col-xs-12 col-sm-12 col-md-12">
+    <div class="notice notice-titulo">
+      <strong>Nombre</strong> <br>
+      {{metadato.nombre}}
+    </div>
+    <div class="notice notice-verde1">
       <strong>Gráfica del indicador</strong><br><br>
       <nvd3 options="options" data="data"></nvd3>
     </div>
-      <div class="notice notice-naranja1 separa-arriba">
-        <strong>Datos históricos</strong><br><br>
-          <table class="table">
-            <tr>
-              <th>Año</th><th>Valor</th>
-            </tr>
-            <tr>
-              <td>2015</td><td>29.77</td>
-            </tr>
-            <tr>
-              <td>2016</td><td>30.70</td>
-            </tr>
-            <tr>
-              <td>2017</td><td>32.81</td>
-            </tr>
-          </table>
-      </div>
   </div>
+</div>
 
+<div class="row">
+
+  <div class="col-md-6">
+    <div class="notice notice-verde1" ng-show="metadato.definicion">
+      <strong>Descripción</strong> <br>
+      {{metadato.definicion}}
+    </div>
+    <div class="notice notice-verde1" ng-show="metadato.u_medida">
+      <strong>Unidad de medida</strong><br>
+      {{metadato.u_medida}}
+    </div>
+    <div class="notice notice-verde1" ng-show="metadato.tendencia">
+      <strong>Tendencia deseada</strong><br>
+      {{metadato.tendencia}}
+    </div>
+    <div class="notice notice-verde1" ng-show="metadato.peiodicidad">
+      <strong>Periodicidad</strong> <br>
+      {{metadato.peiodicidad}}
+    </div>
+    <!--<div class="notice notice-verde1">
+    <strong>Fuente:</strong><br>
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+  </div> -->
+</div>
+
+<div class="col-md-6" ng-controller="DetallesCtrl">
+
+  <div class="notice notice-verde1">
+    <strong>Datos históricos</strong><br><br>
+    <table class="table">
+      <tr>
+        <th>Año</th><th>Valor</th>
+      </tr>
+      <tr ng-repeat="dato in datos">
+        <td>{{dato.ejercicio}}</td><td style="text-align:right">{{dato.resultado|number}}</td>
+      </tr>
+    </table>
+  </div>
+</div>
+
+</div>
 
 </div>

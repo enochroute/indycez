@@ -12,7 +12,7 @@ component('listaIndicadores', {
     $http.get('php/getindicadores.php').
     success(function(data) {
       $scope.indicadores = data;
-      //console.log($scope.temas);
+      //console.log("Los indicadores: "+$scope.indicadores);
     });
   }
 });

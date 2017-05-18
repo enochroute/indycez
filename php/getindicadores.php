@@ -1,9 +1,16 @@
 <?php
-
+header("Access-Control-Allow-Origin: *");
 include 'conexion.php';
 
 
-$query="select * from indicadores";
+$query=
+"SELECT
+    it.id_tema, i.nombre, i.id_indicador, i.sistema_consulta
+FROM
+    indicadores AS i
+        JOIN
+    indicador_tema AS it ON i.id_indicador = it.id_indicador
+    WHERE (SELECT COUNT(id_indicador) FROM metas_resultados WHERE id_indicador = i.id_indicador) > 0;";
 
 
 $resultado=mysqli_query($con,$query);

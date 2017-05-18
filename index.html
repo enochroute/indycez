@@ -2,7 +2,7 @@
 <html lang="es" ng-app="MainModule" ng-init="temaID=0">
 <head>
   <meta charset="utf-8">
-  <title>InDyCE | Zacatecas</title>
+  <title>InDyCEZ</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Archivos css -->
   <link rel="stylesheet" type="text/css" href="css/estilos.css">
@@ -24,6 +24,10 @@
   <script src="lista-indicadores/lista-indicadores.component.js"></script>
   <script src="detalle-indicadores/detalle-indicadores.module.js"></script>
   <script src="detalle-indicadores/detalle-indicadores.component.js"></script>
+
+  <!-- favicon -->
+
+  <link rel='shortcut icon' href='favicon.ico'/>
 
 </head>
 <body>
@@ -60,7 +64,7 @@
           <div class="col-sm-4 col-md-4 col-lg-4" style="margin-top:-0.5ex; float:right">
             <p>
               <!--Buscar:-->
-              <input ng-model="$ctrl.query" placeholder="Buscar indicador"/ style="float:right">
+              <!-- <input ng-model="buscaIndicador" placeholder="Buscar indicador"/ style="float:right"> -->
             </p>
           </div>
         </div>
@@ -91,7 +95,8 @@
           <ul class="list_links"  style="font-size: 10px;font-size: 1.1vw;">
             <li><a ng-href="http://www.zacatecas.gob.mx" target="blank">Gobierno del Estado de Zacatecas</a></li>
             <li><a ng-href="http://upla.zacatecas.gob.mx" target="blank">Coordinación Estatal de Planeación</a></li>
-            <!-- <li><a ng-href="http://cozcyt.gob.mx/site2" target="blank" >COZCyT</a></li>
+
+            <!--<li><a ng-href="http://cozcyt.gob.mx/site2" target="blank" >COZCyT</a></li>
             <li><a ng-href="http://www.finanzas.gob.mx" target="blank" >Secretaría de Finanzas</a></li>
             <li><a ng-href="http://www.seduzac.gob.mx/portal" target="blank">Secretaría de Educación</a></li>
             <li><a ng-href="http://www.zacatecastravel.com" target="blank">Secretaría de Turismo</a></li>
@@ -104,8 +109,8 @@
       <div class="col-sm-3" style="margin-left:-1em;">
         <div><h2 style="font-size: 10px;font-size: 1.65vw;">Contacto</h2>
           <p style="font-size: 10px;font-size: 1.1vw;">
-            Coordinación Estatal de Planeación
-            Circuito Cerro del Gato S/N <br>
+            Coordinación Estatal de Planeación <br>
+            Circuito Cerro del Gato s/n <br>
             Colonia Ciudad Gobierno <br>
             Edificio H | Segundo Piso <br>
             C.P. 98160 <br>
@@ -148,8 +153,18 @@ $(document).ready(function () {
   $('[data-toggle="offcanvas"]').click(function () {
     $('#wrapper').toggleClass('toggled');
   });
+
+  $('#wrapper').on("click", "nav a", function(){
+    console.log("Sí se registró");
+    $('#wrapper').toggleClass('toggled');
+    overlay.hide();
+    trigger.removeClass('is-open');
+    trigger.addClass('is-closed');
+    isClosed = false;
+  });
 });
 </script>
+
 
 </body>
 </html>
