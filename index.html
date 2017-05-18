@@ -152,8 +152,18 @@ $(document).ready(function () {
   $('[data-toggle="offcanvas"]').click(function () {
     $('#wrapper').toggleClass('toggled');
   });
+
+  $('#wrapper').on("click", "nav a", function(){
+    console.log("Sí se registró");
+    $('#wrapper').toggleClass('toggled');
+    overlay.hide();
+    trigger.removeClass('is-open');
+    trigger.addClass('is-closed');
+    isClosed = false;
+  });
 });
 </script>
+
 
 </body>
 </html>

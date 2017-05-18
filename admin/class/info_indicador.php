@@ -10,7 +10,7 @@ require_once("conexion.php");
 $conn = new conexion();
 $conexion = $conn->conectar();
 $conexion->set_charset("utf8");
-$consulta = 'SELECT
+$consulta = "SELECT
 i.nombre,
 i.identificador,
 td.tendencia,
@@ -31,7 +31,7 @@ n.nivel,
 i.objetivo,
 i.responsable
 FROM
- Indicadores i
+ indicadores i
 INNER JOIN tendencias_deseables td on(i.tendencia_deseable = td.id_tendencia)
 INNER JOIN u_medida_indicadores um on(i.u_medida = um.id_u_medida)
 INNER JOIN periodicidad_indicador pind on(i.periodicidad = pind.id_periodicidad)
@@ -39,7 +39,7 @@ INNER JOIN origen o on(i.origen = o.id_origen)
 INNER JOIN estrategias ped on(i.alineacion_ped = ped.id_estrategia)
 INNER JOIN sistemas_consulta sc on(i.sistema_consulta = sc.id_sistema_consulta)
 INNER JOIN niveles n on(i.nivel = n.id_nivel)
-where i.id_indicador = '.$_POST['idIndicador'];
+where i.id_indicador = ".$_POST['idIndicador'];
 $ExConsulta = $conexion->query($consulta);
 $infoIndicador = $ExConsulta->fetch_array(MYSQLI_NUM);
 $conexion->close();

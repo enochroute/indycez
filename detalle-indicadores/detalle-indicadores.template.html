@@ -6,6 +6,10 @@
       <strong>Nombre</strong> <br>
       {{metadato.nombre}}
     </div>
+    <div class="notice notice-verde1">
+      <strong>Gráfica del indicador</strong><br><br>
+      <nvd3 options="options" data="data"></nvd3>
+    </div>
   </div>
 </div>
 
@@ -35,11 +39,8 @@
 </div>
 
 <div class="col-md-6" ng-controller="DetallesCtrl">
+
   <div class="notice notice-verde1">
-    <strong>Gráfica del indicador</strong><br><br>
-    <nvd3 options="options" data="data"></nvd3>
-  </div>
-  <div class="notice notice-verde1 separa-arriba">
     <strong>Datos históricos</strong><br><br>
     <table class="table">
       <tr>
