@@ -872,12 +872,12 @@ $conexion->close();
 </div>
 <div class="tab-pane fade" id="tab_1_5">
 <div class="btn-group">
-                    <button type="button" class="btn btn-default" onclick="loadResultado(<?php echo $Res[0]; ?>)"><span class="text-success"><i class="fa fa-plus-circle"></i></span> Agregar Registro</button>
-                    <button type="button" class="btn btn-default" onclick="EditResultado(<?php echo $Res[0]; ?>)"><span class="text-success"><i class="fa fa-file-excel-o"></i></span> Agregar varios registros(xls)</button>
+                    <button type="button" class="btn btn-default" onclick="agregaResultadoRow();"><span class="text-success"><i class="fa fa-plus-circle"></i></span> Agregar Registro</button>
+                    <button type="button" class="btn btn-default" disabled><span class="text-success"><i class="fa fa-file-excel-o"></i></span> Agregar varios registros(xls)</button>
 </div>
 <p>&nbsp;</p>
 
-<table class="table table-striped table-bordered table-hover" id="sample_1">
+<table class="table table-striped table-bordered table-hover" id="resultadosIndicadorTabla">
 <thead>
 <tr>
 <th> Periodo</th>
@@ -886,44 +886,64 @@ $conexion->close();
 <th> Municipio </th>
 <th> Región </th>
 <th> Ejercicio </th>
-<th>Acciones</th>
+<th> </th>
 </tr>
 </thead>
 <tbody>
 <?php
-
    $conexion = $conn->conectar();
    $conexion->set_charset("utf8");
-
-   $ExConsulta = $conexion->query('select id_meta,periodo,meta,resultado,ejercicio from metas_resultados where id_indicador = '.$_POST['idIndicador']);
+   $ExConsulta = $conexion->query('SELECT
+mr.id_meta,
+mr.periodo,
+mr.meta,
+mr.resultado,
+mr.municipio,
+mp.nombre,
+mr.region,
+r.nombre,
+mr.ejercicio
+FROM metas_resultados mr
+inner join municipios mp on(mr.municipio = mp.id_municipio)
+inner join regiones r on(mr.region = r.id_region)
+where mr.id_indicador = '.$_POST['idIndicador']);
+   $n = 1;
 while($Res = $ExConsulta->fetch_array(MYSQLI_NUM)){
 ?>
-<tr class="odd gradeX">
+<tr id="ResultadoFila<?php echo $n; ?>">
 <td>
-<?php echo $Res[1]; ?>
+<input  type="hidden" id="idResultado" value="<?php echo $Res[0];?>">
+<input class="form-control" type="text" id="ResultadoPeriodo<?php echo $n;?>" value="<?php echo $Res[1]; ?>">
 </td>
 <td>
-<?php echo $Res[2]; ?>
+<input class="form-control" type="number" id="ResultadoMeta<?php echo $n;?>"  value="<?php echo $Res[2]; ?>">
 </td>
 <td>
-<?php echo $Res[3]; ?>
-</td>
-<td> </td>
-<td> </td>
-<td>
-<?php echo $Res[4]; ?>
+<input class="form-control" type="number" id="ResultadoRes<?php echo $n;?>"  value="<?php echo $Res[3]; ?>">
 </td>
 <td>
-                  <div class="btn-group">
-                    <button type="button" class="btn btn-default" onclick="loadResultado(<?php echo $Res[0]; ?>)"><span class="text-success"><i class="fa fa-info-circle"></i></span> </button>
-                    <button type="button" class="btn btn-default" onclick="EditResultado(<?php echo $Res[0]; ?>)"><span class="text-success"><i class="fa fa-pencil-square-o"></i></span> </button>
-                    <button type="button" class="btn btn-default"><span class="text-danger"><i class="fa fa-trash"></i></span> </button>
-                </div>
+    <select class="form-control" id="ResultadoMunicipio<?php echo $n; ?>">
+        <option value="<?php echo $Res[4]; ?>"><?php echo $Res[5]; ?></option>
+    </select>
+</td>
+
+<td>
+    <input type="hidden" id="ResultadoRegion<?php echo $n;?>" value="<?php echo $Res[6]; ?>">
+    <input type="text" id="RegionTxt<?php echo $n;?>" readonly value="<?php echo $Res[7]; ?>">
+</td>
+<td>
+<input class="form-control" type="number" id="ResultadoEjercicio<?php echo $n;?>"  value="<?php echo $Res[8]; ?>">
+</td>
+<td>
+<div class="btn-group" id="ResultadoBtn<?php echo $n;?>">
+<button type="button" class="btn btn-default" onclick="eliminaPrev(<?php echo $n; ?>)"><span class="text-danger"><i class="fa fa-trash"></i></span> </button>
+</div>
 </td>
 </tr>
-<?php } ?>
+<?php $n++; } ?>
 </tbody>
 </table>
+<input type="hidden" id="numRowsTablaResultados" value="<?php echo $n; unset($n); ?>">
 </div>
 </div>
 </div>

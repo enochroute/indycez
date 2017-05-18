@@ -558,7 +558,6 @@ $conexion->set_charset("utf8");
                     }
                 });
             }
-
             function carga_lineas() {
                 $.ajax({
                     method: "POST",
@@ -579,23 +578,27 @@ $conexion->set_charset("utf8");
                 });
 
             }
-            function loadResultado(v){
-                 document.getElementById('infoIndicador').innerHTML = "<div align='center'><br>Cargando info<br><img src='../img/loading_verde.gif'></div>";
-                 $.ajax({
-                    method: "POST",
-                    url: "class/resultados.php",
-                    data: {
-                        accion: 1,
-                        indicador: $('#indicadorActivo').val(),
-                        meta: v
-                    }
-                }).done(function(msg) {
-                   document.getElementById('infoIndicador').innerHTML = msg;
-                   return true;
-                });
 
+            function eliminaPrev(v){
+                $('#ResultadoFila'+v).addClass('danger');
+                document.getElementById('ResultadoBtn'+v).innerHTML = "<button type='button' class='btn btn-default' onclick='NoeliminaPrev("+v+")'><span class='text-success'><i class='fa fa-recycle'></i></span> </button>";
+                return true;
             }
 
+            function NoeliminaPrev(v){
+                $('#ResultadoFila'+v).removeClass('danger');
+                document.getElementById('ResultadoBtn'+v).innerHTML = "<button type='button' class='btn btn-default' onclick='eliminaPrev("+v+")'><span class='text-danger'><i class='fa fa-trash'></i></span> </button>";
+                  return true;
+            }
+
+            function agregaResultadoRow(){
+                var v = $('#numRowsTablaResultados').val();
+
+                $('#resultadosIndicadorTabla tr:last').after('<tr id="ResultadoFila'+v+'"><td><input class="form-control" type="text" id="ResultadoPeriodo'+v+'"></td><td><input class="form-control" type="number" id="ResultadoMeta'+v+'"> </td><td><input class="form-control" type="number" id="ResultadoRes'+v+'"> </td><td><div id="sltMpio'+v+'"></div></td><td>-Region-</td><td><input class="form-control" type="number" id="ResultadoEjercicio'+v+'"> </td><td><div class="btn-group" id="ResultadoBtn'+v+'"><button type="button" class="btn btn-default" onclick="eliminaPrev('+v+')"><span class="text-danger"><i class="fa fa-trash"></i></span> </button></div></td></tr>');
+                var n =  parseInt(v);
+                n = n+1;
+                $('#numRowsTablaResultados').val(n);
+            }
             function carga_estrategias() {
                 $.ajax({
                     method: "POST",
