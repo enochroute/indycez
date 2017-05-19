@@ -38,7 +38,6 @@ $conexion->set_charset("utf8");
         <link href="css/default.css" rel="stylesheet" type="text/css" id="style_color" />
         <link rel="stylesheet" type="text/css" href="css/dataTables.bootstrap.css" />
     </head>
-
     <body class="page-header-fixed">
         <div class="header navbar navbar-fixed-top">
             <div class="header-inner">
@@ -55,12 +54,12 @@ $conexion->set_charset("utf8");
                     </li>
                     <li class="dropdown user">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
-                            <span class="username username-hide-on-mobile">Admin </span>
+                            <span class="username username-hide-on-mobile"><?php echo $_SESSION['usrInfo'][1]; ?></span>
                             <i class="fa fa-angle-down"></i>
                         </a>
                         <ul class="dropdown-menu">
                             <li>
-                                <a href="extra_profile.html"><i class="fa fa-user"></i> Mi Perfil</a>
+                                <a href="#"><i class="fa fa-user"></i> Mi Perfil</a>
                             </li>
                             <li class="divider">
                             </li>
@@ -72,8 +71,7 @@ $conexion->set_charset("utf8");
                 </ul>
             </div>
         </div>
-        <div class="clearfix">
-        </div>
+        <div class="clearfix"></div>
         <div class="page-container">
             <div class="page-sidebar-wrapper">
                 <div class="page-sidebar navbar-collapse collapse">
@@ -110,10 +108,7 @@ $conexion->set_charset("utf8");
                                     <a href="#">
                                         <i class="fa fa-list" aria-hidden="true"></i> Lista de indicadores</a>
                                 </li>
-                                <li>
-                                    <a href="layout_sidebar_closed.html">
-                                        <i class="fa fa-plus-circle" aria-hidden="true"></i> Agregar Indicador</a>
-                                </li>
+
 
                             </ul>
                         </li>
@@ -125,16 +120,14 @@ $conexion->set_charset("utf8");
                             </a>
                             <ul class="sub-menu">
                                 <li>
-                                    <a href="ui_general.html">
+                                    <a href="#">
                                         <i class="fa fa-list-alt" aria-hidden="true"></i> Lista de Catalógos</a>
                                 </li>
-                                <li>
-                                    <a href="ui_buttons.html">
-                                        <i class="fa fa-plus-circle" aria-hidden="true"></i> Agregar Catálogo</a>
-                                </li>
+
 
                             </ul>
                         </li>
+                        <?php if($_SESSION['usrInfo'][3] == 1){ ?>
                         <li>
                             <a href="javascript:;">
                                 <i class="fa fa-cogs" aria-hidden="true"></i>
@@ -159,6 +152,7 @@ $conexion->set_charset("utf8");
 
                             </ul>
                         </li>
+                        <?php } ?>
                     </ul>
 
                 </div>
@@ -236,9 +230,9 @@ $conexion->set_charset("utf8");
                                         <table class="table table-striped table-bordered table-hover" id="sample_1">
                                             <thead>
                                                 <tr>
-                                                    <th> Nombre del indicador </th>
-                                                    <th> Fecha de Actualización </th>
-                                                    <th> Herramientas </th>
+                                                    <th width="60%"> Nombre del indicador </th>
+                                                    <th width="20%"> Fecha de Actualización </th>
+                                                    <th width="20%"> </th>
                                                 </tr>
                                             </thead>
                                         </table>
@@ -316,18 +310,22 @@ $conexion->set_charset("utf8");
         <script src="js/table-managed.js"></script>
 
         <script>
+
             function TableManagedCustomize() {
                 TableManaged.init();
             }
+
             jQuery(document).ready(function() {
                 App.init(); // initlayout and core plugins
                 Index.init();
                 Index.initPeityElements();
                 Index.initKnowElements();
                 // TableManagedCustomize();
+                loadList(1);
             });
 
             function loadList(v) {
+
                 if (v == 0) {
                     return false;
                 }
@@ -357,7 +355,6 @@ $conexion->set_charset("utf8");
                     document.getElementById('infoIndicador').innerHTML = msg;
                 });
             }
-
             function EditIndicador(v) {
                 document.getElementById('modal_footer').innerHTML = "<button type='button' class='btn btn-success' onclick='guardandoIndicador();'>Actualizar</button> <button type='button' class='btn btn-danger' data-dismiss='modal'>Cancelar</button>";
                 document.getElementById('infoIndicador').innerHTML = "<div align='center'><br>Cargando info<br><img src='../img/loading_verde.gif'></div>";
@@ -415,7 +412,6 @@ $conexion->set_charset("utf8");
                     }
                 });
             }
-
             function guardandoTemasAsociados() {
                 var arreglo = "";
                 if ($('#chkGobierno').is(':checked')) {
@@ -487,7 +483,6 @@ $conexion->set_charset("utf8");
                 });
 
             }
-
             function guardandoFuentesInformacion() {
                 var arreglo = "";
                 if ($('#fuente1').is(':checked')) {
@@ -521,7 +516,6 @@ $conexion->set_charset("utf8");
                     }
                 });
             }
-
             function guardandoDependencias(){
                 var arreglo = "";
                 if ($('#dependencia1').is(':checked')) {
@@ -547,8 +541,8 @@ $conexion->set_charset("utf8");
                     }
                 }).done(function(msg) {
                     if (msg == "hecho") {
-                        document.getElementById('msg_estado').innerHTML = "<div style='position: absolute; padding:70px; top: 30%; width:90%; z-index: 99; background-color:#50a649; color:#fff;'> <i class='fa fa-refresh fa-spin fa-3x fa-fw'></i> Actualizando Registros, porfavor espere. </div>";
-                        location.reload();
+                        document.getElementById('msg_estado').innerHTML = "<div style='position: absolute; padding:70px; top: 30%; width:90%; z-index: 99; background-color:#50a649; color:#fff;'> <i class='fa fa-refresh fa-spin fa-3x fa-fw'></i> Actualizando Resultados, porfavor espere. </div>";
+                        guardaResultados()
                         return true;
                     } else {
                         document.getElementById('msg_estado').innerHTML = "";
@@ -578,26 +572,84 @@ $conexion->set_charset("utf8");
                 });
 
             }
-
+/* -- funciones para los resultdos -- */
             function eliminaPrev(v){
                 $('#ResultadoFila'+v).addClass('danger');
                 document.getElementById('ResultadoBtn'+v).innerHTML = "<button type='button' class='btn btn-default' onclick='NoeliminaPrev("+v+")'><span class='text-success'><i class='fa fa-recycle'></i></span> </button>";
                 return true;
             }
-
+            function modificarRes(v){
+                $('#ResultadoFila'+v).addClass('warning');
+                document.getElementById('ResultadoBtn'+v).innerHTML = "<button type='button' class='btn btn-default' onclick='NoeliminaPrev("+v+")'><span class='text-success'><i class='fa fa-recycle'></i></span> </button>";
+                return true;
+            }
             function NoeliminaPrev(v){
-                $('#ResultadoFila'+v).removeClass('danger');
+                var clase;
+                if($('#ResultadoFila'+v).hasClass('danger')){ clase = 'danger'; }else{ clase = 'warning';}
+                $('#ResultadoFila'+v).removeClass(clase);
                 document.getElementById('ResultadoBtn'+v).innerHTML = "<button type='button' class='btn btn-default' onclick='eliminaPrev("+v+")'><span class='text-danger'><i class='fa fa-trash'></i></span> </button>";
                   return true;
             }
-
             function agregaResultadoRow(){
                 var v = $('#numRowsTablaResultados').val();
-
                 $('#resultadosIndicadorTabla tr:last').after('<tr id="ResultadoFila'+v+'"><td><input class="form-control" type="text" id="ResultadoPeriodo'+v+'"></td><td><input class="form-control" type="number" id="ResultadoMeta'+v+'"> </td><td><input class="form-control" type="number" id="ResultadoRes'+v+'"> </td><td><div id="sltMpio'+v+'"></div></td><td>-Region-</td><td><input class="form-control" type="number" id="ResultadoEjercicio'+v+'"> </td><td><div class="btn-group" id="ResultadoBtn'+v+'"><button type="button" class="btn btn-default" onclick="eliminaPrev('+v+')"><span class="text-danger"><i class="fa fa-trash"></i></span> </button></div></td></tr>');
                 var n =  parseInt(v);
                 n = n+1;
                 $('#numRowsTablaResultados').val(n);
+            }
+            function guardaResultados(){
+                var actualizar_registros = false;
+
+                for(x=1;x<=$('#numRowsTablaResultados').val();x++){
+                    var nfila = '#ResultadoFila'+x;
+                    if($(nfila).hasClass('danger') || $(nfila).hasClass('warning') ){
+                        actualizar_registros = true;
+                    }
+                }
+
+                if(actualizar_registros){
+                    if(confirm("Existen resultados a eliminar o modificar, ¿desea continuar?")){
+                        var arreglo_resultados = [];
+                        var l = 0;
+                        var guardar = false;
+                        for(x=1;x<$('#numRowsTablaResultados').val();x++){
+                            nfila = '#ResultadoFila'+x;
+                            guardar = $(nfila).hasClass('danger');
+
+                            if(!guardar){
+                                arreglo_resultados[l] = new Array($('#idResultado'+x).val(),$('#indicadorActivo').val(),$('#ResultadoPeriodo'+x).val(),$('#ResultadoMeta'+x).val(),$('#ResultadoRes'+x).val(),$('#ResultadoMunicipio'+x).val(),$('#ResultadoRegion'+x).val(),$('#ResultadoEjercicio'+x).val());
+                                l++;
+                            }
+                        }
+
+                        $.ajax({
+                    method: "POST",
+                    url: "class/indicadores.php",
+                    data: {
+                        accion: 5,
+                        data: arreglo_resultados
+                    }
+                }).done(function(msg) {
+                    if (msg == "hecho") {
+                        document.getElementById('msg_estado').innerHTML = "";
+                        $('#infoIndModal').modal('hide');
+                        location.reload();
+                        return true;
+                    } else {
+                        document.getElementById('msg_estado').innerHTML = "";
+                        alert(msg);
+                        $('#infoIndModal').modal('hide');
+                        return false;
+                    }
+
+
+                });
+
+                }
+
+                return true;
+            }
+
             }
             function carga_estrategias() {
                 $.ajax({
@@ -612,8 +664,6 @@ $conexion->set_charset("utf8");
                 });
 
             }
-
         </script>
     </body>
-
     </html>

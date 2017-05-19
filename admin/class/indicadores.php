@@ -119,6 +119,35 @@ class indicador {
         return "hecho";
     }
 
+    function actualizar_resultados($i){
+
+       if(count($i['data']) > 0){
+            $query = "delete from metas_resultados where id_indicador = ".$i['data'][0][1];
+            include("conexion.php");
+            $conn = new conexion();
+            $conexion = $conn->conectar();
+            $conexion->query($query) or die ("error al intentar actualizar resultados: ".$conexion->error);
+            $conexion->close();
+            unset($query);
+            for($x = 0; $x < count($i['data']); $x++){
+                $conexion = $conn->conectar();
+                $conexion->set_charset("utf8");
+                $query = 'INSERT INTO metas_resultados (id_meta,id_indicador,periodo,meta,resultado,municipio,region,ejercicio) VALUES
+                ('.$i['data'][$x][0].','.$i['data'][$x][1].',"'.$i['data'][$x][2].'","'.$i['data'][$x][3].'","'.$i['data'][$x][4].'",'.$i['data'][$x][5].','.$i['data'][$x][6].',"'.$i['data'][$x][7].'")';
+                $conexion->query($query) or die ("error al intentar actualizar resultados: ".$conexion->error);
+                $conexion->close();
+            }
+
+           return $query;
+
+       }else{
+           return "hecho";
+       }
+
+
+
+    }
+
 
 }
 $indicador = new indicador();
@@ -136,8 +165,10 @@ switch($_POST['accion']){
     case 4:
     $resultado = $indicador->actualizar_dependencias($_POST);
     break;
+    case 5:
+    $resultado = $indicador->actualizar_resultados($_POST);
+    break;
 
 }
 unset($_POST);
-
 echo $resultado;
