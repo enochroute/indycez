@@ -20,24 +20,20 @@ if(isset($_GET['i']) && !empty($_GET['i']))
   if($indicador  == '') return;
 
   $query=
-    "SELECT
-    i.id_indicador,
-    i.nombre,
-    i.definicion,
-    i.cobertura_geografica,
-    um.u_medida,
-    td.tendencia,
-    p.peiodicidad
-FROM
-    indicadores AS i
-    LEFT JOIN
-    u_medida_indicadores AS um ON i.u_medida = um.id_u_medida
-    LEFT JOIN
-    tendencias_deseables AS td ON td.id_tendencia = i.tendencia_deseable
-    LEFT JOIN
-    periodicidad_indicador AS p ON p.id_periodicidad = i.periodicidad
-WHERE
-    i.id_indicador = $indicador;";
+  "SELECT
+  -- mr.id_indicador,
+  -- mr.id_indicador,
+  -- mr.periodo,
+  mr.municipio,
+  mr.resultado,
+  mr.ejercicio
+  FROM
+  metas_resultados AS mr
+  -- INNER JOIN
+
+  WHERE
+  mr.municipio <= 58
+  AND id_indicador = $indicador;";
   //  $query="select * from indicadores where id_eje='$nameindicador'";
 
 
@@ -46,11 +42,12 @@ WHERE
 
   while($row=$resultado->fetch_assoc()){
 
-    $datos[]=$row;
+    $datos[] = $row;
+
   }
 }
-
-
+//$salidaJSON = $arrayName = array(	 'values' => $datos
+  //                              );
 
 echo json_encode($datos);
 ?>

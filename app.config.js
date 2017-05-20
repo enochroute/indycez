@@ -28,6 +28,14 @@ var angularIndyce = angular.module('MainModule',[
             id: 'idIndicador'
           }
         }).
+        when('/desagregado/:idIndicador', {
+          template: '<desagregado-municipal></desagregado-municipal>',
+          controller: 'DesagregadoCtrl',
+          controllerAs: 'desagregado',
+          params: {
+            id: 'idIndicador'
+          }
+        }).
         otherwise({
           redirectTo: '/'
         });
@@ -47,55 +55,10 @@ var angularIndyce = angular.module('MainModule',[
     //console.log("El tema seleccionado es: " + $scope.temaID);
   }]);
 
-  angularIndyce.controller('DetallesCtrl', ['$scope', '$routeParams', function DetallesCtrl($scope, $routeParams) {
+  angularIndyce.controller('DetallesCtrl', ['$scope', '$routeParams', '$rootScope', function DetallesCtrl($scope, $routeParams,$rootScope) {
     $scope.indicadorID = $routeParams;
-    /*$scope.options = {
-            chart: {
-                type: 'discreteBarChart',
-                height: 250,
-                margin : {
-                    top: 20,
-                    right: 20,
-                    bottom: 50,
-                    left: 55
-                },
-                x: function(d){return d.label;},
-                y: function(d){return d.value;},
-                showValues: true,
-                valueFormat: function(d){
-                    return d3.format(',.2f')(d);
-                },
-                duration: 500,
-                xAxis: {
-                    axisLabel: 'Año'
-                },
-                yAxis: {
-                    axisLabel: 'Porcentaje',
-                    axisLabelDistance: -10
-                }
-            }
-        }; */
+    } ]);
 
-        /*$scope.data = [
-            {
-                key: "Cumulative Return",
-                values: [
-                    {
-                        "label" : "2015" ,
-                        "value" : 29.77
-                    } ,
-                    {
-                        "label" : "2016" ,
-                        "value" : 30.70
-                    } ,
-                    {
-                        "label" : "2017" ,
-                        "value" : 32.81
-                    }
-
-                ]
-            }
-        ];*/
-
-    //console.log($scope.data);
-  } ]);
+  angularIndyce.controller('DesagregadoCtrl', ['$scope', '$routeParams', function DesagregadoCtrl($scope, $routeParams) {
+    $scope.indicadorID = $routeParams;
+    } ]);
