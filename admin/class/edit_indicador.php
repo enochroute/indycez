@@ -912,8 +912,8 @@ while($Res = $ExConsulta->fetch_array(MYSQLI_NUM)){
 ?>
 <tr id="ResultadoFila<?php echo $n; ?>">
 <td>
-<input  type="hidden" id="idResultado" value="<?php echo $Res[0];?>">
-<input class="form-control" type="text" id="ResultadoPeriodo<?php echo $n;?>" value="<?php echo $Res[1]; ?>">
+<input  type="hidden" id="idResultado<?php echo $n;?>" value="<?php echo $Res[0];?>">
+<input class="form-control" type="text" id="ResultadoPeriodo<?php echo $n;?>" value="<?php echo $Res[1]; ?> " onchange="modificarRes(<?php echo $n?>);">
 </td>
 <td>
 <input class="form-control" type="number" id="ResultadoMeta<?php echo $n;?>"  value="<?php echo $Res[2]; ?>">

@@ -6,7 +6,6 @@ if($_SESSION['key'] != md5("labor vincit omnia")){
     header("Location:index.php");
     die();
 }
-
 require_once("class/conexion.php");
 $conn = new conexion();
 $conexion = $conn->conectar();

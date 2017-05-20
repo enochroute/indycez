@@ -21,9 +21,9 @@ unset($conn);
 <table class="table table-striped table-bordered table-hover" id="sample_1">
     <thead>
         <tr>
-            <th> Nombre del indicador </th>
-            <th> Fecha de Actualización </th>
-            <th> Herramientas </th>
+            <th width="60%"> Nombre del indicador </th>
+            <th width="20%"> Fecha de Actualización </th>
+            <th width="20%"></th>
         </tr>
     </thead>
     <tbody>
@@ -33,9 +33,9 @@ unset($conn);
             <td><?php echo $Res[2]; ?></td>
             <td>
                 <div class="btn-group">
-                    <button type="button" class="btn btn-default" onclick="loadInfoInd(<?php echo $Res[0]; ?>)"><span class="text-success"><i class="fa fa-info-circle"></i></span> Información</button>
-                    <button type="button" class="btn btn-default" onclick="EditIndicador(<?php echo $Res[0]; ?>)"><span class="text-success"><i class="fa fa-pencil-square-o"></i></span> Editar</button>
-                    <button type="button" class="btn btn-default"><span class="text-danger"><i class="fa fa-trash"></i></span> Eliminar</button>
+
+                    <button type="button" class="btn btn-default" onclick="EditIndicador(<?php echo $Res[0]; ?>)"><span class="text-success"><i class="fa fa-pencil-square-o"></i></span> </button>
+                    <button type="button" class="btn btn-default"><span class="text-danger"><i class="fa fa-trash"></i></span> </button>
                 </div>
             </td>
         </tr>
