@@ -873,7 +873,10 @@ $conexion->close();
 <div class="tab-pane fade" id="tab_1_5">
 <div class="btn-group">
                     <button type="button" class="btn btn-default" onclick="agregaResultadoRow();"><span class="text-success"><i class="fa fa-plus-circle"></i></span> Agregar Registro</button>
-                    <button type="button" class="btn btn-default" disabled><span class="text-success"><i class="fa fa-file-excel-o"></i></span> Agregar varios registros(xls)</button>
+                    <button type="button" class="btn btn-default" id="xlsbtn" onclick="cargar_excel();" disabled><span class="text-success"><i class="fa fa-file-excel-o"></i></span> Agregar varios registros(xls)</button>
+                     <form id="xlsForm">
+                        <input type="file" id="fileXLS" name="fileXLS" onchange="habilitarBtn();" class="form-control">
+                     </form>
 </div>
 <p>&nbsp;</p>
 
