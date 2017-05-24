@@ -168,9 +168,9 @@ $conexion->set_charset("utf8");
                     <div class="row stats-overview-cont">
                         <div class="col-md-4 col-sm-8">
                             <div class="form-group">
-                                <label>Tema: </label>
-                                <select class="form-control" onchange="loadList(this.value);">
-											<option value="0">-Seleccione-</option>
+                                <label>Tema:  </label>
+                                <select class="form-control" onchange="loadList(this.value);" id="listaDeTemas">
+
                                             <?php
                                                  $ExTemas = $conexion->query("SELECT id_tema,nombre_tema FROM temas_interes");
                                                  while($ResTema = $ExTemas->fetch_array(MYSQLI_NUM)){
@@ -181,11 +181,9 @@ $conexion->set_charset("utf8");
                             </div>
                         </div>
                     </div>
-
-
                     <div class="row">
                         <div class="col-md-12">
-                            <!-- BEGIN EXAMPLE TABLE PORTLET-->
+
                             <div class="portlet">
                                 <div class="portlet-title">
                                     <div class="caption">
@@ -226,6 +224,7 @@ $conexion->set_charset("utf8");
                                         </div>
                                     </div>
                                     <div id="listaIndicadores">
+
                                         <table class="table table-striped table-bordered table-hover" id="sample_1">
                                             <thead>
                                                 <tr>
@@ -235,6 +234,7 @@ $conexion->set_charset("utf8");
                                                 </tr>
                                             </thead>
                                         </table>
+
                                     </div>
                                 </div>
                             </div>
@@ -308,7 +308,7 @@ $conexion->set_charset("utf8");
         <script type="text/javascript" src="js/dataTables.bootstrap.js"></script>
         <script src="js/table-managed.js"></script>
 
-        <script>
+        <script type="text/javascript">
             function TableManagedCustomize() {
                 TableManaged.init();
             }
@@ -317,7 +317,7 @@ $conexion->set_charset("utf8");
                 Index.init();
                 Index.initPeityElements();
                 Index.initKnowElements();
-                // TableManagedCustomize();
+                TableManaged.init();
                 loadList(1);
             });
             function loadList(v) {
@@ -331,7 +331,9 @@ $conexion->set_charset("utf8");
                         idTema: v
                     }
                 }).done(function(msg) {
+
                     document.getElementById('listaIndicadores').innerHTML = msg;
+                    TableManaged.init();
                 });
             }
             function loadInfoInd(v) {
@@ -553,7 +555,6 @@ $conexion->set_charset("utf8");
                         .val('130');
                 });
             }
-/* -- funciones para los resultdos -- */
             function eliminaPrev(v){
                 $('#ResultadoFila'+v).addClass('danger');
                 document.getElementById('ResultadoBtn'+v).innerHTML = "<button type='button' class='btn btn-default' onclick='NoeliminaPrev("+v+")'><span class='text-success'><i class='fa fa-recycle'></i></span> </button>";
@@ -634,6 +635,36 @@ $conexion->set_charset("utf8");
                 }).done(function(msg) {
                     document.getElementById('slctEstrategia').innerHTML = msg;
                 });
+            }
+            function habilitarBtn(){
+                archivo = $('#fileXLS').val();
+                var extension = (archivo.substring(archivo.lastIndexOf("."))).toLowerCase();
+                if(extension == ".xls" || extension == ".xlsx"){
+                  $('#xlsbtn').attr('disabled', false);
+                }else{
+                    alert("Solo puedes subir archivos xls o xlsx (Excel o Libre Office)");
+                    $('#fileXLS').val('');
+                    return false;
+                }
+
+
+            }
+            function cargar_excel(){
+                 var formData = new FormData(document.getElementById("xlsForm"));
+                 formData.append("dato", "valor");
+                $.ajax({
+                url: "class/cargar_xls.php",
+                type: "post",
+                dataType: "html",
+                data: formData,
+                cache: false,
+                contentType: false,
+	            processData: false
+            })
+                .done(function(res){
+                    console.log(res);
+                });
+
             }
         </script>
     </body>
