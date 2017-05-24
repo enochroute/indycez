@@ -649,7 +649,7 @@ $conexion->set_charset("utf8");
 
 
             }
-            function cargar_excel(){
+           function cargar_excel(){
                  var formData = new FormData(document.getElementById("xlsForm"));
                  formData.append("dato", "valor");
                 $.ajax({
@@ -662,10 +662,56 @@ $conexion->set_charset("utf8");
 	            processData: false
             })
                 .done(function(res){
-                    console.log(res);
+                    var datos = JSON.parse(res);
+                    var periodo = "";
+                    var meta = 0;
+                    var resultado = 0;
+                    var municipio = "";
+                    var region = "";
+                    var ejercicio = 0;
+                    var x;
+                    for(x = 0; x < datos.length;x++){
+                        periodo = datos[x]["periodo"];
+                        meta  = datos[x]["meta"];
+                        resultado = datos[x]["resultado"];
+                        municipio = datos[x]["municipio"];
+                        region = datos[x]["region"];
+                        ejercicio = datos[x]["ejercicio"];
+                        var v = $('#numRowsTablaResultados').val();
+$('#resultadosIndicadorTabla tr:last').after('<tr id="ResultadoFila'+v+'"><td><input class="form-control" type="text" id="ResultadoPeriodo'+v+'" value="'+periodo+'"></td><td><input class="form-control" type="number" id="ResultadoMeta'+v+'" value="'+meta+'"></td><td><input class="form-control" type="number" id="ResultadoRes'+v+'" value="'+resultado+'"></td><td><div id="sltMpio'+v+'"></div></td><td>-Region-</td><td><input class="form-control" type="number" id="ResultadoEjercicio'+v+'" value="'+ejercicio+'"> </td><td><div class="btn-group" id="ResultadoBtn'+v+'"><button type="button" class="btn btn-default" onclick="eliminaPrev('+v+')"><span class="text-danger"><i class="fa fa-trash"></i></span> </button></div></td></tr>');
+                        var n =  parseInt(v);
+                        n = n+1;
+                        $('#numRowsTablaResultados').val(n);
+                        agrega_mpios_list(v,municipio);
+
+
+                    }
+
+
+
+
+
                 });
+               return true;
 
             }
+
+                    function agrega_mpios_list(v,m){
+                        document.getElementById('sltMpio'+v).innerHTML = "<select class='form-control' id='ResultadoMunicipio"+v+"'><option value='0'>"+m+"</option></select>";
+                 var municipios_list = ["Apozol","Apulco","Atolinga","Benito Juárez","Calera","Cañitas de Felipe Pescador","Concepción del Oro","Cuauhtémoc"];
+                        console.log(municipios_list.length);
+                        for(var y=0;y<municipios_list.length;y++){
+                        console.log(municipios_list[y]);
+                            $('#ResultadoMunicipio'+v).append($('<option>', {
+                                    value: y+1,
+                                    text: municipios_list[y]}));
+                        }
+
+
+                        return true;º
+
+
+                    }
         </script>
     </body>
     </html>

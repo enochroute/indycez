@@ -910,7 +910,9 @@ FROM metas_resultados mr
 inner join municipios mp on(mr.municipio = mp.id_municipio)
 inner join regiones r on(mr.region = r.id_region)
 where mr.id_indicador = '.$_POST['idIndicador']);
-   $n = 1;
+$conexion->close();
+    $n = 1;
+
 while($Res = $ExConsulta->fetch_array(MYSQLI_NUM)){
 ?>
 <tr id="ResultadoFila<?php echo $n; ?>">
@@ -927,6 +929,17 @@ while($Res = $ExConsulta->fetch_array(MYSQLI_NUM)){
 <td>
     <select class="form-control" id="ResultadoMunicipio<?php echo $n; ?>">
         <option value="<?php echo $Res[4]; ?>"><?php echo $Res[5]; ?></option>
+        <?php
+        $conexion = $conn->conectar();
+        $conexion->set_charset("utf8");
+        $ExConsultaMPIO = $conexion->query("SELECT id_municipio,nombre FROM municipios");
+        unset($conexion);
+        while($mpioR = $ExConsultaMPIO->fetch_array(MYSQLI_NUM)){
+            echo  '<option value="'.$mpioR[0].'">'.$mpioR[1].'</option>';
+        }
+        unset($ExConsultaMPIO);
+        unset($mpioR);
+        ?>
     </select>
 </td>
 
