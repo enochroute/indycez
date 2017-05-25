@@ -120,7 +120,6 @@ class indicador {
         }
         return "hecho";
     }
-
     function actualizar_resultados($i){
 
        if(count($i['data']) > 0){
@@ -140,7 +139,7 @@ class indicador {
                 $conexion->close();
             }
 
-           return $query;
+           return "hecho";
 
        }else{
            return "hecho";

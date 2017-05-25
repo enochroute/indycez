@@ -158,6 +158,7 @@ $conexion->set_charset("utf8");
                 </div>
             </div>
             <div class="page-content-wrapper">
+                <input type="hidden" id="tema_actual" value="1">
                 <div class="page-content">
                     <h3 class="page-title">
                         Listado de Indicadores
@@ -309,6 +310,8 @@ $conexion->set_charset("utf8");
         <script type="text/javascript" src="js/dataTables.bootstrap.js"></script>
         <script src="js/table-managed.js"></script>
         <script type="text/javascript">
+
+
             function TableManagedCustomize() {
                 TableManaged.init();
             }
@@ -323,9 +326,11 @@ $conexion->set_charset("utf8");
 
             });
             function loadList(v) {
+                console.log("loadlist: "+v);
                 if (v == 0) {
                     return false;
                 }
+                $('#tema_actual').val(v);
                 $.ajax({
                     method: "POST",
                     url: "class/listado_indicadores.php",
@@ -333,23 +338,8 @@ $conexion->set_charset("utf8");
                         idTema: v
                     }
                 }).done(function(msg) {
-
                     document.getElementById('listaIndicadores').innerHTML = msg;
                     TableManaged.init();
-                });
-            }
-            function loadInfoInd(v) {
-                document.getElementById('modal_footer').innerHTML = "<button type='button' class='btn btn-default' data-dismiss='modal'>Cerrar</button>";
-
-                $("#infoIndModal").modal();
-                $.ajax({
-                    method: "POST",
-                    url: "class/info_indicador.php",
-                    data: {
-                        idIndicador: v
-                    }
-                }).done(function(msg) {
-                    document.getElementById('infoIndicador').innerHTML = msg;
                 });
             }
             function EditIndicador(v) {
@@ -367,11 +357,11 @@ $conexion->set_charset("utf8");
                     $('#indicadorActivo').val(v);
                 });
             }
+
             function guardandoIndicador() {
+
                 document.getElementById('msg_estado').innerHTML = "<div style='position: absolute; padding:70px; top: 30%; width:90%; z-index: 99; background-color:#50a649; color:#fff;'> <i class='fa fa-refresh fa-spin fa-3x fa-fw'></i> Actualizando Información del Indicador, porfavor espere. </div>";
-
                 if ($('#indicador_activo').is(':checked')) {
-
                     var ind_activo = 1;
                 }else{
                     var ind_activo = 0;}
@@ -405,10 +395,12 @@ $conexion->set_charset("utf8");
                     }
                 }).done(function(msg) {
                     if (msg == "hecho") {
+
                         document.getElementById('msg_estado').innerHTML = "<div style='position: absolute; padding:70px; top: 30%; width:90%; z-index: 99; background-color:#50a649; color:#fff;'> <i class='fa fa-refresh fa-spin fa-3x fa-fw'></i> Actualizando Temas Asociados, porfavor espere. </div>";
                         guardandoTemasAsociados();
                         return true;
                     } else {
+
                         document.getElementById('msg_estado').innerHTML = "";
                         alert(msg);
                         $('#infoIndModal').modal('hide');
@@ -521,6 +513,7 @@ $conexion->set_charset("utf8");
                 });
             }
             function guardandoDependencias(){
+
                 var arreglo = "";
                 if ($('#dependencia1').is(':checked')) {
                     arreglo = "1 ";
@@ -544,11 +537,14 @@ $conexion->set_charset("utf8");
                         informacion: arreglo
                     }
                 }).done(function(msg) {
+
                     if (msg == "hecho") {
+
                         document.getElementById('msg_estado').innerHTML = "<div style='position: absolute; padding:70px; top: 30%; width:90%; z-index: 99; background-color:#50a649; color:#fff;'> <i class='fa fa-refresh fa-spin fa-3x fa-fw'></i> Actualizando Resultados, porfavor espere. </div>";
                         guardaResultados()
                         return true;
                     } else {
+
                         document.getElementById('msg_estado').innerHTML = "";
                         alert(msg);
                         $('#infoIndModal').modal('hide');
@@ -556,6 +552,69 @@ $conexion->set_charset("utf8");
                     }
                 });
             }
+            function guardaResultados(){
+
+                var actualizar_registros = false;
+                for(x=1;x<=$('#numRowsTablaResultados').val();x++){
+                    var nfila = '#ResultadoFila'+x;
+                    if($(nfila).hasClass('danger') || $(nfila).hasClass('warning') ){
+                        actualizar_registros = true;
+                    }
+                }
+
+                if(actualizar_registros){
+                    console.log("va a hacer cambios");
+                    if(confirm("Existen resultados a eliminar o modificar, ¿desea continuar?")){
+                        var arreglo_resultados = [];
+                        var l = 0;
+                        var guardar = false;
+                        for(x=1;x<$('#numRowsTablaResultados').val();x++){
+                            nfila = '#ResultadoFila'+x;
+                            guardar = $(nfila).hasClass('danger');
+                            if(!guardar){
+                                arreglo_resultados[l] = new Array($('#idResultado'+x).val(),$('#indicadorActivo').val(),$('#ResultadoPeriodo'+x).val(),$('#ResultadoMeta'+x).val(),$('#ResultadoRes'+x).val(),$('#ResultadoMunicipio'+x).val(),$('#ResultadoRegion'+x).val(),$('#ResultadoEjercicio'+x).val());
+                                l++;
+                            }
+                        }
+                        $.ajax({
+                    method: "POST",
+                    url: "class/indicadores.php",
+                    data: {
+                        accion: 5,
+                        data: arreglo_resultados
+                    }
+                }).done(function(msg) {
+                            console.log("llamo funcion resultados");
+                    if (msg == "hecho") {
+                        console.log("guardo_resultados");
+                        document.getElementById('msg_estado').innerHTML = "";
+                        loadInfoInd($('#tema_actual').val());
+                        return true;
+                    } else {
+                        console.log("error_resultados");
+                        document.getElementById('msg_estado').innerHTML = "";
+                        alert(msg);
+                        return false;
+                    }
+
+
+                });
+
+                }
+
+                return true;
+            }else{
+                $("#infoIndModal").modal('hide');
+
+                loadList($('#tema_actual').val());
+                return true;
+
+            }
+
+            }
+
+
+
             function carga_lineas() {
                 $.ajax({
                     method: "POST",
@@ -600,60 +659,8 @@ $conexion->set_charset("utf8");
                 n = n+1;
                 $('#numRowsTablaResultados').val(n);
             }
-            function guardaResultados(){
-                var actualizar_registros = false;
-
-                for(x=1;x<=$('#numRowsTablaResultados').val();x++){
-                    var nfila = '#ResultadoFila'+x;
-                    if($(nfila).hasClass('danger') || $(nfila).hasClass('warning') ){
-                        actualizar_registros = true;
-                    }
-                }
-
-                if(actualizar_registros){
-                    if(confirm("Existen resultados a eliminar o modificar, ¿desea continuar?")){
-                        var arreglo_resultados = [];
-                        var l = 0;
-                        var guardar = false;
-                        for(x=1;x<$('#numRowsTablaResultados').val();x++){
-                            nfila = '#ResultadoFila'+x;
-                            guardar = $(nfila).hasClass('danger');
-
-                            if(!guardar){
-                                arreglo_resultados[l] = new Array($('#idResultado'+x).val(),$('#indicadorActivo').val(),$('#ResultadoPeriodo'+x).val(),$('#ResultadoMeta'+x).val(),$('#ResultadoRes'+x).val(),$('#ResultadoMunicipio'+x).val(),$('#ResultadoRegion'+x).val(),$('#ResultadoEjercicio'+x).val());
-                                l++;
-                            }
-                        }
-
-                        $.ajax({
-                    method: "POST",
-                    url: "class/indicadores.php",
-                    data: {
-                        accion: 5,
-                        data: arreglo_resultados
-                    }
-                }).done(function(msg) {
-                    if (msg == "hecho") {
-                        document.getElementById('msg_estado').innerHTML = "";
-                        $('#infoIndModal').modal('hide');
-                        location.reload();
-                        return true;
-                    } else {
-                        document.getElementById('msg_estado').innerHTML = "";
-                        alert(msg);
-                        $('#infoIndModal').modal('hide');
-                        return false;
-                    }
 
 
-                });
-
-                }
-
-                return true;
-            }
-
-            }
             function carga_estrategias() {
                 $.ajax({
                     method: "POST",
@@ -745,7 +752,6 @@ $('#resultadosIndicadorTabla tr:last').after('<tr id="ResultadoFila'+v+'"><td><i
 
 
                     }
-
             function agrega_region(v,n){
 
                 modificarRes(n);
