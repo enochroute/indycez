@@ -3,6 +3,10 @@ error_reporting(E_ALL);
 ini_set("display_errors","1");
 header('Content-Type: application/json');
 date_default_timezone_set('America/Mexico_City');
+include("conexion.php");
+        $conn = new conexion();
+        $conexion = $conn->conectar();
+        $conexion->set_charset("utf8");
 // guardamos temporalmente el erchivo cargado
 $dir = "tmpXLS/";
 $file_name = md5(date('d-m-Y h:m:s').rand(0,99)).$_FILES['fileXLS']['name'];
@@ -10,6 +14,7 @@ $fichero_subido = $dir.$file_name;
 move_uploaded_file($_FILES['fileXLS']['tmp_name'], $fichero_subido);
 exec("chmod 777 $fichero_subido");
 // abrimos phpEXCEL para manipular el excel
+
 
 require_once 'PHPExcel.php';
 $objReader = PHPExcel_IOFactory::createReader('Excel2007');
@@ -25,10 +30,12 @@ for ($row = 1; $row <= $highestRow; ++$row) {
     $meta = $objWorksheet->getCellByColumnAndRow(1, $row)->getValue();
     $resultado = $objWorksheet->getCellByColumnAndRow(2, $row)->getValue();
     $municipio = $objWorksheet->getCellByColumnAndRow(3, $row)->getValue();
-    $region = "n.a";
+    $Query = 'SELECT m.id_municipio,r.id_region,r.nombre FROM regiones r inner join municipios m on(r.id_region = m.id_region) where m.nombre like "'.$municipio.'"';
+    $ExQuery = $conexion->query($Query);
+    $Resultado =  $ExQuery->fetch_array(MYSQLI_NUM);
     $ejercicio =  $objWorksheet->getCellByColumnAndRow(4, $row)->getValue();
 
-$rows[$row-1] = array('periodo' => "$periodo",'meta' => $meta,'resultado' => $resultado,'municipio' => "$municipio",'region' => "$region",'ejercicio'=>$ejercicio);
+$rows[$row-1] = array('periodo' => "$periodo",'meta' => $meta,'resultado' => $resultado,'id_municipio'=> $Resultado[0] ,'municipio' => "$municipio",'id_region' => $Resultado[1],'region' => "$Resultado[2]",'ejercicio'=>$ejercicio);
 
 }
 

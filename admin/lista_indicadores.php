@@ -369,6 +369,13 @@ $conexion->set_charset("utf8");
             }
             function guardandoIndicador() {
                 document.getElementById('msg_estado').innerHTML = "<div style='position: absolute; padding:70px; top: 30%; width:90%; z-index: 99; background-color:#50a649; color:#fff;'> <i class='fa fa-refresh fa-spin fa-3x fa-fw'></i> Actualizando Información del Indicador, porfavor espere. </div>";
+
+                if ($('#indicador_activo').is(':checked')) {
+
+                    var ind_activo = 1;
+                }else{
+                    var ind_activo = 0;}
+
                 $.ajax({
                     method: "POST",
                     url: "class/indicadores.php",
@@ -393,7 +400,8 @@ $conexion->set_charset("utf8");
                         variables: $('#variables').val(),
                         nivel: $('#nivel').val(),
                         objetivo: $('#objetivo').val(),
-                        responsable: $('#responsable').val()
+                        responsable: $('#responsable').val(),
+                        activo: ind_activo
                     }
                 }).done(function(msg) {
                     if (msg == "hecho") {
@@ -505,7 +513,7 @@ $conexion->set_charset("utf8");
                         return true;
                     } else {
                         document.getElementById('msg_estado').innerHTML = "";
-                        console.log("error al actualizar fuente de informacion:" + msg);
+
                         alert(msg);
                         $('#infoIndModal').modal('hide');
                         return false;
@@ -672,7 +680,7 @@ $conexion->set_charset("utf8");
 
 
             }
-           function cargar_excel(){
+            function cargar_excel(){
                  var formData = new FormData(document.getElementById("xlsForm"));
                  formData.append("dato", "valor");
                 $.ajax({
@@ -690,6 +698,8 @@ $conexion->set_charset("utf8");
                     var meta = 0;
                     var resultado = 0;
                     var municipio = "";
+                    var idmunicipio = 0;
+                    var idregion = 0;
                     var region = "";
                     var ejercicio = 0;
                     var x;
@@ -697,15 +707,17 @@ $conexion->set_charset("utf8");
                         periodo = datos[x]["periodo"];
                         meta  = datos[x]["meta"];
                         resultado = datos[x]["resultado"];
+                        idmunicipio = datos[x]["id_municipio"];
                         municipio = datos[x]["municipio"];
+                        idregion = datos[x]["id_region"];
                         region = datos[x]["region"];
                         ejercicio = datos[x]["ejercicio"];
                         var v = $('#numRowsTablaResultados').val();
-$('#resultadosIndicadorTabla tr:last').after('<tr id="ResultadoFila'+v+'"><td><input class="form-control" type="text" id="ResultadoPeriodo'+v+'" value="'+periodo+'"></td><td><input class="form-control" type="number" id="ResultadoMeta'+v+'" value="'+meta+'"></td><td><input class="form-control" type="number" id="ResultadoRes'+v+'" value="'+resultado+'"></td><td><div id="sltMpio'+v+'"></div></td><td>-Region-</td><td><input class="form-control" type="number" id="ResultadoEjercicio'+v+'" value="'+ejercicio+'"> </td><td><div class="btn-group" id="ResultadoBtn'+v+'"><button type="button" class="btn btn-default" onclick="eliminaPrev('+v+')"><span class="text-danger"><i class="fa fa-trash"></i></span> </button></div></td></tr>');
+$('#resultadosIndicadorTabla tr:last').after('<tr id="ResultadoFila'+v+'"><td><input class="form-control" type="text" id="ResultadoPeriodo'+v+'" value="'+periodo+'"></td><td><input class="form-control" type="number" id="ResultadoMeta'+v+'" value="'+meta+'"></td><td><input class="form-control" type="number" id="ResultadoRes'+v+'" value="'+resultado+'"></td><td><div id="sltMpio'+v+'"></div></td><td><div id="region'+v+'"><input type="hidden" id="ResultadoRegion'+v+'" value="'+region+'"><input type="text" id="RegionTxt'+v+'" readonly value="'+region+'" class="form-control" ></div></td><td><input class="form-control" type="number" id="ResultadoEjercicio'+v+'" value="'+ejercicio+'"> </td><td><div class="btn-group" id="ResultadoBtn'+v+'"><button type="button" class="btn btn-default" onclick="eliminaPrev('+v+')"><span class="text-danger"><i class="fa fa-trash"></i></span> </button></div></td></tr>');
                         var n =  parseInt(v);
                         n = n+1;
                         $('#numRowsTablaResultados').val(n);
-                        agrega_mpios_list(v,municipio);
+                        agrega_mpios_list(v,municipio,idmunicipio);
 
 
                     }
@@ -718,23 +730,44 @@ $('#resultadosIndicadorTabla tr:last').after('<tr id="ResultadoFila'+v+'"><td><i
                return true;
 
             }
-
-                    function agrega_mpios_list(v,m){
-                        document.getElementById('sltMpio'+v).innerHTML = "<select class='form-control' id='ResultadoMunicipio"+v+"'><option value='0'>"+m+"</option></select>";
-                 var municipios_list = ["Apozol","Apulco","Atolinga","Benito Juárez","Calera","Cañitas de Felipe Pescador","Concepción del Oro","Cuauhtémoc"];
-                        console.log(municipios_list.length);
+            function agrega_mpios_list(v,m,i){
+                        document.getElementById('sltMpio'+v).innerHTML = "<select class='form-control' id='ResultadoMunicipio"+v+"'><option value='"+i+"'>"+m+"</option></select>";
+                 var municipios_list = [<?php $conexion = $conn->conectar(); $conexion->set_charset("utf8"); $ExListMpios = $conexion->query("SELECT nombre from municipios"); while($rMp = $ExListMpios->fetch_array(MYSQLI_NUM)){echo '"'.$rMp[0].'",';}    ?>"No Aplica"];
                         for(var y=0;y<municipios_list.length;y++){
-                        console.log(municipios_list[y]);
+
                             $('#ResultadoMunicipio'+v).append($('<option>', {
                                     value: y+1,
                                     text: municipios_list[y]}));
                         }
 
 
-                        return true;º
+                        return true;
 
 
                     }
+
+            function agrega_region(v,n){
+
+                modificarRes(n);
+
+                $.ajax({
+                    method: "POST",
+                    url: "class/catalogos.php",
+                    data: {
+                        accion: "nombre_region",
+                        municipio: v,
+                    }
+                }).done(function(msg) {
+                    var datos = JSON.parse(msg);
+
+                    document.getElementById('region'+n).innerHTML = "<input type='hidden' id='ResultadoRegion"+n+"' value='"+datos[0]+"'><input type='text' id='RegionTxt' readonly value='"+datos[1]+"' class='form-control' >";
+                });
+
+
+            }
+
+
+
         </script>
     </body>
     </html>

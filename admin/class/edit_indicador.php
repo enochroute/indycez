@@ -36,7 +36,8 @@ i.variables,
 i.nivel,
 n.nivel,
 i.objetivo,
-i.responsable
+i.responsable,
+i.activo
 FROM
  indicadores i
 INNER JOIN tendencias_deseables td on(i.tendencia_deseable = td.id_tendencia)
@@ -59,10 +60,7 @@ unset($consulta);
 <div class="caption">
 <span class="text-danger"><i class="fa fa-edit"></i></span> Editar el indicador
 </div>
-<div class="tools">
-<a href="javascript:;" class="collapse"></a>
-<a href="#portlet-config" data-toggle="modal" class="config"></a>
-</div>
+
 </div>
 <div class="portlet-body">
 <ul class="nav nav-tabs">
@@ -235,6 +233,16 @@ unset($ExConsulta);
 $conexion->close();
 ?>
 </select>
+</div>
+</div>
+</div>
+<div class="form-group">
+<div class="row">
+<div class="col-md-3">
+<label for="origen">Activo:</label>
+</div>
+<div class="col-md-9">
+<label><input type="checkbox" value="1" id="indicador_activo" <?php if($infoIndicador[26] == 1){ echo "checked"; }?>> Activar / Desactivar indicador </label>
 </div>
 </div>
 </div>
@@ -921,13 +929,13 @@ while($Res = $ExConsulta->fetch_array(MYSQLI_NUM)){
 <input class="form-control" type="text" id="ResultadoPeriodo<?php echo $n;?>" value="<?php echo $Res[1]; ?> " onchange="modificarRes(<?php echo $n?>);">
 </td>
 <td>
-<input class="form-control" type="number" id="ResultadoMeta<?php echo $n;?>"  value="<?php echo $Res[2]; ?>">
+<input class="form-control" type="number" id="ResultadoMeta<?php echo $n;?>"  value="<?php echo $Res[2]; ?>" onchange="modificarRes(<?php echo $n?>);">
 </td>
 <td>
-<input class="form-control" type="number" id="ResultadoRes<?php echo $n;?>"  value="<?php echo $Res[3]; ?>">
+<input class="form-control" type="number" id="ResultadoRes<?php echo $n;?>"  value="<?php echo $Res[3]; ?>" onchange="modificarRes(<?php echo $n?>);">
 </td>
 <td>
-    <select class="form-control" id="ResultadoMunicipio<?php echo $n; ?>">
+    <select class="form-control" id="ResultadoMunicipio<?php echo $n; ?>" onchange="agrega_region(this.value,<?php echo $n?>);">
         <option value="<?php echo $Res[4]; ?>"><?php echo $Res[5]; ?></option>
         <?php
         $conexion = $conn->conectar();
@@ -944,8 +952,10 @@ while($Res = $ExConsulta->fetch_array(MYSQLI_NUM)){
 </td>
 
 <td>
-    <input type="hidden" id="ResultadoRegion<?php echo $n;?>" value="<?php echo $Res[6]; ?>">
-    <input type="text" id="RegionTxt<?php echo $n;?>" readonly value="<?php echo $Res[7]; ?>">
+    <div id="region<?php echo $n;?>">
+      <input type="hidden" id="ResultadoRegion<?php echo $n;?>" value="<?php echo $Res[6]; ?>" onchange="modificarRes(<?php echo $n?>);">
+      <input type="text" id="RegionTxt<?php echo $n;?>" readonly value="<?php echo $Res[7]; ?>" class="form-control" >
+    </div>
 </td>
 <td>
 <input class="form-control" type="number" id="ResultadoEjercicio<?php echo $n;?>"  value="<?php echo $Res[8]; ?>">
