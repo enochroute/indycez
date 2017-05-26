@@ -7,11 +7,8 @@ if($_SESSION['key'] != md5("labor vincit omnia")){
     die();
 }
 date_default_timezone_set('America/Mexico_City');
-
 class indicador {
-
     function actualizar($i){
-
         include("conexion.php");
         $conn = new conexion();
         $conexion = $conn->conectar();
@@ -44,7 +41,6 @@ class indicador {
         "'.$i['responsable'].'",
         '.$i['activo'].'
         )' ;
-
         if($conexion->query($query)){
             $msg = "hecho";
         }else{
@@ -121,8 +117,6 @@ class indicador {
         return "hecho";
     }
     function actualizar_resultados($i){
-
-
        if(count($i['data']) > 0){
             $query = "delete from metas_resultados where id_indicador = ".$i['data'][0][0];
             include("conexion.php");
@@ -144,23 +138,14 @@ class indicador {
                 $query = 'INSERT INTO metas_resultados (id_indicador,periodo,meta,resultado,municipio,region,ejercicio) VALUES ('.$id_indicador.',"'.$periodo.'","'.$meta.'","'.$resultado.'",'.$municipio.','.$region.',"'.$ejercicio.'")';
                 $conexion->query($query) or die ("error al intentar actualizar resultados: ".$query);
                 $conexion->close();
-
             }
-
            return "hecho";
-
        }else{
            return "hecho";
        }
-
-
-
     }
-
-
 }
 $indicador = new indicador();
-
 switch($_POST['accion']){
     case 1:
     $resultado = $indicador->actualizar($_POST);
@@ -177,7 +162,6 @@ switch($_POST['accion']){
     case 5:
     $resultado = $indicador->actualizar_resultados($_POST);
     break;
-
 }
 unset($_POST);
 echo $resultado;

@@ -1,7 +1,7 @@
 -- cambios mayo 25 2017
 
 -- ALTER TABLE `indyce`.`indicadores`  ADD COLUMN `activo` TINYINT NOT NULL DEFAULT 1 AFTER `responsable`;DELIMITER $$
-
+USE indyce;
 DROP PROCEDURE `actualiza_info_indicador`;
 
 DELIMITER $$
