@@ -12,6 +12,7 @@ component('detalleIndicadores', {
       $scope.metadatos = data;
       $rootScope.etiqueta = $scope.metadatos[0].u_medida;
       console.log('La etiqueta root: ' + $rootScope.etiqueta);
+      return $rootScope.etiqueta;
       /*angular.forEach($scope.metadatos,function(value,key){
         console.log(key);
         console.log(value);
@@ -25,7 +26,7 @@ component('detalleIndicadores', {
     $scope.options = {
       chart: {
         type: 'discreteBarChart',
-        height: 250,
+        height: 450,
         margin : {
           top: 20,
           right: 20,
@@ -34,6 +35,7 @@ component('detalleIndicadores', {
         },
         x: function(d){return d.label;},
         y: function(d){return d.value;},
+        //yDomain: [7.5,9],
         showValues: false,
         valueFormat: function(d){
           return d3.format(',.2f')(d);
@@ -43,8 +45,8 @@ component('detalleIndicadores', {
           axisLabel: 'Año'
         },
         yAxis: {
-          axisLabel: $rootScope.etiqueta,
-          axisLabelDistance: -10
+          axisLabel: 'Valor',
+          axisLabelDistance: -5
         }
       }
     };

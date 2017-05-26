@@ -25,6 +25,12 @@ while($R = $ExQueryTemas->fetch_array(MYSQLI_NUM)){
     $conexion->close();
    $v++;
 }
+$conexion = $conn->conectar();
+$conexion->set_charset("utf8");
+$Exuserinfo = $conexion->query('CALL user_info('.$_SESSION['idUser'].')');
+$_SESSION['usrInfo'] = $Exuserinfo->fetch_array(MYSQLI_NUM);
+$conexion->close();
+unset($Exuserinfo);
 ?>
 <!DOCTYPE html>
 <!--[if IE 8]> <html lang="en" class="ie8 no-js"> <![endif]-->
@@ -67,12 +73,12 @@ while($R = $ExQueryTemas->fetch_array(MYSQLI_NUM)){
 			</li>
 			<li class="dropdown user">
 				<a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
-				<span class="username username-hide-on-mobile">Admin </span>
+				<span class="username username-hide-on-mobile"><?php echo $_SESSION['usrInfo'][1]; ?> </span>
 				<i class="fa fa-angle-down"></i>
 				</a>
 				<ul class="dropdown-menu">
 					<li>
-						<a href="extra_profile.html"><i class="fa fa-user"></i> Mi Perfil</a>
+						<a href="#"><i class="fa fa-user"></i> Mi Perfil</a>
 					</li>
 					<li class="divider">
 					</li>
@@ -105,7 +111,7 @@ while($R = $ExQueryTemas->fetch_array(MYSQLI_NUM)){
 					</form>
 				</li>
 				<li class="start active ">
-					<a href="index.html">
+					<a href="#">
 					<i class="fa fa-home" aria-hidden="true"></i>
 					<span class="title">Inicio</span>
 					<span class="selected"></span>
@@ -123,11 +129,7 @@ while($R = $ExQueryTemas->fetch_array(MYSQLI_NUM)){
 							<i class="fa fa-list" aria-hidden="true"></i>
 							Lista de indicadores</a>
 						</li>
-						<li>
-							<a href="layout_sidebar_closed.html">
-							<i class="fa fa-plus-circle" aria-hidden="true"></i>
-							Agregar Indicador</a>
-						</li>
+
 
 					</ul>
 				</li>
@@ -139,18 +141,15 @@ while($R = $ExQueryTemas->fetch_array(MYSQLI_NUM)){
 					</a>
 					<ul class="sub-menu">
 						<li>
-							<a href="ui_general.html">
+							<a href="#">
                                 <i class="fa fa-list-alt" aria-hidden="true"></i>
 							Lista de Catalógos</a>
 						</li>
-						<li>
-							<a href="ui_buttons.html">
-                            <i class="fa fa-plus-circle" aria-hidden="true"></i>
-							Agregar Catálogo</a>
-						</li>
+
 
 					</ul>
 				</li>
+                <?php if($_SESSION['usrInfo'][3] == 1) { ?>
 				<li >
 					<a href="javascript:;">
 					<i class="fa fa-cogs" aria-hidden="true"></i>
@@ -176,6 +175,7 @@ while($R = $ExQueryTemas->fetch_array(MYSQLI_NUM)){
 
 					</ul>
 				</li>
+                <?php } ?>
 			</ul>
 
 		</div>

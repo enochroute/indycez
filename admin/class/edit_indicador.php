@@ -921,10 +921,10 @@ while($Res = $ExConsulta->fetch_array(MYSQLI_NUM)){
 <input class="form-control" type="text" id="ResultadoPeriodo<?php echo $n;?>" value="<?php echo $Res[1]; ?> " onchange="modificarRes(<?php echo $n?>);">
 </td>
 <td>
-<input class="form-control" type="number" id="ResultadoMeta<?php echo $n;?>"  value="<?php echo $Res[2]; ?>">
+<input class="form-control" type="number" lang="en-EN" id="ResultadoMeta<?php echo $n;?>"  value="<?php echo $Res[2]; ?>" onchange="modificarRes(<?php echo $n?>);">
 </td>
 <td>
-<input class="form-control" type="number" id="ResultadoRes<?php echo $n;?>"  value="<?php echo $Res[3]; ?>">
+<input class="form-control" type="number" lang="en-EN" step="0.1" id="ResultadoRes<?php echo $n;?>"  value="<?php echo $Res[3]; ?>" onchange="modificarRes(<?php echo $n?>);">
 </td>
 <td>
     <select class="form-control" id="ResultadoMunicipio<?php echo $n; ?>">
