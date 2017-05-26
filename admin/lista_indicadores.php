@@ -324,7 +324,7 @@ $conexion->set_charset("utf8");
                 loadList(1);
             });
             function loadList(v) {
-                console.log("loadlist: "+v);
+
                 if (v == 0) {
                     return false;
                 }
@@ -542,17 +542,16 @@ $conexion->set_charset("utf8");
                     }
                 });
             }
-            function guardaResultados(){
 
+            function guardaResultados(){
                 var actualizar_registros = false;
                 for(x=1;x<=$('#numRowsTablaResultados').val();x++){
                     var nfila = '#ResultadoFila'+x;
-                    if($(nfila).hasClass('danger') || $(nfila).hasClass('warning') ){
+                    if($(nfila).hasClass('danger') || $(nfila).hasClass('warning') || $(nfila).hasClass('success') ){
                         actualizar_registros = true;
                     }
                 }
                 if(actualizar_registros){
-                    console.log("va a hacer cambios");
                     if(confirm("Existen resultados a eliminar o modificar, ¿desea continuar?")){
                         var arreglo_resultados = [];
                         var l = 0;
@@ -561,40 +560,38 @@ $conexion->set_charset("utf8");
                             nfila = '#ResultadoFila'+x;
                             guardar = $(nfila).hasClass('danger');
                             if(!guardar){
-                                arreglo_resultados[l] = new Array($('#idResultado'+x).val(),$('#indicadorActivo').val(),$('#ResultadoPeriodo'+x).val(),$('#ResultadoMeta'+x).val(),$('#ResultadoRes'+x).val(),$('#ResultadoMunicipio'+x).val(),$('#ResultadoRegion'+x).val(),$('#ResultadoEjercicio'+x).val());
+                                arreglo_resultados[l] = new Array($('#indicadorActivo').val(),$('#ResultadoPeriodo'+x).val(),$('#ResultadoMeta'+x).val(),$('#ResultadoRes'+x).val(),$('#ResultadoMunicipio'+x).val(),$('#ResultadoRegion'+x).val(),$('#ResultadoEjercicio'+x).val());
                                 l++;
                             }
                         }
                         $.ajax({
-                    method: "POST",
-                    url: "class/indicadores.php",
-                    data: {
-                        accion: 5,
-                        data: arreglo_resultados
-                    }
-                }).done(function(msg) {
-                            console.log("llamo funcion resultados");
+                            method: "POST",
+                            url: "class/indicadores.php",
+                            data: {
+                                accion: 5,
+                                data: arreglo_resultados
+                            }
+                        }).done(function(msg) {
                     if (msg == "hecho") {
-                        console.log("guardo_resultados");
                         document.getElementById('msg_estado').innerHTML = "";
+                        $("#infoIndModal").modal('hide');
                         loadInfoInd($('#tema_actual').val());
                         return true;
                     } else {
-                        console.log("error_resultados");
                         document.getElementById('msg_estado').innerHTML = "";
+                        $("#infoIndModal").modal('hide');
                         alert(msg);
-                        return false;
+                        return true;
                     }
                 });
                 }
-                return true;
-            }else{
-                $("#infoIndModal").modal('hide');
 
-                loadList($('#tema_actual').val());
-                return true;
-
-            }
+                    return true;
+                }else{
+                    $("#infoIndModal").modal('hide');
+                    loadList($('#tema_actual').val());
+                    return true;
+                  }
             }
 
 
@@ -638,7 +635,20 @@ $conexion->set_charset("utf8");
             }
             function agregaResultadoRow(){
                 var v = $('#numRowsTablaResultados').val();
-                $('#resultadosIndicadorTabla tr:last').after('<tr id="ResultadoFila'+v+'"><td><input class="form-control" type="text" id="ResultadoPeriodo'+v+'"></td><td><input class="form-control" type="number" id="ResultadoMeta'+v+'"> </td><td><input class="form-control" type="number" id="ResultadoRes'+v+'"> </td><td><div id="sltMpio'+v+'"></div></td><td>-Region-</td><td><input class="form-control" type="number" id="ResultadoEjercicio'+v+'"> </td><td><div class="btn-group" id="ResultadoBtn'+v+'"><button type="button" class="btn btn-default" onclick="eliminaPrev('+v+')"><span class="text-danger"><i class="fa fa-trash"></i></span> </button></div></td></tr>');
+                $('#resultadosIndicadorTabla tr:last').after('<tr id="ResultadoFila'+v+'"><td><input class="form-control" type="text" id="ResultadoPeriodo'+v+'"></td><td><input class="form-control" type="text" id="ResultadoMeta'+v+'"></td><td><input class="form-control" type="text" id="ResultadoRes'+v+'"></td><td><div id="sltMpio'+v+'"></div></td><td><div id="region'+v+'"><input type="hidden" id="ResultadoRegion'+v+'" value="8"><input type="text" id="RegionTxt'+v+'" value="Sur (Tlaltenango)" readonly class="form-control" ></div></td><td><input class="form-control" type="number" id="ResultadoEjercicio'+v+'"> </td><td><div class="btn-group" id="ResultadoBtn'+v+'"><button type="button" class="btn btn-default" onclick="eliminaPrev('+v+')"><span class="text-danger"><i class="fa fa-trash"></i></span> </button></div></td></tr>');
+                document.getElementById('sltMpio'+v).innerHTML = "<select class='form-control' id='ResultadoMunicipio"+v+"' onchange='agrega_region(this.value,"+v+");'><option value='1'>Apozol</option></select>";
+                 var municipios_list = [<?php $conexion = $conn->conectar(); $conexion->set_charset("utf8"); $ExListMpios = $conexion->query("SELECT nombre from municipios"); while($rMp = $ExListMpios->fetch_array(MYSQLI_NUM)){echo '"'.$rMp[0].'",';}    ?>"No Aplica"];
+                        for(var y=0;y<municipios_list.length;y++){
+
+                            $('#ResultadoMunicipio'+v).append($('<option>', {
+                                    value: y+1,
+                                    text: municipios_list[y]}));
+                        }
+
+
+
+
+
                 var n =  parseInt(v);
                 n = n+1;
                 $('#numRowsTablaResultados').val(n);
@@ -703,7 +713,9 @@ $conexion->set_charset("utf8");
                         region = datos[x]["region"];
                         ejercicio = datos[x]["ejercicio"];
                         var v = $('#numRowsTablaResultados').val();
-$('#resultadosIndicadorTabla tr:last').after('<tr id="ResultadoFila'+v+'"><td><input class="form-control" type="text" id="ResultadoPeriodo'+v+'" value="'+periodo+'"></td><td><input class="form-control" type="number" id="ResultadoMeta'+v+'" value="'+meta+'"></td><td><input class="form-control" type="number" id="ResultadoRes'+v+'" value="'+resultado+'"></td><td><div id="sltMpio'+v+'"></div></td><td><div id="region'+v+'"><input type="hidden" id="ResultadoRegion'+v+'" value="'+region+'"><input type="text" id="RegionTxt'+v+'" readonly value="'+region+'" class="form-control" ></div></td><td><input class="form-control" type="number" id="ResultadoEjercicio'+v+'" value="'+ejercicio+'"> </td><td><div class="btn-group" id="ResultadoBtn'+v+'"><button type="button" class="btn btn-default" onclick="eliminaPrev('+v+')"><span class="text-danger"><i class="fa fa-trash"></i></span> </button></div></td></tr>');
+
+$('#resultadosIndicadorTabla tr:last').after('<tr id="ResultadoFila'+v+'"><td><input class="form-control" type="text" id="ResultadoPeriodo'+v+'" value="'+periodo+'"></td><td><input class="form-control" type="text" id="ResultadoMeta'+v+'" value="'+meta+'"></td><td><input class="form-control" type="text" id="ResultadoRes'+v+'" value="'+resultado+'"></td><td><div id="sltMpio'+v+'"></div></td><td><div id="region'+v+'"><input type="hidden" id="ResultadoRegion'+v+'" value="'+idregion+'"><input type="text" id="RegionTxt'+v+'" readonly value="'+region+'" class="form-control" ></div></td><td><input class="form-control" type="number" id="ResultadoEjercicio'+v+'" value="'+ejercicio+'"> </td><td><div class="btn-group" id="ResultadoBtn'+v+'"><button type="button" class="btn btn-default" onclick="eliminaPrev('+v+')"><span class="text-danger"><i class="fa fa-trash"></i></span> </button></div></td></tr>');
+                        $('#ResultadoFila'+v).addClass('success');
                         var n =  parseInt(v);
                         n = n+1;
                         $('#numRowsTablaResultados').val(n);
@@ -721,7 +733,7 @@ $('#resultadosIndicadorTabla tr:last').after('<tr id="ResultadoFila'+v+'"><td><i
 
             }
             function agrega_mpios_list(v,m,i){
-                        document.getElementById('sltMpio'+v).innerHTML = "<select class='form-control' id='ResultadoMunicipio"+v+"'><option value='"+i+"'>"+m+"</option></select>";
+                        document.getElementById('sltMpio'+v).innerHTML = "<select class='form-control' id='ResultadoMunicipio"+v+"'  onchange='agrega_region(this.value,"+v+");' ><option value='"+i+"'>"+m+"</option></select>";
                  var municipios_list = [<?php $conexion = $conn->conectar(); $conexion->set_charset("utf8"); $ExListMpios = $conexion->query("SELECT nombre from municipios"); while($rMp = $ExListMpios->fetch_array(MYSQLI_NUM)){echo '"'.$rMp[0].'",';}    ?>"No Aplica"];
                         for(var y=0;y<municipios_list.length;y++){
 

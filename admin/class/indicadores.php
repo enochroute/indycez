@@ -122,8 +122,9 @@ class indicador {
     }
     function actualizar_resultados($i){
 
+
        if(count($i['data']) > 0){
-            $query = "delete from metas_resultados where id_indicador = ".$i['data'][0][1];
+            $query = "delete from metas_resultados where id_indicador = ".$i['data'][0][0];
             include("conexion.php");
             $conn = new conexion();
             $conexion = $conn->conectar();
@@ -133,10 +134,17 @@ class indicador {
             for($x = 0; $x < count($i['data']); $x++){
                 $conexion = $conn->conectar();
                 $conexion->set_charset("utf8");
-                $query = 'INSERT INTO metas_resultados (id_meta,id_indicador,periodo,meta,resultado,municipio,region,ejercicio) VALUES
-                ('.$i['data'][$x][0].','.$i['data'][$x][1].',"'.$i['data'][$x][2].'","'.$i['data'][$x][3].'","'.$i['data'][$x][4].'",'.$i['data'][$x][5].','.$i['data'][$x][6].',"'.$i['data'][$x][7].'")';
-                $conexion->query($query) or die ("error al intentar actualizar resultados: ".$conexion->error);
+                $id_indicador = $i['data'][$x][0];
+                $periodo = $i['data'][$x][1];
+                $meta = $i['data'][$x][2];
+                $resultado = $i['data'][$x][3];
+                $municipio = $i['data'][$x][4];
+                $region = $i['data'][$x][5];
+                $ejercicio = $i['data'][$x][6];
+                $query = 'INSERT INTO metas_resultados (id_indicador,periodo,meta,resultado,municipio,region,ejercicio) VALUES ('.$id_indicador.',"'.$periodo.'","'.$meta.'","'.$resultado.'",'.$municipio.','.$region.',"'.$ejercicio.'")';
+                $conexion->query($query) or die ("error al intentar actualizar resultados: ".$query);
                 $conexion->close();
+
             }
 
            return "hecho";
