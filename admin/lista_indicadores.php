@@ -157,6 +157,7 @@ $conexion->set_charset("utf8");
                 </div>
             </div>
             <div class="page-content-wrapper">
+                <input type="hidden" id="tema_actual" value="1">
                 <div class="page-content">
                     <h3 class="page-title">
                         Listado de Indicadores
@@ -309,6 +310,8 @@ $conexion->set_charset("utf8");
         <script src="js/table-managed.js"></script>
 
         <script type="text/javascript">
+
+
             function TableManagedCustomize() {
                 TableManaged.init();
             }
@@ -321,9 +324,11 @@ $conexion->set_charset("utf8");
                 loadList(1);
             });
             function loadList(v) {
+                console.log("loadlist: "+v);
                 if (v == 0) {
                     return false;
                 }
+                $('#tema_actual').val(v);
                 $.ajax({
                     method: "POST",
                     url: "class/listado_indicadores.php",
@@ -331,22 +336,8 @@ $conexion->set_charset("utf8");
                         idTema: v
                     }
                 }).done(function(msg) {
-
                     document.getElementById('listaIndicadores').innerHTML = msg;
                     TableManaged.init();
-                });
-            }
-            function loadInfoInd(v) {
-                document.getElementById('modal_footer').innerHTML = "<button type='button' class='btn btn-default' data-dismiss='modal'>Cerrar</button>";
-                $("#infoIndModal").modal();
-                $.ajax({
-                    method: "POST",
-                    url: "class/info_indicador.php",
-                    data: {
-                        idIndicador: v
-                    }
-                }).done(function(msg) {
-                    document.getElementById('infoIndicador').innerHTML = msg;
                 });
             }
             function EditIndicador(v) {
@@ -364,8 +355,15 @@ $conexion->set_charset("utf8");
                     $('#indicadorActivo').val(v);
                 });
             }
+
             function guardandoIndicador() {
+
                 document.getElementById('msg_estado').innerHTML = "<div style='position: absolute; padding:70px; top: 30%; width:90%; z-index: 99; background-color:#50a649; color:#fff;'> <i class='fa fa-refresh fa-spin fa-3x fa-fw'></i> Actualizando Información del Indicador, porfavor espere. </div>";
+                if ($('#indicador_activo').is(':checked')) {
+                    var ind_activo = 1;
+                }else{
+                    var ind_activo = 0;}
+
                 $.ajax({
                     method: "POST",
                     url: "class/indicadores.php",
@@ -390,14 +388,17 @@ $conexion->set_charset("utf8");
                         variables: $('#variables').val(),
                         nivel: $('#nivel').val(),
                         objetivo: $('#objetivo').val(),
-                        responsable: $('#responsable').val()
+                        responsable: $('#responsable').val(),
+                        activo: ind_activo
                     }
                 }).done(function(msg) {
                     if (msg == "hecho") {
+
                         document.getElementById('msg_estado').innerHTML = "<div style='position: absolute; padding:70px; top: 30%; width:90%; z-index: 99; background-color:#50a649; color:#fff;'> <i class='fa fa-refresh fa-spin fa-3x fa-fw'></i> Actualizando Temas Asociados, porfavor espere. </div>";
                         guardandoTemasAsociados();
                         return true;
                     } else {
+
                         document.getElementById('msg_estado').innerHTML = "";
                         alert(msg);
                         $('#infoIndModal').modal('hide');
@@ -498,7 +499,7 @@ $conexion->set_charset("utf8");
                         return true;
                     } else {
                         document.getElementById('msg_estado').innerHTML = "";
-                        console.log("error al actualizar fuente de informacion:" + msg);
+
                         alert(msg);
                         $('#infoIndModal').modal('hide');
                         return false;
@@ -506,6 +507,7 @@ $conexion->set_charset("utf8");
                 });
             }
             function guardandoDependencias(){
+
                 var arreglo = "";
                 if ($('#dependencia1').is(':checked')) {
                     arreglo = "1 ";
@@ -525,11 +527,14 @@ $conexion->set_charset("utf8");
                         informacion: arreglo
                     }
                 }).done(function(msg) {
+
                     if (msg == "hecho") {
+
                         document.getElementById('msg_estado').innerHTML = "<div style='position: absolute; padding:70px; top: 30%; width:90%; z-index: 99; background-color:#50a649; color:#fff;'> <i class='fa fa-refresh fa-spin fa-3x fa-fw'></i> Actualizando Resultados, porfavor espere. </div>";
                         guardaResultados()
                         return true;
                     } else {
+
                         document.getElementById('msg_estado').innerHTML = "";
                         alert(msg);
                         $('#infoIndModal').modal('hide');
@@ -537,6 +542,63 @@ $conexion->set_charset("utf8");
                     }
                 });
             }
+            function guardaResultados(){
+
+                var actualizar_registros = false;
+                for(x=1;x<=$('#numRowsTablaResultados').val();x++){
+                    var nfila = '#ResultadoFila'+x;
+                    if($(nfila).hasClass('danger') || $(nfila).hasClass('warning') ){
+                        actualizar_registros = true;
+                    }
+                }
+                if(actualizar_registros){
+                    console.log("va a hacer cambios");
+                    if(confirm("Existen resultados a eliminar o modificar, ¿desea continuar?")){
+                        var arreglo_resultados = [];
+                        var l = 0;
+                        var guardar = false;
+                        for(x=1;x<$('#numRowsTablaResultados').val();x++){
+                            nfila = '#ResultadoFila'+x;
+                            guardar = $(nfila).hasClass('danger');
+                            if(!guardar){
+                                arreglo_resultados[l] = new Array($('#idResultado'+x).val(),$('#indicadorActivo').val(),$('#ResultadoPeriodo'+x).val(),$('#ResultadoMeta'+x).val(),$('#ResultadoRes'+x).val(),$('#ResultadoMunicipio'+x).val(),$('#ResultadoRegion'+x).val(),$('#ResultadoEjercicio'+x).val());
+                                l++;
+                            }
+                        }
+                        $.ajax({
+                    method: "POST",
+                    url: "class/indicadores.php",
+                    data: {
+                        accion: 5,
+                        data: arreglo_resultados
+                    }
+                }).done(function(msg) {
+                            console.log("llamo funcion resultados");
+                    if (msg == "hecho") {
+                        console.log("guardo_resultados");
+                        document.getElementById('msg_estado').innerHTML = "";
+                        loadInfoInd($('#tema_actual').val());
+                        return true;
+                    } else {
+                        console.log("error_resultados");
+                        document.getElementById('msg_estado').innerHTML = "";
+                        alert(msg);
+                        return false;
+                    }
+                });
+                }
+                return true;
+            }else{
+                $("#infoIndModal").modal('hide');
+
+                loadList($('#tema_actual').val());
+                return true;
+
+            }
+            }
+
+
+
             function carga_lineas() {
                 $.ajax({
                     method: "POST",
@@ -553,7 +615,9 @@ $conexion->set_charset("utf8");
                         .end()
                         .append('<option value="130">No alineado al PED</option>')
                         .val('130');
+
                 });
+
             }
             function eliminaPrev(v){
                 $('#ResultadoFila'+v).addClass('danger');
@@ -579,51 +643,8 @@ $conexion->set_charset("utf8");
                 n = n+1;
                 $('#numRowsTablaResultados').val(n);
             }
-            function guardaResultados(){
-                var actualizar_registros = false;
-                for(x=1;x<=$('#numRowsTablaResultados').val();x++){
-                    var nfila = '#ResultadoFila'+x;
-                    if($(nfila).hasClass('danger') || $(nfila).hasClass('warning') ){
-                        actualizar_registros = true;
-                    }
-                }
-                if(actualizar_registros){
-                    if(confirm("Existen resultados a eliminar o modificar, ¿desea continuar?")){
-                        var arreglo_resultados = [];
-                        var l = 0;
-                        var guardar = false;
-                        for(x=1;x<$('#numRowsTablaResultados').val();x++){
-                            nfila = '#ResultadoFila'+x;
-                            guardar = $(nfila).hasClass('danger');
-                            if(!guardar){
-                                arreglo_resultados[l] = new Array($('#idResultado'+x).val(),$('#indicadorActivo').val(),$('#ResultadoPeriodo'+x).val(),$('#ResultadoMeta'+x).val(),$('#ResultadoRes'+x).val(),$('#ResultadoMunicipio'+x).val(),$('#ResultadoRegion'+x).val(),$('#ResultadoEjercicio'+x).val());
-                                l++;
-                            }
-                        }
-                        $.ajax({
-                    method: "POST",
-                    url: "class/indicadores.php",
-                    data: {
-                        accion: 5,
-                        data: arreglo_resultados
-                    }
-                }).done(function(msg) {
-                    if (msg == "hecho") {
-                        document.getElementById('msg_estado').innerHTML = "";
-                        $('#infoIndModal').modal('hide');
-                        location.reload();
-                        return true;
-                    } else {
-                        document.getElementById('msg_estado').innerHTML = "";
-                        alert(msg);
-                        $('#infoIndModal').modal('hide');
-                        return false;
-                    }
-                });
-                }
-                return true;
-            }
-            }
+
+
             function carga_estrategias() {
                 $.ajax({
                     method: "POST",
@@ -649,7 +670,7 @@ $conexion->set_charset("utf8");
 
 
             }
-           function cargar_excel(){
+            function cargar_excel(){
                  var formData = new FormData(document.getElementById("xlsForm"));
                  formData.append("dato", "valor");
                 $.ajax({
@@ -667,6 +688,8 @@ $conexion->set_charset("utf8");
                     var meta = 0;
                     var resultado = 0;
                     var municipio = "";
+                    var idmunicipio = 0;
+                    var idregion = 0;
                     var region = "";
                     var ejercicio = 0;
                     var x;
@@ -674,15 +697,17 @@ $conexion->set_charset("utf8");
                         periodo = datos[x]["periodo"];
                         meta  = datos[x]["meta"];
                         resultado = datos[x]["resultado"];
+                        idmunicipio = datos[x]["id_municipio"];
                         municipio = datos[x]["municipio"];
+                        idregion = datos[x]["id_region"];
                         region = datos[x]["region"];
                         ejercicio = datos[x]["ejercicio"];
                         var v = $('#numRowsTablaResultados').val();
-$('#resultadosIndicadorTabla tr:last').after('<tr id="ResultadoFila'+v+'"><td><input class="form-control" type="text" id="ResultadoPeriodo'+v+'" value="'+periodo+'"></td><td><input class="form-control" type="number" id="ResultadoMeta'+v+'" value="'+meta+'"></td><td><input class="form-control" type="number" id="ResultadoRes'+v+'" value="'+resultado+'"></td><td><div id="sltMpio'+v+'"></div></td><td>-Region-</td><td><input class="form-control" type="number" id="ResultadoEjercicio'+v+'" value="'+ejercicio+'"> </td><td><div class="btn-group" id="ResultadoBtn'+v+'"><button type="button" class="btn btn-default" onclick="eliminaPrev('+v+')"><span class="text-danger"><i class="fa fa-trash"></i></span> </button></div></td></tr>');
+$('#resultadosIndicadorTabla tr:last').after('<tr id="ResultadoFila'+v+'"><td><input class="form-control" type="text" id="ResultadoPeriodo'+v+'" value="'+periodo+'"></td><td><input class="form-control" type="number" id="ResultadoMeta'+v+'" value="'+meta+'"></td><td><input class="form-control" type="number" id="ResultadoRes'+v+'" value="'+resultado+'"></td><td><div id="sltMpio'+v+'"></div></td><td><div id="region'+v+'"><input type="hidden" id="ResultadoRegion'+v+'" value="'+region+'"><input type="text" id="RegionTxt'+v+'" readonly value="'+region+'" class="form-control" ></div></td><td><input class="form-control" type="number" id="ResultadoEjercicio'+v+'" value="'+ejercicio+'"> </td><td><div class="btn-group" id="ResultadoBtn'+v+'"><button type="button" class="btn btn-default" onclick="eliminaPrev('+v+')"><span class="text-danger"><i class="fa fa-trash"></i></span> </button></div></td></tr>');
                         var n =  parseInt(v);
                         n = n+1;
                         $('#numRowsTablaResultados').val(n);
-                        agrega_mpios_list(v,municipio);
+                        agrega_mpios_list(v,municipio,idmunicipio);
 
 
                     }
@@ -695,23 +720,43 @@ $('#resultadosIndicadorTabla tr:last').after('<tr id="ResultadoFila'+v+'"><td><i
                return true;
 
             }
-
-                    function agrega_mpios_list(v,m){
-                        document.getElementById('sltMpio'+v).innerHTML = "<select class='form-control' id='ResultadoMunicipio"+v+"'><option value='0'>"+m+"</option></select>";
-                 var municipios_list = ["Apozol","Apulco","Atolinga","Benito Juárez","Calera","Cañitas de Felipe Pescador","Concepción del Oro","Cuauhtémoc"];
-                        console.log(municipios_list.length);
+            function agrega_mpios_list(v,m,i){
+                        document.getElementById('sltMpio'+v).innerHTML = "<select class='form-control' id='ResultadoMunicipio"+v+"'><option value='"+i+"'>"+m+"</option></select>";
+                 var municipios_list = [<?php $conexion = $conn->conectar(); $conexion->set_charset("utf8"); $ExListMpios = $conexion->query("SELECT nombre from municipios"); while($rMp = $ExListMpios->fetch_array(MYSQLI_NUM)){echo '"'.$rMp[0].'",';}    ?>"No Aplica"];
                         for(var y=0;y<municipios_list.length;y++){
-                        console.log(municipios_list[y]);
+
                             $('#ResultadoMunicipio'+v).append($('<option>', {
                                     value: y+1,
                                     text: municipios_list[y]}));
                         }
 
 
-                        return true;º
+                        return true;
 
 
                     }
+            function agrega_region(v,n){
+
+                modificarRes(n);
+
+                $.ajax({
+                    method: "POST",
+                    url: "class/catalogos.php",
+                    data: {
+                        accion: "nombre_region",
+                        municipio: v,
+                    }
+                }).done(function(msg) {
+                    var datos = JSON.parse(msg);
+
+                    document.getElementById('region'+n).innerHTML = "<input type='hidden' id='ResultadoRegion"+n+"' value='"+datos[0]+"'><input type='text' id='RegionTxt' readonly value='"+datos[1]+"' class='form-control' >";
+                });
+
+
+            }
+
+
+
         </script>
     </body>
     </html>

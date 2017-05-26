@@ -11,6 +11,7 @@ date_default_timezone_set('America/Mexico_City');
 class indicador {
 
     function actualizar($i){
+
         include("conexion.php");
         $conn = new conexion();
         $conexion = $conn->conectar();
@@ -40,7 +41,8 @@ class indicador {
         "'.$i['variables'].'",
         '.$i['nivel'].',
         "'.$i['objetivo'].'",
-        "'.$i['responsable'].'"
+        "'.$i['responsable'].'",
+        '.$i['activo'].'
         )' ;
 
         if($conexion->query($query)){
@@ -118,7 +120,6 @@ class indicador {
         }
         return "hecho";
     }
-
     function actualizar_resultados($i){
 
        if(count($i['data']) > 0){
@@ -138,7 +139,7 @@ class indicador {
                 $conexion->close();
             }
 
-           return $query;
+           return "hecho";
 
        }else{
            return "hecho";
