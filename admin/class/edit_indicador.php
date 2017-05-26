@@ -905,7 +905,6 @@ $conexion->close();
    $conexion = $conn->conectar();
    $conexion->set_charset("utf8");
    $ExConsulta = $conexion->query('SELECT
-mr.id_meta,
 mr.periodo,
 mr.meta,
 mr.resultado,
@@ -925,18 +924,18 @@ while($Res = $ExConsulta->fetch_array(MYSQLI_NUM)){
 ?>
 <tr id="ResultadoFila<?php echo $n; ?>">
 <td>
-<input  type="hidden" id="idResultado<?php echo $n;?>" value="<?php echo $Res[0];?>">
-<input class="form-control" type="text" id="ResultadoPeriodo<?php echo $n;?>" value="<?php echo $Res[1]; ?> " onchange="modificarRes(<?php echo $n?>);">
+
+<input class="form-control" type="text" id="ResultadoPeriodo<?php echo $n;?>" value="<?php echo $Res[0]; ?> " onchange="modificarRes(<?php echo $n?>);">
 </td>
 <td>
-<input class="form-control" type="number" id="ResultadoMeta<?php echo $n;?>"  value="<?php echo $Res[2]; ?>" onchange="modificarRes(<?php echo $n?>);">
+<input class="form-control" type="text" id="ResultadoMeta<?php echo $n;?>"  value="<?php echo $Res[1]; ?>" onchange="modificarRes(<?php echo $n?>);">
 </td>
 <td>
-<input class="form-control" type="number" id="ResultadoRes<?php echo $n;?>"  value="<?php echo $Res[3]; ?>" onchange="modificarRes(<?php echo $n?>);">
+<input class="form-control" type="text" id="ResultadoRes<?php echo $n;?>"  value="<?php echo $Res[2]; ?>" onchange="modificarRes(<?php echo $n?>);">
 </td>
 <td>
     <select class="form-control" id="ResultadoMunicipio<?php echo $n; ?>" onchange="agrega_region(this.value,<?php echo $n?>);">
-        <option value="<?php echo $Res[4]; ?>"><?php echo $Res[5]; ?></option>
+        <option value="<?php echo $Res[3]; ?>"><?php echo $Res[4]; ?></option>
         <?php
         $conexion = $conn->conectar();
         $conexion->set_charset("utf8");
@@ -953,12 +952,12 @@ while($Res = $ExConsulta->fetch_array(MYSQLI_NUM)){
 
 <td>
     <div id="region<?php echo $n;?>">
-      <input type="hidden" id="ResultadoRegion<?php echo $n;?>" value="<?php echo $Res[6]; ?>" onchange="modificarRes(<?php echo $n?>);">
-      <input type="text" id="RegionTxt<?php echo $n;?>" readonly value="<?php echo $Res[7]; ?>" class="form-control" >
+      <input type="hidden" id="ResultadoRegion<?php echo $n;?>" value="<?php echo $Res[5]; ?>" onchange="modificarRes(<?php echo $n?>);">
+      <input type="text" id="RegionTxt<?php echo $n;?>" readonly value="<?php echo $Res[6]; ?>" class="form-control" >
     </div>
 </td>
 <td>
-<input class="form-control" type="number" id="ResultadoEjercicio<?php echo $n;?>"  value="<?php echo $Res[8]; ?>">
+<input class="form-control" type="number" id="ResultadoEjercicio<?php echo $n;?>"  value="<?php echo $Res[7]; ?>">
 </td>
 <td>
 <div class="btn-group" id="ResultadoBtn<?php echo $n;?>">
