@@ -74,6 +74,9 @@ component('detalleIndicadores', {
     $http.get('php/getDatosMuncipalesIndicador.php?i='+$scope.indicadorElegido).
     success(function(data) {
       $scope.datosMunicipales = data;
+      $scope.objetoMunicipal = angular.isObject($scope.datosMunicipales);
+      /*console.log("es objeto: "+angular.isObject($scope.datosMunicipales));
+      console.log("es objeto municipal: "+$scope.objetoMunicipal);*/
       //console.log($scope.datosMunicipales.municipio);
       //console.log($scope.datos[2].resultado);
       /*angular.forEach($scope.datos,function(value,key){

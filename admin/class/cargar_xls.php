@@ -8,7 +8,7 @@ include("conexion.php");
         $conexion = $conn->conectar();
         $conexion->set_charset("utf8");
 // guardamos temporalmente el erchivo cargado
-$dir = "tmpXLS/";
+$dir = "./tmpXLS/";
 $file_name = md5(date('d-m-Y h:m:s').rand(0,99)).$_FILES['fileXLS']['name'];
 $fichero_subido = $dir.$file_name;
 move_uploaded_file($_FILES['fileXLS']['tmp_name'], $fichero_subido);
@@ -16,7 +16,7 @@ exec("chmod 777 $fichero_subido");
 // abrimos phpEXCEL para manipular el excel
 
 
-require_once 'PHPExcel.php';
+require_once './PHPExcel.php';
 $objReader = PHPExcel_IOFactory::createReader('Excel2007');
 $objReader->setReadDataOnly(true);
 $objPHPExcel = $objReader->load("$fichero_subido");
