@@ -12,42 +12,38 @@ $conn = new conexion();
 $conexion = $conn->conectar();
 $conexion->set_charset("utf8");
 ?>
-    <!DOCTYPE html>
-    <!--[if IE 8]> <html lang="en" class="ie8 no-js"> <![endif]-->
-    <!--[if IE 9]> <html lang="en" class="ie9 no-js"> <![endif]-->
-    <!--[if !IE]><!-->
-    <html lang="es">
-    <!--<![endif]-->
-
-    <head>
-        <meta charset="utf-8" />
-        <title>INDYCEZ | Tablero de Administración</title>
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-        <meta content="" name="description" />
-        <meta content="" name="author" />
-        <meta name="MobileOptimized" content="320">
-        <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=all" rel="stylesheet" type="text/css" />
-        <link href="css/font-awesome.min.css" rel="stylesheet" type="text/css" />
-        <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-        <link href="css/uniform.default.css" rel="stylesheet" type="text/css" />
-        <link href="css/style-conquer.css" rel="stylesheet" type="text/css" />
-        <link href="css/style.css" rel="stylesheet" type="text/css" />
-        <link href="css/style-responsive.css" rel="stylesheet" type="text/css" />
-        <link href="css/plugins.css" rel="stylesheet" type="text/css" />
-        <link href="css/default.css" rel="stylesheet" type="text/css" id="style_color" />
-        <link rel="stylesheet" type="text/css" href="css/dataTables.bootstrap.css" />
-    </head>
-    <body class="page-header-fixed">
-        <div class="header navbar navbar-fixed-top">
-            <div class="header-inner">
-                <div class="page-logo">
-                    <a href="index.html">
-                        <img src="../img/logo_indycez.png" alt="logo" width="100" />
-                    </a>
-                </div>
-                <a href="javascript:;" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                </a>
+<!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8 no-js"> <![endif]-->
+<!--[if IE 9]> <html lang="en" class="ie9 no-js"> <![endif]-->
+<!--[if !IE]><!-->
+<html lang="es">
+<!--<![endif]-->
+<head>
+    <meta charset="utf-8" />
+    <title>INDYCEZ | Tablero de Administración</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <meta content="" name="description" />
+    <meta content="" name="author" />
+    <meta name="MobileOptimized" content="320">
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=all" rel="stylesheet" type="text/css" />
+    <link href="css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+    <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="css/uniform.default.css" rel="stylesheet" type="text/css" />
+    <link href="css/style-conquer.css" rel="stylesheet" type="text/css" />
+    <link href="css/style.css" rel="stylesheet" type="text/css" />
+    <link href="css/style-responsive.css" rel="stylesheet" type="text/css" />
+    <link href="css/plugins.css" rel="stylesheet" type="text/css" />
+    <link href="css/default.css" rel="stylesheet" type="text/css" id="style_color" />
+    <link rel="stylesheet" type="text/css" href="css/dataTables.bootstrap.css" />
+</head>
+<body class="page-header-fixed">
+    <div class="header navbar navbar-fixed-top">
+        <div class="header-inner">
+            <div class="page-logo">
+                <a href="index.html"><img src="../img/logo_indycez.png" alt="logo" width="100" /></a>
+            </div>
+            <a href="javascript:;" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"></a>
                 <ul class="nav navbar-nav pull-right">
                     <li class="devider">
                         &nbsp;
@@ -123,8 +119,6 @@ $conexion->set_charset("utf8");
                                     <a href="#">
                                         <i class="fa fa-list-alt" aria-hidden="true"></i> Lista de Catalógos</a>
                                 </li>
-
-
                             </ul>
                         </li>
                         <?php if($_SESSION['usrInfo'][3] == 1){ ?>
@@ -326,7 +320,6 @@ $conexion->set_charset("utf8");
 
             });
             function loadList(v) {
-
                 if (v == 0) {
                     return false;
                 }
@@ -357,7 +350,6 @@ $conexion->set_charset("utf8");
                     $('#indicadorActivo').val(v);
                 });
             }
-
             function guardandoIndicador() {
 
                 document.getElementById('msg_estado').innerHTML = "<div style='position: absolute; padding:70px; top: 30%; width:90%; z-index: 99; background-color:#50a649; color:#fff;'> <i class='fa fa-refresh fa-spin fa-3x fa-fw'></i> Actualizando Información del Indicador, porfavor espere. </div>";
@@ -513,7 +505,6 @@ $conexion->set_charset("utf8");
                 });
             }
             function guardandoDependencias(){
-
                 var arreglo = "";
                 if ($('#dependencia1').is(':checked')) {
                     arreglo = "1 ";
@@ -552,7 +543,6 @@ $conexion->set_charset("utf8");
                     }
                 });
             }
-
             function guardaResultados(){
                 var actualizar_registros = false;
                 for(x=1;x<=$('#numRowsTablaResultados').val();x++){
@@ -606,12 +596,6 @@ $conexion->set_charset("utf8");
                     return true;
                   }
             }
-
-
-
-
-
-
             function carga_lineas() {
                 $.ajax({
                     method: "POST",
@@ -669,8 +653,6 @@ $conexion->set_charset("utf8");
                 n = n+1;
                 $('#numRowsTablaResultados').val(n);
             }
-
-
             function carga_estrategias() {
                 $.ajax({
                     method: "POST",
@@ -782,6 +764,28 @@ $('#resultadosIndicadorTabla tr:last').after('<tr id="ResultadoFila'+v+'"><td><i
                 });
 
 
+            }
+            function elimina_indicador(v){
+
+                if(confirm("El indicador y su información será eliminado, desea continuar?")){
+                $.ajax({
+                    method: "POST",
+                    url: "class/indicadores.php",
+                    data: {
+                        accion: 6,
+                        indicador: v,
+                    }
+                }).done(function(msg) {
+                       if(msg == "hecho"){
+                           alert("El indicador ha sido eliminado");
+                           loadList($('#tema_actual').val());
+                       }else{
+                           console.log(msg);
+                       }
+                });
+                }else{
+                    return true;
+                }
             }
 
 

@@ -156,7 +156,45 @@ class indicador {
 
 
     }
+    function eliminar_indicador($i){
+          include("conexion.php");
+            $conn = new conexion();
 
+        $query = "delete from metas_resultados where id_indicador = ".$i['indicador'];
+            $conexion = $conn->conectar();
+            $conexion->query($query) or die ("error al intentar eliminar metas_resultados: ".$conexion->error);
+            $conexion->close();
+            unset($query);
+
+                  $query = "delete from fuente_indicador where id_indicador = ".$i['indicador'];
+            $conexion = $conn->conectar();
+            $conexion->query($query) or die ("error al intentar eliminar fuentes del indicador: ".$conexion->error);
+            $conexion->close();
+            unset($query);
+
+
+                $query = "delete from indicador_dependencia where id_indicador = ".$i['indicador'];
+            $conexion = $conn->conectar();
+            $conexion->query($query) or die ("error al intentar eliminar indicador_dependencia ".$conexion->error);
+            $conexion->close();
+            unset($query);
+
+                $query = "delete from indicador_tema where id_indicador = ".$i['indicador'];
+            $conexion = $conn->conectar();
+            $conexion->query($query) or die ("error al intentar eliminar indicadores tema: ".$conexion->error);
+            $conexion->close();
+            unset($query);
+
+
+           $query = "delete from indicadores where id_indicador = ".$i['indicador'];
+            $conexion = $conn->conectar();
+            $conexion->query($query) or die ("error al intentar eliminar indicadores tema: ".$conexion->error);
+            $conexion->close();
+            unset($query);
+            unset($conexion);
+         unset($conn);
+        return "hecho";
+    }
 
 }
 $indicador = new indicador();
@@ -176,6 +214,9 @@ switch($_POST['accion']){
     break;
     case 5:
     $resultado = $indicador->actualizar_resultados($_POST);
+    break;
+    case 6:
+    $resultado = $indicador->eliminar_indicador($_POST);
     break;
 
 }
