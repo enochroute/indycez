@@ -106,8 +106,29 @@ $conexion->set_charset("utf8");
                                 </li>
 
 
+
                             </ul>
                         </li>
+                         <li>
+                    <a href="javascript:;">
+					<i class="fa fa-line-chart" aria-hidden="true"></i>
+					<span class="title">Metas PED</span>
+					<span class="arrow "></span>
+					</a>
+					<ul class="sub-menu">
+						<li>
+							<a href="metas_ped.php">
+							<i class="fa fa-list" aria-hidden="true"></i>
+							Lista de Metas</a>
+						</li>
+                        <li>
+							<a href="metas_ped_reportes.php">
+							<i class="fa fa-list" aria-hidden="true"></i>
+							Reportes</a>
+						</li>
+                    </ul>
+
+                </li>
                         <li>
                             <a href="javascript:;">
                                 <i class="fa fa-book" aria-hidden="true"></i>
@@ -271,72 +292,45 @@ $conexion->set_charset("utf8");
             </div>
 
           <!--- nuevo indicador -->
-        <div class="modal fade" id="nuevoModal" tabindex="-1" role="basic" aria-hidden="true">
-                <div class="modal-dialog modal-wide">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
-                            <h4 class="modal-title">Nuevo Indicador</h4>
-                        </div>
-                        <div class="modal-body">
-                            <div id="msg_estado"></div>
+<div class="modal fade" id="nuevoModal" tabindex="-1" role="basic" aria-hidden="true">
+<div class="modal-dialog modal-wide">
+<div class="modal-content">
+<div class="modal-header">
+<button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+<h4 class="modal-title">Nuevo Indicador</h4>
+</div>
+<div class="modal-body">
+
 <div class="portlet">
 <div class="portlet-title">
-
-
+<div class="caption">
+<span class="text-success"><i class="fa fa-plus-circle"></i></span> Agregar un indicador el indicador
+</div>
 </div>
 <div class="portlet-body">
-<ul class="nav nav-tabs">
-<li class="active">
-<a href="#tab_1_1" data-toggle="tab">Información General</a>
-</li>
-<li>
-<a href="#tab_1_2" data-toggle="tab">Temas Asociados</a>
-</li>
-<li>
-<a href="#tab_1_3" data-toggle="tab">Fuentes de Información</a>
-</li>
-<li>
-<a href="#tab_1_4" data-toggle="tab">Dependencias</a>
-</li>
-<li>
-<a href="#tab_1_5" data-toggle="tab">Resultados</a>
-</li>
-</ul>
-<div class="tab-content">
-<div class="tab-pane fade active in" id="tab_1_1">
 <div class="row">
 <div class="col-md-6">
 <div class="portlet-body form">
 <form role="form">
+
 <div class="form-group">
 <div class="row">
 <div class="col-md-3">
 <label for="nombre">Nombre:</label>
 </div>
 <div class="col-md-9">
-<input type="text" class="form-control" name="nombre" id="nombre"  required>
+<input type="text" class="form-control" name="nuevo_nombre" id="nuevo_nombre" required>
 </div>
 </div>
 </div>
-<div class="form-group">
-<div class="row">
-<div class="col-md-3">
-<label for="identificador">Identificador:</label>
-</div>
-<div class="col-md-9">
-<input type="text" class="form-control" id="identificador" >
-</div>
-</div>
-</div>
+<hr>
 <div class="form-group">
 <div class="row">
 <div class="col-md-3">
 <label for="tendencia_deseable">Tendencia Deseable:</label>
 </div>
 <div class="col-md-9">
-<select id="tendencia_deseable" name="tendencia_deseable" class="form-control">
-
+<select id="nuevo_tendencia_deseable" name="nuevo_tendencia_deseable" class="form-control">
 <?php
 $conexion = $conn->conectar();
 $conexion->set_charset("utf8");
@@ -354,14 +348,15 @@ $conexion->close();
 </div>
 </div>
 </div>
+
+<hr>
 <div class="form-group">
 <div class="row">
 <div class="col-md-3">
 <label for="u_medida">Unidad de Medida:</label>
 </div>
 <div class="col-md-9">
-<select id="u_medida" name="u_medida" class="form-control">
-
+<select id="nuevo_u_medida" name="nuevo_u_medida" class="form-control">
 <?php
 $conexion = $conn->conectar();
 $conexion->set_charset("utf8");
@@ -379,23 +374,27 @@ $conexion->close();
 </div>
 </div>
 </div>
+
+<hr>
 <div class="form-group">
 <div class="row">
 <div class="col-md-3">
 <label for="a_base">Año base:</label>
 </div>
 <div class="col-md-9">
-<input type="number" class="form-control" id="a_base" name="a_base" >
+<input type="number" class="form-control" id="nuevo_a_base" name="nuevo_a_base" >
 </div>
 </div>
 </div>
+    <hr>
+
 <div class="form-group">
 <div class="row">
 <div class="col-md-3">
 <label for="periodicidad">Periodicidad:</label>
 </div>
 <div class="col-md-9">
-<select id="periodicidad" name="periodicidad" class="form-control">
+<select id="nuevo_periodicidad" name="nuevo_periodicidad" class="form-control">
 
 <?php
 $conexion = $conn->conectar();
@@ -414,34 +413,48 @@ $conexion->close();
 </div>
 </div>
 </div>
+<hr>
 <div class="form-group">
 <div class="row">
 <div class="col-md-3">
 <label for="fecha_act">Fecha Actualización: </label>
 </div>
 <div class="col-md-9">
-<input type="date" class="form-control" id="fecha_act" name="fecha_act" >
+<input type="date" class="form-control" id="nuevo_fecha_act" name="nuevo_fecha_act" >
 </div>
 </div>
 </div>
+
+
+
+
+
+</form>
+</div>
+</div>
+<div class="col-md-6">
+<div class="portlet-body form">
+<form role="form">
+
 <div class="form-group">
 <div class="row">
 <div class="col-md-3">
 <label for="definicion">Definición:</label>
 </div>
 <div class="col-md-9">
-<textarea class="form-control" id="definicion" name="definicion"></textarea>
+<textarea class="form-control" id="nuevo_definicion" name="nuevo_definicion"><?php echo $infoIndicador[10]; ?></textarea>
 </div>
 </div>
 </div>
-<div class="form-group">
+    <hr>
+
+<div class="form-group" >
 <div class="row">
 <div class="col-md-3">
 <label for="origen">Origen:</label>
 </div>
 <div class="col-md-9">
-<select id="origen" name="origen" class="form-control">
-
+<select id="nuevo_origen" name="nuevo_origen" class="form-control">
 <?php
 $conexion = $conn->conectar();
 $conexion->set_charset("utf8");
@@ -459,67 +472,44 @@ $conexion->close();
 </div>
 </div>
 </div>
-<div class="form-group">
-<div class="row">
-<div class="col-md-3">
-<label for="origen">Activo:</label>
-</div>
-<div class="col-md-9">
-<label><input type="checkbox"  id="indicador_activo"> Activar / Desactivar indicador </label>
-</div>
-</div>
-</div>
-</form>
-</div>
-</div>
-<div class="col-md-6">
-<div class="portlet-body form">
-<form role="form">
-
-<div class="form-group">
+  <hr>
+<div class="form-group" >
 <label for="nombre">Alineación PED:</label>
 <div class="row">
 <div class="col-md-4">
 <select class="form-control" id="eje" name="eje" onChange="carga_lineas();">
-<?php
-$conexion = $conn->conectar();
-$conexion->set_charset("utf8");
-$Query = 'select * FROM eje';
-$ExConsulta = $conexion->query($Query);
-unset($Query);
-$conexion->close();
-while($ResEje = $ExConsulta->fetch_array(MYSQLI_NUM)){
-echo '<option value="'.$ResEje[0].'">'.$ResEje[1].'</option>';
-}
-unset($ResEje);
-unset($ExConsulta);
-?>
+<option value="1">1. Gobierno Abierto y de Resultados</option>
+<option value="2">2. Seguridad Humana</option>
+<option value="3">3. Competitividad y Prosperidad</option>
+<option value="4">4. Medio Ambiente y Desarrollo Territorial</option>
+<option value="5" selected>No Alineado al PED</option>
+
 </select>
 </div>
 <div class="col-md-4" id="slctLinea" name="slctLinea">
 <select class="form-control" id="linea" name="linea" onChange="carga_estrategias();">
-
+<option value="0">No Alineado al PED</option>
 </select>
 </div>
 <div class="col-md-4" id="slctEstrategia" name="slctEstrategia">
-<select class="form-control" id="estrategia" name="estrategia">
-
+<select class="form-control" id="nuevo_estrategia" name="nuevo_estrategia">
+<option value="130">No Alineado al PED</option>
 </select>
 </div>
 </div>
 </div>
+<hr>
 <div class="form-group">
 <div class="row">
 <div class="col-md-3">
-<label for="sis_consulta">Sistema Consulta:</label>
+<label for="origen">Tema Asociado:</label>
 </div>
 <div class="col-md-9">
-<select id="sistema_consulta" name="sistema_consulta" class="form-control">
-
+<select id="nuevo_tema" name="nuevo_tema" class="form-control">
 <?php
 $conexion = $conn->conectar();
 $conexion->set_charset("utf8");
-$Query = "SELECT * FROM sistemas_consulta";
+$Query = "SELECT * FROM temas_interes";
 $ExConsulta = $conexion->query($Query);
 unset($Query);
 while($Resultado = $ExConsulta->fetch_array(MYSQLI_NUM)){
@@ -533,504 +523,10 @@ $conexion->close();
 </div>
 </div>
 </div>
-<div class="form-group">
-<div class="row">
-<div class="col-md-3">
-<label for="cobertura_geografica">Cobertura Geográfica:</label>
-</div>
-<div class="col-md-9">
 
-<select id="cobertura_geografica" name="cobertura_geografica" class="form-control">
 
-<option value="1">Estatal</option>
-<option value="2">Municipal</option>
-<option value="3">Regional</option>
-
-</select>
-</div>
-</div>
-</div>
-<div class="form-group">
-<div class="row">
-<div class="col-md-3">
-<label for="notas">Notas:</label>
-</div>
-<div class="col-md-9">
-<input type="text" class="form-control" id="notas" name="notas" >
-</div>
-</div>
-</div>
-<div class="form-group">
-<div class="row">
-<div class="col-md-3">
-<label for="metodo">Método:</label>
-</div>
-<div class="col-md-9">
-<input type="text" class="form-control" id="metodo" name="metodo" >
-</div>
-</div>
-</div>
-<div class="form-group">
-<div class="row">
-<div class="col-md-3">
-<label for="formula">Fórmula:</label>
-</div>
-<div class="col-md-9">
-<input type="text" class="form-control" id="formula" name="formula" >
-</div>
-</div>
-</div>
-
-<div class="form-group">
-<div class="row">
-<div class="col-md-3">
-<label for="variables">Variables:</label>
-</div>
-<div class="col-md-9">
-<input type="text" class="form-control" id="variables" name="variables">
-</div>
-</div>
-</div>
-
-<div class="form-group">
-<div class="row">
-<div class="col-md-3">
-<label for="nivel">Nivel:</label>
-</div>
-<div class="col-md-9">
-<select id="nivel" name="nivel" class="form-control">
-   <?php
-$conexion = $conn->conectar();
-$conexion->set_charset("utf8");
-$Query = "SELECT * FROM niveles";
-$ExConsulta = $conexion->query($Query);
-unset($Query);
-while($Resultado = $ExConsulta->fetch_array(MYSQLI_NUM)){
-echo "<option value='".$Resultado[0]."'>  ".$Resultado[1]."</option>";
-}
-unset($Resultado);
-   unset($ExConsulta);
-   $conexion->close();
-   ?>
-   </select>
-</div>
-</div>
-</div>
-
-<div class="form-group">
-<div class="row">
-<div class="col-md-3">
-<label for="objetivo">Objetivo:</label>
-</div>
-<div class="col-md-9">
-<input type="text" class="form-control" id="objetivo" name="objetivo" >
-</div>
-</div>
-</div>
-
-<div class="form-group">
-<div class="row">
-<div class="col-md-3">
-<label for="responsable">Responsable:</label>
-</div>
-<div class="col-md-9">
-<input type="text" class="form-control" id="responsable" name="responsable" >
-</div>
-</div>
-</div>
 </form>
 </div>
-
-</div>
-</div>
-</div>
-<div class="tab-pane fade" id="tab_1_2">
-
-<div class="row">
-<div class="col-md-1">&nbsp;</div>
-<div class="col-md-11">
-<div class="row">
-<div class="col-md-2">
-<div class="form-group">
-<div class="checkbox-list">
-<label><input type="checkbox" value="0" id="chkGobierno"> Gobierno </label>
-</div>
-</div>
-</div>
-<div class="col-md-2">
-<div class="form-group">
-<div class="checkbox-list">
-<label><input type="checkbox" value="2" id="chkRezago" > Rezago Social </label>
-</div>
-</div>
-</div>
-<div class="col-md-2">
-<div class="form-group">
-<div class="checkbox-list">
-<label><input type="checkbox" value="3" id="chkSalud" > Salud </label>
-</div>
-</div>
-</div>
-<div class="col-md-2">
-<div class="form-group">
-<div class="checkbox-list">
-<label><input type="checkbox" value="4" id="chkSeguridad" > Seguridad </label>
-</div>
-</div>
-</div>
-<div class="col-md-2">
-<div class="form-group">
-<div class="checkbox-list">
-<label><input type="checkbox" value="5" id="chkGenero" > Género </label>
-</div>
-</div>
-</div>
-<div class="col-md-2">
-<div class="form-group">
-<div class="checkbox-list">
-<label><input type="checkbox" value="6" id="chkEducacion" > Educación </label>
-</div>
-</div>
-</div>
-
-</div>
-<div class="row">
-<div class="col-md-2">
-<div class="form-group">
-<div class="checkbox-list">
-<label><input type="checkbox" value="7" id="chkInnovacion" > Innovación </label>
-</div>
-</div>
-</div>
-<div class="col-md-2">
-<div class="form-group">
-<div class="checkbox-list">
-<label><input type="checkbox" value="8" id="chkEconomia"  > Economía </label>
-</div>
-</div>
-</div>
-<div class="col-md-2">
-<div class="form-group">
-<div class="checkbox-list">
-<label><input type="checkbox" value="9" id="chkInfraestructura" >  Infraestructura </label>
-</div>
-</div>
-</div>
-<div class="col-md-2">
-<div class="form-group">
-<div class="checkbox-list">
-<label><input type="checkbox" value="10" id="chkCampo" > Campo </label>
-</div>
-</div>
-</div>
-<div class="col-md-2">
-<div class="form-group">
-<div class="checkbox-list">
-<label><input type="checkbox" value="11" id="chkTurismo" > Turismo </label>
-</div>
-</div>
-</div>
-<div class="col-md-2">
-<div class="form-group">
-<div class="checkbox-list">
-<label><input type="checkbox" value="12" id="chkMedio" > Medio Ambiente </label>
-</div>
-</div>
-</div>
-
-</div>
-<div class="row">
-<div class="col-md-2">
-<div class="form-group">
-<div class="checkbox-list">
-<label><input type="checkbox" value="13" id="chkDesarrollo" > Desarrollo Urbano </label>
-</div>
-</div>
-</div>
-<div class="col-md-2">
-<div class="form-group">
-<div class="checkbox-list">
-<label><input type="checkbox" value="14" id="chkCultura" > Cultura </label>
-</div>
-</div>
-</div>
-<div class="col-md-2">
-<div class="form-group">
-<div class="checkbox-list">
-<label><input type="checkbox" value="15" id="chkPoblacion" > Población </label>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="tab-pane fade" id="tab_1_3">
-
-<div class="row">
-<div class="col-md-1"></div>
-<div class="col-md-11">
-<div class="row">
-<div class="col-md-3">
-<div class="form-group">
-<div class="checkbox-list">
-<?php
-  $conexion = $conn->conectar();
-  $conexion->set_charset("utf8");
-  $Query =  "SELECT id_fuente,fuente FROM fuentes LIMIT 11";
-  $ExConsulta = $conexion->query($Query);
-  unset($Query);
-  while($Resultado = $ExConsulta->fetch_array(MYSQLI_NUM)){ ?>
-<label><input <?php echo "id='fuente".$Resultado[0]."'"; ?> type="checkbox" > <?php echo $Resultado[1]; ?></label>
-<?php
-}
-   unset($Resultado);
-   unset($ExConsulta);
-   $conexion->close();
-?>
-</div>
-</div>
-</div>
-
-<div class="col-md-3">
-<div class="form-group">
-<div class="checkbox-list">
-<?php
-  $conexion = $conn->conectar();
-  $conexion->set_charset("utf8");
-  $Query =  "SELECT id_fuente,fuente FROM fuentes LIMIT 11,10";
-
-  $ExConsulta = $conexion->query($Query);
-   unset($Query);
-  while($Resultado = $ExConsulta->fetch_array(MYSQLI_NUM)){ ?>
-<label><input type="checkbox" <?php echo "id='fuente".$Resultado[0]."'"; ?> > <?php echo $Resultado[1]; ?></label>
-<?php
-}
-   unset($Resultado);
-   unset($ExConsulta);
-   $conexion->close();
-?>
-</div>
-</div>
-
-</div>
-<div class="col-md-3">
-<div class="form-group">
-<div class="checkbox-list">
-<?php
-  $conexion = $conn->conectar();
-  $conexion->set_charset("utf8");
-  $Query =  "SELECT id_fuente,fuente FROM fuentes LIMIT 21,10";
-
-  $ExConsulta = $conexion->query($Query);
-   unset($Query);
-  while($Resultado = $ExConsulta->fetch_array(MYSQLI_NUM)){ ?>
-<label><input type="checkbox" <?php echo "id='fuente".$Resultado[0]."'"; ?> > <?php echo $Resultado[1]; ?></label>
-<?php
-}
-   unset($Resultado);
-   unset($ExConsulta);
-   $conexion->close();
-?>
-</div>
-</div>
-</div>
-<div class="col-md-3">
-<div class="form-group">
-<div class="checkbox-list">
-<?php
-  $conexion = $conn->conectar();
-  $conexion->set_charset("utf8");
-  $Query =  "SELECT id_fuente,fuente FROM fuentes LIMIT 31,11";
-
-  $ExConsulta = $conexion->query($Query);
-   unset($Query);
-  while($Resultado = $ExConsulta->fetch_array(MYSQLI_NUM)){ ?>
-<label><input type="checkbox" <?php echo "id='fuente".$Resultado[0]."'"; ?> > <?php echo $Resultado[1]; ?></label>
-<?php
-}
-   unset($Resultado);
-   unset($ExConsulta);
-   $conexion->close();
-?>
-</div>
-</div>
-</div>
-
-</div>
-</div>
-</div>
-</div>
-<div class="tab-pane fade" id="tab_1_4">
-
-
-<div class="row">
-<div class="col-md-1"></div>
-<div class="col-md-11">
-<div class="row">
-<div class="col-md-2">
-<div class="form-group">
-<div class="checkbox-list">
-<?php
-  $conexion = $conn->conectar();
-  $conexion->set_charset("utf8");
-  $Query =  "SELECT id_dependencia,acronimo FROM dependencias LIMIT 11";
-  $ExConsulta = $conexion->query($Query);
-  unset($Query);
-
-  while($Resultado = $ExConsulta->fetch_array(MYSQLI_NUM)){ ?>
-<label><input type="checkbox" id="dependencia<?php echo $Resultado[0]; ?>" > <?php echo $Resultado[1]; ?></label>
-<?php
-
-}
-
-   unset($Resultado);
-   unset($ExConsulta);
-   $conexion->close();
-?>
-</div>
-</div>
-</div>
-<div class="col-md-2">
-<div class="form-group">
-<div class="checkbox-list">
-<?php
-  $conexion = $conn->conectar();
-  $conexion->set_charset("utf8");
-  $Query =  "SELECT id_dependencia,acronimo FROM dependencias LIMIT 11,10";
-
-  $ExConsulta = $conexion->query($Query);
-   unset($Query);
-  while($Resultado = $ExConsulta->fetch_array(MYSQLI_NUM)){ ?>
-<label><input type="checkbox" id="dependencia<?php echo $Resultado[0]; ?>" > <?php echo $Resultado[1]; ?></label>
-<?php
-}
-   unset($Resultado);
-   unset($ExConsulta);
-   $conexion->close();
-?>
-</div>
-</div>
-
-</div>
-<div class="col-md-2">
-<div class="form-group">
-<div class="checkbox-list">
-<?php
-  $conexion = $conn->conectar();
-  $conexion->set_charset("utf8");
-  $Query =  "SELECT id_dependencia,acronimo FROM dependencias LIMIT 21,10";
-
-  $ExConsulta = $conexion->query($Query);
-   unset($Query);
-  while($Resultado = $ExConsulta->fetch_array(MYSQLI_NUM)){ ?>
-<label><input type="checkbox" id="dependencia<?php echo $Resultado[0]; ?>" > <?php echo $Resultado[1]; ?></label>
-<?php
-}
-   unset($Resultado);
-   unset($ExConsulta);
-   $conexion->close();
-?>
-</div>
-</div>
-</div>
-<div class="col-md-2">
-<div class="form-group">
-<div class="checkbox-list">
-<?php
-  $conexion = $conn->conectar();
-  $conexion->set_charset("utf8");
-  $Query =  "SELECT id_dependencia,acronimo FROM dependencias LIMIT 31,10";
-
-  $ExConsulta = $conexion->query($Query);
-   unset($Query);
-  while($Resultado = $ExConsulta->fetch_array(MYSQLI_NUM)){ ?>
-<label><input type="checkbox" id="dependencia<?php echo $Resultado[0]; ?>" > <?php echo $Resultado[1]; ?></label>
-<?php
-
-}
-   unset($Resultado);
-   unset($ExConsulta);
-   $conexion->close();
-?>
-</div>
-</div>
-</div>
-<div class="col-md-2">
-<div class="form-group">
-<div class="checkbox-list">
-<?php
-  $conexion = $conn->conectar();
-  $conexion->set_charset("utf8");
-  $Query =  "SELECT id_dependencia,acronimo FROM dependencias LIMIT 41,10";
-
-  $ExConsulta = $conexion->query($Query);
-   unset($Query);
-  while($Resultado = $ExConsulta->fetch_array(MYSQLI_NUM)){ ?>
-<label><input type="checkbox" id="dependencia<?php echo $Resultado[0]; ?>" > <?php echo $Resultado[1]; ?></label>
-<?php
-
-}
-   unset($Resultado);
-   unset($ExConsulta);
-   $conexion->close();
-?>
-</div>
-</div>
-</div>
-<div class="col-md-2">
-<div class="form-group">
-<div class="checkbox-list">
-<?php
-  $conexion = $conn->conectar();
-  $conexion->set_charset("utf8");
-  $Query =  "SELECT id_dependencia,acronimo FROM dependencias LIMIT 51,10";
-
-  $ExConsulta = $conexion->query($Query);
-   unset($Query);
-  while($Resultado = $ExConsulta->fetch_array(MYSQLI_NUM)){ ?>
-<label><input type="checkbox" id="dependencia<?php echo $Resultado[0]; ?>" > <?php echo $Resultado[1]; ?></label>
-<?php
-
-}
-   unset($Resultado);
-   unset($ExConsulta);
-   $conexion->close();
-?>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="tab-pane fade" id="tab_1_5">
-<div class="btn-group">
-                    <button type="button" class="btn btn-default" onclick="agregaResultadoRow();"><span class="text-success"><i class="fa fa-plus-circle"></i></span> Agregar Registro</button>
-                    <button type="button" class="btn btn-default" id="xlsbtn" onclick="cargar_excel();" disabled><span class="text-success"><i class="fa fa-file-excel-o"></i></span> Agregar varios registros(xls)</button>
-                     <form id="xlsForm">
-                        <input type="file" id="fileXLS" name="fileXLS" onchange="habilitarBtn();" class="form-control">
-                     </form>
-</div>
-<p>&nbsp;</p>
-
-<table class="table table-striped table-bordered table-hover" id="resultadosIndicadorTabla">
-<thead>
-<tr>
-<th> Periodo</th>
-<th> Meta </th>
-<th> Resultado </th>
-<th> Municipio </th>
-<th> Región </th>
-<th> Ejercicio </th>
-<th> </th>
-</tr>
-</thead>
-<tbody>
-
-</tbody>
-</table>
-<input type="hidden" id="numRowsTablaResultados" value="<?php echo $n; unset($n); ?>">
 </div>
 </div>
 </div>
@@ -1038,19 +534,19 @@ unset($Resultado);
 
 
 
-                        </div>
-                        <div class="modal-footer" id="modal_footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-                            <button type="button" class="btn btn-default" onclick="nuevo_indicador">Guardar</button>
-                        </div>
 
-                        <!-- /.modal-content -->
-                    </div>
-                    <!-- /.modal-dialog -->
-                </div>
-                <!-- end modal info -->
 
-            </div>
+</div>
+<div class="modal-footer" id="modal_footer">
+<button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+<button type="button" class="btn btn-success" onclick="validar_nuevo_indicador();">Guardar</button>
+</div>
+<!-- /.modal-content -->
+</div>
+<!-- /.modal-dialog -->
+</div>
+<!-- end modal info -->
+</div>
 
 
 
@@ -1572,6 +1068,52 @@ $('#resultadosIndicadorTabla tr:last').after('<tr id="ResultadoFila'+v+'"><td><i
                 }
             }
 
+function validar_nuevo_indicador(){
+    if($('#nuevo_nombre').val() == ""  || $('#nuevo_nombre').val() == " "){
+        alert("El nombre del indicador no puede estar vacío");
+        return false;
+    }
+
+    $.ajax({
+                    method: "POST",
+                    url: "class/indicadores.php",
+                    data: {
+                        accion: 7,
+                        indicador: $('#nuevo_nombre').val(),
+                    }
+                }).done(function(msg) {
+                    if(msg == "continuar"){
+                        guardar_nuevo_indicador();
+                        return true;
+                    }else{
+                        alert("Ya existe un indicador con ese nombre, ¿desea cargar la información del indicador?");
+                        return false;
+                    }
+                });
+
+
+
+}
+
+function guardar_nuevo_indicador(){
+       $.ajax({
+                    method: "POST",
+                    url: "class/indicadores.php",
+                    data: {
+                        accion: 8,
+                        nombre: $('#nuevo_nombre').val(),
+                    }
+                }).done(function(msg) {
+                    if(msg == "continuar"){
+                        guardar_nuevo_indicador();
+                        return true;
+                    }else{
+                        alert("Ya existe un indicador con ese nombre, ¿desea cargar la información del indicador?");
+                        return false;
+                    }
+                });
+
+}
 
 
 

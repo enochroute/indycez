@@ -7,11 +7,11 @@ var TableManaged = function () {
         // begin first table
         table.dataTable({
             "columns": [{
-                "orderable": true
+                "orderable": false
             }, {
-                "orderable": true
+                "orderable": false
             }, {
-                "orderable": true
+                "orderable": false
             }],
             "lengthMenu": [
                 [5, 10, 15, 20, -1],
@@ -30,14 +30,14 @@ var TableManaged = function () {
                 }
             },
             "columnDefs": [{  // set default column settings
-                'orderable': true,
+                'orderable': false,
                 'targets': [0]
             }, {
                 "searchable": true,
                 "targets": [0]
             }],
             "order": [
-                [1, "asc"]
+                [0, "asc"]
             ] // set first column as a default sort by asc
         });
 
