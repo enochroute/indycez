@@ -110,8 +110,29 @@ $conexion->set_charset("utf8");
                                 </li>
 
 
+
                             </ul>
                         </li>
+                         <li>
+                    <a href="javascript:;">
+					<i class="fa fa-line-chart" aria-hidden="true"></i>
+					<span class="title">Metas PED</span>
+					<span class="arrow "></span>
+					</a>
+					<ul class="sub-menu">
+						<li>
+							<a href="metas_ped.php">
+							<i class="fa fa-list" aria-hidden="true"></i>
+							Lista de Metas</a>
+						</li>
+                        <li>
+							<a href="metas_ped_reportes.php">
+							<i class="fa fa-list" aria-hidden="true"></i>
+							Reportes</a>
+						</li>
+                    </ul>
+
+                </li>
                         <li>
                             <a href="javascript:;">
                                 <i class="fa fa-book" aria-hidden="true"></i>
@@ -198,7 +219,7 @@ $conexion->set_charset("utf8");
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="btn-group">
-                                                    <button id="sample_editable_1_new" class="btn btn-success">
+                                                    <button id="sample_editable_1_new" class="btn btn-success" data-toggle="modal" data-target="#nuevoModal">
 											Agregar Nuevo <i class="fa fa-plus"></i>
 											</button>
                                                 </div>
@@ -251,7 +272,7 @@ $conexion->set_charset("utf8");
 
             <!-- modal info -->
 
-            <div class="modal fade" id="infoIndModal" tabindex="-1" role="basic" aria-hidden="true">
+        <div class="modal fade" id="infoIndModal" tabindex="-1" role="basic" aria-hidden="true">
                 <div class="modal-dialog modal-wide">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -275,6 +296,265 @@ $conexion->set_charset("utf8");
                 <!-- end modal info -->
 
             </div>
+
+          <!--- nuevo indicador -->
+<div class="modal fade" id="nuevoModal" tabindex="-1" role="basic" aria-hidden="true">
+<div class="modal-dialog modal-wide">
+<div class="modal-content">
+<div class="modal-header">
+<button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+<h4 class="modal-title">Nuevo Indicador</h4>
+</div>
+<div class="modal-body">
+
+<div class="portlet">
+<div class="portlet-title">
+<div class="caption">
+<span class="text-success"><i class="fa fa-plus-circle"></i></span> Agregar un indicador el indicador
+</div>
+</div>
+<div class="portlet-body">
+<div class="row">
+<div class="col-md-6">
+<div class="portlet-body form">
+<form role="form">
+
+<div class="form-group">
+<div class="row">
+<div class="col-md-3">
+<label for="nombre">Nombre:</label>
+</div>
+<div class="col-md-9">
+<input type="text" class="form-control" name="nuevo_nombre" id="nuevo_nombre" required>
+</div>
+</div>
+</div>
+<hr>
+<div class="form-group">
+<div class="row">
+<div class="col-md-3">
+<label for="tendencia_deseable">Tendencia Deseable:</label>
+</div>
+<div class="col-md-9">
+<select id="nuevo_tendencia_deseable" name="nuevo_tendencia_deseable" class="form-control">
+<?php
+$conexion = $conn->conectar();
+$conexion->set_charset("utf8");
+$QueryTendencias = "SELECT * FROM tendencias_deseables";
+$ExConsulta = $conexion->query($QueryTendencias);
+unset($QueryTendencias);
+while($ResTendencia = $ExConsulta->fetch_array(MYSQLI_NUM)){
+echo "<option value='".$ResTendencia[0]."'>  ".$ResTendencia[1]."</option>";
+}
+unset($ResTendencia);
+unset($ExConsulta);
+$conexion->close();
+?>
+</select>
+</div>
+</div>
+</div>
+
+<hr>
+<div class="form-group">
+<div class="row">
+<div class="col-md-3">
+<label for="u_medida">Unidad de Medida:</label>
+</div>
+<div class="col-md-9">
+<select id="nuevo_u_medida" name="nuevo_u_medida" class="form-control">
+<?php
+$conexion = $conn->conectar();
+$conexion->set_charset("utf8");
+$QueryUmedida = "SELECT * FROM u_medida_indicadores";
+$ExConsulta = $conexion->query($QueryUmedida);
+unset($QueryUmedida);
+while($ResUmedida = $ExConsulta->fetch_array(MYSQLI_NUM)){
+echo "<option value='".$ResUmedida[0]."'>  ".$ResUmedida[1]."</option>";
+}
+unset($ResUmedida);
+unset($ExConsulta);
+$conexion->close();
+?>
+</select>
+</div>
+</div>
+</div>
+
+<hr>
+<div class="form-group">
+<div class="row">
+<div class="col-md-3">
+<label for="a_base">Año base:</label>
+</div>
+<div class="col-md-9">
+<input type="number" class="form-control" id="nuevo_a_base" name="nuevo_a_base" >
+</div>
+</div>
+</div>
+    <hr>
+
+<div class="form-group">
+<div class="row">
+<div class="col-md-3">
+<label for="periodicidad">Periodicidad:</label>
+</div>
+<div class="col-md-9">
+<select id="nuevo_periodicidad" name="nuevo_periodicidad" class="form-control">
+
+<?php
+$conexion = $conn->conectar();
+$conexion->set_charset("utf8");
+$Query = "SELECT * FROM periodicidad_indicador";
+$ExConsulta = $conexion->query($Query);
+unset($Query);
+while($Resultado = $ExConsulta->fetch_array(MYSQLI_NUM)){
+echo "<option value='".$Resultado[0]."'>  ".$Resultado[1]."</option>";
+}
+unset($Resultado);
+unset($ExConsulta);
+$conexion->close();
+?>
+</select>
+</div>
+</div>
+</div>
+<hr>
+<div class="form-group">
+<div class="row">
+<div class="col-md-3">
+<label for="fecha_act">Fecha Actualización: </label>
+</div>
+<div class="col-md-9">
+<input type="date" class="form-control" id="nuevo_fecha_act" name="nuevo_fecha_act" >
+</div>
+</div>
+</div>
+
+
+
+
+
+</form>
+</div>
+</div>
+<div class="col-md-6">
+<div class="portlet-body form">
+<form role="form">
+
+<div class="form-group">
+<div class="row">
+<div class="col-md-3">
+<label for="definicion">Definición:</label>
+</div>
+<div class="col-md-9">
+<textarea class="form-control" id="nuevo_definicion" name="nuevo_definicion"><?php echo $infoIndicador[10]; ?></textarea>
+</div>
+</div>
+</div>
+    <hr>
+
+<div class="form-group" >
+<div class="row">
+<div class="col-md-3">
+<label for="origen">Origen:</label>
+</div>
+<div class="col-md-9">
+<select id="nuevo_origen" name="nuevo_origen" class="form-control">
+<?php
+$conexion = $conn->conectar();
+$conexion->set_charset("utf8");
+$Query = "SELECT * FROM origen";
+$ExConsulta = $conexion->query($Query);
+unset($Query);
+while($Resultado = $ExConsulta->fetch_array(MYSQLI_NUM)){
+echo "<option value='".$Resultado[0]."'>  ".$Resultado[1]."</option>";
+}
+unset($Resultado);
+unset($ExConsulta);
+$conexion->close();
+?>
+</select>
+</div>
+</div>
+</div>
+  <hr>
+<div class="form-group" >
+<label for="nombre">Alineación PED:</label>
+<div class="row">
+<div class="col-md-4">
+<select class="form-control" id="eje" name="eje" onChange="carga_lineas();">
+<option value="1">1. Gobierno Abierto y de Resultados</option>
+<option value="2">2. Seguridad Humana</option>
+<option value="3">3. Competitividad y Prosperidad</option>
+<option value="4">4. Medio Ambiente y Desarrollo Territorial</option>
+<option value="5" selected>No Alineado al PED</option>
+
+</select>
+</div>
+<div class="col-md-4" id="slctLinea" name="slctLinea">
+<select class="form-control" id="linea" name="linea" onChange="carga_estrategias();">
+<option value="0">No Alineado al PED</option>
+</select>
+</div>
+<div class="col-md-4" id="slctEstrategia" name="slctEstrategia">
+<select class="form-control" id="nuevo_estrategia" name="nuevo_estrategia">
+<option value="130">No Alineado al PED</option>
+</select>
+</div>
+</div>
+</div>
+<hr>
+<div class="form-group">
+<div class="row">
+<div class="col-md-3">
+<label for="origen">Tema Asociado:</label>
+</div>
+<div class="col-md-9">
+<select id="nuevo_tema" name="nuevo_tema" class="form-control">
+<?php
+$conexion = $conn->conectar();
+$conexion->set_charset("utf8");
+$Query = "SELECT * FROM temas_interes";
+$ExConsulta = $conexion->query($Query);
+unset($Query);
+while($Resultado = $ExConsulta->fetch_array(MYSQLI_NUM)){
+echo "<option value='".$Resultado[0]."'>  ".$Resultado[1]."</option>";
+}
+unset($Resultado);
+unset($ExConsulta);
+$conexion->close();
+?>
+</select>
+</div>
+</div>
+</div>
+
+
+</form>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+
+
+
+</div>
+<div class="modal-footer" id="modal_footer">
+<button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+<button type="button" class="btn btn-success" onclick="validar_nuevo_indicador();">Guardar</button>
+</div>
+<!-- /.modal-content -->
+</div>
+<!-- /.modal-dialog -->
+</div>
+<!-- end modal info -->
+</div>
+
+
 
             <div class="footer">
                 <div class="footer-inner">
@@ -783,6 +1063,53 @@ $('#resultadosIndicadorTabla tr:last').after('<tr id="ResultadoFila'+v+'"><td><i
 
 
             }
+
+function validar_nuevo_indicador(){
+    if($('#nuevo_nombre').val() == ""  || $('#nuevo_nombre').val() == " "){
+        alert("El nombre del indicador no puede estar vacío");
+        return false;
+    }
+
+    $.ajax({
+                    method: "POST",
+                    url: "class/indicadores.php",
+                    data: {
+                        accion: 7,
+                        indicador: $('#nuevo_nombre').val(),
+                    }
+                }).done(function(msg) {
+                    if(msg == "continuar"){
+                        guardar_nuevo_indicador();
+                        return true;
+                    }else{
+                        alert("Ya existe un indicador con ese nombre, ¿desea cargar la información del indicador?");
+                        return false;
+                    }
+                });
+
+
+
+}
+
+function guardar_nuevo_indicador(){
+       $.ajax({
+                    method: "POST",
+                    url: "class/indicadores.php",
+                    data: {
+                        accion: 8,
+                        nombre: $('#nuevo_nombre').val(),
+                    }
+                }).done(function(msg) {
+                    if(msg == "continuar"){
+                        guardar_nuevo_indicador();
+                        return true;
+                    }else{
+                        alert("Ya existe un indicador con ese nombre, ¿desea cargar la información del indicador?");
+                        return false;
+                    }
+                });
+
+}
 
 
 

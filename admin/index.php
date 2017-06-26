@@ -93,5 +93,4 @@ if(isset($_POST['usuario'])){
 	</form>
 	</div>
 </body>
-<!-- END BODY -->
 </html>

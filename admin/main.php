@@ -131,10 +131,28 @@ unset($Exuserinfo);
 							<i class="fa fa-list" aria-hidden="true"></i>
 							Lista de indicadores</a>
 						</li>
-
-
-					</ul>
+				</ul>
 				</li>
+                <li>
+                    <a href="javascript:;">
+					<i class="fa fa-line-chart" aria-hidden="true"></i>
+					<span class="title">Metas PED</span>
+					<span class="arrow "></span>
+					</a>
+					<ul class="sub-menu">
+						<li>
+							<a href="metas_ped.php">
+							<i class="fa fa-list" aria-hidden="true"></i>
+							Lista de Metas</a>
+						</li>
+                        <li>
+							<a href="metas_ped_reportes.php">
+							<i class="fa fa-list" aria-hidden="true"></i>
+							Reportes</a>
+						</li>
+                    </ul>
+
+                </li>
 				<li >
 					<a href="javascript:;">
 					<i class="fa fa-book" aria-hidden="true"></i>
@@ -252,8 +270,65 @@ unset($Exuserinfo);
 
 
 			</div>
-			<!-- END OVERVIEW STATISTIC BARS-->
 
+            <hr>
+             <h4>Metas PED <small>Indicadores con relación al PED </small></h4>
+
+            <div class="row stats-overview-cont">
+               <div class="col-md-3 col-sm-6">
+					<div class="stats-overview stat-block">
+						<div class="details">
+							<div class="title">
+								1. Gobierno Abierto y de Resultados
+							</div>
+							<div class="numbers">
+								 --
+							</div>
+
+						</div>
+					</div>
+				</div>
+                           <div class="col-md-3 col-sm-6">
+					<div class="stats-overview stat-block">
+						<div class="details">
+							<div class="title">
+								2. Seguridad Humana
+							</div>
+							<div class="numbers">
+								 --
+							</div>
+
+						</div>
+					</div>
+				</div>
+                           <div class="col-md-3 col-sm-6">
+					<div class="stats-overview stat-block">
+						<div class="details">
+							<div class="title">
+								3. Competitividad y Prosperidad
+							</div>
+							<div class="numbers">
+								 --
+							</div>
+
+						</div>
+					</div>
+				</div>
+                           <div class="col-md-3 col-sm-6">
+					<div class="stats-overview stat-block">
+						<div class="details">
+							<div class="title">
+								4. Medio Ambiente y Desarrollo Territorial
+							</div>
+							<div class="numbers">
+								 --
+							</div>
+
+						</div>
+					</div>
+				</div>
+
+            </div>
 
 
 
