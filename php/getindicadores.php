@@ -10,7 +10,7 @@ FROM
     indicadores AS i
         JOIN
     indicador_tema AS it ON i.id_indicador = it.id_indicador
-    WHERE (SELECT COUNT(id_indicador) FROM metas_resultados WHERE id_indicador = i.id_indicador) > 0;";
+    WHERE (SELECT COUNT(id_indicador) FROM metas_resultados WHERE id_indicador = i.id_indicador) > 0 AND i.activo = 1;";
 
 
 $resultado=mysqli_query($con,$query);

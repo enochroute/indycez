@@ -1420,6 +1420,16 @@ z-index: 1;
   margin-bottom: 2.2ex;
 }
 
+.junta-arriba{
+  margin-top: -2.2ex;
+}
+.junta-abajo{
+  margin-bottom: -4.2ex;
+}
+.junta-ambos{
+  margin-top: -2.2ex;
+  margin-bottom: -2.2ex;
+}
 .icono-listado{
   height: 4.25ex;
   float: left;

@@ -37,6 +37,10 @@
       <strong>Periodicidad</strong> <br>
       {{metadato.peiodicidad}}
     </div>
+    <div class="notice notice-verde1" ng-show="metadato.fuente">
+      <strong>Fuente(s)</strong> <br>
+      {{metadato.fuente}}
+    </div>
     <!--<div class="notice notice-verde1">
     <strong>Fuente:</strong><br>
     Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
@@ -52,7 +56,7 @@
         <th>Año</th><th>Valor</th>
       </tr>
       <tr ng-repeat="dato in datos">
-        <td>{{dato.ejercicio}}</td><td style="text-align:right">{{dato.resultado|number:"3"}}</td>
+        <td> {{dato.ejercicio}} {{dato.periodo}} </td><td style="text-align:right">{{dato.resultado|number:"3"}}</td>
       </tr>
     </table>
   </div>

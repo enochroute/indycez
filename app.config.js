@@ -2,7 +2,9 @@
 
 var angularIndyce = angular.module('MainModule',[
   'ngRoute',
-  'nvd3'
+  'nvd3',
+  'ngAnimate',
+  'ui.bootstrap'
 ]);
   angularIndyce.config(function($locationProvider,$routeProvider) {
       $locationProvider.hashPrefix('!');

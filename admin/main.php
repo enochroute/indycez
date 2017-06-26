@@ -6,6 +6,7 @@ if($_SESSION['key'] != md5("labor vincit omnia")){
     header("Location:index.php");
     die();
 }
+
 require_once("class/conexion.php");
 $conn = new conexion();
 $conexion = $conn->conectar();
@@ -31,6 +32,7 @@ $Exuserinfo = $conexion->query('CALL user_info('.$_SESSION['idUser'].')');
 $_SESSION['usrInfo'] = $Exuserinfo->fetch_array(MYSQLI_NUM);
 $conexion->close();
 unset($Exuserinfo);
+
 ?>
 <!DOCTYPE html>
 <!--[if IE 8]> <html lang="en" class="ie8 no-js"> <![endif]-->

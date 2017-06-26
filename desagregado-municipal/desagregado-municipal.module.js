@@ -1,7 +1,9 @@
 'use strict';
 
 // Define the `phoneList` module
-angular.module('detalleIndicadores', [
+angular.module('desagregadoMunicipal', [
   'ngRoute',
-  'nvd3'
+  'nvd3',
+  'ngAnimate',
+  'ui.bootstrap'
 ]);

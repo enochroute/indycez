@@ -653,7 +653,7 @@ $conexion->close();
 <?php
   $conexion = $conn->conectar();
   $conexion->set_charset("utf8");
-  $Query =  "SELECT id_fuente,fuente FROM fuentes LIMIT 11,10";
+  $Query =  "SELECT id_fuente,fuente FROM fuentes LIMIT 11,12";
 
   $ExConsulta = $conexion->query($Query);
    unset($Query);
@@ -675,7 +675,7 @@ $conexion->close();
 <?php
   $conexion = $conn->conectar();
   $conexion->set_charset("utf8");
-  $Query =  "SELECT id_fuente,fuente FROM fuentes LIMIT 21,10";
+  $Query =  "SELECT id_fuente,fuente FROM fuentes LIMIT 23,12";
 
   $ExConsulta = $conexion->query($Query);
    unset($Query);
@@ -696,7 +696,7 @@ $conexion->close();
 <?php
   $conexion = $conn->conectar();
   $conexion->set_charset("utf8");
-  $Query =  "SELECT id_fuente,fuente FROM fuentes LIMIT 31,11";
+  $Query =  "SELECT id_fuente,fuente FROM fuentes LIMIT 35,12";
 
   $ExConsulta = $conexion->query($Query);
    unset($Query);
@@ -928,10 +928,10 @@ while($Res = $ExConsulta->fetch_array(MYSQLI_NUM)){
 <input class="form-control" type="text" id="ResultadoPeriodo<?php echo $n;?>" value="<?php echo $Res[0]; ?> " onchange="modificarRes(<?php echo $n?>);">
 </td>
 <td>
-<input class="form-control" type="number" lang="en-EN" id="ResultadoMeta<?php echo $n;?>"  value="<?php echo $Res[2]; ?>" onchange="modificarRes(<?php echo $n?>);">
+<input class="form-control" type="text" id="ResultadoMeta<?php echo $n;?>"  value="<?php echo $Res[1]; ?>" onchange="modificarRes(<?php echo $n?>);">
 </td>
 <td>
-<input class="form-control" type="number" lang="en-EN" step="0.1" id="ResultadoRes<?php echo $n;?>"  value="<?php echo $Res[3]; ?>" onchange="modificarRes(<?php echo $n?>);">
+<input class="form-control" type="text" id="ResultadoRes<?php echo $n;?>"  value="<?php echo $Res[2]; ?>" onchange="modificarRes(<?php echo $n?>);">
 </td>
 <td>
     <select class="form-control" id="ResultadoMunicipio<?php echo $n; ?>" onchange="agrega_region(this.value,<?php echo $n?>);">

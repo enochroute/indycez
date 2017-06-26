@@ -6,6 +6,7 @@ if($_SESSION['key'] != md5("labor vincit omnia")){
     header("Location:index.php");
     die();
 }
+
 require_once("class/conexion.php");
 $conn = new conexion();
 $conexion = $conn->conectar();
@@ -309,6 +310,8 @@ $conexion->set_charset("utf8");
         <script type="text/javascript" src="js/dataTables.bootstrap.js"></script>
         <script src="js/table-managed.js"></script>
         <script type="text/javascript">
+
+
             function TableManagedCustomize() {
                 TableManaged.init();
             }
@@ -319,8 +322,11 @@ $conexion->set_charset("utf8");
                 Index.initKnowElements();
                 TableManaged.init();
                 loadList(1);
+
+
             });
             function loadList(v) {
+
                 if (v == 0) {
                     return false;
                 }
@@ -351,12 +357,15 @@ $conexion->set_charset("utf8");
                     $('#indicadorActivo').val(v);
                 });
             }
+
             function guardandoIndicador() {
+
                 document.getElementById('msg_estado').innerHTML = "<div style='position: absolute; padding:70px; top: 30%; width:90%; z-index: 99; background-color:#50a649; color:#fff;'> <i class='fa fa-refresh fa-spin fa-3x fa-fw'></i> Actualizando Información del Indicador, porfavor espere. </div>";
                 if ($('#indicador_activo').is(':checked')) {
                     var ind_activo = 1;
                 }else{
                     var ind_activo = 0;}
+
                 $.ajax({
                     method: "POST",
                     url: "class/indicadores.php",
@@ -386,10 +395,12 @@ $conexion->set_charset("utf8");
                     }
                 }).done(function(msg) {
                     if (msg == "hecho") {
+
                         document.getElementById('msg_estado').innerHTML = "<div style='position: absolute; padding:70px; top: 30%; width:90%; z-index: 99; background-color:#50a649; color:#fff;'> <i class='fa fa-refresh fa-spin fa-3x fa-fw'></i> Actualizando Temas Asociados, porfavor espere. </div>";
                         guardandoTemasAsociados();
                         return true;
                     } else {
+
                         document.getElementById('msg_estado').innerHTML = "";
                         alert(msg);
                         $('#infoIndModal').modal('hide');
@@ -444,6 +455,8 @@ $conexion->set_charset("utf8");
                 if ($('#chkPoblacion').is(':checked')) {
                     arreglo = arreglo + "15 ";
                 }
+
+
                 $.ajax({
                     method: "POST",
                     url: "class/indicadores.php",
@@ -464,6 +477,7 @@ $conexion->set_charset("utf8");
                         return false;
                     }
                 });
+
             }
             function guardandoFuentesInformacion() {
                 var arreglo = "";
@@ -475,6 +489,7 @@ $conexion->set_charset("utf8");
                         arreglo = arreglo + x + " ";
                     }
                 }
+
                 $.ajax({
                     method: "POST",
                     url: "class/indicadores.php",
@@ -490,6 +505,7 @@ $conexion->set_charset("utf8");
                         return true;
                     } else {
                         document.getElementById('msg_estado').innerHTML = "";
+
                         alert(msg);
                         $('#infoIndModal').modal('hide');
                         return false;
@@ -497,16 +513,21 @@ $conexion->set_charset("utf8");
                 });
             }
             function guardandoDependencias(){
+
                 var arreglo = "";
                 if ($('#dependencia1').is(':checked')) {
                     arreglo = "1 ";
                 }
+
                 var dependencias_arr = ["2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","21","31","41","42","43","44","45","46","60","61","62","63","64","65","66","67","68","69","70","71","72","73","74","75","76","77","78","79","80","81","82","83","84","85","86","87","88","89","90","91","92","93"];
+
+
                 for (x = 0; x < dependencias_arr.length; x++) {
                     if ($('#dependencia' + dependencias_arr[x]).is(':checked')) {
                         arreglo = arreglo + dependencias_arr[x] + " ";
                     }
                 }
+
                 $.ajax({
                     method: "POST",
                     url: "class/indicadores.php",
@@ -516,11 +537,14 @@ $conexion->set_charset("utf8");
                         informacion: arreglo
                     }
                 }).done(function(msg) {
+
                     if (msg == "hecho") {
+
                         document.getElementById('msg_estado').innerHTML = "<div style='position: absolute; padding:70px; top: 30%; width:90%; z-index: 99; background-color:#50a649; color:#fff;'> <i class='fa fa-refresh fa-spin fa-3x fa-fw'></i> Actualizando Resultados, porfavor espere. </div>";
                         guardaResultados()
                         return true;
                     } else {
+
                         document.getElementById('msg_estado').innerHTML = "";
                         alert(msg);
                         $('#infoIndModal').modal('hide');
@@ -528,6 +552,7 @@ $conexion->set_charset("utf8");
                     }
                 });
             }
+
             function guardaResultados(){
                 var actualizar_registros = false;
                 for(x=1;x<=$('#numRowsTablaResultados').val();x++){
@@ -536,6 +561,7 @@ $conexion->set_charset("utf8");
                         actualizar_registros = true;
                     }
                 }
+
                 if(actualizar_registros){
                     if(confirm("Existen resultados a eliminar o modificar, ¿desea continuar?")){
                         var arreglo_resultados = [];
@@ -568,7 +594,10 @@ $conexion->set_charset("utf8");
                         alert(msg);
                         return true;
                     }
+
+
                 });
+
                 }
                     return true;
                 }else{
@@ -577,6 +606,12 @@ $conexion->set_charset("utf8");
                     return true;
                   }
             }
+
+
+
+
+
+
             function carga_lineas() {
                 $.ajax({
                     method: "POST",
@@ -593,7 +628,9 @@ $conexion->set_charset("utf8");
                         .end()
                         .append('<option value="130">No alineado al PED</option>')
                         .val('130');
+
                 });
+
             }
             function eliminaPrev(v){
                 $('#ResultadoFila'+v).addClass('danger');
@@ -618,14 +655,22 @@ $conexion->set_charset("utf8");
                 document.getElementById('sltMpio'+v).innerHTML = "<select class='form-control' id='ResultadoMunicipio"+v+"' onchange='agrega_region(this.value,"+v+");'><option value='1'>Apozol</option></select>";
                  var municipios_list = [<?php $conexion = $conn->conectar(); $conexion->set_charset("utf8"); $ExListMpios = $conexion->query("SELECT nombre from municipios"); while($rMp = $ExListMpios->fetch_array(MYSQLI_NUM)){echo '"'.$rMp[0].'",';}    ?>"No Aplica"];
                         for(var y=0;y<municipios_list.length;y++){
+
                             $('#ResultadoMunicipio'+v).append($('<option>', {
                                     value: y+1,
                                     text: municipios_list[y]}));
                         }
+
+
+
+
+
                 var n =  parseInt(v);
                 n = n+1;
                 $('#numRowsTablaResultados').val(n);
             }
+
+
             function carga_estrategias() {
                 $.ajax({
                     method: "POST",
@@ -637,6 +682,7 @@ $conexion->set_charset("utf8");
                 }).done(function(msg) {
                     document.getElementById('slctEstrategia').innerHTML = msg;
                 });
+
             }
             function habilitarBtn(){
                 archivo = $('#fileXLS').val();
@@ -648,6 +694,8 @@ $conexion->set_charset("utf8");
                     $('#fileXLS').val('');
                     return false;
                 }
+
+
             }
             function cargar_excel(){
                  var formData = new FormData(document.getElementById("xlsForm"));
@@ -682,28 +730,44 @@ $conexion->set_charset("utf8");
                         region = datos[x]["region"];
                         ejercicio = datos[x]["ejercicio"];
                         var v = $('#numRowsTablaResultados').val();
+
 $('#resultadosIndicadorTabla tr:last').after('<tr id="ResultadoFila'+v+'"><td><input class="form-control" type="text" id="ResultadoPeriodo'+v+'" value="'+periodo+'"></td><td><input class="form-control" type="text" id="ResultadoMeta'+v+'" value="'+meta+'"></td><td><input class="form-control" type="text" id="ResultadoRes'+v+'" value="'+resultado+'"></td><td><div id="sltMpio'+v+'"></div></td><td><div id="region'+v+'"><input type="hidden" id="ResultadoRegion'+v+'" value="'+idregion+'"><input type="text" id="RegionTxt'+v+'" readonly value="'+region+'" class="form-control" ></div></td><td><input class="form-control" type="number" id="ResultadoEjercicio'+v+'" value="'+ejercicio+'"> </td><td><div class="btn-group" id="ResultadoBtn'+v+'"><button type="button" class="btn btn-default" onclick="eliminaPrev('+v+')"><span class="text-danger"><i class="fa fa-trash"></i></span> </button></div></td></tr>');
                         $('#ResultadoFila'+v).addClass('success');
                         var n =  parseInt(v);
                         n = n+1;
                         $('#numRowsTablaResultados').val(n);
                         agrega_mpios_list(v,municipio,idmunicipio);
+
+
                     }
+
+
+
+
+
                 });
                return true;
+
             }
             function agrega_mpios_list(v,m,i){
                         document.getElementById('sltMpio'+v).innerHTML = "<select class='form-control' id='ResultadoMunicipio"+v+"'  onchange='agrega_region(this.value,"+v+");' ><option value='"+i+"'>"+m+"</option></select>";
                  var municipios_list = [<?php $conexion = $conn->conectar(); $conexion->set_charset("utf8"); $ExListMpios = $conexion->query("SELECT nombre from municipios"); while($rMp = $ExListMpios->fetch_array(MYSQLI_NUM)){echo '"'.$rMp[0].'",';}    ?>"No Aplica"];
                         for(var y=0;y<municipios_list.length;y++){
+
                             $('#ResultadoMunicipio'+v).append($('<option>', {
                                     value: y+1,
                                     text: municipios_list[y]}));
                         }
+
+
                         return true;
+
+
                     }
             function agrega_region(v,n){
+
                 modificarRes(n);
+
                 $.ajax({
                     method: "POST",
                     url: "class/catalogos.php",
@@ -713,9 +777,15 @@ $('#resultadosIndicadorTabla tr:last').after('<tr id="ResultadoFila'+v+'"><td><i
                     }
                 }).done(function(msg) {
                     var datos = JSON.parse(msg);
+
                     document.getElementById('region'+n).innerHTML = "<input type='hidden' id='ResultadoRegion"+n+"' value='"+datos[0]+"'><input type='text' id='RegionTxt' readonly value='"+datos[1]+"' class='form-control' >";
                 });
+
+
             }
+
+
+
         </script>
     </body>
     </html>

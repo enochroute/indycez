@@ -7,17 +7,20 @@ if($_SESSION['key'] != md5("labor vincit omnia")){
     die();
 }
 date_default_timezone_set('America/Mexico_City');
+
 class indicador {
+
     function actualizar($i){
+
         include("conexion.php");
         $conn = new conexion();
         $conexion = $conn->conectar();
         $conexion->set_charset("utf8");
-        if($i['fecha_act'] == ""){
+        // if($i['fecha_act'] == ""){
             $fecha = date("Y-m-d H:i:s");
-        }else{
-            $fecha = $i['fecha_act'].' '.date("H:i:s");
-        }
+        // }else{
+            // $fecha = $i['fecha_act'].' '.date("H:i:s");
+        // }
         $query = 'call actualiza_info_indicador(
         '.$i['id_indicador'].',
         "'.$i['nombre'].'",
@@ -41,6 +44,7 @@ class indicador {
         "'.$i['responsable'].'",
         '.$i['activo'].'
         )' ;
+
         if($conexion->query($query)){
             $msg = "hecho";
         }else{
@@ -117,6 +121,8 @@ class indicador {
         return "hecho";
     }
     function actualizar_resultados($i){
+
+
        if(count($i['data']) > 0){
             $query = "delete from metas_resultados where id_indicador = ".$i['data'][0][0];
             include("conexion.php");
@@ -138,54 +144,23 @@ class indicador {
                 $query = 'INSERT INTO metas_resultados (id_indicador,periodo,meta,resultado,municipio,region,ejercicio) VALUES ('.$id_indicador.',"'.$periodo.'","'.$meta.'","'.$resultado.'",'.$municipio.','.$region.',"'.$ejercicio.'")';
                 $conexion->query($query) or die ("error al intentar actualizar resultados: ".$query);
                 $conexion->close();
+
             }
+
            return "hecho";
+
        }else{
            return "hecho";
        }
+
+
+
     }
-    function eliminar_indicador($i){
-          include("conexion.php");
-            $conn = new conexion();
 
-        $query = "delete from metas_resultados where id_indicador = ".$i['indicador'];
-            $conexion = $conn->conectar();
-            $conexion->query($query) or die ("error al intentar eliminar metas_resultados: ".$conexion->error);
-            $conexion->close();
-            unset($query);
-
-                  $query = "delete from fuente_indicador where id_indicador = ".$i['indicador'];
-            $conexion = $conn->conectar();
-            $conexion->query($query) or die ("error al intentar eliminar fuentes del indicador: ".$conexion->error);
-            $conexion->close();
-            unset($query);
-
-
-                $query = "delete from indicador_dependencia where id_indicador = ".$i['indicador'];
-            $conexion = $conn->conectar();
-            $conexion->query($query) or die ("error al intentar eliminar indicador_dependencia ".$conexion->error);
-            $conexion->close();
-            unset($query);
-
-                $query = "delete from indicador_tema where id_indicador = ".$i['indicador'];
-            $conexion = $conn->conectar();
-            $conexion->query($query) or die ("error al intentar eliminar indicadores tema: ".$conexion->error);
-            $conexion->close();
-            unset($query);
-
-
-           $query = "delete from indicadores where id_indicador = ".$i['indicador'];
-            $conexion = $conn->conectar();
-            $conexion->query($query) or die ("error al intentar eliminar indicadores tema: ".$conexion->error);
-            $conexion->close();
-            unset($query);
-            unset($conexion);
-         unset($conn);
-        return "hecho";
-    }
 
 }
 $indicador = new indicador();
+
 switch($_POST['accion']){
     case 1:
     $resultado = $indicador->actualizar($_POST);
@@ -201,9 +176,6 @@ switch($_POST['accion']){
     break;
     case 5:
     $resultado = $indicador->actualizar_resultados($_POST);
-    break;
-    case 6:
-    $resultado = $indicador->eliminar_indicador($_POST);
     break;
 
 }
