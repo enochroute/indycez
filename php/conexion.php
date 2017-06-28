@@ -1,9 +1,14 @@
 <?php
-$host="localhost";
-$user="midezuser";
-$pass="zac5*s_61B.D1";
+$host="10.221.12.5";
+$user="usrReportes";
+$pass="r3p0rt35*2014";
 $nbd="indyce";
-$con=mysqli_connect("localhost","$user","$pass","$nbd") or die ("No se pudo conectar con el servidor");
+$con= new mysqli("$host","$user","$pass","$nbd");
+if ($con->connect_errno) {
+    printf("Connect failed: %s\n", $con->connect_error);
+    exit();
+}
+  // or die ("No se pudo conectar con el servidor")
 if (!mysqli_set_charset($con, "utf8")) {
     exit();
 }
