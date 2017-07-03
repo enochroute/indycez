@@ -2,11 +2,13 @@
 <html lang="es" ng-app="MainModule" ng-init="temaID=0">
 <head>
   <meta charset="utf-8">
+  <meta charset="utf-8">
   <title>InDyCEZ</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Archivos css -->
   <link rel="stylesheet" type="text/css" href="css/estilos.css">
   <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="bower_components/angular-bootstrap/ui-bootstrap-csp.css" rel="stylesheet" >
   <link href="bower_components/nvd3/build/nv.d3.min.css" rel="stylesheet">
 
   <!-- Archivos js -->
@@ -22,151 +24,136 @@
   <script src="app.config.js" charset="utf-8"></script>
   <script src="lista-temas/lista-temas.module.js"></script>
   <script src="lista-temas/lista-temas.component.js"></script>
+  <script src="lista-ejes/lista-ejes.module.js"></script>
+  <script src="lista-ejes/lista-ejes.component.js"></script>
   <script src="lista-indicadores/lista-indicadores.module.js"></script>
   <script src="lista-indicadores/lista-indicadores.component.js"></script>
   <script src="detalle-indicadores/detalle-indicadores.module.js"></script>
   <script src="detalle-indicadores/detalle-indicadores.component.js"></script>
   <script src="desagregado-municipal/desagregado-municipal.module.js"></script>
   <script src="desagregado-municipal/desagregado-municipal.component.js"></script>
+  <script src="lista-lineas/lista-lineas.module.js"></script>
+  <script src="lista-lineas/lista-lineas.component.js"></script>
 
   <!-- favicon -->
 
   <link rel='shortcut icon' href='favicon.ico'/>
-
+  <title></title>
 </head>
 <body>
-  <div id="wrapper">
-    <div class="overlay"></div>
-    <div id="sticky-anchor"> </div>
-    <div id="sticky">
+  <div class="row" id="contenedor">
+    <div class="col-sm-3 lateral" id="sideBar">
 
+      <div class="col-sm-4 col-md-4 col-lg-4 separa-arriba" style="margin-top:8ex;" >
+        <a href="#!/">
+          <img class="logo_app" ng-src="img/logo_indycez.png" alt="" />
+        </a>
+      </div>
+      <div style="margin-top:15ex; margin-left:2em;">
+        <script type="text/ng-template" id="group-template.html">
+        <div class="panel-heading">
+        <h4 class="panel-title" style="color:#fa39c3">
+        <a href tabindex="0" class="accordion-toggle" ng-click="toggleOpen()" uib-accordion-transclude="heading">
+        <span uib-accordion-header ng-class="{'text-muted': isDisabled}">
+        {{heading}}
+        </span>
+        </a>
+        </h4>
+        </div>
+        <div class="panel-collapse collapse" uib-collapse="!isOpen">
+        <div class="panel-body" style="text-align: right" ng-transclude></div>
+        </div>
+        </script>
+
+
+        <uib-accordion close-others="oneAtATime">
+          <div uib-accordion-group class="panel-success" is-open="status.open">
+            <uib-accordion-heading>
+              Indicadores por tema <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}"></i>
+            </uib-accordion-heading>
+            <lista-temas></lista-temas>
+          </div>
+        </uib-accordion>
+        <uib-accordion close-others="oneAtATime">
+          <div uib-accordion-group class="panel-success" is-open="status.open">
+            <uib-accordion-heading>
+              Metas por eje <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}"></i>
+            </uib-accordion-heading>
+            <lista-ejes></lista-ejes>
+          </div>
+        </uib-accordion>
+      </div>
+
+
+    </div>
+    <div class="col-sm-9" id="contenidoPrincipal">
+      <div class="row" >
+        <!-- <div class="col-lg-10 col-lg-offset-1"> -->
+        <div class="col-lg-10">
+          <div class="row">
+
+
+            <div class="col-sm-4 col-md-4 col-lg-4">
+            </div>
+            <div class="col-sm-4 col-md-4 col-lg-4" style="margin-top:-0.5ex; float:right">
+              <p>
+                <!--Buscar:-->
+                <!-- <input ng-model="buscaIndicador" placeholder="Buscar indicador"/ style="float:right"> -->
+              </p>
+            </div>
+          </div>
+          <div ng-view></div>
+        </div>
+      </div>
+    </div>
   </div>
-    <!-- Sidebar -->
-    <nav class="navbar navbar-inverse navbar-fixed-top" id="sidebar-wrapper" role="navigation">
-      <lista-temas></lista-temas>
-  </nav>
-<!-- /#sidebar-wrapper -->
-<!-- Page Content -->
-<div id="page-content-wrapper">
-  <button type="button" class="hamburger is-closed" data-toggle="offcanvas">
-    <span class="hamb-top"></span>
-    <span class="hamb-middle"></span>
-    <span class="hamb-bottom"></span>
-  </button>
-  <div class="container" >
-    <div class="row" >
-      <div class="col-lg-10 col-lg-offset-1">
-        <div class="row">
-
-          <div class="col-sm-4 col-md-4 col-lg-4">
-            <a href="#!/">
-              <img class="logo_app" ng-src="img/logo_indycez.png" alt="" />
-            </a>
+    <footer class="botton_bar">
+      <div class="row">
+        <div class="col-sm-3 image_footer">
+          <img src="img/logo_zacatecas.png">
+        </div>
+        <div class="col-sm-3">
+          <div ><h2 style="font-size: 10px;font-size: 1.65vw;">Teléfonos</h2>
+            <ul class="list_telefonos" style="font-size: 10px;font-size: 1.1vw;">
+              <li><a ng-href="tel://4929223005" style="text-decoration:none"><span style="color: #90A4AE;">922 3005</span></a>	Cruz Roja Mexicana</li>
+              <li><a ng-href="tel://4929225350" style="text-decoration:none"><span style="color: #90A4AE;">922 5350</span></a>	Bomberos</li>
+              <li><a ng-href="tel://4929220180" style="text-decoration:none"><span style="color: #90A4AE;">922 0180</span></a>	Policía Estatal Preventiva</li>
+              <li><a ng-href="tel://4929225320" style="text-decoration:none"><span style="color: #90A4AE;">924 5320</span></a>	Tránsito del Estado</li>
+              <li><a ng-href="tel://4929225000" style="text-decoration:none"><span style="color: #90A4AE;">491 5000</span></a>	Ciudad Gobierno</li>
+              <li><a ng-href="tel://911" style="text-decoration:none"><span style="color: #90A4AE;">911</span></a>	Emergencias</li>
+              <li><a ng-href="tel://089" style="text-decoration:none"><span style="color: #90A4AE;">089</span></a>	Denuncia Anónima</li>
+            </ul>
           </div>
-          <div class="col-sm-4 col-md-4 col-lg-4">
+        </div>
+        <div class="col-sm-3">
+          <div><h2 style="font-size: 10px;font-size: 1.65vw;">Sitios de interés</h2>
+            <ul class="list_links"  style="font-size: 10px;font-size: 1.1vw;">
+              <li><a ng-href="http://www.zacatecas.gob.mx" target="blank">Gobierno del Estado de Zacatecas</a></li>
+              <li><a ng-href="http://upla.zacatecas.gob.mx" target="blank">Coordinación Estatal de Planeación</a></li>
+              <!--<li><a ng-href="http://cozcyt.gob.mx/site2" target="blank" >COZCyT</a></li>
+              <li><a ng-href="http://www.finanzas.gob.mx" target="blank" >Secretaría de Finanzas</a></li>
+              <li><a ng-href="http://www.seduzac.gob.mx/portal" target="blank">Secretaría de Educación</a></li>
+              <li><a ng-href="http://www.zacatecastravel.com" target="blank">Secretaría de Turismo</a></li>
+              <li><a ng-href="http://www.saludzac.gob.mx/home" target="blank">Secretaría de Salud</a></li>
+              <li><a ng-href="http://www.issstezac.gob.mx" target="blank">ISSSTEZAC</a></li>
+              <li><a ng-href="http://www.pgje.zacatecas.gob.mx/sitio" target="blank">PGJE</a></li> -->
+            </ul>
           </div>
-          <div class="col-sm-4 col-md-4 col-lg-4" style="margin-top:-0.5ex; float:right">
-            <p>
-              <!--Buscar:-->
-              <!-- <input ng-model="buscaIndicador" placeholder="Buscar indicador"/ style="float:right"> -->
+        </div>
+        <div class="col-sm-3">
+          <div><h2 style="font-size: 10px;font-size: 1.65vw;">Contacto</h2>
+            <p style="font-size: 10px;font-size: 1.1vw;">
+              Coordinación Estatal de Planeación <br>
+              Circuito Cerro del Gato s/n <br>
+              Colonia Ciudad Gobierno <br>
+              Edificio H | Segundo Piso <br>
+              C.P. 98160 <br>
+              Zacatecas, Zac.
             </p>
           </div>
         </div>
-        <div ng-view></div>
       </div>
-    </div>
-  </div>
-  <footer class="botton_bar">
-    <div class="row">
-      <div class="col-sm-3 image_footer">
-        <img src="img/logo_zacatecas.png">
-      </div>
-      <div class="col-sm-3">
-        <div ><h2 style="font-size: 10px;font-size: 1.65vw;">Teléfonos</h2>
-          <ul class="list_telefonos" style="font-size: 10px;font-size: 1.1vw;">
-            <li><a ng-href="tel://4929223005" style="text-decoration:none"><span style="color: #90A4AE;">922 3005</span></a>	Cruz Roja Mexicana</li>
-            <li><a ng-href="tel://4929225350" style="text-decoration:none"><span style="color: #90A4AE;">922 5350</span></a>	Bomberos</li>
-            <li><a ng-href="tel://4929220180" style="text-decoration:none"><span style="color: #90A4AE;">922 0180</span></a>	Policía Estatal Preventiva</li>
-            <li><a ng-href="tel://4929225320" style="text-decoration:none"><span style="color: #90A4AE;">924 5320</span></a>	Tránsito del Estado</li>
-            <li><a ng-href="tel://4929225000" style="text-decoration:none"><span style="color: #90A4AE;">491 5000</span></a>	Ciudad Gobierno</li>
-            <li><a ng-href="tel://911" style="text-decoration:none"><span style="color: #90A4AE;">911</span></a>	Emergencias</li>
-            <li><a ng-href="tel://089" style="text-decoration:none"><span style="color: #90A4AE;">089</span></a>	Denuncia Anónima</li>
-          </ul>
-        </div>
-      </div>
-      <div class="col-sm-3">
-        <div><h2 style="font-size: 10px;font-size: 1.65vw;">Sitios de interés</h2>
-          <ul class="list_links"  style="font-size: 10px;font-size: 1.1vw;">
-            <li><a ng-href="http://www.zacatecas.gob.mx" target="blank">Gobierno del Estado de Zacatecas</a></li>
-            <li><a ng-href="http://upla.zacatecas.gob.mx" target="blank">Coordinación Estatal de Planeación</a></li>
-            <!--<li><a ng-href="http://cozcyt.gob.mx/site2" target="blank" >COZCyT</a></li>
-            <li><a ng-href="http://www.finanzas.gob.mx" target="blank" >Secretaría de Finanzas</a></li>
-            <li><a ng-href="http://www.seduzac.gob.mx/portal" target="blank">Secretaría de Educación</a></li>
-            <li><a ng-href="http://www.zacatecastravel.com" target="blank">Secretaría de Turismo</a></li>
-            <li><a ng-href="http://www.saludzac.gob.mx/home" target="blank">Secretaría de Salud</a></li>
-            <li><a ng-href="http://www.issstezac.gob.mx" target="blank">ISSSTEZAC</a></li>
-            <li><a ng-href="http://www.pgje.zacatecas.gob.mx/sitio" target="blank">PGJE</a></li> -->
-          </ul>
-        </div>
-      </div>
-      <div class="col-sm-3" style="margin-left:-1em;">
-        <div><h2 style="font-size: 10px;font-size: 1.65vw;">Contacto</h2>
-          <p style="font-size: 10px;font-size: 1.1vw;">
-            Coordinación Estatal de Planeación <br>
-            Circuito Cerro del Gato s/n <br>
-            Colonia Ciudad Gobierno <br>
-            Edificio H | Segundo Piso <br>
-            C.P. 98160 <br>
-            Zacatecas, Zac.
-          </p>
-        </div>
-      </div>
-    </div>
-  </footer>
-</div>
-<!-- /#page-content-wrapper -->
-
-</div>
-<!-- /#wrapper -->
-<script type="text/javascript">
-$(document).ready(function () {
-  var trigger = $('.hamburger'),
-  overlay = $('.overlay'),
-  isClosed = false;
-
-  trigger.click(function () {
-    hamburger_cross();
-  });
-
-  function hamburger_cross() {
-
-    if (isClosed == true) {
-      overlay.hide();
-      trigger.removeClass('is-open');
-      trigger.addClass('is-closed');
-      isClosed = false;
-    } else {
-      overlay.show();
-      trigger.removeClass('is-closed');
-      trigger.addClass('is-open');
-      isClosed = true;
-    }
-  }
-
-  $('[data-toggle="offcanvas"]').click(function () {
-    $('#wrapper').toggleClass('toggled');
-  });
-
-  $('#wrapper').on("click", "nav a", function(){
-    console.log("Sí se registró");
-    $('#wrapper').toggleClass('toggled');
-    overlay.hide();
-    trigger.removeClass('is-open');
-    trigger.addClass('is-closed');
-    isClosed = false;
-  });
-});
-</script>
+    </footer>
 
 
 </body>

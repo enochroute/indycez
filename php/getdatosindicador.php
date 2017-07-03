@@ -32,7 +32,7 @@ if(isset($_GET['i']) && !empty($_GET['i']))
 
   WHERE
   mr.municipio = 60
-  AND id_indicador = $indicador AND mr.resultado <> 0;";
+  AND id_indicador = $indicador;";
   //  $query="select * from indicadores where id_eje='$nameindicador'";
 
 
@@ -101,9 +101,9 @@ function convert($resultado) {
     $intermediate = array();
 
     while($item = mysqli_fetch_assoc($resultado)) {
-        $key = $item['periodo'];
-        $date = $item['ejercicio'];
-        $value = $item['resultado'];
+        $key = trim($item['periodo']);
+        $date = trim($item['ejercicio']);
+        $value = trim($item['resultado']);
         $intermediate[$key][] = $arrayName = array(
           'label' => $date,
           'value' => (double)$value

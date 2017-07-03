@@ -1,7 +1,8 @@
 <?php
-$host="10.221.12.5";
-$user="usrReportes";
-$pass="r3p0rt35*2014";
+//$host="10.221.12.5";
+$host="localhost";
+$user="midezuser";
+$pass="zac5*s_61B.D1";
 $nbd="indyce";
 $con= new mysqli("$host","$user","$pass","$nbd");
 if ($con->connect_errno) {
