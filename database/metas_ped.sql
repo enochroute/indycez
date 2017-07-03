@@ -1,3 +1,21 @@
+CREATE TABLE `dependencias_metas` (
+  `id_meta` int(11) DEFAULT NULL,
+  `id_dependencia` tinyint(4) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE `metas_ped` (
+  `id_meta` int(11) NOT NULL,
+  `meta_descripcion` text,
+  `linea_estrategica` smallint(6) DEFAULT NULL,
+  `meta` varchar(8) DEFAULT NULL,
+  `avance` varchar(8) DEFAULT NULL,
+  `tendencia_deseable` tinyint(4) DEFAULT NULL,
+  `descripcion_avance` text,
+  `fecha_actualizacion` datetime DEFAULT NULL,
+  `dep_responsable` tinyint(4) DEFAULT NULL,
+  PRIMARY KEY (`id_meta`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
 INSERT INTO `indyce`.`metas_ped` (`id_meta`, `meta_descripcion`, `linea_estrategica`, `meta`, `avance`, `tendencia_deseable`, `descripcion_avance`, `fecha_actualizacion`) VALUES (1, 'Lograr que el 50% de integrantes de los órganos de participación social para la definición de política pública, sean mujeres.', 1, 0, 0, 1, NULL, NULL);
 INSERT INTO `indyce`.`metas_ped` (`id_meta`, `meta_descripcion`, `linea_estrategica`, `meta`, `avance`, `tendencia_deseable`, `descripcion_avance`, `fecha_actualizacion`) VALUES (2, 'Incrementar la participación ciudadana en los procesos electorales para alcanzar la media nacional.', 1, 0, 0, 1, NULL, NULL);
 INSERT INTO `indyce`.`metas_ped` (`id_meta`, `meta_descripcion`, `linea_estrategica`, `meta`, `avance`, `tendencia_deseable`, `descripcion_avance`, `fecha_actualizacion`) VALUES (3, 'Actualizar anualmente lo agenda de participación con las organizaciones de la sociedad civil.', 1, 0, 0, 1, NULL, NULL);
