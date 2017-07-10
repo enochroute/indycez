@@ -23,7 +23,7 @@ if(isset($_GET['i']) && !empty($_GET['i']))
   "SELECT
   -- mr.id_indicador,
   -- mr.id_indicador,
-  -- mr.periodo,
+  mr.periodo,
   mr.resultado,
   mr.ejercicio
   FROM
@@ -38,15 +38,99 @@ if(isset($_GET['i']) && !empty($_GET['i']))
 
   $resultado=mysqli_query($con,$query);
 
-
-  while($row=$resultado->fetch_assoc()){
-
-    $datos[] = $row;
-
-  }
+  if($resultado) {
+    $salidaJSON = convert($resultado);
 }
-//$salidaJSON = $arrayName = array(	 'values' => $datos
-  //                              );
 
-echo json_encode($datos);
+
+
+      /*else {
+        switch ($row['periodo']) {
+          case 'Trimestre1':
+          $datos[] = array (
+          "label" => $row['ejercicio'],
+          "value" => $row['resultado'],
+          "key" => $row['periodo']
+        );
+        break;
+        case 'Trimestre2':
+        $datos[] = array (
+        "label" => $row['ejercicio'],
+        "value" => $row['resultado'],
+        "key" => $row['periodo']
+      );
+      break;
+      case 'Trimestre3':
+      $datos[] = array (
+      "label" => $row['ejercicio'],
+      "value" => $row['resultado'],
+      "key" => $row['periodo']
+    );
+    break;
+    case 'Trimestre4':
+    $datos[] = array (
+    "label" => $row['ejercicio'],
+    "value" => $row['resultado'],
+    "key" => $row['periodo']
+  );
+  break;
+
+  default:
+  # code...
+  break;
+
+}
+$salidaJSON[] = $arrayName = array
+(
+'values' => $datosT1,
+'key' => 'Trimestre 1'
+);
+$salidaJSON[] = $arrayName = array
+(
+'values' => $datosT2,
+'key' => 'Trimestre 2'
+);
+
+} */
+
+
+}
+
+function convert($resultado) {
+
+    $intermediate = array();
+
+    while($item = mysqli_fetch_assoc($resultado)) {
+        $key = trim($item['periodo']);
+        $date = trim($item['ejercicio']);
+        $value = trim($item['resultado']);
+        $valorSeparado = explode('.',(double)$value);
+        if ($valorSeparado[1] == 0) {
+          $valorFormateado = number_format($valorSeparado[0],0);
+        }
+        else {
+          $valorFormateado = number_format($value,3);
+        }
+        $intermediate[$key][] = $arrayName = array(
+          'label' => $date,
+          'value' => 1*$valorFormateado
+        );
+    }
+
+    $output = array();
+
+    foreach($intermediate as $key => $values) {
+        $output[] = array(
+          'key' => trim($key),
+          'values' => $values
+        );
+    }
+
+    return $output;
+
+    // The rest of the function stays the same
+}
+
+print json_encode($salidaJSON);
+//echo json_encode($datos);
 ?>

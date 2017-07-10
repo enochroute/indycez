@@ -9,41 +9,35 @@ var TableManaged = function () {
             "columns": [{
                 "orderable": false
             }, {
-                "orderable": true
-            }, {
                 "orderable": false
-            }, {
-                "orderable": false
-            }, {
-                "orderable": true
             }, {
                 "orderable": false
             }],
             "lengthMenu": [
-                [5, 15, 20, -1],
-                [5, 15, 20, "All"] // change per page values here
+                [5, 10, 15, 20, -1],
+                [5, 10, 15, 20, "Todos"] // change per page values here
             ],
             // set the initial value
             "pageLength": 5,
             "pagingType": "bootstrap_full_number",
             "language": {
-                "lengthMenu": "  _MENU_ records",
+                "lengthMenu": "  _MENU_ registros",
                 "paginate": {
-                    "previous":"Prev",
-                    "next": "Next",
-                    "last": "Last",
-                    "first": "First"
+                    "previous":"Anterior",
+                    "next": "Siguiente",
+                    "last": "Último",
+                    "first": "Primero"
                 }
             },
             "columnDefs": [{  // set default column settings
                 'orderable': false,
                 'targets': [0]
             }, {
-                "searchable": false,
+                "searchable": true,
                 "targets": [0]
             }],
             "order": [
-                [1, "asc"]
+                [0, "asc"]
             ] // set first column as a default sort by asc
         });
 
@@ -73,20 +67,20 @@ var TableManaged = function () {
 
     var initTable2 = function () {
 
-        var table = $('#sample_2');
+        var table = $('#sample_1');
 
         table.dataTable({
             "lengthMenu": [
-                [5, 15, 20, -1],
-                [5, 15, 20, "All"] // change per page values here
+                [5, 10, 15, 20, -1],
+                [5, 10, 15, 20, "All"] // change per page values here
             ],
             // set the initial value
             "pageLength": 5,
             "language": {
                 "lengthMenu": " _MENU_ records",
                 "paging": {
-                    "previous": "Prev",
-                    "next": "Next"
+                    "previous": "Anterior",
+                    "next": "Siguiente"
                 }
             },
             "columnDefs": [{  // set default column settings
@@ -121,13 +115,13 @@ var TableManaged = function () {
 
     var initTable3 = function () {
 
-        var table = $('#sample_3');
+        var table = $('#sample_1');
 
         // begin: third table
         table.dataTable({
             "lengthMenu": [
-                [5, 15, 20, -1],
-                [5, 15, 20, "All"] // change per page values here
+                [5, 10, 15, 20, -1],
+                [5, 10, 15, 20, "All"] // change per page values here
             ],
             // set the initial value
             "pageLength": 5,
@@ -173,8 +167,8 @@ var TableManaged = function () {
             }
 
             initTable1();
-            initTable2();
-            initTable3();
+           // initTable2();
+          //  initTable3();
         }
 
     };

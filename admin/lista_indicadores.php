@@ -38,7 +38,6 @@ $conexion->set_charset("utf8");
         <link href="css/default.css" rel="stylesheet" type="text/css" id="style_color" />
         <link rel="stylesheet" type="text/css" href="css/dataTables.bootstrap.css" />
     </head>
-
     <body class="page-header-fixed">
         <div class="header navbar navbar-fixed-top">
             <div class="header-inner">
@@ -55,12 +54,12 @@ $conexion->set_charset("utf8");
                     </li>
                     <li class="dropdown user">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
-                            <span class="username username-hide-on-mobile">Admin </span>
+                            <span class="username username-hide-on-mobile"><?php echo $_SESSION['usrInfo'][1]; ?></span>
                             <i class="fa fa-angle-down"></i>
                         </a>
                         <ul class="dropdown-menu">
                             <li>
-                                <a href="extra_profile.html"><i class="fa fa-user"></i> Mi Perfil</a>
+                                <a href="#"><i class="fa fa-user"></i> Mi Perfil</a>
                             </li>
                             <li class="divider">
                             </li>
@@ -72,8 +71,7 @@ $conexion->set_charset("utf8");
                 </ul>
             </div>
         </div>
-        <div class="clearfix">
-        </div>
+        <div class="clearfix"></div>
         <div class="page-container">
             <div class="page-sidebar-wrapper">
                 <div class="page-sidebar navbar-collapse collapse">
@@ -110,13 +108,31 @@ $conexion->set_charset("utf8");
                                     <a href="#">
                                         <i class="fa fa-list" aria-hidden="true"></i> Lista de indicadores</a>
                                 </li>
-                                <li>
-                                    <a href="layout_sidebar_closed.html">
-                                        <i class="fa fa-plus-circle" aria-hidden="true"></i> Agregar Indicador</a>
-                                </li>
+
+
 
                             </ul>
                         </li>
+                         <li>
+                    <a href="javascript:;">
+					<i class="fa fa-line-chart" aria-hidden="true"></i>
+					<span class="title">Metas PED</span>
+					<span class="arrow "></span>
+					</a>
+					<ul class="sub-menu">
+						<li>
+							<a href="metas_ped.php">
+							<i class="fa fa-list" aria-hidden="true"></i>
+							Lista de Metas</a>
+						</li>
+                        <li>
+							<a href="metas_ped_reportes.php">
+							<i class="fa fa-list" aria-hidden="true"></i>
+							Reportes</a>
+						</li>
+                    </ul>
+
+                </li>
                         <li>
                             <a href="javascript:;">
                                 <i class="fa fa-book" aria-hidden="true"></i>
@@ -125,16 +141,14 @@ $conexion->set_charset("utf8");
                             </a>
                             <ul class="sub-menu">
                                 <li>
-                                    <a href="ui_general.html">
+                                    <a href="#">
                                         <i class="fa fa-list-alt" aria-hidden="true"></i> Lista de Catalógos</a>
                                 </li>
-                                <li>
-                                    <a href="ui_buttons.html">
-                                        <i class="fa fa-plus-circle" aria-hidden="true"></i> Agregar Catálogo</a>
-                                </li>
+
 
                             </ul>
                         </li>
+                        <?php if($_SESSION['usrInfo'][3] == 1){ ?>
                         <li>
                             <a href="javascript:;">
                                 <i class="fa fa-cogs" aria-hidden="true"></i>
@@ -159,11 +173,13 @@ $conexion->set_charset("utf8");
 
                             </ul>
                         </li>
+                        <?php } ?>
                     </ul>
 
                 </div>
             </div>
             <div class="page-content-wrapper">
+                <input type="hidden" id="tema_actual" value="1">
                 <div class="page-content">
                     <h3 class="page-title">
                         Listado de Indicadores
@@ -175,9 +191,9 @@ $conexion->set_charset("utf8");
                     <div class="row stats-overview-cont">
                         <div class="col-md-4 col-sm-8">
                             <div class="form-group">
-                                <label>Tema: </label>
-                                <select class="form-control" onchange="loadList(this.value);">
-											<option value="0">-Seleccione-</option>
+                                <label>Tema:  </label>
+                                <select class="form-control" onchange="loadList(this.value);" id="listaDeTemas">
+
                                             <?php
                                                  $ExTemas = $conexion->query("SELECT id_tema,nombre_tema FROM temas_interes");
                                                  while($ResTema = $ExTemas->fetch_array(MYSQLI_NUM)){
@@ -188,11 +204,9 @@ $conexion->set_charset("utf8");
                             </div>
                         </div>
                     </div>
-
-
                     <div class="row">
                         <div class="col-md-12">
-                            <!-- BEGIN EXAMPLE TABLE PORTLET-->
+
                             <div class="portlet">
                                 <div class="portlet-title">
                                     <div class="caption">
@@ -205,7 +219,7 @@ $conexion->set_charset("utf8");
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="btn-group">
-                                                    <button id="sample_editable_1_new" class="btn btn-success">
+                                                    <button id="sample_editable_1_new" class="btn btn-success" data-toggle="modal" data-target="#nuevoModal">
 											Agregar Nuevo <i class="fa fa-plus"></i>
 											</button>
                                                 </div>
@@ -233,15 +247,17 @@ $conexion->set_charset("utf8");
                                         </div>
                                     </div>
                                     <div id="listaIndicadores">
+
                                         <table class="table table-striped table-bordered table-hover" id="sample_1">
                                             <thead>
                                                 <tr>
-                                                    <th> Nombre del indicador </th>
-                                                    <th> Fecha de Actualización </th>
-                                                    <th> Herramientas </th>
+                                                    <th width="60%"> Nombre del indicador </th>
+                                                    <th width="20%"> Fecha de Actualización </th>
+                                                    <th width="20%"> </th>
                                                 </tr>
                                             </thead>
                                         </table>
+
                                     </div>
                                 </div>
                             </div>
@@ -256,7 +272,7 @@ $conexion->set_charset("utf8");
 
             <!-- modal info -->
 
-            <div class="modal fade" id="infoIndModal" tabindex="-1" role="basic" aria-hidden="true">
+        <div class="modal fade" id="infoIndModal" tabindex="-1" role="basic" aria-hidden="true">
                 <div class="modal-dialog modal-wide">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -280,6 +296,265 @@ $conexion->set_charset("utf8");
                 <!-- end modal info -->
 
             </div>
+
+          <!--- nuevo indicador -->
+<div class="modal fade" id="nuevoModal" tabindex="-1" role="basic" aria-hidden="true">
+<div class="modal-dialog modal-wide">
+<div class="modal-content">
+<div class="modal-header">
+<button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+<h4 class="modal-title">Nuevo Indicador</h4>
+</div>
+<div class="modal-body">
+
+<div class="portlet">
+<div class="portlet-title">
+<div class="caption">
+<span class="text-success"><i class="fa fa-plus-circle"></i></span> Agregar un indicador el indicador
+</div>
+</div>
+<div class="portlet-body">
+<div class="row">
+<div class="col-md-6">
+<div class="portlet-body form">
+<form role="form">
+
+<div class="form-group">
+<div class="row">
+<div class="col-md-3">
+<label for="nombre">Nombre:</label>
+</div>
+<div class="col-md-9">
+<input type="text" class="form-control" name="nuevo_nombre" id="nuevo_nombre" required>
+</div>
+</div>
+</div>
+<hr>
+<div class="form-group">
+<div class="row">
+<div class="col-md-3">
+<label for="tendencia_deseable">Tendencia Deseable:</label>
+</div>
+<div class="col-md-9">
+<select id="nuevo_tendencia_deseable" name="nuevo_tendencia_deseable" class="form-control">
+<?php
+$conexion = $conn->conectar();
+$conexion->set_charset("utf8");
+$QueryTendencias = "SELECT * FROM tendencias_deseables";
+$ExConsulta = $conexion->query($QueryTendencias);
+unset($QueryTendencias);
+while($ResTendencia = $ExConsulta->fetch_array(MYSQLI_NUM)){
+echo "<option value='".$ResTendencia[0]."'>  ".$ResTendencia[1]."</option>";
+}
+unset($ResTendencia);
+unset($ExConsulta);
+$conexion->close();
+?>
+</select>
+</div>
+</div>
+</div>
+
+<hr>
+<div class="form-group">
+<div class="row">
+<div class="col-md-3">
+<label for="u_medida">Unidad de Medida:</label>
+</div>
+<div class="col-md-9">
+<select id="nuevo_u_medida" name="nuevo_u_medida" class="form-control">
+<?php
+$conexion = $conn->conectar();
+$conexion->set_charset("utf8");
+$QueryUmedida = "SELECT * FROM u_medida_indicadores";
+$ExConsulta = $conexion->query($QueryUmedida);
+unset($QueryUmedida);
+while($ResUmedida = $ExConsulta->fetch_array(MYSQLI_NUM)){
+echo "<option value='".$ResUmedida[0]."'>  ".$ResUmedida[1]."</option>";
+}
+unset($ResUmedida);
+unset($ExConsulta);
+$conexion->close();
+?>
+</select>
+</div>
+</div>
+</div>
+
+<hr>
+<div class="form-group">
+<div class="row">
+<div class="col-md-3">
+<label for="a_base">Año base:</label>
+</div>
+<div class="col-md-9">
+<input type="number" class="form-control" id="nuevo_a_base" name="nuevo_a_base" >
+</div>
+</div>
+</div>
+    <hr>
+
+<div class="form-group">
+<div class="row">
+<div class="col-md-3">
+<label for="periodicidad">Periodicidad:</label>
+</div>
+<div class="col-md-9">
+<select id="nuevo_periodicidad" name="nuevo_periodicidad" class="form-control">
+
+<?php
+$conexion = $conn->conectar();
+$conexion->set_charset("utf8");
+$Query = "SELECT * FROM periodicidad_indicador";
+$ExConsulta = $conexion->query($Query);
+unset($Query);
+while($Resultado = $ExConsulta->fetch_array(MYSQLI_NUM)){
+echo "<option value='".$Resultado[0]."'>  ".$Resultado[1]."</option>";
+}
+unset($Resultado);
+unset($ExConsulta);
+$conexion->close();
+?>
+</select>
+</div>
+</div>
+</div>
+<hr>
+<div class="form-group">
+<div class="row">
+<div class="col-md-3">
+<label for="fecha_act">Fecha Actualización: </label>
+</div>
+<div class="col-md-9">
+<input type="date" class="form-control" id="nuevo_fecha_act" name="nuevo_fecha_act" >
+</div>
+</div>
+</div>
+
+
+
+
+
+</form>
+</div>
+</div>
+<div class="col-md-6">
+<div class="portlet-body form">
+<form role="form">
+
+<div class="form-group">
+<div class="row">
+<div class="col-md-3">
+<label for="definicion">Definición:</label>
+</div>
+<div class="col-md-9">
+<textarea class="form-control" id="nuevo_definicion" name="nuevo_definicion"><?php echo $infoIndicador[10]; ?></textarea>
+</div>
+</div>
+</div>
+    <hr>
+
+<div class="form-group" >
+<div class="row">
+<div class="col-md-3">
+<label for="origen">Origen:</label>
+</div>
+<div class="col-md-9">
+<select id="nuevo_origen" name="nuevo_origen" class="form-control">
+<?php
+$conexion = $conn->conectar();
+$conexion->set_charset("utf8");
+$Query = "SELECT * FROM origen";
+$ExConsulta = $conexion->query($Query);
+unset($Query);
+while($Resultado = $ExConsulta->fetch_array(MYSQLI_NUM)){
+echo "<option value='".$Resultado[0]."'>  ".$Resultado[1]."</option>";
+}
+unset($Resultado);
+unset($ExConsulta);
+$conexion->close();
+?>
+</select>
+</div>
+</div>
+</div>
+  <hr>
+<div class="form-group" >
+<label for="nombre">Alineación PED:</label>
+<div class="row">
+<div class="col-md-4">
+<select class="form-control" id="eje" name="eje" onChange="carga_lineas();">
+<option value="1">1. Gobierno Abierto y de Resultados</option>
+<option value="2">2. Seguridad Humana</option>
+<option value="3">3. Competitividad y Prosperidad</option>
+<option value="4">4. Medio Ambiente y Desarrollo Territorial</option>
+<option value="5" selected>No Alineado al PED</option>
+
+</select>
+</div>
+<div class="col-md-4" id="slctLinea" name="slctLinea">
+<select class="form-control" id="linea" name="linea" onChange="carga_estrategias();">
+<option value="0">No Alineado al PED</option>
+</select>
+</div>
+<div class="col-md-4" id="slctEstrategia" name="slctEstrategia">
+<select class="form-control" id="nuevo_estrategia" name="nuevo_estrategia">
+<option value="130">No Alineado al PED</option>
+</select>
+</div>
+</div>
+</div>
+<hr>
+<div class="form-group">
+<div class="row">
+<div class="col-md-3">
+<label for="origen">Tema Asociado:</label>
+</div>
+<div class="col-md-9">
+<select id="nuevo_tema" name="nuevo_tema" class="form-control">
+<?php
+$conexion = $conn->conectar();
+$conexion->set_charset("utf8");
+$Query = "SELECT * FROM temas_interes";
+$ExConsulta = $conexion->query($Query);
+unset($Query);
+while($Resultado = $ExConsulta->fetch_array(MYSQLI_NUM)){
+echo "<option value='".$Resultado[0]."'>  ".$Resultado[1]."</option>";
+}
+unset($Resultado);
+unset($ExConsulta);
+$conexion->close();
+?>
+</select>
+</div>
+</div>
+</div>
+
+
+</form>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+
+
+
+</div>
+<div class="modal-footer" id="modal_footer">
+<button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+<button type="button" class="btn btn-success" onclick="validar_nuevo_indicador();">Guardar</button>
+</div>
+<!-- /.modal-content -->
+</div>
+<!-- /.modal-dialog -->
+</div>
+<!-- end modal info -->
+</div>
+
+
 
             <div class="footer">
                 <div class="footer-inner">
@@ -314,8 +589,9 @@ $conexion->set_charset("utf8");
         <script type="text/javascript" src="js/jquery.dataTables.min.js"></script>
         <script type="text/javascript" src="js/dataTables.bootstrap.js"></script>
         <script src="js/table-managed.js"></script>
+        <script type="text/javascript">
 
-        <script>
+
             function TableManagedCustomize() {
                 TableManaged.init();
             }
@@ -324,14 +600,17 @@ $conexion->set_charset("utf8");
                 Index.init();
                 Index.initPeityElements();
                 Index.initKnowElements();
-                // TableManagedCustomize();
-            });
+                TableManaged.init();
+                loadList(1);
 
+
+            });
             function loadList(v) {
+
                 if (v == 0) {
                     return false;
                 }
-
+                $('#tema_actual').val(v);
                 $.ajax({
                     method: "POST",
                     url: "class/listado_indicadores.php",
@@ -340,24 +619,9 @@ $conexion->set_charset("utf8");
                     }
                 }).done(function(msg) {
                     document.getElementById('listaIndicadores').innerHTML = msg;
+                    TableManaged.init();
                 });
             }
-
-            function loadInfoInd(v) {
-                document.getElementById('modal_footer').innerHTML = "<button type='button' class='btn btn-default' data-dismiss='modal'>Cerrar</button>";
-
-                $("#infoIndModal").modal();
-                $.ajax({
-                    method: "POST",
-                    url: "class/info_indicador.php",
-                    data: {
-                        idIndicador: v
-                    }
-                }).done(function(msg) {
-                    document.getElementById('infoIndicador').innerHTML = msg;
-                });
-            }
-
             function EditIndicador(v) {
                 document.getElementById('modal_footer').innerHTML = "<button type='button' class='btn btn-success' onclick='guardandoIndicador();'>Actualizar</button> <button type='button' class='btn btn-danger' data-dismiss='modal'>Cancelar</button>";
                 document.getElementById('infoIndicador').innerHTML = "<div align='center'><br>Cargando info<br><img src='../img/loading_verde.gif'></div>";
@@ -375,7 +639,13 @@ $conexion->set_charset("utf8");
             }
 
             function guardandoIndicador() {
+
                 document.getElementById('msg_estado').innerHTML = "<div style='position: absolute; padding:70px; top: 30%; width:90%; z-index: 99; background-color:#50a649; color:#fff;'> <i class='fa fa-refresh fa-spin fa-3x fa-fw'></i> Actualizando Información del Indicador, porfavor espere. </div>";
+                if ($('#indicador_activo').is(':checked')) {
+                    var ind_activo = 1;
+                }else{
+                    var ind_activo = 0;}
+
                 $.ajax({
                     method: "POST",
                     url: "class/indicadores.php",
@@ -400,14 +670,17 @@ $conexion->set_charset("utf8");
                         variables: $('#variables').val(),
                         nivel: $('#nivel').val(),
                         objetivo: $('#objetivo').val(),
-                        responsable: $('#responsable').val()
+                        responsable: $('#responsable').val(),
+                        activo: ind_activo
                     }
                 }).done(function(msg) {
                     if (msg == "hecho") {
+
                         document.getElementById('msg_estado').innerHTML = "<div style='position: absolute; padding:70px; top: 30%; width:90%; z-index: 99; background-color:#50a649; color:#fff;'> <i class='fa fa-refresh fa-spin fa-3x fa-fw'></i> Actualizando Temas Asociados, porfavor espere. </div>";
                         guardandoTemasAsociados();
                         return true;
                     } else {
+
                         document.getElementById('msg_estado').innerHTML = "";
                         alert(msg);
                         $('#infoIndModal').modal('hide');
@@ -415,7 +688,6 @@ $conexion->set_charset("utf8");
                     }
                 });
             }
-
             function guardandoTemasAsociados() {
                 var arreglo = "";
                 if ($('#chkGobierno').is(':checked')) {
@@ -487,7 +759,6 @@ $conexion->set_charset("utf8");
                 });
 
             }
-
             function guardandoFuentesInformacion() {
                 var arreglo = "";
                 if ($('#fuente1').is(':checked')) {
@@ -514,15 +785,15 @@ $conexion->set_charset("utf8");
                         return true;
                     } else {
                         document.getElementById('msg_estado').innerHTML = "";
-                        console.log("error al actualizar fuente de informacion:" + msg);
+
                         alert(msg);
                         $('#infoIndModal').modal('hide');
                         return false;
                     }
                 });
             }
-
             function guardandoDependencias(){
+
                 var arreglo = "";
                 if ($('#dependencia1').is(':checked')) {
                     arreglo = "1 ";
@@ -546,11 +817,14 @@ $conexion->set_charset("utf8");
                         informacion: arreglo
                     }
                 }).done(function(msg) {
+
                     if (msg == "hecho") {
-                        document.getElementById('msg_estado').innerHTML = "<div style='position: absolute; padding:70px; top: 30%; width:90%; z-index: 99; background-color:#50a649; color:#fff;'> <i class='fa fa-refresh fa-spin fa-3x fa-fw'></i> Actualizando Registros, porfavor espere. </div>";
-                        location.reload();
+
+                        document.getElementById('msg_estado').innerHTML = "<div style='position: absolute; padding:70px; top: 30%; width:90%; z-index: 99; background-color:#50a649; color:#fff;'> <i class='fa fa-refresh fa-spin fa-3x fa-fw'></i> Actualizando Resultados, porfavor espere. </div>";
+                        guardaResultados()
                         return true;
                     } else {
+
                         document.getElementById('msg_estado').innerHTML = "";
                         alert(msg);
                         $('#infoIndModal').modal('hide');
@@ -558,6 +832,66 @@ $conexion->set_charset("utf8");
                     }
                 });
             }
+
+            function guardaResultados(){
+                var actualizar_registros = false;
+                for(x=1;x<=$('#numRowsTablaResultados').val();x++){
+                    var nfila = '#ResultadoFila'+x;
+                    if($(nfila).hasClass('danger') || $(nfila).hasClass('warning') || $(nfila).hasClass('success') ){
+                        actualizar_registros = true;
+                    }
+                }
+
+                if(actualizar_registros){
+                    if(confirm("Existen resultados a eliminar o modificar, ¿desea continuar?")){
+                        var arreglo_resultados = [];
+                        var l = 0;
+                        var guardar = false;
+                        for(x=1;x<$('#numRowsTablaResultados').val();x++){
+                            nfila = '#ResultadoFila'+x;
+                            guardar = $(nfila).hasClass('danger');
+                            if(!guardar){
+                                arreglo_resultados[l] = new Array($('#indicadorActivo').val(),$('#ResultadoPeriodo'+x).val(),$('#ResultadoMeta'+x).val(),$('#ResultadoRes'+x).val(),$('#ResultadoMunicipio'+x).val(),$('#ResultadoRegion'+x).val(),$('#ResultadoEjercicio'+x).val());
+                                l++;
+                            }
+                        }
+                        $.ajax({
+                            method: "POST",
+                            url: "class/indicadores.php",
+                            data: {
+                                accion: 5,
+                                data: arreglo_resultados
+                            }
+                        }).done(function(msg) {
+                    if (msg == "hecho") {
+                        document.getElementById('msg_estado').innerHTML = "";
+                        $("#infoIndModal").modal('hide');
+                        loadInfoInd($('#tema_actual').val());
+                        return true;
+                    } else {
+                        document.getElementById('msg_estado').innerHTML = "";
+                        $("#infoIndModal").modal('hide');
+                        alert(msg);
+                        return true;
+                    }
+
+
+                });
+
+                }
+                    return true;
+                }else{
+                    $("#infoIndModal").modal('hide');
+                    loadList($('#tema_actual').val());
+                    return true;
+                  }
+            }
+
+
+
+
+
+
             function carga_lineas() {
                 $.ajax({
                     method: "POST",
@@ -578,27 +912,45 @@ $conexion->set_charset("utf8");
                 });
 
             }
-
             function eliminaPrev(v){
                 $('#ResultadoFila'+v).addClass('danger');
                 document.getElementById('ResultadoBtn'+v).innerHTML = "<button type='button' class='btn btn-default' onclick='NoeliminaPrev("+v+")'><span class='text-success'><i class='fa fa-recycle'></i></span> </button>";
                 return true;
             }
-
+            function modificarRes(v){
+                $('#ResultadoFila'+v).addClass('warning');
+                document.getElementById('ResultadoBtn'+v).innerHTML = "<button type='button' class='btn btn-default' onclick='NoeliminaPrev("+v+")'><span class='text-success'><i class='fa fa-recycle'></i></span> </button>";
+                return true;
+            }
             function NoeliminaPrev(v){
-                $('#ResultadoFila'+v).removeClass('danger');
+                var clase;
+                if($('#ResultadoFila'+v).hasClass('danger')){ clase = 'danger'; }else{ clase = 'warning';}
+                $('#ResultadoFila'+v).removeClass(clase);
                 document.getElementById('ResultadoBtn'+v).innerHTML = "<button type='button' class='btn btn-default' onclick='eliminaPrev("+v+")'><span class='text-danger'><i class='fa fa-trash'></i></span> </button>";
                   return true;
             }
-
             function agregaResultadoRow(){
                 var v = $('#numRowsTablaResultados').val();
+                $('#resultadosIndicadorTabla tr:last').after('<tr id="ResultadoFila'+v+'"><td><input class="form-control" type="text" id="ResultadoPeriodo'+v+'"></td><td><input class="form-control" type="text" id="ResultadoMeta'+v+'"></td><td><input class="form-control" type="text" id="ResultadoRes'+v+'"></td><td><div id="sltMpio'+v+'"></div></td><td><div id="region'+v+'"><input type="hidden" id="ResultadoRegion'+v+'" value="8"><input type="text" id="RegionTxt'+v+'" value="Sur (Tlaltenango)" readonly class="form-control" ></div></td><td><input class="form-control" type="number" id="ResultadoEjercicio'+v+'"> </td><td><div class="btn-group" id="ResultadoBtn'+v+'"><button type="button" class="btn btn-default" onclick="eliminaPrev('+v+')"><span class="text-danger"><i class="fa fa-trash"></i></span> </button></div></td></tr>');
+                document.getElementById('sltMpio'+v).innerHTML = "<select class='form-control' id='ResultadoMunicipio"+v+"' onchange='agrega_region(this.value,"+v+");'><option value='1'>Apozol</option></select>";
+                 var municipios_list = [<?php $conexion = $conn->conectar(); $conexion->set_charset("utf8"); $ExListMpios = $conexion->query("SELECT nombre from municipios"); while($rMp = $ExListMpios->fetch_array(MYSQLI_NUM)){echo '"'.$rMp[0].'",';}    ?>"No Aplica"];
+                        for(var y=0;y<municipios_list.length;y++){
 
-                $('#resultadosIndicadorTabla tr:last').after('<tr id="ResultadoFila'+v+'"><td><input class="form-control" type="text" id="ResultadoPeriodo'+v+'"></td><td><input class="form-control" type="number" id="ResultadoMeta'+v+'"> </td><td><input class="form-control" type="number" id="ResultadoRes'+v+'"> </td><td><div id="sltMpio'+v+'"></div></td><td>-Region-</td><td><input class="form-control" type="number" id="ResultadoEjercicio'+v+'"> </td><td><div class="btn-group" id="ResultadoBtn'+v+'"><button type="button" class="btn btn-default" onclick="eliminaPrev('+v+')"><span class="text-danger"><i class="fa fa-trash"></i></span> </button></div></td></tr>');
+                            $('#ResultadoMunicipio'+v).append($('<option>', {
+                                    value: y+1,
+                                    text: municipios_list[y]}));
+                        }
+
+
+
+
+
                 var n =  parseInt(v);
                 n = n+1;
                 $('#numRowsTablaResultados').val(n);
             }
+
+
             function carga_estrategias() {
                 $.ajax({
                     method: "POST",
@@ -612,8 +964,155 @@ $conexion->set_charset("utf8");
                 });
 
             }
+            function habilitarBtn(){
+                archivo = $('#fileXLS').val();
+                var extension = (archivo.substring(archivo.lastIndexOf("."))).toLowerCase();
+                if(extension == ".xls" || extension == ".xlsx"){
+                  $('#xlsbtn').attr('disabled', false);
+                }else{
+                    alert("Solo puedes subir archivos xls o xlsx (Excel o Libre Office)");
+                    $('#fileXLS').val('');
+                    return false;
+                }
+
+
+            }
+            function cargar_excel(){
+                 var formData = new FormData(document.getElementById("xlsForm"));
+                 formData.append("dato", "valor");
+                $.ajax({
+                url: "class/cargar_xls.php",
+                type: "post",
+                dataType: "html",
+                data: formData,
+                cache: false,
+                contentType: false,
+	            processData: false
+            })
+                .done(function(res){
+                    var datos = JSON.parse(res);
+                    var periodo = "";
+                    var meta = 0;
+                    var resultado = 0;
+                    var municipio = "";
+                    var idmunicipio = 0;
+                    var idregion = 0;
+                    var region = "";
+                    var ejercicio = 0;
+                    var x;
+                    for(x = 0; x < datos.length;x++){
+                        periodo = datos[x]["periodo"];
+                        meta  = datos[x]["meta"];
+                        resultado = datos[x]["resultado"];
+                        idmunicipio = datos[x]["id_municipio"];
+                        municipio = datos[x]["municipio"];
+                        idregion = datos[x]["id_region"];
+                        region = datos[x]["region"];
+                        ejercicio = datos[x]["ejercicio"];
+                        var v = $('#numRowsTablaResultados').val();
+
+$('#resultadosIndicadorTabla tr:last').after('<tr id="ResultadoFila'+v+'"><td><input class="form-control" type="text" id="ResultadoPeriodo'+v+'" value="'+periodo+'"></td><td><input class="form-control" type="text" id="ResultadoMeta'+v+'" value="'+meta+'"></td><td><input class="form-control" type="text" id="ResultadoRes'+v+'" value="'+resultado+'"></td><td><div id="sltMpio'+v+'"></div></td><td><div id="region'+v+'"><input type="hidden" id="ResultadoRegion'+v+'" value="'+idregion+'"><input type="text" id="RegionTxt'+v+'" readonly value="'+region+'" class="form-control" ></div></td><td><input class="form-control" type="number" id="ResultadoEjercicio'+v+'" value="'+ejercicio+'"> </td><td><div class="btn-group" id="ResultadoBtn'+v+'"><button type="button" class="btn btn-default" onclick="eliminaPrev('+v+')"><span class="text-danger"><i class="fa fa-trash"></i></span> </button></div></td></tr>');
+                        $('#ResultadoFila'+v).addClass('success');
+                        var n =  parseInt(v);
+                        n = n+1;
+                        $('#numRowsTablaResultados').val(n);
+                        agrega_mpios_list(v,municipio,idmunicipio);
+
+
+                    }
+
+
+
+
+
+                });
+               return true;
+
+            }
+            function agrega_mpios_list(v,m,i){
+                        document.getElementById('sltMpio'+v).innerHTML = "<select class='form-control' id='ResultadoMunicipio"+v+"'  onchange='agrega_region(this.value,"+v+");' ><option value='"+i+"'>"+m+"</option></select>";
+                 var municipios_list = [<?php $conexion = $conn->conectar(); $conexion->set_charset("utf8"); $ExListMpios = $conexion->query("SELECT nombre from municipios"); while($rMp = $ExListMpios->fetch_array(MYSQLI_NUM)){echo '"'.$rMp[0].'",';}    ?>"No Aplica"];
+                        for(var y=0;y<municipios_list.length;y++){
+
+                            $('#ResultadoMunicipio'+v).append($('<option>', {
+                                    value: y+1,
+                                    text: municipios_list[y]}));
+                        }
+
+
+                        return true;
+
+
+                    }
+            function agrega_region(v,n){
+
+                modificarRes(n);
+
+                $.ajax({
+                    method: "POST",
+                    url: "class/catalogos.php",
+                    data: {
+                        accion: "nombre_region",
+                        municipio: v,
+                    }
+                }).done(function(msg) {
+                    var datos = JSON.parse(msg);
+
+                    document.getElementById('region'+n).innerHTML = "<input type='hidden' id='ResultadoRegion"+n+"' value='"+datos[0]+"'><input type='text' id='RegionTxt' readonly value='"+datos[1]+"' class='form-control' >";
+                });
+
+
+            }
+
+function validar_nuevo_indicador(){
+    if($('#nuevo_nombre').val() == ""  || $('#nuevo_nombre').val() == " "){
+        alert("El nombre del indicador no puede estar vacío");
+        return false;
+    }
+
+    $.ajax({
+                    method: "POST",
+                    url: "class/indicadores.php",
+                    data: {
+                        accion: 7,
+                        indicador: $('#nuevo_nombre').val(),
+                    }
+                }).done(function(msg) {
+                    if(msg == "continuar"){
+                        guardar_nuevo_indicador();
+                        return true;
+                    }else{
+                        alert("Ya existe un indicador con ese nombre, ¿desea cargar la información del indicador?");
+                        return false;
+                    }
+                });
+
+
+
+}
+
+function guardar_nuevo_indicador(){
+       $.ajax({
+                    method: "POST",
+                    url: "class/indicadores.php",
+                    data: {
+                        accion: 8,
+                        nombre: $('#nuevo_nombre').val(),
+                    }
+                }).done(function(msg) {
+                    if(msg == "continuar"){
+                        guardar_nuevo_indicador();
+                        return true;
+                    }else{
+                        alert("Ya existe un indicador con ese nombre, ¿desea cargar la información del indicador?");
+                        return false;
+                    }
+                });
+
+}
+
+
 
         </script>
     </body>
-
     </html>

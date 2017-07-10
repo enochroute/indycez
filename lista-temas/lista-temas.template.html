@@ -1,12 +1,16 @@
 <ul class="nav sidebar-nav" id="barraLateral">
-  <li class="sidebar-brand">
+  <!-- <li class="sidebar-brand">
     <a href="#!/">
       Temas
     </a>
-  </li>
+  </li> -->
   <div id="temas">
     <li ng-repeat="tema in temas">
       <a href="#!/indicadores/{{tema.id_tema}}/icono/{{tema.icono}}/tema/{{tema.nombre_tema}}"><span><img ng-src="img/temas/{{tema.icono}}" width="24px"/></span>&nbsp;{{tema.nombre_tema}}</a>
     </li>
   </div>
 </ul>
+
+<!-- <div ng-repeat="tema in temas">
+  <a href="#!/indicadores/{{tema.id_tema}}/icono/{{tema.icono}}/tema/{{tema.nombre_tema}}"><span><img ng-src="img/temas/{{tema.icono}}" width="24px"/></span>&nbsp;{{tema.nombre_tema}}</a>
+</div> -->

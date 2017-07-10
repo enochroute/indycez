@@ -36,7 +36,8 @@ i.variables,
 i.nivel,
 n.nivel,
 i.objetivo,
-i.responsable
+i.responsable,
+i.activo
 FROM
  indicadores i
 INNER JOIN tendencias_deseables td on(i.tendencia_deseable = td.id_tendencia)
@@ -59,10 +60,7 @@ unset($consulta);
 <div class="caption">
 <span class="text-danger"><i class="fa fa-edit"></i></span> Editar el indicador
 </div>
-<div class="tools">
-<a href="javascript:;" class="collapse"></a>
-<a href="#portlet-config" data-toggle="modal" class="config"></a>
-</div>
+
 </div>
 <div class="portlet-body">
 <ul class="nav nav-tabs">
@@ -235,6 +233,16 @@ unset($ExConsulta);
 $conexion->close();
 ?>
 </select>
+</div>
+</div>
+</div>
+<div class="form-group">
+<div class="row">
+<div class="col-md-3">
+<label for="origen">Activo:</label>
+</div>
+<div class="col-md-9">
+<label><input type="checkbox" value="1" id="indicador_activo" <?php if($infoIndicador[26] == 1){ echo "checked"; }?>> Activar / Desactivar indicador </label>
 </div>
 </div>
 </div>
@@ -645,7 +653,7 @@ $conexion->close();
 <?php
   $conexion = $conn->conectar();
   $conexion->set_charset("utf8");
-  $Query =  "SELECT id_fuente,fuente FROM fuentes LIMIT 11,10";
+  $Query =  "SELECT id_fuente,fuente FROM fuentes LIMIT 11,12";
 
   $ExConsulta = $conexion->query($Query);
    unset($Query);
@@ -667,7 +675,7 @@ $conexion->close();
 <?php
   $conexion = $conn->conectar();
   $conexion->set_charset("utf8");
-  $Query =  "SELECT id_fuente,fuente FROM fuentes LIMIT 21,10";
+  $Query =  "SELECT id_fuente,fuente FROM fuentes LIMIT 23,12";
 
   $ExConsulta = $conexion->query($Query);
    unset($Query);
@@ -688,7 +696,7 @@ $conexion->close();
 <?php
   $conexion = $conn->conectar();
   $conexion->set_charset("utf8");
-  $Query =  "SELECT id_fuente,fuente FROM fuentes LIMIT 31,11";
+  $Query =  "SELECT id_fuente,fuente FROM fuentes LIMIT 35,12";
 
   $ExConsulta = $conexion->query($Query);
    unset($Query);
@@ -873,7 +881,10 @@ $conexion->close();
 <div class="tab-pane fade" id="tab_1_5">
 <div class="btn-group">
                     <button type="button" class="btn btn-default" onclick="agregaResultadoRow();"><span class="text-success"><i class="fa fa-plus-circle"></i></span> Agregar Registro</button>
-                    <button type="button" class="btn btn-default" disabled><span class="text-success"><i class="fa fa-file-excel-o"></i></span> Agregar varios registros(xls)</button>
+                    <button type="button" class="btn btn-default" id="xlsbtn" onclick="cargar_excel();" disabled><span class="text-success"><i class="fa fa-file-excel-o"></i></span> Agregar varios registros(xls)</button>
+                     <form id="xlsForm">
+                        <input type="file" id="fileXLS" name="fileXLS" onchange="habilitarBtn();" class="form-control">
+                     </form>
 </div>
 <p>&nbsp;</p>
 
@@ -894,7 +905,6 @@ $conexion->close();
    $conexion = $conn->conectar();
    $conexion->set_charset("utf8");
    $ExConsulta = $conexion->query('SELECT
-mr.id_meta,
 mr.periodo,
 mr.meta,
 mr.resultado,
@@ -907,32 +917,47 @@ FROM metas_resultados mr
 inner join municipios mp on(mr.municipio = mp.id_municipio)
 inner join regiones r on(mr.region = r.id_region)
 where mr.id_indicador = '.$_POST['idIndicador']);
-   $n = 1;
+$conexion->close();
+    $n = 1;
+
 while($Res = $ExConsulta->fetch_array(MYSQLI_NUM)){
 ?>
 <tr id="ResultadoFila<?php echo $n; ?>">
 <td>
-<input  type="hidden" id="idResultado" value="<?php echo $Res[0];?>">
-<input class="form-control" type="text" id="ResultadoPeriodo<?php echo $n;?>" value="<?php echo $Res[1]; ?>">
+
+<input class="form-control" type="text" id="ResultadoPeriodo<?php echo $n;?>" value="<?php echo $Res[0]; ?> " onchange="modificarRes(<?php echo $n?>);">
 </td>
 <td>
-<input class="form-control" type="number" id="ResultadoMeta<?php echo $n;?>"  value="<?php echo $Res[2]; ?>">
+<input class="form-control" type="text" id="ResultadoMeta<?php echo $n;?>"  value="<?php echo $Res[1]; ?>" onchange="modificarRes(<?php echo $n?>);">
 </td>
 <td>
-<input class="form-control" type="number" id="ResultadoRes<?php echo $n;?>"  value="<?php echo $Res[3]; ?>">
+<input class="form-control" type="text" id="ResultadoRes<?php echo $n;?>"  value="<?php echo $Res[2]; ?>" onchange="modificarRes(<?php echo $n?>);">
 </td>
 <td>
-    <select class="form-control" id="ResultadoMunicipio<?php echo $n; ?>">
-        <option value="<?php echo $Res[4]; ?>"><?php echo $Res[5]; ?></option>
+    <select class="form-control" id="ResultadoMunicipio<?php echo $n; ?>" onchange="agrega_region(this.value,<?php echo $n?>);">
+        <option value="<?php echo $Res[3]; ?>"><?php echo $Res[4]; ?></option>
+        <?php
+        $conexion = $conn->conectar();
+        $conexion->set_charset("utf8");
+        $ExConsultaMPIO = $conexion->query("SELECT id_municipio,nombre FROM municipios");
+        unset($conexion);
+        while($mpioR = $ExConsultaMPIO->fetch_array(MYSQLI_NUM)){
+            echo  '<option value="'.$mpioR[0].'">'.$mpioR[1].'</option>';
+        }
+        unset($ExConsultaMPIO);
+        unset($mpioR);
+        ?>
     </select>
 </td>
 
 <td>
-    <input type="hidden" id="ResultadoRegion<?php echo $n;?>" value="<?php echo $Res[6]; ?>">
-    <input type="text" id="RegionTxt<?php echo $n;?>" readonly value="<?php echo $Res[7]; ?>">
+    <div id="region<?php echo $n;?>">
+      <input type="hidden" id="ResultadoRegion<?php echo $n;?>" value="<?php echo $Res[5]; ?>" onchange="modificarRes(<?php echo $n?>);">
+      <input type="text" id="RegionTxt<?php echo $n;?>" readonly value="<?php echo $Res[6]; ?>" class="form-control" >
+    </div>
 </td>
 <td>
-<input class="form-control" type="number" id="ResultadoEjercicio<?php echo $n;?>"  value="<?php echo $Res[8]; ?>">
+<input class="form-control" type="number" id="ResultadoEjercicio<?php echo $n;?>"  value="<?php echo $Res[7]; ?>">
 </td>
 <td>
 <div class="btn-group" id="ResultadoBtn<?php echo $n;?>">

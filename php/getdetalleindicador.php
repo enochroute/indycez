@@ -24,9 +24,18 @@ if(isset($_GET['i']) && !empty($_GET['i']))
     i.id_indicador,
     i.nombre,
     i.definicion,
+    i.cobertura_geografica,
     um.u_medida,
     td.tendencia,
-    p.peiodicidad
+    p.peiodicidad,
+    (SELECT
+            GROUP_CONCAT(' ', f.fuente)
+        FROM
+            fuentes AS f
+                LEFT JOIN
+            fuente_indicador AS fi ON fi.id_fuente = f.id_fuente
+        WHERE
+            fi.id_indicador = i.id_indicador) AS fuente
 FROM
     indicadores AS i
     LEFT JOIN

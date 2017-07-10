@@ -11,15 +11,16 @@ date_default_timezone_set('America/Mexico_City');
 class indicador {
 
     function actualizar($i){
+
         include("conexion.php");
         $conn = new conexion();
         $conexion = $conn->conectar();
         $conexion->set_charset("utf8");
-        if($i['fecha_act'] == ""){
+        // if($i['fecha_act'] == ""){
             $fecha = date("Y-m-d H:i:s");
-        }else{
-            $fecha = $i['fecha_act'].' '.date("H:i:s");
-        }
+        // }else{
+            // $fecha = $i['fecha_act'].' '.date("H:i:s");
+        // }
         $query = 'call actualiza_info_indicador(
         '.$i['id_indicador'].',
         "'.$i['nombre'].'",
@@ -40,7 +41,8 @@ class indicador {
         "'.$i['variables'].'",
         '.$i['nivel'].',
         "'.$i['objetivo'].'",
-        "'.$i['responsable'].'"
+        "'.$i['responsable'].'",
+        '.$i['activo'].'
         )' ;
 
         if($conexion->query($query)){
@@ -118,6 +120,42 @@ class indicador {
         }
         return "hecho";
     }
+    function actualizar_resultados($i){
+
+
+       if(count($i['data']) > 0){
+            $query = "delete from metas_resultados where id_indicador = ".$i['data'][0][0];
+            include("conexion.php");
+            $conn = new conexion();
+            $conexion = $conn->conectar();
+            $conexion->query($query) or die ("error al intentar actualizar resultados: ".$conexion->error);
+            $conexion->close();
+            unset($query);
+            for($x = 0; $x < count($i['data']); $x++){
+                $conexion = $conn->conectar();
+                $conexion->set_charset("utf8");
+                $id_indicador = $i['data'][$x][0];
+                $periodo = $i['data'][$x][1];
+                $meta = $i['data'][$x][2];
+                $resultado = $i['data'][$x][3];
+                $municipio = $i['data'][$x][4];
+                $region = $i['data'][$x][5];
+                $ejercicio = $i['data'][$x][6];
+                $query = 'INSERT INTO metas_resultados (id_indicador,periodo,meta,resultado,municipio,region,ejercicio) VALUES ('.$id_indicador.',"'.$periodo.'","'.$meta.'","'.$resultado.'",'.$municipio.','.$region.',"'.$ejercicio.'")';
+                $conexion->query($query) or die ("error al intentar actualizar resultados: ".$query);
+                $conexion->close();
+
+            }
+
+           return "hecho";
+
+       }else{
+           return "hecho";
+       }
+
+
+
+    }
 
 
 }
@@ -136,8 +174,10 @@ switch($_POST['accion']){
     case 4:
     $resultado = $indicador->actualizar_dependencias($_POST);
     break;
+    case 5:
+    $resultado = $indicador->actualizar_resultados($_POST);
+    break;
 
 }
 unset($_POST);
-
 echo $resultado;
