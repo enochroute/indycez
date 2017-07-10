@@ -104,9 +104,16 @@ function convert($resultado) {
         $key = trim($item['periodo']);
         $date = trim($item['ejercicio']);
         $value = trim($item['resultado']);
+        $valorSeparado = explode('.',(double)$value);
+        if ($valorSeparado[1] == 0) {
+          $valorFormateado = number_format($valorSeparado[0],0);
+        }
+        else {
+          $valorFormateado = number_format($value,3);
+        }
         $intermediate[$key][] = $arrayName = array(
           'label' => $date,
-          'value' => (double)$value
+          'value' => 1*$valorFormateado
         );
     }
 

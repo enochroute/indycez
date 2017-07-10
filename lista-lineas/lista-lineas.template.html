@@ -1,5 +1,5 @@
 <div class="separa-arriba">
-  <h2 style="text-align:center; color: #b32c28;">Metas</h2>
+  <h2 style="text-align:center; color: #b32c28;">Metas | Eje {{ejeElegido}}. {{nombreEje}}</h2>
 </div>
 
 <div ng-controller="AccordionDemoCtrl">
@@ -36,10 +36,14 @@
         <div class="notice notice-verde1">
           <table class="table">
             <tr>
-              <th>Nombre de la meta</th><th>Meta</th><th style="text-align:center">Avance</th>
+              <th class="col-md-10">Nombre de la meta</th>
+              <th class="col-md-2">Avance (%)</th>
+              <!-- <th style="text-align:center">Meta</th> -->
             </tr>
             <tr ng-repeat="meta in datosMetas | filter:{ linea_estrategica: linea.id_linea } : true">
-              <td>{{meta.meta_descripcion}}</td><td style="text-align:right">{{meta.meta|number:"2"}}</td><td style="text-align:right">{{meta.avance|number:"2"}}</td>
+              <td>{{meta.meta_descripcion}}</td>
+              <td style="text-align:right">{{meta.avance|number:"2"}}</td>
+              <!-- <td style="text-align:right">{{meta.meta|number:"2"}}</td> -->
             </tr>
           </table>
         </div>

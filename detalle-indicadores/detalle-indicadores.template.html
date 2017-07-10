@@ -56,7 +56,8 @@
         <th>Año</th><th>Valor</th>
       </tr>
       <tr ng-repeat="dato in datos">
-        <td> {{dato.ejercicio}} {{dato.periodo}} </td><td style="text-align:right">{{dato.resultado|number:"3"}}</td>
+        <!-- <td> {{dato.ejercicio}} {{dato.periodo}} </td><td style="text-align:right">{{dato.resultado|number:"3"}}</td> -->
+        <td> {{dato.ejercicio}} {{dato.periodo}} </td><td style="text-align:right">{{dato.resultado}}</td>
       </tr>
     </table>
   </div>

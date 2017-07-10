@@ -75,6 +75,7 @@ angularIndyce.controller('DesagregadoCtrl', ['$scope', '$routeParams', function 
 
 angularIndyce.controller('LineasCtrl', ['$scope', '$routeParams', function LineasCtrl($scope, $routeParams) {
   $scope.lineaID = $routeParams;
+  // console.log($scope.lineaID);
 } ]);
 
 angularIndyce.controller('ItemController', ['$scope', function (scope) {

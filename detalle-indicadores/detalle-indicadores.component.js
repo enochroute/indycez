@@ -53,7 +53,7 @@ component('detalleIndicadores', {
           axisLabel: etiquetaY(),
           axisLabelDistance: -5,
           tickFormat: function(d){
-            return d3.format(',.2f')(d);
+            return d3.format(',auto')(d);
           },
         }
       }

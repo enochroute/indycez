@@ -314,9 +314,9 @@ md-content.md-default-theme, md-content {
   position: relative;
 }
 .image_footer img{
-  width: 17em;
+  width: 12em;
   height: auto;
-  margin-left: 2em;
+  margin-left: 4em;
   margin-top: 2ex;
   margin-bottom: 2ex;
 }

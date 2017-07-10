@@ -35,8 +35,24 @@ component('listaLineas', {
   controller:
   function ListaLineasController($scope, $rootScope, $http, $routeParams) {
     $scope.ejeElegido = $routeParams.idEje;
-    $scope.nombreEje = $rootScope.eje;
 
+    switch ($scope.ejeElegido) {
+      case '1':
+        $scope.nombreEje = 'Gobierno abierto y de resultados';
+        break;
+      case '2':
+        $scope.nombreEje = 'Seguridad humana';
+        break;
+      case '3':
+        $scope.nombreEje = 'Competitividad y prosperidad';
+        break;
+      case '4':
+        $scope.nombreEje = 'Medio ambiente';
+        break;
+      default:
+
+    }
+    console.log('Nombre eje: '+$scope.nombreEje);
     $http.get('php/getMetas.php?i='+$scope.ejeElegido).
     success(function(data) {
       $scope.datosMetas = data;
