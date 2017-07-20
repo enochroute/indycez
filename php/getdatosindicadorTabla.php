@@ -42,7 +42,7 @@ if(isset($_GET['i']) && !empty($_GET['i']))
   while($row=$resultado->fetch_assoc()){
     $periodo = "";
     if (strtolower($row['periodo']) != 'anual'){
-      $periodo = '('. $row['periodo'] .')';
+      $periodo = '('. trim($row['periodo']) .')';
     }
     $entero = intval($row['resultado']);
     $decimal  = $row['resultado'] - $entero;
