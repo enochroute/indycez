@@ -42,10 +42,18 @@ if(isset($_GET['i']) && !empty($_GET['i']))
   while($row=$resultado->fetch_assoc()){
     $periodo = "";
     if (strtolower($row['periodo']) != 'anual'){
-      $periodo = $row['periodo'];
+      $periodo = '('. $row['periodo'] .')';
+    }
+    $entero = intval($row['resultado']);
+    $decimal  = $row['resultado'] - $entero;
+    if ($decimal == 0) {
+      $respuesta = number_format($entero,0);
+    }
+    else {
+      $respuesta = number_format($row['resultado'],3);
     }
     $datos[] = array(
-      'resultado' => $row['resultado'],
+      'resultado' => $respuesta,
       'ejercicio' => $row['ejercicio'],
       'periodo' => $periodo
     );

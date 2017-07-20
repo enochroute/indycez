@@ -104,9 +104,11 @@ function convert($resultado) {
         $key = trim($item['periodo']);
         $date = trim($item['ejercicio']);
         $value = trim($item['resultado']);
-        $valorSeparado = explode('.',(double)$value);
-        if ($valorSeparado[1] == 0) {
-          $valorFormateado = number_format($valorSeparado[0],0);
+        // $valorSeparado = explode('.',(double)$value);
+        $entero = intval($value);
+        $decimal = $value - $entero;
+        if ($decimal == 0) {
+          $valorFormateado = $entero;
         }
         else {
           $valorFormateado = number_format($value,3);
