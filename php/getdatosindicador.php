@@ -32,7 +32,7 @@ if(isset($_GET['i']) && !empty($_GET['i']))
 
   WHERE
   mr.municipio = 60
-  AND id_indicador = $indicador;";
+  AND id_indicador = $indicador ORDER BY mr.ejercicio;";
   //  $query="select * from indicadores where id_eje='$nameindicador'";
 
 
