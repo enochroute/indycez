@@ -36,12 +36,14 @@
         <div class="notice notice-verde1">
           <table class="table">
             <tr>
-              <th class="col-md-10">Nombre de la meta</th>
+              <th class="col-md-5">Nombre de la meta</th>
+              <th class="col-md-5">Dependencia responsable</th>
               <th class="col-md-2">Avance (%)</th>
               <!-- <th style="text-align:center">Meta</th> -->
             </tr>
             <tr ng-repeat="meta in datosMetas | filter:{ linea_estrategica: linea.id_linea } : true">
               <td>{{meta.meta_descripcion}}</td>
+              <td>{{meta.dependencia}}</td>
               <td style="text-align:right">{{meta.avance|number:"2"}}</td>
               <!-- <td style="text-align:right">{{meta.meta|number:"2"}}</td> -->
             </tr>
