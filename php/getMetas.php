@@ -11,7 +11,15 @@ if(isset($_GET['i']) && !empty($_GET['i']))
 
 $query=
 "SELECT
-    mp.id_meta, mp.meta_descripcion, mp.linea_estrategica, mp.meta, mp.avance, mp.tendencia_deseable
+    mp.id_meta, mp.meta_descripcion, mp.linea_estrategica, mp.meta, mp.avance, mp.tendencia_deseable,
+    (SELECT
+            GROUP_CONCAT(' ', d.nombre)
+        FROM
+            dependencias AS d
+                LEFT JOIN
+            dependencias_metas AS dm ON dm.id_dependencia = d.id_dependencia
+        WHERE
+            dm.id_meta = mp.id_meta) AS dependencia
 FROM
     metas_ped AS mp
        JOIN
