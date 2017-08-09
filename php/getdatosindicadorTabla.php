@@ -32,13 +32,14 @@ if(isset($_GET['i']) && !empty($_GET['i']))
 
   WHERE
   mr.municipio = 60
-  AND id_indicador = $indicador AND mr.resultado <> 0 ORDER BY mr.ejercicio;";
+  AND id_indicador = $indicador ORDER BY mr.ejercicio ASC, mr.periodo ASC;";
   //  $query="select * from indicadores where id_eje='$nameindicador'";
 
 
   $resultado=mysqli_query($con,$query);
 
 
+  $fraccionario = false;
   while($row=$resultado->fetch_assoc()){
     $periodo = "";
     if (strtolower(trim($row['periodo'])) != 'anual'){
@@ -51,6 +52,10 @@ if(isset($_GET['i']) && !empty($_GET['i']))
     }
     else {
       $respuesta = number_format($row['resultado'],3);
+      $fraccionario = true;
+    }
+    if ($fraccionario) {
+      $respuesta = number_format($respuesta,3);
     }
     $datos[] = array(
       'resultado' => $respuesta,

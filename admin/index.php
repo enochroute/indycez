@@ -21,6 +21,7 @@ if(isset($_POST['usuario'])){
         $ResUser = $exQuery->fetch_array(MYSQLI_NUM);
         session_start();
         $_SESSION['idUser'] = $ResUser[0];
+        $_SESSION['perfil'] = $ResUser[3];
         $_SESSION['key'] = md5("labor vincit omnia");
         unset($exQuery);
         unset($ResUser);

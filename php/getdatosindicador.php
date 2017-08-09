@@ -100,10 +100,11 @@ function convert($resultado) {
 
     $intermediate = array();
 
+    $fraccionario = false;
     while($item = mysqli_fetch_assoc($resultado)) {
         $key = trim($item['periodo']);
         $date = trim($item['ejercicio']);
-        $value = trim($item['resultado']);
+        $value = 1*trim($item['resultado']);
         // $valorSeparado = explode('.',(double)$value);
         $entero = intval($value);
         $decimal = $value - $entero;
@@ -111,7 +112,11 @@ function convert($resultado) {
           $valorFormateado = $entero;
         }
         else {
-          $valorFormateado = number_format($value,3);
+          $valorFormateado = number_format($value,3,".","");
+          $fraccionario = true;
+        }
+        if ($fraccionario) {
+          $valorFormateado = number_format($valorFormateado,3,".","");
         }
         $intermediate[$key][] = $arrayName = array(
           'label' => $date,

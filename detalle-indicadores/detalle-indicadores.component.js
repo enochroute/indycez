@@ -37,14 +37,15 @@ component('detalleIndicadores', {
         },
         x: function(d){return d.label;},
         y: function(d){return d.value;},
-        stacked:  true,
+        stacked:  false,
         //yDomain: [7.5,9],
         //yDomain: [minimo(),maximo()],
         showValues: false,
         valueFormat: function(d){
           return d3.format(',.2f')(d);
         },
-        showControls : false,
+        showControls : true,
+        controlLabels : {"grouped":"Agrupados","stacked":"Apilados"},
         duration: 500,
         xAxis: {
           axisLabel: 'Año'
@@ -204,14 +205,14 @@ success(function(data1) {
   console.log($scope.data);
   //$scope.datosTabla = $scope.datos.values;
   /*angular.forEach($scope.datosTabla,function(value,key){
-    console.log(value);
-    console.log(key);
-  });*/
-  //console.log($scope.datos);
-  /*angular.forEach($scope.datos,function(value,key){
-  $scope.valor={"label":value['ejercicio'],"value":value['resultado']};
-  $scope.valores.push($scope.valor);
-  $scope.claves = "";
+  console.log(value);
+  console.log(key);
+});*/
+//console.log($scope.datos);
+/*angular.forEach($scope.datos,function(value,key){
+$scope.valor={"label":value['ejercicio'],"value":value['resultado']};
+$scope.valores.push($scope.valor);
+$scope.claves = "";
 
 
 })*/
@@ -229,14 +230,14 @@ success(function(data2) {
   $scope.datos = data2;
   //$scope.datosTabla = $scope.datos.values;
   /*angular.forEach($scope.datosTabla,function(value,key){
-    console.log(value);
-    console.log(key);
-  });*/
-  //console.log($scope.datos);
-  /*angular.forEach($scope.datos,function(value,key){
-  $scope.valor={"label":value['ejercicio'],"value":value['resultado']};
-  $scope.valores.push($scope.valor);
-  $scope.claves = "";
+  console.log(value);
+  console.log(key);
+});*/
+//console.log($scope.datos);
+/*angular.forEach($scope.datos,function(value,key){
+$scope.valor={"label":value['ejercicio'],"value":value['resultado']};
+$scope.valores.push($scope.valor);
+$scope.claves = "";
 
 
 })*/
