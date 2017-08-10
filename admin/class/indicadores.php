@@ -21,6 +21,8 @@ class indicador {
         // }else{
             // $fecha = $i['fecha_act'].' '.date("H:i:s");
         // }
+        $Query = 'INSERT INTO indicadores_modificaciones SET id_user = ' . $_SESSION['idUser'] . ', id_indicador = ' . $i['id_indicador'] . ', fecha_modificacion = "' . $fecha . '";' ;
+        $ExQuery = $conexion->query($Query) or die($conexion->error);
         $query = 'call actualiza_info_indicador(
         '.$i['id_indicador'].',
         "'.$i['nombre'].'",
@@ -124,10 +126,10 @@ class indicador {
 
 
        if(count($i['data']) > 0){
-            $query = "delete from metas_resultados where id_indicador = ".$i['data'][0][0];
             include("conexion.php");
             $conn = new conexion();
             $conexion = $conn->conectar();
+            $query = "delete from metas_resultados where id_indicador = ".$i['data'][0][0];
             $conexion->query($query) or die ("error al intentar actualizar resultados: ".$conexion->error);
             $conexion->close();
             unset($query);

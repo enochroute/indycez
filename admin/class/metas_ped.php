@@ -12,18 +12,24 @@ date_default_timezone_set('America/Mexico_City');
 
 class metasPed{
   function lista_metas($v){
+    $condicion = "";
+    if ($_SESSION['perfil'] != 1) {
+      $condicion = " dm.id_dependencia = " . $_SESSION['dependencia'] . " AND " ;
+    }
     include("conexion.php");
     $conn = new conexion();
     $conexion = $conn->conectar();
     $conexion->set_charset("utf8");
-    $Query = 'SELECT id_meta,meta_descripcion,avance  FROM metas_ped WHERE linea_estrategica = '.$v;
+    $Query = 'SELECT mp.id_meta, mp.meta_descripcion, mp.avance  FROM metas_ped AS mp
+    INNER JOIN dependencias_metas AS dm ON dm.id_meta = mp.id_meta
+    WHERE ' . $condicion . ' linea_estrategica = '.$v;
     $ExQuery = $conexion->query($Query) or die($conexion->error);
     $table_header = '<table class="table table-striped table-bordered table-hover" id="sample_1">
     <thead>
     <tr>
-    <th width="40%"> Meta </th>
-    <th width="10%"> Avances</th>
-    <th width="10%"><i class="fa fa-info-circle" aria-hidden="true"></i> </th>
+    <th class="col-sm-8"> Meta </th>
+    <th class="col-sm-2"> Avances</th>
+    <th class="col-sm-2"><i class="fa fa-info-circle" aria-hidden="true"></i> </th>
     </tr>
     </thead>
     <tbody>';
@@ -34,11 +40,11 @@ class metasPed{
       if($Res[2] < 85 && $Res[2] > 40){$progress_class = 'warning';}
       if($Res[2] < 101 && $Res[2] > 85){$progress_class = 'success';}
 
-      $table_body.= '<tr><td>'.$Res[1].'</td><td><div class="progress">
+      $table_body.= '<tr><td class="col-sm-8">'.$Res[1].'</td><td class="col-sm-2"><div class="progress">
       <div class="progress-bar progress-bar-striped progress-bar-'.$progress_class.' active" role="progressbar" aria-valuenow="'.$Res[2].'" aria-valuemin="0" aria-valuemax="100" style="width:'.$Res[2].'%">
       <span style="color:#fff;">'.$Res[2].'%</span>
       </div>
-      </div></td><td><div class="btn-group">
+      </div></td><td class="col-sm-2"><div class="btn-group">
 
       <button type="button" class="btn btn-default" onclick="info_meta('.$Res[0].')"><span class="text-success"><i class="fa fa-info-circle"></i></span> </button>
       </div></td></tr>';
@@ -67,8 +73,9 @@ class metasPed{
     mp.descripcion_avance,
     mp.fecha_actualizacion
     FROM metas_ped mp
-    inner join linea l on (mp.linea_estrategica = l.id_linea)
-    inner join tendencias_deseables td on (td.id_tendencia = mp.tendencia_deseable) WHERE id_meta = '.$v;
+    INNER JOIN linea l on (mp.linea_estrategica = l.id_linea)
+    INNER JOIN tendencias_deseables td on (td.id_tendencia = mp.tendencia_deseable)
+    WHERE id_meta = '.$v;
     $ExQuery = $conexion->query($Query) or die($conexion->error);
     $Res = $ExQuery->fetch_array(MYSQLI_NUM);
     $data = '<form role="form">

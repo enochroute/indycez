@@ -10,8 +10,15 @@ require_once("conexion.php");
 $conn = new conexion();
 $conexion = $conn->conectar();
 $conexion->set_charset("utf8");
+$condicion = "";
+if ($_SESSION['perfil'] != 1) {
+  $condicion = " id.id_dependencia = " . $_SESSION['dependencia'] . " AND " ;
+}
 $query = 'SELECT i.id_indicador, i.nombre, i.fecha_actualizacion
-FROM indicadores i INNER JOIN indicador_tema it on(i.id_indicador = it.id_indicador) WHERE it.id_tema = '.$_POST['idTema'].' ORDER BY i.id_indicador ASC';
+FROM indicadores i
+INNER JOIN indicador_tema it on(i.id_indicador = it.id_indicador)
+INNER JOIN indicador_dependencia AS id ON i.id_indicador = id.id_indicador
+WHERE ' . $condicion . ' it.id_tema = '.$_POST['idTema'].' ORDER BY i.id_indicador ASC';
 $ExQuery = $conexion->query($query);
 $conexion->close();
 unset($conexion);
