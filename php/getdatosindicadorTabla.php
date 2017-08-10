@@ -39,7 +39,6 @@ if(isset($_GET['i']) && !empty($_GET['i']))
   $resultado=mysqli_query($con,$query);
 
 
-  $fraccionario = false;
   while($row=$resultado->fetch_assoc()){
     $periodo = "";
     if (strtolower(trim($row['periodo'])) != 'anual'){
@@ -52,10 +51,6 @@ if(isset($_GET['i']) && !empty($_GET['i']))
     }
     else {
       $respuesta = number_format($row['resultado'],3);
-      $fraccionario = true;
-    }
-    if ($fraccionario) {
-      $respuesta = number_format($respuesta,3);
     }
     $datos[] = array(
       'resultado' => $respuesta,
