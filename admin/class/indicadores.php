@@ -159,6 +159,53 @@ class indicador {
 
     }
 
+    function validar_indicador($i) {
+      include("conexion.php");
+      $conn = new conexion();
+      $conexion = $conn->conectar();
+      $query = 'SELECT COUNT(nombre) AS cuenta FROM indicadores WHERE nombre = "' . $i['indicador'] .'";';
+      $ExConsulta = $conexion->query($query);
+      $cuantosIndicadores = $ExConsulta->fetch_array(MYSQLI_NUM);
+      if($cuantosIndicadores[0] == 1){
+          $msg = "no continuar";
+      }else{
+          //$msg = $conexion->error." ".$query;
+          $msg = "continuar";
+      }
+      $conexion->close();
+      return $msg;
+    }
+
+    function guardar_indicador($i) {
+      include("conexion.php");
+      $conn = new conexion();
+      $fecha_actualizacion = date("Y-m-d H:i:s");
+      $conexion = $conn->conectar();
+      $query = sprintf('INSERT INTO indicadores SET nombre = "%s", tendencia_deseable = %d, u_medida = %d, a_base = "%s", periodicidad = %d, fecha_actualizacion = "%s", definicion = "%s", origen = %d, alineacion_ped = %d', $i['nuevo_nombre'], $i['nuevo_tendencia_deseable'], $i['nuevo_u_medida'], $i['nuevo_a_base'], $i['nuevo_periodicidad'], $fecha_actualizacion, $i['nuevo_definicion'], $i['nuevo_origen'], $i['nuevo_estrategia']);
+      if($conexion->query($query)){
+        // Obtengo el último id generado
+        $ultimo_id_indicador = $conexion -> insert_id;
+        $query = sprintf("INSERT INTO indicador_tema SET id_indicador = %d, id_tema = %d",$ultimo_id_indicador, $i['nuevo_tema']);
+        if ($conexion->query($query)) {
+          $query = sprintf("INSERT INTO indicador_dependencia SET id_indicador = %d, id_dependencia = %d",$ultimo_id_indicador,$_SESSION['dependencia']);
+          if ($conexion->query($query)) {
+            $msg = "continuar";
+          }
+          else{
+            $msg = $conexion->error." ".$query;
+          }
+        }
+        else{
+          $msg = $conexion->error." ".$query;
+        }
+
+      }else{
+          $msg = $conexion->error." ".$query;
+      }
+      $conexion->close();
+      return $msg;
+    }
+
 
 }
 $indicador = new indicador();
@@ -178,6 +225,12 @@ switch($_POST['accion']){
     break;
     case 5:
     $resultado = $indicador->actualizar_resultados($_POST);
+    break;
+    case 7:
+    $resultado = $indicador->validar_indicador($_POST);
+    break;
+    case 8:
+    $resultado = $indicador->guardar_indicador($_POST);
     break;
 
 }

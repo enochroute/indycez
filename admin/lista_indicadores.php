@@ -219,108 +219,110 @@ $conexion->set_charset("utf8");
                                 <div class="row">
                                   <div class="col-md-6">
                                     <div class="btn-group">
-                                      <!-- <button id="sample_editable_1_new" class="btn btn-success" data-toggle="modal" data-target="#nuevoModal">
-                                        Agregar Nuevo <i class="fa fa-plus"></i>
-                                      </button> -->
-                                      <button id="sample_editable_1_new" class="btn btn-success">
+                                      <button id="sample_editable_1_new" class="btn btn-success" data-toggle="modal" data-target="#nuevoModal">
                                         Agregar Nuevo <i class="fa fa-plus"></i>
                                       </button>
-                                    </div>
+                                      <!-- <button id="sample_editable_1_new" class="btn btn-success">
+                                      Agregar Nuevo <i class="fa fa-plus"></i>
+                                    </button> -->
                                   </div>
-                                  <div class="col-md-6">
-                                    <div class="btn-group pull-right">
-                                      <button class="btn dropdown-toggle" data-toggle="dropdown"><small>Herramientas&nbsp;</small><i class="fa fa-angle-down"></i>
-                                      </button>
-                                      <ul class="dropdown-menu pull-right">
+                                </div>
+                                <div class="col-md-6">
+                                  <div class="btn-group pull-right">
+                                    <button class="btn dropdown-toggle" data-toggle="dropdown"><small>Herramientas&nbsp;</small><i class="fa fa-angle-down"></i>
+                                    </button>
+                                    <ul class="dropdown-menu pull-right">
+                                      <li>
+                                        <a href="#">
+                                          Imprimir </a>
+                                        </li>
                                         <li>
                                           <a href="#">
-                                            Imprimir </a>
+                                            Guardar como PDF </a>
                                           </li>
                                           <li>
                                             <a href="#">
-                                              Guerdar como PDF </a>
+                                              Exportar a Excel </a>
                                             </li>
-                                            <li>
-                                              <a href="#">
-                                                Exportar a Excel </a>
-                                              </li>
-                                            </ul>
-                                          </div>
+                                          </ul>
                                         </div>
                                       </div>
                                     </div>
-                                    <div id="listaIndicadores">
+                                  </div>
+                                  <div id="listaIndicadores">
 
-                                      <table class="table table-striped table-bordered table-hover" id="sample_1">
-                                        <thead>
-                                          <tr>
-                                            <th width="60%"> Nombre del indicador </th>
-                                            <th width="20%"> Fecha de Actualización </th>
-                                            <th width="20%"> </th>
-                                          </tr>
-                                        </thead>
-                                      </table>
+                                    <table class="table table-striped table-bordered table-hover" id="sample_1">
+                                      <thead>
+                                        <tr>
+                                          <th width="60%"> Nombre del indicador </th>
+                                          <th width="20%"> Fecha de Actualización </th>
+                                          <th width="20%"> </th>
+                                        </tr>
+                                      </thead>
+                                    </table>
 
-                                    </div>
                                   </div>
                                 </div>
                               </div>
                             </div>
-
-
-
-
                           </div>
+
+
+
+
                         </div>
+                      </div>
 
-                        <!-- modal info -->
+                      <!-- modal info -->
 
-                        <div class="modal fade" id="infoIndModal" tabindex="-1" role="basic" aria-hidden="true">
-                          <div class="modal-dialog modal-wide">
-                            <div class="modal-content">
-                              <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
-                                <h4 class="modal-title">Información del Indicador</h4>
-                              </div>
-                              <div class="modal-body" id="infoIndicador">
-                                <div align="center">
-                                  <br>Cargando info<br>
-                                  <img src="../img/loading_verde.gif">
-                                </div>
-                              </div>
-                              <div class="modal-footer" id="modal_footer">
-                                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-                              </div>
-
-                              <!-- /.modal-content -->
+                      <div class="modal fade" id="infoIndModal" tabindex="-1" role="basic" aria-hidden="true">
+                        <div class="modal-dialog modal-wide">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                              <h4 class="modal-title">Información del Indicador</h4>
                             </div>
-                            <!-- /.modal-dialog -->
-                          </div>
-                          <!-- end modal info -->
-
-                        </div>
-
-                        <!--- nuevo indicador -->
-                        <div class="modal fade" id="nuevoModal" tabindex="-1" role="basic" aria-hidden="true">
-                          <div class="modal-dialog modal-wide">
-                            <div class="modal-content">
-                              <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
-                                <h4 class="modal-title">Nuevo Indicador</h4>
+                            <div class="modal-body" id="infoIndicador">
+                              <div align="center">
+                                <br>Cargando info<br>
+                                <img src="../img/loading_verde.gif">
                               </div>
-                              <div class="modal-body">
+                            </div>
+                            <div class="modal-footer" id="modal_footer">
+                              <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                            </div>
 
-                                <div class="portlet">
-                                  <div class="portlet-title">
-                                    <div class="caption">
-                                      <span class="text-success"><i class="fa fa-plus-circle"></i></span> Agregar un indicador
-                                    </div>
+                            <!-- /.modal-content -->
+                          </div>
+                          <!-- /.modal-dialog -->
+                        </div>
+                        <!-- end modal info -->
+
+                      </div>
+
+                      <!--- nuevo indicador -->
+                      <div class="modal fade" id="nuevoModal" tabindex="-1" role="basic" aria-hidden="true">
+                        <div class="modal-dialog modal-wide">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                              <h4 class="modal-title">Nuevo Indicador</h4>
+                            </div>
+                            <div class="modal-body">
+
+                              <div class="portlet">
+                                <div class="portlet-title">
+                                  <div class="caption">
+                                    <span class="text-success"><i class="fa fa-plus-circle"></i></span> Agregar un indicador
                                   </div>
-                                  <div class="portlet-body">
-                                    <div class="row">
-                                      <div class="col-md-6">
-                                        <div class="portlet-body form">
-                                          <form role="form">
+                                </div>
+                                <div class="portlet-body">
+                                  <div class="row">
+                                    <div class="col-md-12">
+                                      <div class="portlet-body form">
+                                        <form role="form" id="frm-nuevoIndicador">
+                                          <div class="col-md-6">
+
 
                                             <div class="form-group">
                                               <div class="row">
@@ -423,7 +425,7 @@ $conexion->set_charset("utf8");
                                               </div>
                                             </div>
                                             <hr>
-                                            <div class="form-group">
+                                            <!-- <div class="form-group">
                                               <div class="row">
                                                 <div class="col-md-3">
                                                   <label for="fecha_act">Fecha Actualización: </label>
@@ -432,18 +434,10 @@ $conexion->set_charset("utf8");
                                                   <input type="date" class="form-control" id="nuevo_fecha_act" name="nuevo_fecha_act" >
                                                 </div>
                                               </div>
-                                            </div>
+                                            </div> -->
+                                          </div>
 
-
-
-
-
-                                          </form>
-                                        </div>
-                                      </div>
-                                      <div class="col-md-6">
-                                        <div class="portlet-body form">
-                                          <form role="form">
+                                          <div class="col-md-6">
 
                                             <div class="form-group">
                                               <div class="row">
@@ -532,598 +526,602 @@ $conexion->set_charset("utf8");
                                                 </div>
                                               </div>
                                             </div>
+                                          </div>
 
 
-                                          </form>
-                                        </div>
+
+
+                                        </form>
                                       </div>
                                     </div>
                                   </div>
                                 </div>
-
-
-
-
-
                               </div>
-                              <div class="modal-footer" id="modal_footer">
-                                <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
-                                <button type="button" class="btn btn-success" onclick="validar_nuevo_indicador();">Guardar</button>
-                              </div>
-                              <!-- /.modal-content -->
+
+
+
+
+
                             </div>
-                            <!-- /.modal-dialog -->
+                            <div class="modal-footer" id="modal_footer">
+                              <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                              <button type="button" class="btn btn-success" onclick="validar_nuevo_indicador();">Guardar</button>
+                            </div>
+                            <!-- /.modal-content -->
                           </div>
-                          <!-- end modal info -->
+                          <!-- /.modal-dialog -->
                         </div>
+                        <!-- end modal info -->
+                      </div>
 
 
 
-                        <div class="footer">
-                          <div class="footer-inner">
-                            Gobierno del Estado de Zacatecas 2016 - 2021
-                          </div>
-                          <div class="footer-tools">
-                            <span class="go-top">
-                              <i class="fa fa-angle-up"></i>
-                            </span>
-                          </div>
+                      <div class="footer">
+                        <div class="footer-inner">
+                          Gobierno del Estado de Zacatecas 2016 - 2021
+                        </div>
+                        <div class="footer-tools">
+                          <span class="go-top">
+                            <i class="fa fa-angle-up"></i>
+                          </span>
                         </div>
                       </div>
-                      <input type="hidden" id="indicadorActivo" name="indicadorActivo">
-                      <script src="js/jquery-1.11.0.min.js" type="text/javascript"></script>
-                      <script src="js/jquery-migrate-1.2.1.min.js" type="text/javascript"></script>
-                      <script src="js/jquery-ui-1.10.3.custom.min.js" type="text/javascript"></script>
-                      <script src="js/bootstrap.min.js" type="text/javascript"></script>
-                      <script src="js/bootstrap-hover-dropdown.min.js" type="text/javascript"></script>
-                      <script src="js/jquery.slimscroll.min.js" type="text/javascript"></script>
-                      <script src="js/jquery.blockui.min.js" type="text/javascript"></script>
-                      <script src="js/jquery.uniform.min.js" type="text/javascript"></script>
-                      <script src="js/jquery.peity.min.js" type="text/javascript"></script>
-                      <script src="js/jquery.pulsate.min.js" type="text/javascript"></script>
-                      <script src="js/jquery.knob.js" type="text/javascript"></script>
-                      <script src="js/jquery.flot.js" type="text/javascript"></script>
-                      <script src="js/jquery.flot.resize.js" type="text/javascript"></script>
-                      <script src="js/moment.min.js" type="text/javascript"></script>
-                      <script src="js/jquery.gritter.js" type="text/javascript"></script>
-                      <script src="js/jquery.sparkline.min.js" type="text/javascript"></script>
-                      <script src="js/app.js" type="text/javascript"></script>
-                      <script src="js/index.js" type="text/javascript"></script>
-                      <script type="text/javascript" src="js/jquery.dataTables.min.js"></script>
-                      <script type="text/javascript" src="js/dataTables.bootstrap.js"></script>
-                      <script src="js/table-managed.js"></script>
+                    </div>
+                    <input type="hidden" id="indicadorActivo" name="indicadorActivo">
+                    <script src="js/jquery-1.11.0.min.js" type="text/javascript"></script>
+                    <script src="js/jquery-migrate-1.2.1.min.js" type="text/javascript"></script>
+                    <script src="js/jquery-ui-1.10.3.custom.min.js" type="text/javascript"></script>
+                    <script src="js/bootstrap.min.js" type="text/javascript"></script>
+                    <script src="js/bootstrap-hover-dropdown.min.js" type="text/javascript"></script>
+                    <script src="js/jquery.slimscroll.min.js" type="text/javascript"></script>
+                    <script src="js/jquery.blockui.min.js" type="text/javascript"></script>
+                    <script src="js/jquery.uniform.min.js" type="text/javascript"></script>
+                    <script src="js/jquery.peity.min.js" type="text/javascript"></script>
+                    <script src="js/jquery.pulsate.min.js" type="text/javascript"></script>
+                    <script src="js/jquery.knob.js" type="text/javascript"></script>
+                    <script src="js/jquery.flot.js" type="text/javascript"></script>
+                    <script src="js/jquery.flot.resize.js" type="text/javascript"></script>
+                    <script src="js/moment.min.js" type="text/javascript"></script>
+                    <script src="js/jquery.gritter.js" type="text/javascript"></script>
+                    <script src="js/jquery.sparkline.min.js" type="text/javascript"></script>
+                    <script src="js/app.js" type="text/javascript"></script>
+                    <script src="js/index.js" type="text/javascript"></script>
+                    <script type="text/javascript" src="js/jquery.dataTables.min.js"></script>
+                    <script type="text/javascript" src="js/dataTables.bootstrap.js"></script>
+                    <script src="js/table-managed.js"></script>
 
-                      <script type="text/javascript">
-                        $('#sample_editable_1_new').on("click", function(e){
-                          e.preventDefault();
-                          alert("Por el momento esta función se encuentra deshabilitada. Contacte al administrador del sistema para mayores detalles");
-                          //alert('Por el momento esta sección se encuentra deshabilitada');
-                        });
-                      </script>
-                      <script type="text/javascript">
+                    <!-- <script type="text/javascript">
+                    $('#sample_editable_1_new').on("click", function(e){
+                    e.preventDefault();
+                    alert("Por el momento esta función se encuentra deshabilitada. Contacte al administrador del sistema para mayores detalles");
+                    //alert('Por el momento esta sección se encuentra deshabilitada');
+                  });
+                </script> -->
+                <script type="text/javascript">
 
 
-                      function TableManagedCustomize() {
-                        TableManaged.init();
+                function TableManagedCustomize() {
+                  TableManaged.init();
+                }
+                jQuery(document).ready(function() {
+                  App.init(); // initlayout and core plugins
+                  Index.init();
+                  Index.initPeityElements();
+                  Index.initKnowElements();
+                  TableManaged.init();
+                  loadList(1);
+
+
+                });
+                function loadList(v) {
+
+                  if (v == 0) {
+                    return false;
+                  }
+                  $('#tema_actual').val(v);
+                  $.ajax({
+                    method: "POST",
+                    url: "class/listado_indicadores.php",
+                    data: {
+                      idTema: v
+                    }
+                  }).done(function(msg) {
+                    document.getElementById('listaIndicadores').innerHTML = msg;
+                    TableManaged.init();
+                  });
+                }
+                function EditIndicador(v) {
+                  document.getElementById('modal_footer').innerHTML = "<button type='button' class='btn btn-success' onclick='guardandoIndicador();'>Actualizar</button> <button type='button' class='btn btn-danger' data-dismiss='modal'>Cancelar</button>";
+                  document.getElementById('infoIndicador').innerHTML = "<div align='center'><br>Cargando info<br><img src='../img/loading_verde.gif'></div>";
+                  $("#infoIndModal").modal();
+                  $.ajax({
+                    method: "POST",
+                    url: "class/edit_indicador.php",
+                    data: {
+                      idIndicador: v
+                    }
+                  }).done(function(msg) {
+                    document.getElementById('infoIndicador').innerHTML = msg;
+                    $('#indicadorActivo').val(v);
+                  });
+                }
+
+                function guardandoIndicador() {
+
+                  document.getElementById('msg_estado').innerHTML = "<div style='position: absolute; padding:70px; top: 30%; width:90%; z-index: 99; background-color:#50a649; color:#fff;'> <i class='fa fa-refresh fa-spin fa-3x fa-fw'></i> Actualizando Información del Indicador, porfavor espere. </div>";
+                  if ($('#indicador_activo').is(':checked')) {
+                    var ind_activo = 1;
+                  }else{
+                    var ind_activo = 0;}
+
+                    $.ajax({
+                      method: "POST",
+                      url: "class/indicadores.php",
+                      data: {
+                        accion: 1,
+                        id_indicador: $('#indicadorActivo').val(),
+                        nombre: $('#nombre').val(),
+                        identificador: $('#identificador').val(),
+                        tendencia_deseable: $('#tendencia_deseable').val(),
+                        u_medida: $('#u_medida').val(),
+                        a_base: $('#a_base').val(),
+                        periodicidad: $('#periodicidad').val(),
+                        fecha_act: $('#fecha_act').val(),
+                        definicion: $('#definicion').val(),
+                        origen: $('#origen').val(),
+                        ped: $('#estrategia').val(),
+                        sistema_consulta: $('#sistema_consulta').val(),
+                        cobertura_geografica: $('#cobertura_geografica').val(),
+                        notas: $('#notas').val(),
+                        metodo: $('#metodo').val(),
+                        formula: $('#formula').val(),
+                        variables: $('#variables').val(),
+                        nivel: $('#nivel').val(),
+                        objetivo: $('#objetivo').val(),
+                        responsable: $('#responsable').val(),
+                        activo: ind_activo
                       }
-                      jQuery(document).ready(function() {
-                        App.init(); // initlayout and core plugins
-                        Index.init();
-                        Index.initPeityElements();
-                        Index.initKnowElements();
-                        TableManaged.init();
-                        loadList(1);
+                    }).done(function(msg) {
+                      if (msg == "hecho") {
+
+                        document.getElementById('msg_estado').innerHTML = "<div style='position: absolute; padding:70px; top: 30%; width:90%; z-index: 99; background-color:#50a649; color:#fff;'> <i class='fa fa-refresh fa-spin fa-3x fa-fw'></i> Actualizando Temas Asociados, porfavor espere. </div>";
+                        guardandoTemasAsociados();
+                        return true;
+                      } else {
+
+                        document.getElementById('msg_estado').innerHTML = "";
+                        alert(msg);
+                        $('#infoIndModal').modal('hide');
+                        return false;
+                      }
+                    });
+                  }
+                  function guardandoTemasAsociados() {
+                    var arreglo = "";
+                    if ($('#chkGobierno').is(':checked')) {
+                      arreglo = "1 ";
+                    }
+                    if ($('#chkRezago').is(':checked')) {
+                      arreglo = arreglo + "2 ";
+                    }
+                    if ($('#chkSalud').is(':checked')) {
+                      arreglo = arreglo + "3 ";
+                    }
+                    if ($('#chkSeguridad').is(':checked')) {
+                      arreglo = arreglo + "4 ";
+                    }
+                    if ($('#chkGenero').is(':checked')) {
+                      arreglo = arreglo + "5 ";
+                    }
+                    if ($('#chkEducacion').is(':checked')) {
+                      arreglo = arreglo + "6 ";
+                    }
+                    if ($('#chkInnovacion').is(':checked')) {
+                      arreglo = arreglo + "7 ";
+                    }
+                    if ($('#chkEconomia').is(':checked')) {
+                      arreglo = arreglo + "8 ";
+                    }
+                    if ($('#chkInfraestructura').is(':checked')) {
+                      arreglo = arreglo + "9 ";
+                    }
+                    if ($('#chkCampo').is(':checked')) {
+                      arreglo = arreglo + "10 ";
+                    }
+                    if ($('#chkTurismo').is(':checked')) {
+                      arreglo = arreglo + "11 ";
+                    }
+                    if ($('#chkMedio').is(':checked')) {
+                      arreglo = arreglo + "12 ";
+                    }
+                    if ($('#chkDesarrollo').is(':checked')) {
+                      arreglo = arreglo + "13 ";
+                    }
+                    if ($('#chkCultura').is(':checked')) {
+                      arreglo = arreglo + "14 ";
+                    }
+                    if ($('#chkPoblacion').is(':checked')) {
+                      arreglo = arreglo + "15 ";
+                    }
+
+
+                    $.ajax({
+                      method: "POST",
+                      url: "class/indicadores.php",
+                      data: {
+                        accion: 2,
+                        id_indicador: $('#indicadorActivo').val(),
+                        informacion: arreglo
+                      }
+                    }).done(function(msg) {
+                      if (msg == "hecho") {
+                        document.getElementById('msg_estado').innerHTML = "<div style='position: absolute; padding:70px; top: 30%; width:90%; z-index: 99; background-color:#50a649; color:#fff;'> <i class='fa fa-refresh fa-spin fa-3x fa-fw'></i> Actualizando Fuentes de Información, porfavor espere. </div>";
+                        guardandoFuentesInformacion();
+                        return true;
+                      } else {
+                        document.getElementById('msg_estado').innerHTML = "";
+                        alert(msg);
+                        $('#infoIndModal').modal('hide');
+                        return false;
+                      }
+                    });
+
+                  }
+                  function guardandoFuentesInformacion() {
+                    var arreglo = "";
+                    if ($('#fuente1').is(':checked')) {
+                      arreglo = "1 ";
+                    }
+                    for (x = 2; x < 43; x++) {
+                      if ($('#fuente' + x).is(':checked')) {
+                        arreglo = arreglo + x + " ";
+                      }
+                    }
+
+                    $.ajax({
+                      method: "POST",
+                      url: "class/indicadores.php",
+                      data: {
+                        accion: 3,
+                        id_indicador: $('#indicadorActivo').val(),
+                        informacion: arreglo
+                      }
+                    }).done(function(msg) {
+                      if (msg == "hecho") {
+                        document.getElementById('msg_estado').innerHTML = "<div style='position: absolute; padding:70px; top: 30%; width:90%; z-index: 99; background-color:#50a649; color:#fff;'> <i class='fa fa-refresh fa-spin fa-3x fa-fw'></i> Actualizando Depenendencias, porfavor espere. </div>";
+                        guardandoDependencias();
+                        return true;
+                      } else {
+                        document.getElementById('msg_estado').innerHTML = "";
+
+                        alert(msg);
+                        $('#infoIndModal').modal('hide');
+                        return false;
+                      }
+                    });
+                  }
+                  function guardandoDependencias(){
+
+                    var arreglo = "";
+                    if ($('#dependencia1').is(':checked')) {
+                      arreglo = "1 ";
+                    }
+
+                    var dependencias_arr = ["2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","21","31","41","42","43","44","45","46","60","61","62","63","64","65","66","67","68","69","70","71","72","73","74","75","76","77","78","79","80","81","82","83","84","85","86","87","88","89","90","91","92","93"];
+
+
+                    for (x = 0; x < dependencias_arr.length; x++) {
+                      if ($('#dependencia' + dependencias_arr[x]).is(':checked')) {
+                        arreglo = arreglo + dependencias_arr[x] + " ";
+                      }
+                    }
+
+                    $.ajax({
+                      method: "POST",
+                      url: "class/indicadores.php",
+                      data: {
+                        accion: 4,
+                        id_indicador: $('#indicadorActivo').val(),
+                        informacion: arreglo
+                      }
+                    }).done(function(msg) {
+
+                      if (msg == "hecho") {
+
+                        document.getElementById('msg_estado').innerHTML = "<div style='position: absolute; padding:70px; top: 30%; width:90%; z-index: 99; background-color:#50a649; color:#fff;'> <i class='fa fa-refresh fa-spin fa-3x fa-fw'></i> Actualizando Resultados, porfavor espere. </div>";
+                        guardaResultados()
+                        return true;
+                      } else {
+
+                        document.getElementById('msg_estado').innerHTML = "";
+                        alert(msg);
+                        $('#infoIndModal').modal('hide');
+                        return false;
+                      }
+                    });
+                  }
+
+                  function guardaResultados(){
+                    var actualizar_registros = false;
+                    for(x=1;x<=$('#numRowsTablaResultados').val();x++){
+                      var nfila = '#ResultadoFila'+x;
+                      if($(nfila).hasClass('danger') || $(nfila).hasClass('warning') || $(nfila).hasClass('success') ){
+                        actualizar_registros = true;
+                      }
+                    }
+
+                    if(actualizar_registros){
+                      if(confirm("Existen resultados a eliminar o modificar, ¿desea continuar?")){
+                        var arreglo_resultados = [];
+                        var l = 0;
+                        var guardar = false;
+                        for(x=1;x<$('#numRowsTablaResultados').val();x++){
+                          nfila = '#ResultadoFila'+x;
+                          guardar = $(nfila).hasClass('danger');
+                          if(!guardar){
+                            arreglo_resultados[l] = new Array($('#indicadorActivo').val(),$('#ResultadoPeriodo'+x).val(),$('#ResultadoMeta'+x).val(),$('#ResultadoRes'+x).val(),$('#ResultadoMunicipio'+x).val(),$('#ResultadoRegion'+x).val(),$('#ResultadoEjercicio'+x).val());
+                            l++;
+                          }
+                        }
+                        $.ajax({
+                          method: "POST",
+                          url: "class/indicadores.php",
+                          data: {
+                            accion: 5,
+                            data: arreglo_resultados
+                          }
+                        }).done(function(msg) {
+                          if (msg == "hecho") {
+                            document.getElementById('msg_estado').innerHTML = "";
+                            $("#infoIndModal").modal('hide');
+                            loadInfoInd($('#tema_actual').val());
+                            return true;
+                          } else {
+                            document.getElementById('msg_estado').innerHTML = "";
+                            $("#infoIndModal").modal('hide');
+                            alert(msg);
+                            return true;
+                          }
+
+
+                        });
+
+                      }
+                      return true;
+                    }else{
+                      $("#infoIndModal").modal('hide');
+                      loadList($('#tema_actual').val());
+                      return true;
+                    }
+                  }
+
+
+
+
+
+
+                  function carga_lineas() {
+                    $.ajax({
+                      method: "POST",
+                      url: "class/ped_catalogo.php",
+                      data: {
+                        accion: "linea",
+                        eje: $('#eje').val()
+                      }
+                    }).done(function(msg) {
+                      document.getElementById('slctLinea').innerHTML = msg;
+                      $('#estrategia')
+                      .find('option')
+                      .remove()
+                      .end()
+                      .append('<option value="130">No alineado al PED</option>')
+                      .val('130');
+
+                    });
+
+                  }
+                  function eliminaPrev(v){
+                    $('#ResultadoFila'+v).addClass('danger');
+                    document.getElementById('ResultadoBtn'+v).innerHTML = "<button type='button' class='btn btn-default' onclick='NoeliminaPrev("+v+")'><span class='text-success'><i class='fa fa-recycle'></i></span> </button>";
+                    return true;
+                  }
+                  function modificarRes(v){
+                    $('#ResultadoFila'+v).addClass('warning');
+                    document.getElementById('ResultadoBtn'+v).innerHTML = "<button type='button' class='btn btn-default' onclick='NoeliminaPrev("+v+")'><span class='text-success'><i class='fa fa-recycle'></i></span> </button>";
+                    return true;
+                  }
+                  function NoeliminaPrev(v){
+                    var clase;
+                    if($('#ResultadoFila'+v).hasClass('danger')){ clase = 'danger'; }else{ clase = 'warning';}
+                    $('#ResultadoFila'+v).removeClass(clase);
+                    document.getElementById('ResultadoBtn'+v).innerHTML = "<button type='button' class='btn btn-default' onclick='eliminaPrev("+v+")'><span class='text-danger'><i class='fa fa-trash'></i></span> </button>";
+                    return true;
+                  }
+                  function agregaResultadoRow(){
+                    var v = $('#numRowsTablaResultados').val();
+                    $('#resultadosIndicadorTabla tr:last').after('<tr id="ResultadoFila'+v+'"><td><input class="form-control" type="text" id="ResultadoPeriodo'+v+'"></td><td><input class="form-control" type="text" id="ResultadoMeta'+v+'"></td><td><input class="form-control" type="text" id="ResultadoRes'+v+'"></td><td><div id="sltMpio'+v+'"></div></td><td><div id="region'+v+'"><input type="hidden" id="ResultadoRegion'+v+'" value="8"><input type="text" id="RegionTxt'+v+'" value="Sur (Tlaltenango)" readonly class="form-control" ></div></td><td><input class="form-control" type="number" id="ResultadoEjercicio'+v+'"> </td><td><div class="btn-group" id="ResultadoBtn'+v+'"><button type="button" class="btn btn-default" onclick="eliminaPrev('+v+')"><span class="text-danger"><i class="fa fa-trash"></i></span> </button></div></td></tr>');
+                    document.getElementById('sltMpio'+v).innerHTML = "<select class='form-control' id='ResultadoMunicipio"+v+"' onchange='agrega_region(this.value,"+v+");'><option value='1'>Apozol</option></select>";
+                    var municipios_list = [<?php $conexion = $conn->conectar(); $conexion->set_charset("utf8"); $ExListMpios = $conexion->query("SELECT nombre from municipios"); while($rMp = $ExListMpios->fetch_array(MYSQLI_NUM)){echo '"'.$rMp[0].'",';}    ?>"No Aplica"];
+                    for(var y=0;y<municipios_list.length;y++){
+
+                      $('#ResultadoMunicipio'+v).append($('<option>', {
+                        value: y+1,
+                        text: municipios_list[y]}));
+                      }
+
+
+
+
+
+                      var n =  parseInt(v);
+                      n = n+1;
+                      $('#numRowsTablaResultados').val(n);
+                    }
+
+
+                    function carga_estrategias() {
+                      $.ajax({
+                        method: "POST",
+                        url: "class/ped_catalogo.php",
+                        data: {
+                          accion: "estrategia",
+                          linea: $('#linea').val()
+                        }
+                      }).done(function(msg) {
+                        document.getElementById('slctEstrategia').innerHTML = msg;
+                      });
+
+                    }
+                    function habilitarBtn(){
+                      archivo = $('#fileXLS').val();
+                      var extension = (archivo.substring(archivo.lastIndexOf("."))).toLowerCase();
+                      if(extension == ".xls" || extension == ".xlsx"){
+                        $('#xlsbtn').attr('disabled', false);
+                      }else{
+                        alert("Solo puedes subir archivos xls o xlsx (Excel o Libre Office)");
+                        $('#fileXLS').val('');
+                        return false;
+                      }
+
+
+                    }
+                    function cargar_excel(){
+                      var formData = new FormData(document.getElementById("xlsForm"));
+                      formData.append("dato", "valor");
+                      $.ajax({
+                        url: "class/cargar_xls.php",
+                        type: "post",
+                        dataType: "html",
+                        data: formData,
+                        cache: false,
+                        contentType: false,
+                        processData: false
+                      })
+                      .done(function(res){
+                        var datos = JSON.parse(res);
+                        var periodo = "";
+                        var meta = 0;
+                        var resultado = 0;
+                        var municipio = "";
+                        var idmunicipio = 0;
+                        var idregion = 0;
+                        var region = "";
+                        var ejercicio = 0;
+                        var x;
+                        for(x = 0; x < datos.length;x++){
+                          periodo = datos[x]["periodo"];
+                          meta  = datos[x]["meta"];
+                          resultado = datos[x]["resultado"];
+                          idmunicipio = datos[x]["id_municipio"];
+                          municipio = datos[x]["municipio"];
+                          idregion = datos[x]["id_region"];
+                          region = datos[x]["region"];
+                          ejercicio = datos[x]["ejercicio"];
+                          var v = $('#numRowsTablaResultados').val();
+
+                          $('#resultadosIndicadorTabla tr:last').after('<tr id="ResultadoFila'+v+'"><td><input class="form-control" type="text" id="ResultadoPeriodo'+v+'" value="'+periodo+'"></td><td><input class="form-control" type="text" id="ResultadoMeta'+v+'" value="'+meta+'"></td><td><input class="form-control" type="text" id="ResultadoRes'+v+'" value="'+resultado+'"></td><td><div id="sltMpio'+v+'"></div></td><td><div id="region'+v+'"><input type="hidden" id="ResultadoRegion'+v+'" value="'+idregion+'"><input type="text" id="RegionTxt'+v+'" readonly value="'+region+'" class="form-control" ></div></td><td><input class="form-control" type="number" id="ResultadoEjercicio'+v+'" value="'+ejercicio+'"> </td><td><div class="btn-group" id="ResultadoBtn'+v+'"><button type="button" class="btn btn-default" onclick="eliminaPrev('+v+')"><span class="text-danger"><i class="fa fa-trash"></i></span> </button></div></td></tr>');
+                          $('#ResultadoFila'+v).addClass('success');
+                          var n =  parseInt(v);
+                          n = n+1;
+                          $('#numRowsTablaResultados').val(n);
+                          agrega_mpios_list(v,municipio,idmunicipio);
+
+
+                        }
+
+
+
 
 
                       });
-                      function loadList(v) {
+                      return true;
 
-                        if (v == 0) {
+                    }
+                    function agrega_mpios_list(v,m,i){
+                      document.getElementById('sltMpio'+v).innerHTML = "<select class='form-control' id='ResultadoMunicipio"+v+"'  onchange='agrega_region(this.value,"+v+");' ><option value='"+i+"'>"+m+"</option></select>";
+                      var municipios_list = [<?php $conexion = $conn->conectar(); $conexion->set_charset("utf8"); $ExListMpios = $conexion->query("SELECT nombre from municipios"); while($rMp = $ExListMpios->fetch_array(MYSQLI_NUM)){echo '"'.$rMp[0].'",';}    ?>"No Aplica"];
+                      for(var y=0;y<municipios_list.length;y++){
+
+                        $('#ResultadoMunicipio'+v).append($('<option>', {
+                          value: y+1,
+                          text: municipios_list[y]}));
+                        }
+
+
+                        return true;
+
+
+                      }
+                      function agrega_region(v,n){
+
+                        modificarRes(n);
+
+                        $.ajax({
+                          method: "POST",
+                          url: "class/catalogos.php",
+                          data: {
+                            accion: "nombre_region",
+                            municipio: v,
+                          }
+                        }).done(function(msg) {
+                          var datos = JSON.parse(msg);
+
+                          document.getElementById('region'+n).innerHTML = "<input type='hidden' id='ResultadoRegion"+n+"' value='"+datos[0]+"'><input type='text' id='RegionTxt' readonly value='"+datos[1]+"' class='form-control' >";
+                        });
+
+
+                      }
+
+                      function validar_nuevo_indicador(){
+                        if($('#nuevo_nombre').val() == ""  || $('#nuevo_nombre').val() == " "){
+                          alert("El nombre del indicador no puede estar vacío");
                           return false;
                         }
-                        $('#tema_actual').val(v);
+
                         $.ajax({
                           method: "POST",
-                          url: "class/listado_indicadores.php",
+                          url: "class/indicadores.php",
                           data: {
-                            idTema: v
+                            accion: 7,
+                            indicador: $('#nuevo_nombre').val(),
                           }
                         }).done(function(msg) {
-                          document.getElementById('listaIndicadores').innerHTML = msg;
-                          TableManaged.init();
-                        });
-                      }
-                      function EditIndicador(v) {
-                        document.getElementById('modal_footer').innerHTML = "<button type='button' class='btn btn-success' onclick='guardandoIndicador();'>Actualizar</button> <button type='button' class='btn btn-danger' data-dismiss='modal'>Cancelar</button>";
-                        document.getElementById('infoIndicador').innerHTML = "<div align='center'><br>Cargando info<br><img src='../img/loading_verde.gif'></div>";
-                        $("#infoIndModal").modal();
-                        $.ajax({
-                          method: "POST",
-                          url: "class/edit_indicador.php",
-                          data: {
-                            idIndicador: v
-                          }
-                        }).done(function(msg) {
-                          document.getElementById('infoIndicador').innerHTML = msg;
-                          $('#indicadorActivo').val(v);
-                        });
-                      }
-
-                      function guardandoIndicador() {
-
-                        document.getElementById('msg_estado').innerHTML = "<div style='position: absolute; padding:70px; top: 30%; width:90%; z-index: 99; background-color:#50a649; color:#fff;'> <i class='fa fa-refresh fa-spin fa-3x fa-fw'></i> Actualizando Información del Indicador, porfavor espere. </div>";
-                        if ($('#indicador_activo').is(':checked')) {
-                          var ind_activo = 1;
-                        }else{
-                          var ind_activo = 0;}
-
-                          $.ajax({
-                            method: "POST",
-                            url: "class/indicadores.php",
-                            data: {
-                              accion: 1,
-                              id_indicador: $('#indicadorActivo').val(),
-                              nombre: $('#nombre').val(),
-                              identificador: $('#identificador').val(),
-                              tendencia_deseable: $('#tendencia_deseable').val(),
-                              u_medida: $('#u_medida').val(),
-                              a_base: $('#a_base').val(),
-                              periodicidad: $('#periodicidad').val(),
-                              fecha_act: $('#fecha_act').val(),
-                              definicion: $('#definicion').val(),
-                              origen: $('#origen').val(),
-                              ped: $('#estrategia').val(),
-                              sistema_consulta: $('#sistema_consulta').val(),
-                              cobertura_geografica: $('#cobertura_geografica').val(),
-                              notas: $('#notas').val(),
-                              metodo: $('#metodo').val(),
-                              formula: $('#formula').val(),
-                              variables: $('#variables').val(),
-                              nivel: $('#nivel').val(),
-                              objetivo: $('#objetivo').val(),
-                              responsable: $('#responsable').val(),
-                              activo: ind_activo
-                            }
-                          }).done(function(msg) {
-                            if (msg == "hecho") {
-
-                              document.getElementById('msg_estado').innerHTML = "<div style='position: absolute; padding:70px; top: 30%; width:90%; z-index: 99; background-color:#50a649; color:#fff;'> <i class='fa fa-refresh fa-spin fa-3x fa-fw'></i> Actualizando Temas Asociados, porfavor espere. </div>";
-                              guardandoTemasAsociados();
-                              return true;
-                            } else {
-
-                              document.getElementById('msg_estado').innerHTML = "";
-                              alert(msg);
-                              $('#infoIndModal').modal('hide');
-                              return false;
-                            }
-                          });
-                        }
-                        function guardandoTemasAsociados() {
-                          var arreglo = "";
-                          if ($('#chkGobierno').is(':checked')) {
-                            arreglo = "1 ";
-                          }
-                          if ($('#chkRezago').is(':checked')) {
-                            arreglo = arreglo + "2 ";
-                          }
-                          if ($('#chkSalud').is(':checked')) {
-                            arreglo = arreglo + "3 ";
-                          }
-                          if ($('#chkSeguridad').is(':checked')) {
-                            arreglo = arreglo + "4 ";
-                          }
-                          if ($('#chkGenero').is(':checked')) {
-                            arreglo = arreglo + "5 ";
-                          }
-                          if ($('#chkEducacion').is(':checked')) {
-                            arreglo = arreglo + "6 ";
-                          }
-                          if ($('#chkInnovacion').is(':checked')) {
-                            arreglo = arreglo + "7 ";
-                          }
-                          if ($('#chkEconomia').is(':checked')) {
-                            arreglo = arreglo + "8 ";
-                          }
-                          if ($('#chkInfraestructura').is(':checked')) {
-                            arreglo = arreglo + "9 ";
-                          }
-                          if ($('#chkCampo').is(':checked')) {
-                            arreglo = arreglo + "10 ";
-                          }
-                          if ($('#chkTurismo').is(':checked')) {
-                            arreglo = arreglo + "11 ";
-                          }
-                          if ($('#chkMedio').is(':checked')) {
-                            arreglo = arreglo + "12 ";
-                          }
-                          if ($('#chkDesarrollo').is(':checked')) {
-                            arreglo = arreglo + "13 ";
-                          }
-                          if ($('#chkCultura').is(':checked')) {
-                            arreglo = arreglo + "14 ";
-                          }
-                          if ($('#chkPoblacion').is(':checked')) {
-                            arreglo = arreglo + "15 ";
-                          }
-
-
-                          $.ajax({
-                            method: "POST",
-                            url: "class/indicadores.php",
-                            data: {
-                              accion: 2,
-                              id_indicador: $('#indicadorActivo').val(),
-                              informacion: arreglo
-                            }
-                          }).done(function(msg) {
-                            if (msg == "hecho") {
-                              document.getElementById('msg_estado').innerHTML = "<div style='position: absolute; padding:70px; top: 30%; width:90%; z-index: 99; background-color:#50a649; color:#fff;'> <i class='fa fa-refresh fa-spin fa-3x fa-fw'></i> Actualizando Fuentes de Información, porfavor espere. </div>";
-                              guardandoFuentesInformacion();
-                              return true;
-                            } else {
-                              document.getElementById('msg_estado').innerHTML = "";
-                              alert(msg);
-                              $('#infoIndModal').modal('hide');
-                              return false;
-                            }
-                          });
-
-                        }
-                        function guardandoFuentesInformacion() {
-                          var arreglo = "";
-                          if ($('#fuente1').is(':checked')) {
-                            arreglo = "1 ";
-                          }
-                          for (x = 2; x < 43; x++) {
-                            if ($('#fuente' + x).is(':checked')) {
-                              arreglo = arreglo + x + " ";
-                            }
-                          }
-
-                          $.ajax({
-                            method: "POST",
-                            url: "class/indicadores.php",
-                            data: {
-                              accion: 3,
-                              id_indicador: $('#indicadorActivo').val(),
-                              informacion: arreglo
-                            }
-                          }).done(function(msg) {
-                            if (msg == "hecho") {
-                              document.getElementById('msg_estado').innerHTML = "<div style='position: absolute; padding:70px; top: 30%; width:90%; z-index: 99; background-color:#50a649; color:#fff;'> <i class='fa fa-refresh fa-spin fa-3x fa-fw'></i> Actualizando Depenendencias, porfavor espere. </div>";
-                              guardandoDependencias();
-                              return true;
-                            } else {
-                              document.getElementById('msg_estado').innerHTML = "";
-
-                              alert(msg);
-                              $('#infoIndModal').modal('hide');
-                              return false;
-                            }
-                          });
-                        }
-                        function guardandoDependencias(){
-
-                          var arreglo = "";
-                          if ($('#dependencia1').is(':checked')) {
-                            arreglo = "1 ";
-                          }
-
-                          var dependencias_arr = ["2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","21","31","41","42","43","44","45","46","60","61","62","63","64","65","66","67","68","69","70","71","72","73","74","75","76","77","78","79","80","81","82","83","84","85","86","87","88","89","90","91","92","93"];
-
-
-                          for (x = 0; x < dependencias_arr.length; x++) {
-                            if ($('#dependencia' + dependencias_arr[x]).is(':checked')) {
-                              arreglo = arreglo + dependencias_arr[x] + " ";
-                            }
-                          }
-
-                          $.ajax({
-                            method: "POST",
-                            url: "class/indicadores.php",
-                            data: {
-                              accion: 4,
-                              id_indicador: $('#indicadorActivo').val(),
-                              informacion: arreglo
-                            }
-                          }).done(function(msg) {
-
-                            if (msg == "hecho") {
-
-                              document.getElementById('msg_estado').innerHTML = "<div style='position: absolute; padding:70px; top: 30%; width:90%; z-index: 99; background-color:#50a649; color:#fff;'> <i class='fa fa-refresh fa-spin fa-3x fa-fw'></i> Actualizando Resultados, porfavor espere. </div>";
-                              guardaResultados()
-                              return true;
-                            } else {
-
-                              document.getElementById('msg_estado').innerHTML = "";
-                              alert(msg);
-                              $('#infoIndModal').modal('hide');
-                              return false;
-                            }
-                          });
-                        }
-
-                        function guardaResultados(){
-                          var actualizar_registros = false;
-                          for(x=1;x<=$('#numRowsTablaResultados').val();x++){
-                            var nfila = '#ResultadoFila'+x;
-                            if($(nfila).hasClass('danger') || $(nfila).hasClass('warning') || $(nfila).hasClass('success') ){
-                              actualizar_registros = true;
-                            }
-                          }
-
-                          if(actualizar_registros){
-                            if(confirm("Existen resultados a eliminar o modificar, ¿desea continuar?")){
-                              var arreglo_resultados = [];
-                              var l = 0;
-                              var guardar = false;
-                              for(x=1;x<$('#numRowsTablaResultados').val();x++){
-                                nfila = '#ResultadoFila'+x;
-                                guardar = $(nfila).hasClass('danger');
-                                if(!guardar){
-                                  arreglo_resultados[l] = new Array($('#indicadorActivo').val(),$('#ResultadoPeriodo'+x).val(),$('#ResultadoMeta'+x).val(),$('#ResultadoRes'+x).val(),$('#ResultadoMunicipio'+x).val(),$('#ResultadoRegion'+x).val(),$('#ResultadoEjercicio'+x).val());
-                                  l++;
-                                }
-                              }
-                              $.ajax({
-                                method: "POST",
-                                url: "class/indicadores.php",
-                                data: {
-                                  accion: 5,
-                                  data: arreglo_resultados
-                                }
-                              }).done(function(msg) {
-                                if (msg == "hecho") {
-                                  document.getElementById('msg_estado').innerHTML = "";
-                                  $("#infoIndModal").modal('hide');
-                                  loadInfoInd($('#tema_actual').val());
-                                  return true;
-                                } else {
-                                  document.getElementById('msg_estado').innerHTML = "";
-                                  $("#infoIndModal").modal('hide');
-                                  alert(msg);
-                                  return true;
-                                }
-
-
-                              });
-
-                            }
+                          if(msg == "continuar"){
+                            console.log(msg);
+                            guardar_nuevo_indicador();
                             return true;
                           }else{
-                            $("#infoIndModal").modal('hide');
-                            loadList($('#tema_actual').val());
+                            alert("Ya existe un indicador con ese nombre");
+                            return false;
+                          }
+                        });
+
+
+
+                      }
+
+                      function guardar_nuevo_indicador(){
+                        var datos = $('#frm-nuevoIndicador').serialize();
+                        datos = datos + '&accion=8';
+                        $.ajax({
+                          method: "POST",
+                          url: "class/indicadores.php",
+                          data: datos
+                        }).done(function(msg) {
+                          console.log(msg);
+                          if(msg == "continuar"){
+                            alert('El indicador se guardó correctamente');
                             return true;
+                          }else{
+                            alert("El indicador no pudo ser guardado");
+                            return false;
                           }
-                        }
+                        });
+
+                      }
 
 
 
-
-
-
-                        function carga_lineas() {
-                          $.ajax({
-                            method: "POST",
-                            url: "class/ped_catalogo.php",
-                            data: {
-                              accion: "linea",
-                              eje: $('#eje').val()
-                            }
-                          }).done(function(msg) {
-                            document.getElementById('slctLinea').innerHTML = msg;
-                            $('#estrategia')
-                            .find('option')
-                            .remove()
-                            .end()
-                            .append('<option value="130">No alineado al PED</option>')
-                            .val('130');
-
-                          });
-
-                        }
-                        function eliminaPrev(v){
-                          $('#ResultadoFila'+v).addClass('danger');
-                          document.getElementById('ResultadoBtn'+v).innerHTML = "<button type='button' class='btn btn-default' onclick='NoeliminaPrev("+v+")'><span class='text-success'><i class='fa fa-recycle'></i></span> </button>";
-                          return true;
-                        }
-                        function modificarRes(v){
-                          $('#ResultadoFila'+v).addClass('warning');
-                          document.getElementById('ResultadoBtn'+v).innerHTML = "<button type='button' class='btn btn-default' onclick='NoeliminaPrev("+v+")'><span class='text-success'><i class='fa fa-recycle'></i></span> </button>";
-                          return true;
-                        }
-                        function NoeliminaPrev(v){
-                          var clase;
-                          if($('#ResultadoFila'+v).hasClass('danger')){ clase = 'danger'; }else{ clase = 'warning';}
-                          $('#ResultadoFila'+v).removeClass(clase);
-                          document.getElementById('ResultadoBtn'+v).innerHTML = "<button type='button' class='btn btn-default' onclick='eliminaPrev("+v+")'><span class='text-danger'><i class='fa fa-trash'></i></span> </button>";
-                          return true;
-                        }
-                        function agregaResultadoRow(){
-                          var v = $('#numRowsTablaResultados').val();
-                          $('#resultadosIndicadorTabla tr:last').after('<tr id="ResultadoFila'+v+'"><td><input class="form-control" type="text" id="ResultadoPeriodo'+v+'"></td><td><input class="form-control" type="text" id="ResultadoMeta'+v+'"></td><td><input class="form-control" type="text" id="ResultadoRes'+v+'"></td><td><div id="sltMpio'+v+'"></div></td><td><div id="region'+v+'"><input type="hidden" id="ResultadoRegion'+v+'" value="8"><input type="text" id="RegionTxt'+v+'" value="Sur (Tlaltenango)" readonly class="form-control" ></div></td><td><input class="form-control" type="number" id="ResultadoEjercicio'+v+'"> </td><td><div class="btn-group" id="ResultadoBtn'+v+'"><button type="button" class="btn btn-default" onclick="eliminaPrev('+v+')"><span class="text-danger"><i class="fa fa-trash"></i></span> </button></div></td></tr>');
-                          document.getElementById('sltMpio'+v).innerHTML = "<select class='form-control' id='ResultadoMunicipio"+v+"' onchange='agrega_region(this.value,"+v+");'><option value='1'>Apozol</option></select>";
-                          var municipios_list = [<?php $conexion = $conn->conectar(); $conexion->set_charset("utf8"); $ExListMpios = $conexion->query("SELECT nombre from municipios"); while($rMp = $ExListMpios->fetch_array(MYSQLI_NUM)){echo '"'.$rMp[0].'",';}    ?>"No Aplica"];
-                          for(var y=0;y<municipios_list.length;y++){
-
-                            $('#ResultadoMunicipio'+v).append($('<option>', {
-                              value: y+1,
-                              text: municipios_list[y]}));
-                            }
-
-
-
-
-
-                            var n =  parseInt(v);
-                            n = n+1;
-                            $('#numRowsTablaResultados').val(n);
-                          }
-
-
-                          function carga_estrategias() {
-                            $.ajax({
-                              method: "POST",
-                              url: "class/ped_catalogo.php",
-                              data: {
-                                accion: "estrategia",
-                                linea: $('#linea').val()
-                              }
-                            }).done(function(msg) {
-                              document.getElementById('slctEstrategia').innerHTML = msg;
-                            });
-
-                          }
-                          function habilitarBtn(){
-                            archivo = $('#fileXLS').val();
-                            var extension = (archivo.substring(archivo.lastIndexOf("."))).toLowerCase();
-                            if(extension == ".xls" || extension == ".xlsx"){
-                              $('#xlsbtn').attr('disabled', false);
-                            }else{
-                              alert("Solo puedes subir archivos xls o xlsx (Excel o Libre Office)");
-                              $('#fileXLS').val('');
-                              return false;
-                            }
-
-
-                          }
-                          function cargar_excel(){
-                            var formData = new FormData(document.getElementById("xlsForm"));
-                            formData.append("dato", "valor");
-                            $.ajax({
-                              url: "class/cargar_xls.php",
-                              type: "post",
-                              dataType: "html",
-                              data: formData,
-                              cache: false,
-                              contentType: false,
-                              processData: false
-                            })
-                            .done(function(res){
-                              var datos = JSON.parse(res);
-                              var periodo = "";
-                              var meta = 0;
-                              var resultado = 0;
-                              var municipio = "";
-                              var idmunicipio = 0;
-                              var idregion = 0;
-                              var region = "";
-                              var ejercicio = 0;
-                              var x;
-                              for(x = 0; x < datos.length;x++){
-                                periodo = datos[x]["periodo"];
-                                meta  = datos[x]["meta"];
-                                resultado = datos[x]["resultado"];
-                                idmunicipio = datos[x]["id_municipio"];
-                                municipio = datos[x]["municipio"];
-                                idregion = datos[x]["id_region"];
-                                region = datos[x]["region"];
-                                ejercicio = datos[x]["ejercicio"];
-                                var v = $('#numRowsTablaResultados').val();
-
-                                $('#resultadosIndicadorTabla tr:last').after('<tr id="ResultadoFila'+v+'"><td><input class="form-control" type="text" id="ResultadoPeriodo'+v+'" value="'+periodo+'"></td><td><input class="form-control" type="text" id="ResultadoMeta'+v+'" value="'+meta+'"></td><td><input class="form-control" type="text" id="ResultadoRes'+v+'" value="'+resultado+'"></td><td><div id="sltMpio'+v+'"></div></td><td><div id="region'+v+'"><input type="hidden" id="ResultadoRegion'+v+'" value="'+idregion+'"><input type="text" id="RegionTxt'+v+'" readonly value="'+region+'" class="form-control" ></div></td><td><input class="form-control" type="number" id="ResultadoEjercicio'+v+'" value="'+ejercicio+'"> </td><td><div class="btn-group" id="ResultadoBtn'+v+'"><button type="button" class="btn btn-default" onclick="eliminaPrev('+v+')"><span class="text-danger"><i class="fa fa-trash"></i></span> </button></div></td></tr>');
-                                $('#ResultadoFila'+v).addClass('success');
-                                var n =  parseInt(v);
-                                n = n+1;
-                                $('#numRowsTablaResultados').val(n);
-                                agrega_mpios_list(v,municipio,idmunicipio);
-
-
-                              }
-
-
-
-
-
-                            });
-                            return true;
-
-                          }
-                          function agrega_mpios_list(v,m,i){
-                            document.getElementById('sltMpio'+v).innerHTML = "<select class='form-control' id='ResultadoMunicipio"+v+"'  onchange='agrega_region(this.value,"+v+");' ><option value='"+i+"'>"+m+"</option></select>";
-                            var municipios_list = [<?php $conexion = $conn->conectar(); $conexion->set_charset("utf8"); $ExListMpios = $conexion->query("SELECT nombre from municipios"); while($rMp = $ExListMpios->fetch_array(MYSQLI_NUM)){echo '"'.$rMp[0].'",';}    ?>"No Aplica"];
-                            for(var y=0;y<municipios_list.length;y++){
-
-                              $('#ResultadoMunicipio'+v).append($('<option>', {
-                                value: y+1,
-                                text: municipios_list[y]}));
-                              }
-
-
-                              return true;
-
-
-                            }
-                            function agrega_region(v,n){
-
-                              modificarRes(n);
-
-                              $.ajax({
-                                method: "POST",
-                                url: "class/catalogos.php",
-                                data: {
-                                  accion: "nombre_region",
-                                  municipio: v,
-                                }
-                              }).done(function(msg) {
-                                var datos = JSON.parse(msg);
-
-                                document.getElementById('region'+n).innerHTML = "<input type='hidden' id='ResultadoRegion"+n+"' value='"+datos[0]+"'><input type='text' id='RegionTxt' readonly value='"+datos[1]+"' class='form-control' >";
-                              });
-
-
-                            }
-
-                            function validar_nuevo_indicador(){
-                              if($('#nuevo_nombre').val() == ""  || $('#nuevo_nombre').val() == " "){
-                                alert("El nombre del indicador no puede estar vacío");
-                                return false;
-                              }
-
-                              $.ajax({
-                                method: "POST",
-                                url: "class/indicadores.php",
-                                data: {
-                                  accion: 7,
-                                  indicador: $('#nuevo_nombre').val(),
-                                }
-                              }).done(function(msg) {
-                                if(msg == "continuar"){
-                                  guardar_nuevo_indicador();
-                                  return true;
-                                }else{
-                                  alert("Ya existe un indicador con ese nombre, ¿desea cargar la información del indicador?");
-                                  return false;
-                                }
-                              });
-
-
-
-                            }
-
-                            function guardar_nuevo_indicador(){
-                              $.ajax({
-                                method: "POST",
-                                url: "class/indicadores.php",
-                                data: {
-                                  accion: 8,
-                                  nombre: $('#nuevo_nombre').val(),
-                                }
-                              }).done(function(msg) {
-                                if(msg == "continuar"){
-                                  guardar_nuevo_indicador();
-                                  return true;
-                                }else{
-                                  alert("Ya existe un indicador con ese nombre, ¿desea cargar la información del indicador?");
-                                  return false;
-                                }
-                              });
-
-                            }
-
-
-
-                            </script>
-                          </body>
-                          </html>
+                      </script>
+                    </body>
+                    </html>
