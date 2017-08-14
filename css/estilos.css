@@ -1578,3 +1578,14 @@ z-index: 1;
 .lateral{
   height: 100%;
 }
+
+.progress {
+  height: 3em;
+  i { line-height: 2.3em; }
+}
+
+.progress-bar {
+  transition: width 1s ease-in-out;
+  color: #336;
+  font-size: 2.8ex;
+}

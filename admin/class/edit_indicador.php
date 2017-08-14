@@ -632,7 +632,7 @@ unset($consulta);
                     <?php
                     $conexion = $conn->conectar();
                     $conexion->set_charset("utf8");
-                    $Query =  "SELECT id_fuente,fuente FROM fuentes LIMIT 11";
+                    $Query =  "SELECT id_fuente,fuente FROM fuentes LIMIT 12";
                     $ExConsulta = $conexion->query($Query);
                     unset($Query);
                     while($Resultado = $ExConsulta->fetch_array(MYSQLI_NUM)){ ?>
@@ -653,7 +653,7 @@ unset($consulta);
                     <?php
                     $conexion = $conn->conectar();
                     $conexion->set_charset("utf8");
-                    $Query =  "SELECT id_fuente,fuente FROM fuentes LIMIT 11,12";
+                    $Query =  "SELECT id_fuente,fuente FROM fuentes LIMIT 12,12";
 
                     $ExConsulta = $conexion->query($Query);
                     unset($Query);
@@ -675,7 +675,7 @@ unset($consulta);
                     <?php
                     $conexion = $conn->conectar();
                     $conexion->set_charset("utf8");
-                    $Query =  "SELECT id_fuente,fuente FROM fuentes LIMIT 23,12";
+                    $Query =  "SELECT id_fuente,fuente FROM fuentes LIMIT 24,12";
 
                     $ExConsulta = $conexion->query($Query);
                     unset($Query);
@@ -696,7 +696,7 @@ unset($consulta);
                     <?php
                     $conexion = $conn->conectar();
                     $conexion->set_charset("utf8");
-                    $Query =  "SELECT id_fuente,fuente FROM fuentes LIMIT 35,12";
+                    $Query =  "SELECT id_fuente,fuente FROM fuentes LIMIT 36,12";
 
                     $ExConsulta = $conexion->query($Query);
                     unset($Query);

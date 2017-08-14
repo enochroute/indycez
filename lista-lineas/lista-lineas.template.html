@@ -44,7 +44,10 @@
             <tr ng-repeat="meta in datosMetas | filter:{ linea_estrategica: linea.id_linea } : true">
               <td>{{meta.meta_descripcion}}</td>
               <td>{{meta.dependencia}}</td>
-              <td style="text-align:right">{{meta.avance|number:"2"}}</td>
+              <td style="text-align:right">
+                {{meta.avance|number:"2"}}
+                <!-- <progressbar class="progress-striped active" animate="true" max="100" value="progressValue" type="info"><i><span count-to="{{meta.avance}}" duration="1" count-from="0"></span></i></progressbar> -->
+              </td>
               <!-- <td style="text-align:right">{{meta.meta|number:"2"}}</td> -->
             </tr>
           </table>

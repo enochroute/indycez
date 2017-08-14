@@ -35,7 +35,15 @@ if(isset($_GET['i']) && !empty($_GET['i']))
                 LEFT JOIN
             fuente_indicador AS fi ON fi.id_fuente = f.id_fuente
         WHERE
-            fi.id_indicador = i.id_indicador) AS fuente
+            fi.id_indicador = i.id_indicador) AS fuente,
+    (SELECT
+        GROUP_CONCAT('',d.nombre)
+      FROM
+        dependencias AS d
+          LEFT JOIN
+        indicador_dependencia AS id ON id.id_dependencia = d.id_dependencia
+      WHERE
+        id.id_indicador = i.id_indicador) AS dependencia
 FROM
     indicadores AS i
     LEFT JOIN

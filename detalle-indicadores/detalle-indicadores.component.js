@@ -70,6 +70,9 @@ component('detalleIndicadores', {
         case 'Trimestral':
         $tipoGraph = 'multiBarChart';
         break;
+        case 'Mensual':
+        $tipoGraph = 'multiBarChart';
+        break;
         default:
         $tipoGraph = 'discreteBarChart';
         break;

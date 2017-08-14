@@ -9,7 +9,7 @@ if(isset($_GET['i']) && !empty($_GET['i']))
 
   if($eje  == '') return;
 
-  $query="SELECT * FROM linea WHERE id_eje = $eje ORDER BY nombre ASC";
+  $query="SELECT * FROM linea WHERE id_eje = $eje ORDER BY id_linea ASC";
 
 
   $resultado=mysqli_query($con,$query);
