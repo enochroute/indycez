@@ -91,8 +91,6 @@ angularIndyce.controller('ItemController', ['$scope', function (scope) {
 
 
 angularIndyce.controller("Ctrl1",function($scope){
-
-
 })
 .directive('toggle', function(){
   return {
@@ -106,4 +104,13 @@ angularIndyce.controller("Ctrl1",function($scope){
       }
     }
   };
+});
+
+angularIndyce.controller("Ctrl2",function($scope) {
 })
+.directive('mensaje',function(){
+  return {
+    restrict: 'AE',
+    template: '<div class="progress"> <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: {{meta.avance}}%"> <div style="color:#22C;font-size:1.1em"> {{meta.avance|number:"2"}} </div> </div> </div>'
+  }
+});
