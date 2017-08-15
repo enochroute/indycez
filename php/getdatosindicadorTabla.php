@@ -28,11 +28,11 @@ if(isset($_GET['i']) && !empty($_GET['i']))
   mr.ejercicio
   FROM
   metas_resultados AS mr
-  -- INNER JOIN
+  INNER JOIN periodos AS p ON lower(mr.periodo) = lower(p.periodo)
 
   WHERE
   mr.municipio = 60
-  AND id_indicador = $indicador ORDER BY mr.ejercicio ASC, mr.periodo ASC;";
+  AND id_indicador = $indicador ORDER BY mr.ejercicio ASC, p.id_periodo ASC;";
   //  $query="select * from indicadores where id_eje='$nameindicador'";
 
 

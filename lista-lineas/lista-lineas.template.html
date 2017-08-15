@@ -33,7 +33,7 @@
         {{linea.nombre}} <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}"></i>
       </uib-accordion-heading>
       <div class="col-md-12">
-        <div class="notice notice-verde1">
+        <div class="notice notice-verde1" ng-controller="Ctrl1">
           <table class="table">
             <tr>
               <th class="col-md-5">Nombre de la meta</th>
@@ -44,10 +44,19 @@
             <tr ng-repeat="meta in datosMetas | filter:{ linea_estrategica: linea.id_linea } : true">
               <td>{{meta.meta_descripcion}}</td>
               <td>{{meta.dependencia}}</td>
-              <td style="text-align:right">
-                {{meta.avance|number:"2"}}
-                <!-- <progressbar class="progress-striped active" animate="true" max="100" value="progressValue" type="info"><i><span count-to="{{meta.avance}}" duration="1" count-from="0"></span></i></progressbar> -->
-              </td>
+              <td style="text-align:right">{{meta.avance|number:"2"}}</td>
+              <!-- <div title="Tech Hours Progress" data-toggle="tooltip">
+                <td style="text-align:right">
+                  {{meta.avance|number:"2"}}
+                </td>
+              </div> -->
+              <!-- <td>
+                <div class="progress" title="Tech Hours Progress" data-toggle="tooltip">
+                  <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
+                    {{meta.avance|number:"2"}} %
+                  </div>
+                </div>
+              </td> -->
               <!-- <td style="text-align:right">{{meta.meta|number:"2"}}</td> -->
             </tr>
           </table>

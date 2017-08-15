@@ -19,6 +19,8 @@ if(isset($_GET['i']) && !empty($_GET['i']))
 
   if($indicador  == '') return;
 
+  //$arrayPeriodos = array('Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre', 'Trimestre1', 'Trimestre2', 'Trimestre3', 'Trimestre4', 'Anual');
+
   $query=
   "SELECT
   -- mr.id_indicador,
@@ -28,11 +30,14 @@ if(isset($_GET['i']) && !empty($_GET['i']))
   mr.ejercicio
   FROM
   metas_resultados AS mr
-  -- INNER JOIN
+  INNER JOIN periodos AS p ON lower(mr.periodo) = lower(p.periodo)
 
   WHERE
   mr.municipio = 60
-  AND id_indicador = $indicador ORDER BY mr.ejercicio;";
+  AND mr.id_indicador = $indicador
+  -- AND mr.periodo IN ($arrayPeriodos)
+  ORDER BY mr.ejercicio ASC, p.id_periodo ASC
+  ;";
   //  $query="select * from indicadores where id_eje='$nameindicador'";
 
 

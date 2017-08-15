@@ -89,16 +89,21 @@ angularIndyce.controller('ItemController', ['$scope', function (scope) {
 
 }]);
 
-angularIndyce.controller('AppCtrl', AppCtrl);
 
-function AppCtrl($scope) {
-  $scope.demo = {
-    showTooltip: false,
-    tipDirection: 'bottom'
+angularIndyce.controller("Ctrl1",function($scope){
+
+
+})
+.directive('toggle', function(){
+  return {
+    restrict: 'A',
+    link: function(scope, element, attrs){
+      if (attrs.toggle=="tooltip"){
+        $(element).tooltip();
+      }
+      if (attrs.toggle=="popover"){
+        $(element).popover();
+      }
+    }
   };
-
-  $scope.demo.delayTooltip = undefined;
-  $scope.$watch('demo.delayTooltip', function(val) {
-    $scope.demo.delayTooltip = parseInt(val, 10) || 0;
-  });
-}
+})
