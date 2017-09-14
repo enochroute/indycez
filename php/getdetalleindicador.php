@@ -19,54 +19,130 @@ if(isset($_GET['i']) && !empty($_GET['i']))
 
   if($indicador  == '') return;
 
+  //$arrayPeriodos = array('Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre', 'Trimestre1', 'Trimestre2', 'Trimestre3', 'Trimestre4', 'Anual');
+
   $query=
-    "SELECT
-    i.id_indicador,
-    i.nombre,
-    i.definicion,
-    i.cobertura_geografica,
-    um.u_medida,
-    td.tendencia,
-    p.peiodicidad,
-    (SELECT
-            GROUP_CONCAT(' ', f.fuente)
-        FROM
-            fuentes AS f
-                LEFT JOIN
-            fuente_indicador AS fi ON fi.id_fuente = f.id_fuente
-        WHERE
-            fi.id_indicador = i.id_indicador) AS fuente,
-    (SELECT
-        GROUP_CONCAT('',d.nombre)
-      FROM
-        dependencias AS d
-          LEFT JOIN
-        indicador_dependencia AS id ON id.id_dependencia = d.id_dependencia
-      WHERE
-        id.id_indicador = i.id_indicador) AS dependencia
-FROM
-    indicadores AS i
-    LEFT JOIN
-    u_medida_indicadores AS um ON i.u_medida = um.id_u_medida
-    LEFT JOIN
-    tendencias_deseables AS td ON td.id_tendencia = i.tendencia_deseable
-    LEFT JOIN
-    periodicidad_indicador AS p ON p.id_periodicidad = i.periodicidad
-WHERE
-    i.id_indicador = $indicador;";
+  "SELECT
+  -- mr.id_indicador,
+  -- mr.id_indicador,
+  mr.periodo,
+  mr.resultado,
+  mr.ejercicio
+  FROM
+  metas_resultados AS mr
+  INNER JOIN periodos AS p ON lower(mr.periodo) = lower(p.periodo)
+
+  WHERE
+  mr.municipio = 60
+  AND mr.id_indicador = $indicador
+  -- AND mr.periodo IN ($arrayPeriodos)
+  ORDER BY mr.ejercicio ASC, p.id_periodo ASC
+  ;";
   //  $query="select * from indicadores where id_eje='$nameindicador'";
 
 
   $resultado=mysqli_query($con,$query);
 
-
-  while($row=$resultado->fetch_assoc()){
-
-    $datos[]=$row;
-  }
+  if($resultado) {
+    $salidaJSON = convert($resultado);
 }
 
 
 
-echo json_encode($datos);
+      /*else {
+        switch ($row['periodo']) {
+          case 'Trimestre1':
+          $datos[] = array (
+          "label" => $row['ejercicio'],
+          "value" => $row['resultado'],
+          "key" => $row['periodo']
+        );
+        break;
+        case 'Trimestre2':
+        $datos[] = array (
+        "label" => $row['ejercicio'],
+        "value" => $row['resultado'],
+        "key" => $row['periodo']
+      );
+      break;
+      case 'Trimestre3':
+      $datos[] = array (
+      "label" => $row['ejercicio'],
+      "value" => $row['resultado'],
+      "key" => $row['periodo']
+    );
+    break;
+    case 'Trimestre4':
+    $datos[] = array (
+    "label" => $row['ejercicio'],
+    "value" => $row['resultado'],
+    "key" => $row['periodo']
+  );
+  break;
+
+  default:
+  # code...
+  break;
+
+}
+$salidaJSON[] = $arrayName = array
+(
+'values' => $datosT1,
+'key' => 'Trimestre 1'
+);
+$salidaJSON[] = $arrayName = array
+(
+'values' => $datosT2,
+'key' => 'Trimestre 2'
+);
+
+} */
+
+
+}
+
+function convert($resultado) {
+
+    $intermediate = array();
+
+    $fraccionario = false;
+    while($item = mysqli_fetch_assoc($resultado)) {
+        $key = trim($item['periodo']);
+        $date = trim($item['ejercicio']);
+        $value = 1*trim($item['resultado']);
+        // $valorSeparado = explode('.',(double)$value);
+        $entero = intval($value);
+        $decimal = $value - $entero;
+        if ($decimal == 0) {
+          $valorFormateado = $entero;
+        }
+        else {
+          $valorFormateado = number_format($value,3,".","");
+          $fraccionario = true;
+        }
+        if ($fraccionario) {
+          $valorFormateado = number_format($valorFormateado,3,".","");
+        }
+        $intermediate[$key][] = $arrayName = array(
+          'label' => $date,
+          'value' => 1*$valorFormateado
+        );
+    }
+
+    $output = array();
+
+    foreach($intermediate as $key => $values) {
+        $output[] = array(
+          'key' => trim($key),
+          'values' => $values
+        );
+    }
+
+    return $output;
+
+    // The rest of the function stays the same
+}
+
+print json_encode($salidaJSON);
+//echo json_encode($datos);
 ?>
