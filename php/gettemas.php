@@ -2,7 +2,7 @@
 header("Access-Control-Allow-Origin: *");
 include 'conexion.php';
 
-$query="SELECT * FROM temas_interes";
+$query="SELECT * FROM temas_interes WHERE activo = 1;";
 
 $resultado=mysqli_query($con,$query);
 $datos=array();

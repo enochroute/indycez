@@ -79,38 +79,166 @@ angularIndyce.controller('LineasCtrl', ['$scope', '$routeParams', function Linea
   // console.log($scope.lineaID);
 } ]);
 
-angularIndyce.controller('ItemController', ['$scope', function (scope) {
+// angularIndyce.controller('ItemController', ['$scope', function (scope) {
+//
+//   scope.$parent.isopen = (scope.$parent.default === scope.item);
+//
+//   scope.$watch('isopen', function (newvalue, oldvalue, scope) {
+//     scope.$parent.isopen = newvalue;
+//   });
+//
+// }]);
 
-  scope.$parent.isopen = (scope.$parent.default === scope.item);
 
-  scope.$watch('isopen', function (newvalue, oldvalue, scope) {
-    scope.$parent.isopen = newvalue;
-  });
-
-}]);
-
-
-angularIndyce.controller("Ctrl1",function($scope){
-})
-.directive('toggle', function(){
-  return {
-    restrict: 'A',
-    link: function(scope, element, attrs){
-      if (attrs.toggle=="tooltip"){
-        $(element).tooltip();
-      }
-      if (attrs.toggle=="popover"){
-        $(element).popover();
-      }
-    }
-  };
-});
-
+// angularIndyce.controller("Ctrl1",function($scope){
+// })
+// .directive('toggle', function(){
+//   return {
+//     restrict: 'A',
+//     link: function(scope, element, attrs){
+//       if (attrs.toggle=="tooltip"){
+//         $(element).tooltip();
+//       }
+//       if (attrs.toggle=="popover"){
+//         $(element).popover();
+//       }
+//     }
+//   };
+// });
+//
 angularIndyce.controller("Ctrl2",function($scope) {
 })
 .directive('mensaje',function(){
   return {
     restrict: 'AE',
     template: '<div class="progress"> <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: {{meta.avance}}%"> <div style="color:#22C;font-size:1.1em"> {{meta.avance|number:"2"}} </div> </div> </div>'
+  }
+});
+
+angularIndyce.controller('ModalDemoCtrl', function ($uibModal, $log, $document,$scope) {
+  var $ctrl = this;
+  $ctrl.items = ['item1', 'item2', 'item3'];
+
+  $ctrl.animationsEnabled = true;
+
+  $ctrl.open = function (size, parentSelector) {
+    var descripcion = $scope.meta_descripcion;
+    var parentElem = parentSelector ?
+      angular.element($document[0].querySelector('.modal-demo ' + parentSelector)) : undefined;
+    var modalInstance = $uibModal.open({
+      animation: $ctrl.animationsEnabled,
+      ariaLabelledBy: 'modal-title',
+      ariaDescribedBy: 'modal-body',
+      templateUrl: 'paginas/pagina-modal.template.html',
+      controller: 'ModalInstanceCtrl',
+      controllerAs: '$ctrl',
+      size: size,
+      appendTo: parentElem,
+      resolve: {
+        items: function () {
+          return $ctrl.items;
+        }
+      }
+    });
+
+    modalInstance.result.then(function (selectedItem) {
+      $ctrl.selected = selectedItem;
+    }, function () {
+      $log.info('Modal dismissed at: ' + new Date());
+    });
+  };
+
+  $ctrl.openComponentModal = function () {
+    var modalInstance = $uibModal.open({
+      animation: $ctrl.animationsEnabled,
+      component: 'modalComponent',
+      resolve: {
+        items: function () {
+          return $ctrl.items;
+        }
+      }
+    });
+
+    modalInstance.result.then(function (selectedItem) {
+      $ctrl.selected = selectedItem;
+    }, function () {
+      $log.info('modal-component dismissed at: ' + new Date());
+    });
+  };
+
+  $ctrl.openMultipleModals = function () {
+    $uibModal.open({
+      animation: $ctrl.animationsEnabled,
+      ariaLabelledBy: 'modal-title-bottom',
+      ariaDescribedBy: 'modal-body-bottom',
+      templateUrl: 'stackedModal.html',
+      size: 'sm',
+      controller: function($scope) {
+        $scope.name = 'bottom';
+      }
+    });
+
+    $uibModal.open({
+      animation: $ctrl.animationsEnabled,
+      ariaLabelledBy: 'modal-title-top',
+      ariaDescribedBy: 'modal-body-top',
+      templateUrl: 'stackedModal.html',
+      size: 'sm',
+      controller: function($scope) {
+        $scope.name = 'top';
+      }
+    });
+  };
+
+  $ctrl.toggleAnimation = function () {
+    $ctrl.animationsEnabled = !$ctrl.animationsEnabled;
+  };
+});
+
+// Please note that $uibModalInstance represents a modal window (instance) dependency.
+// It is not the same as the $uibModal service used above.
+
+angularIndyce.controller('ModalInstanceCtrl', function ($uibModalInstance, items) {
+  var $ctrl = this;
+  $ctrl.items = items;
+  $ctrl.selected = {
+    item: $ctrl.items[0]
+  };
+
+  $ctrl.ok = function () {
+    $uibModalInstance.close($ctrl.selected.item);
+  };
+
+  $ctrl.cancel = function () {
+    $uibModalInstance.dismiss('cancel');
+  };
+});
+
+// Please note that the close and dismiss bindings are from $uibModalInstance.
+
+angularIndyce.component('modalComponent', {
+  templateUrl: 'paginas/pagina-modal.html',
+  bindings: {
+    resolve: '<',
+    close: '&',
+    dismiss: '&'
+  },
+  controller: function () {
+    var $ctrl = this;
+
+    $ctrl.$onInit = function () {
+      $ctrl.items = $ctrl.resolve.items;
+      $ctrl.selected = {
+        item: $ctrl.items[0]
+      };
+    };
+
+    $ctrl.ok = function() {
+      $ctrl.close();
+    };
+
+    $ctrl.cancel = function() {
+      $ctrl.dismiss({$value: 'cancel'});
+    };
   }
 });
