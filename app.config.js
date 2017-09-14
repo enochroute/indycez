@@ -111,7 +111,7 @@ angularIndyce.controller("Ctrl2",function($scope) {
 .directive('mensaje',function(){
   return {
     restrict: 'AE',
-    template: '<div class="progress"> <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: {{meta.avance}}%"> <div style="color:#22C;font-size:1.1em"> {{meta.avance|number:"2"}} </div> </div> </div>'
+    template: '<div class="progress" style="background-color: #ccc"> <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: {{meta.avance}}%; background-color: #59c143"> <div style="color:#b32c28;font-size:1.1em"> {{meta.avance|number:"2"}} </div> </div> </div>'
   }
 });
 
