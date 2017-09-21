@@ -772,12 +772,13 @@ $conexion->set_charset("utf8");
                     if ($('#fuente1').is(':checked')) {
                       arreglo = "1 ";
                     }
-                    for (x = 2; x < 43; x++) {
+                    for (x = 2; x < 100; x++) {
                       if ($('#fuente' + x).is(':checked')) {
                         arreglo = arreglo + x + " ";
                       }
                     }
 
+                    console.log(arreglo);
                     $.ajax({
                       method: "POST",
                       url: "class/indicadores.php",
