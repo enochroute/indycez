@@ -14,7 +14,7 @@ $condicion = "";
 if ($_SESSION['perfil'] != 1) {
   $condicion = " id.id_dependencia = " . $_SESSION['dependencia'] . " AND " ;
 }
-$query = 'SELECT i.id_indicador, i.nombre, i.fecha_actualizacion
+$query = 'SELECT i.id_indicador, i.nombre, i.fecha_actualizacion, i.activo
 FROM indicadores i
 INNER JOIN indicador_tema it on(i.id_indicador = it.id_indicador)
 INNER JOIN indicador_dependencia AS id ON i.id_indicador = id.id_indicador
@@ -28,7 +28,8 @@ unset($conn);
 <table class="table table-striped table-bordered table-hover" id="sample_1">
     <thead>
         <tr>
-            <th width="60%"> Nombre del indicador </th>
+            <th width="60%"> Nombre del indicador&nbsp;<span style="color: darkgreen; font-weight: bold;">(activo&nbsp;</span> <span style="font-weight:bold;">|&nbsp;</span> <span style="color: darkred;font-weight:light">inactivo)&nbsp;</span>
+ </th>
             <th width="20%"> Fecha de Actualización </th>
             <th width="20%"></th>
         </tr>
@@ -36,7 +37,7 @@ unset($conn);
     <tbody>
       <?php while($Res = $ExQuery->fetch_array(MYSQLI_NUM)) { ?>
         <tr class="odd gradeX">
-            <td><?php echo $Res[1]; ?></td>
+            <td <?php if ($Res[3]==1) { echo "style='color: darkgreen;font-weight: bold;'"; } else { echo "style='color: darkred;'"; } ?> ><?php echo $Res[1]; ?></td>
             <td><?php echo $Res[2]; ?></td>
             <td>
                 <div class="btn-group">

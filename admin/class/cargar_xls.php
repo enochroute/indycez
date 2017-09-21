@@ -29,7 +29,7 @@ for ($row = 1; $row <= $highestRow; ++$row) {
     $periodo = $objWorksheet->getCellByColumnAndRow(0, $row)->getValue();
     $meta = $objWorksheet->getCellByColumnAndRow(1, $row)->getValue();
     $resultado = $objWorksheet->getCellByColumnAndRow(2, $row)->getValue();
-    $municipio = $objWorksheet->getCellByColumnAndRow(3, $row)->getValue();
+    $municipio = trim($objWorksheet->getCellByColumnAndRow(3, $row)->getValue());
     $Query = 'SELECT m.id_municipio,r.id_region,r.nombre FROM regiones r inner join municipios m on(r.id_region = m.id_region) where m.nombre like "'.$municipio.'"';
     $ExQuery = $conexion->query($Query);
     $Resultado =  $ExQuery->fetch_array(MYSQLI_NUM);

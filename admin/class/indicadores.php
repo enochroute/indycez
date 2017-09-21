@@ -81,16 +81,20 @@ class indicador {
        include("conexion.php");
         $conn = new conexion();
         $conexion = $conn->conectar();
+        // echo $i['data'][0][0];
         $query_del = 'DELETE FROM fuente_indicador WHERE id_indicador = '.$i['id_indicador'];
+        // echo $query_del;
         if(!$conexion->query($query_del)){
-            die($conexion->error);
+            die($conexion->error . $query_del);
         }
         $conexion->close();
         $rows = explode(" ",$i['informacion']);
+        //print_r($i);
         foreach ($rows as &$id_fuente) {
             $conexion = $conn->conectar();
-            if($id_fuente != ''){
+            if($id_fuente){
             $query_insert = 'INSERT INTO fuente_indicador (id_indicador,id_fuente) VALUES ('.$i['id_indicador'].','.$id_fuente.')';
+            // echo $query_insert;
             if(!$conexion->query($query_insert)){
               die();
             }
@@ -114,7 +118,7 @@ class indicador {
             if($id_dependencia != ''){
             $query_insert = 'INSERT INTO indicador_dependencia (id_indicador,id_dependencia) VALUES ('.$i['id_indicador'].','.$id_dependencia.')';
             if(!$conexion->query($query_insert)){
-              echo  $query_insert;
+              // echo  $query_insert;
                 die($conexion->error);
             }
             }
@@ -137,7 +141,7 @@ class indicador {
                 $conexion = $conn->conectar();
                 $conexion->set_charset("utf8");
                 $id_indicador = $i['data'][$x][0];
-                $periodo = $i['data'][$x][1];
+                $periodo = trim($i['data'][$x][1]);
                 $meta = $i['data'][$x][2];
                 $resultado = $i['data'][$x][3];
                 $municipio = $i['data'][$x][4];
