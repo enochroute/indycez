@@ -43,7 +43,7 @@ unset($conn);
                 <div class="btn-group">
 
                     <button type="button" class="btn btn-default" onclick="EditIndicador(<?php echo $Res[0]; ?>)"><span class="text-success"><i class="fa fa-pencil-square-o"></i></span> </button>
-                    <button type="button" class="btn btn-default"><span class="text-danger"><i class="fa fa-trash"></i></span> </button>
+                    <!-- <button type="button" class="btn btn-default"><span class="text-danger"><i class="fa fa-trash"></i></span> </button> -->
                 </div>
             </td>
         </tr>

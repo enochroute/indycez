@@ -18,7 +18,7 @@ var TableManaged = function () {
                 [5, 10, 15, 20, "Todos"] // change per page values here
             ],
             // set the initial value
-            "pageLength": 5,
+            "pageLength": -1,
             "pagingType": "bootstrap_full_number",
             "language": {
                 "lengthMenu": "  _MENU_ registros",

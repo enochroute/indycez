@@ -753,7 +753,7 @@ unset($consulta);
                     unset($Query);
 
                     while($Resultado = $ExConsulta->fetch_array(MYSQLI_NUM)){ ?>
-                      <label><input type="checkbox" id="dependencia<?php echo $Resultado[0]; ?>" <?php if(in_array($Resultado[0],$array_dependencias)){ echo "checked"; }?>> <?php echo $Resultado[1]; ?></label>
+                      <label><input type="checkbox" id="dependencia<?php echo $Resultado[0]; ?>" <?php if(in_array($Resultado[0],$array_dependencias)){ echo "checked"; } if ($_SESSION['perfil']!=1) { echo " disabled='disabled'"; } ?> > <?php echo $Resultado[1]; ?></label>
                       <?php
 
                     }
@@ -776,7 +776,7 @@ unset($consulta);
                     $ExConsulta = $conexion->query($Query);
                     unset($Query);
                     while($Resultado = $ExConsulta->fetch_array(MYSQLI_NUM)){ ?>
-                      <label><input type="checkbox" id="dependencia<?php echo $Resultado[0]; ?>" <?php if(in_array($Resultado[0],$array_dependencias)){ echo "checked"; }?>> <?php echo $Resultado[1]; ?></label>
+                      <label><input type="checkbox" id="dependencia<?php echo $Resultado[0]; ?>" <?php if(in_array($Resultado[0],$array_dependencias)){ echo "checked"; if ($_SESSION['perfil']!=1) { echo " disabled='disabled'"; } }?>> <?php echo $Resultado[1]; ?></label>
                       <?php
                     }
                     unset($Resultado);
@@ -798,7 +798,7 @@ unset($consulta);
                     $ExConsulta = $conexion->query($Query);
                     unset($Query);
                     while($Resultado = $ExConsulta->fetch_array(MYSQLI_NUM)){ ?>
-                      <label><input type="checkbox" id="dependencia<?php echo $Resultado[0]; ?>" <?php if(in_array($Resultado[0],$array_dependencias)){ echo "checked"; }?>> <?php echo $Resultado[1]; ?></label>
+                      <label><input type="checkbox" id="dependencia<?php echo $Resultado[0]; ?>" <?php if(in_array($Resultado[0],$array_dependencias)){ echo "checked"; if ($_SESSION['perfil']!=1) { echo " disabled='disabled'"; } }?>> <?php echo $Resultado[1]; ?></label>
                       <?php
                     }
                     unset($Resultado);
@@ -819,7 +819,7 @@ unset($consulta);
                     $ExConsulta = $conexion->query($Query);
                     unset($Query);
                     while($Resultado = $ExConsulta->fetch_array(MYSQLI_NUM)){ ?>
-                      <label><input type="checkbox" id="dependencia<?php echo $Resultado[0]; ?>" <?php if(in_array($Resultado[0],$array_dependencias)){ echo "checked"; }?>> <?php echo $Resultado[1]; ?></label>
+                      <label><input type="checkbox" id="dependencia<?php echo $Resultado[0]; ?>" <?php if(in_array($Resultado[0],$array_dependencias)){ echo "checked"; if ($_SESSION['perfil']!=1) { echo " disabled='disabled'"; } }?>> <?php echo $Resultado[1]; ?></label>
                       <?php
 
                     }
@@ -841,7 +841,7 @@ unset($consulta);
                     $ExConsulta = $conexion->query($Query);
                     unset($Query);
                     while($Resultado = $ExConsulta->fetch_array(MYSQLI_NUM)){ ?>
-                      <label><input type="checkbox" id="dependencia<?php echo $Resultado[0]; ?>" <?php  if(in_array($Resultado[0],$array_dependencias)){ echo "checked"; }?>> <?php echo $Resultado[1]; ?></label>
+                      <label><input type="checkbox" id="dependencia<?php echo $Resultado[0]; ?>" <?php  if(in_array($Resultado[0],$array_dependencias)){ echo "checked"; if ($_SESSION['perfil']!=1) { echo " disabled='disabled'"; } }?>> <?php echo $Resultado[1]; ?></label>
                       <?php
 
                     }
@@ -863,7 +863,7 @@ unset($consulta);
                     $ExConsulta = $conexion->query($Query);
                     unset($Query);
                     while($Resultado = $ExConsulta->fetch_array(MYSQLI_NUM)){ ?>
-                      <label><input type="checkbox" id="dependencia<?php echo $Resultado[0]; ?>" <?php if(in_array($Resultado[0],$array_dependencias)){ echo "checked"; }?>> <?php echo $Resultado[1]; ?></label>
+                      <label><input type="checkbox" id="dependencia<?php echo $Resultado[0]; ?>" <?php if(in_array($Resultado[0],$array_dependencias)){ echo "checked"; if ($_SESSION['perfil']!=1) { echo " disabled='disabled'"; } }?>> <?php echo $Resultado[1]; ?></label>
                       <?php
 
                     }
