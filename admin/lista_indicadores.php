@@ -330,7 +330,7 @@ $conexion->set_charset("utf8");
                                                   <label for="nombre">Nombre:</label>
                                                 </div>
                                                 <div class="col-md-9">
-                                                  <input type="text" class="form-control" name="nuevo_nombre" id="nuevo_nombre" required>
+                                                  <input type="text" class="form-control" name="nuevo_nombre" id="nuevo_nombre" required="required">
                                                 </div>
                                               </div>
                                             </div>
@@ -476,7 +476,7 @@ $conexion->set_charset("utf8");
                                               </div>
                                             </div>
                                             <hr>
-                                            <div class="form-group" >
+                                            <!-- <div class="form-group" >
                                               <label for="nombre">Alineación PED:</label>
                                               <div class="row">
                                                 <div class="col-md-4">
@@ -501,14 +501,15 @@ $conexion->set_charset("utf8");
                                                 </div>
                                               </div>
                                             </div>
-                                            <hr>
+                                            <hr> -->
                                             <div class="form-group">
                                               <div class="row">
                                                 <div class="col-md-3">
                                                   <label for="origen">Tema Asociado:</label>
                                                 </div>
                                                 <div class="col-md-9">
-                                                  <select id="nuevo_tema" name="nuevo_tema" class="form-control">
+                                                  <select id="nuevo_tema" name="nuevo_tema" class="form-control" required="required">
+                                                    <option value=""> ..:: Elija un tema asociado con el indicador ::.. </option>
                                                     <?php
                                                     $conexion = $conn->conectar();
                                                     $conexion->set_charset("utf8");
@@ -1079,6 +1080,11 @@ $conexion->set_charset("utf8");
                           return false;
                         }
 
+                        if($('#nuevo_tema').val() == ""){
+                          alert("Por favor elija un tema asociado al indicador");
+                          return false;
+                        }
+
                         $.ajax({
                           method: "POST",
                           url: "class/indicadores.php",
@@ -1112,6 +1118,8 @@ $conexion->set_charset("utf8");
                           console.log(msg);
                           if(msg == "continuar"){
                             alert('El indicador se guardó correctamente');
+                            $("#nuevoModal").modal('hide');
+                            loadList($('#tema_actual').val());
                             return true;
                           }else{
                             alert("El indicador no pudo ser guardado");

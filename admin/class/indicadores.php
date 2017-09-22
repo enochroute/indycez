@@ -185,7 +185,7 @@ class indicador {
       $conn = new conexion();
       $fecha_actualizacion = date("Y-m-d H:i:s");
       $conexion = $conn->conectar();
-      $query = sprintf('INSERT INTO indicadores SET nombre = "%s", tendencia_deseable = %d, u_medida = %d, a_base = "%s", periodicidad = %d, fecha_actualizacion = "%s", definicion = "%s", origen = %d, alineacion_ped = %d, sistema_consulta = 1, cobertura_geografica = 1, nivel = 5', $i['nuevo_nombre'], $i['nuevo_tendencia_deseable'], $i['nuevo_u_medida'], $i['nuevo_a_base'], $i['nuevo_periodicidad'], $fecha_actualizacion, $i['nuevo_definicion'], $i['nuevo_origen'], $i['nuevo_estrategia']);
+      $query = sprintf('INSERT INTO indicadores SET nombre = "%s", tendencia_deseable = %d, u_medida = %d, a_base = "%s", periodicidad = %d, fecha_actualizacion = "%s", definicion = "%s", origen = %d, alineacion_ped = 130, sistema_consulta = 1, cobertura_geografica = 1, nivel = 5', $i['nuevo_nombre'], $i['nuevo_tendencia_deseable'], $i['nuevo_u_medida'], $i['nuevo_a_base'], $i['nuevo_periodicidad'], $fecha_actualizacion, $i['nuevo_definicion'], $i['nuevo_origen']);
       if($conexion->query($query)){
         // Obtengo el último id generado
         $ultimo_id_indicador = $conexion -> insert_id;
