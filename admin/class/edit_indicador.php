@@ -490,87 +490,42 @@ unset($consulta);
               <div class="col-md-2">
                 <div class="form-group">
                   <div class="checkbox-list">
-                    <label><input type="checkbox" value="1" id="chkGobierno" <?php if(in_array(1,$array_temas)){ echo "checked"; }?>> Gobierno </label>
+                    <label><input type="checkbox" value="1" id="chkGobierno" <?php if(in_array(1,$array_temas)){ echo "checked"; } if ($_SESSION['perfil']!=1) { echo " disabled='disabled'"; }?>> Gobierno </label>
                   </div>
                 </div>
               </div>
               <div class="col-md-2">
                 <div class="form-group">
                   <div class="checkbox-list">
-                    <label><input type="checkbox" value="2" id="chkRezago" <?php if(in_array(2,$array_temas)){ echo "checked"; }?>> Rezago Social </label>
+                    <label><input type="checkbox" value="2" id="chkRezago" <?php if(in_array(2,$array_temas)){ echo "checked"; } if ($_SESSION['perfil']!=1) { echo " disabled='disabled'"; }?>> Rezago Social </label>
                   </div>
                 </div>
               </div>
               <div class="col-md-2">
                 <div class="form-group">
                   <div class="checkbox-list">
-                    <label><input type="checkbox" value="3" id="chkSalud" <?php if(in_array(3,$array_temas)){ echo "checked"; }?>> Salud </label>
+                    <label><input type="checkbox" value="3" id="chkSalud" <?php if(in_array(3,$array_temas)){ echo "checked"; } if ($_SESSION['perfil']!=1) { echo " disabled='disabled'"; }?>> Salud </label>
                   </div>
                 </div>
               </div>
               <div class="col-md-2">
                 <div class="form-group">
                   <div class="checkbox-list">
-                    <label><input type="checkbox" value="4" id="chkSeguridad" <?php if(in_array(4,$array_temas)){ echo "checked"; }?>> Seguridad </label>
+                    <label><input type="checkbox" value="4" id="chkSeguridad" <?php if(in_array(4,$array_temas)){ echo "checked"; } if ($_SESSION['perfil']!=1) { echo " disabled='disabled'"; }?>> Seguridad </label>
                   </div>
                 </div>
               </div>
               <div class="col-md-2">
                 <div class="form-group">
                   <div class="checkbox-list">
-                    <label><input type="checkbox" value="5" id="chkGenero" <?php if(in_array(5,$array_temas)){ echo "checked"; }?>> Género </label>
+                    <label><input type="checkbox" value="5" id="chkGenero" <?php if(in_array(5,$array_temas)){ echo "checked"; } if ($_SESSION['perfil']!=1) { echo " disabled='disabled'"; }?>> Género </label>
                   </div>
                 </div>
               </div>
               <div class="col-md-2">
                 <div class="form-group">
                   <div class="checkbox-list">
-                    <label><input type="checkbox" value="6" id="chkEducacion" <?php if(in_array(6,$array_temas)){ echo "checked"; }?>> Educación </label>
-                  </div>
-                </div>
-              </div>
-
-            </div>
-            <div class="row">
-              <div class="col-md-2">
-                <div class="form-group">
-                  <div class="checkbox-list">
-                    <label><input type="checkbox" value="7" id="chkInnovacion" <?php if(in_array(7,$array_temas)){ echo "checked"; }?>> Innovación </label>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-2">
-                <div class="form-group">
-                  <div class="checkbox-list">
-                    <label><input type="checkbox" value="8" id="chkEconomia"  <?php if(in_array(8,$array_temas)){ echo "checked"; }?>> Economía </label>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-2">
-                <div class="form-group">
-                  <div class="checkbox-list">
-                    <label><input type="checkbox" value="9" id="chkInfraestructura" <?php if(in_array(9,$array_temas)){ echo "checked"; }?>>  Infraestructura </label>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-2">
-                <div class="form-group">
-                  <div class="checkbox-list">
-                    <label><input type="checkbox" value="10" id="chkCampo"<?php if(in_array(10,$array_temas)){ echo "checked"; }?>> Campo </label>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-2">
-                <div class="form-group">
-                  <div class="checkbox-list">
-                    <label><input type="checkbox" value="11" id="chkTurismo" <?php if(in_array(11,$array_temas)){ echo "checked"; }?>> Turismo </label>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-2">
-                <div class="form-group">
-                  <div class="checkbox-list">
-                    <label><input type="checkbox" value="12" id="chkMedio" <?php if(in_array(12,$array_temas)){ echo "checked"; }?>> Medio Ambiente </label>
+                    <label><input type="checkbox" value="6" id="chkEducacion" <?php if(in_array(6,$array_temas)){ echo "checked"; } if ($_SESSION['perfil']!=1) { echo " disabled='disabled'"; }?>> Educación </label>
                   </div>
                 </div>
               </div>
@@ -580,21 +535,66 @@ unset($consulta);
               <div class="col-md-2">
                 <div class="form-group">
                   <div class="checkbox-list">
-                    <label><input type="checkbox" value="13" id="chkDesarrollo" <?php if(in_array(13,$array_temas)){ echo "checked"; }?>> Desarrollo Urbano </label>
+                    <label><input type="checkbox" value="7" id="chkInnovacion" <?php if(in_array(7,$array_temas)){ echo "checked"; } if ($_SESSION['perfil']!=1) { echo " disabled='disabled'"; }?>> Innovación </label>
                   </div>
                 </div>
               </div>
               <div class="col-md-2">
                 <div class="form-group">
                   <div class="checkbox-list">
-                    <label><input type="checkbox" value="14" id="chkCultura" <?php if(in_array(14,$array_temas)){ echo "checked"; }?>> Cultura </label>
+                    <label><input type="checkbox" value="8" id="chkEconomia"  <?php if(in_array(8,$array_temas)){ echo "checked"; } if ($_SESSION['perfil']!=1) { echo " disabled='disabled'"; }?>> Economía </label>
                   </div>
                 </div>
               </div>
               <div class="col-md-2">
                 <div class="form-group">
                   <div class="checkbox-list">
-                    <label><input type="checkbox" value="15" id="chkPoblacion" <?php if(in_array(15,$array_temas)){ echo "checked"; } unset($array_temas)?>> Población </label>
+                    <label><input type="checkbox" value="9" id="chkInfraestructura" <?php if(in_array(9,$array_temas)){ echo "checked"; } if ($_SESSION['perfil']!=1) { echo " disabled='disabled'"; }?>>  Infraestructura </label>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-2">
+                <div class="form-group">
+                  <div class="checkbox-list">
+                    <label><input type="checkbox" value="10" id="chkCampo"<?php if(in_array(10,$array_temas)){ echo "checked";  } if ($_SESSION['perfil']!=1) { echo " disabled='disabled'"; } ?>> Campo </label>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-2">
+                <div class="form-group">
+                  <div class="checkbox-list">
+                    <label><input type="checkbox" value="11" id="chkTurismo" <?php if(in_array(11,$array_temas)){ echo "checked"; } if ($_SESSION['perfil']!=1) { echo " disabled='disabled'"; }?>> Turismo </label>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-2">
+                <div class="form-group">
+                  <div class="checkbox-list">
+                    <label><input type="checkbox" value="12" id="chkMedio" <?php if(in_array(12,$array_temas)){ echo "checked"; } if ($_SESSION['perfil']!=1) { echo " disabled='disabled'"; }?>> Medio Ambiente </label>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+            <div class="row">
+              <div class="col-md-2">
+                <div class="form-group">
+                  <div class="checkbox-list">
+                    <label><input type="checkbox" value="13" id="chkDesarrollo" <?php if(in_array(13,$array_temas)){ echo "checked"; } if ($_SESSION['perfil']!=1) { echo " disabled='disabled'"; }?>> Desarrollo Urbano </label>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-2">
+                <div class="form-group">
+                  <div class="checkbox-list">
+                    <label><input type="checkbox" value="14" id="chkCultura" <?php if(in_array(14,$array_temas)){ echo "checked"; } if ($_SESSION['perfil']!=1) { echo " disabled='disabled'"; }?>> Cultura </label>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-2">
+                <div class="form-group">
+                  <div class="checkbox-list">
+                    <label><input type="checkbox" value="15" id="chkPoblacion" <?php if(in_array(15,$array_temas)){ echo "checked"; } if ($_SESSION['perfil']!=1) { echo " disabled='disabled'"; } unset($array_temas)?>> Población </label>
                   </div>
                 </div>
               </div>

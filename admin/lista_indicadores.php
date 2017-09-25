@@ -220,7 +220,7 @@ $conexion->set_charset("utf8");
                                   <div class="col-md-6">
                                     <div class="btn-group">
                                       <button id="sample_editable_1_new" class="btn btn-success" data-toggle="modal" data-target="#nuevoModal">
-                                        Agregar Nuevo <i class="fa fa-plus"></i>
+                                        Nuevo indicador <i class="fa fa-plus"></i>
                                       </button>
                                       <!-- <button id="sample_editable_1_new" class="btn btn-success">
                                       Agregar Nuevo <i class="fa fa-plus"></i>
@@ -1128,6 +1128,11 @@ $conexion->set_charset("utf8");
                         });
 
                       }
+
+                      $('#sample_editable_1_new').on('click',function(e){
+                        e.preventDefault();
+                        $('#frm-nuevoIndicador')[0].reset();
+                      });
 
 
 
