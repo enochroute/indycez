@@ -1,27 +1,87 @@
-<div class="panel separa-arriba">
-  <p style="padding-left:2em; font-size:110%; text-align: justify">
-    Los indicadores identificados por el icono <span><img ng-src="img/iconoPED.png" class="icono-texto" /></span> corresponen a aquellos publicados en el <strong>Plan Estatal de Desarrollo 2017 - 2021</strong> que son indicativos para los procesos de evaluación.
-  </p>
-  <div class="panel-indyce">
-    <div class="row">
-      <div class="col-xs-2 col-md-1">
-        <span><img class="icono-listado" ng-src="img/temas/{{temaIcono}}"/> </span>
-      </div>
-      <div class="col-xs-7 col-md-8">
-        <div class="row">
-          <div class="col-sm-8">
-            <span class="nombre-tema"> {{temaNombre}} | </span>
-            {{(indicadores|filter:{ id_tema: temaElegido}:true).length}} Indicadores
+<!-- <div class="panel separa-arriba"> -->
+  <div class="panelE panel-indyce separa-arriba">
+    <div class="panel-body">
+      <!-- <div class="row"> -->
+        <div class="col-xs-2 col-md-1 obscuro">
+          <span><img class="icono-listado" ng-src="img/temas/{{temaIcono}}"/> </span>
+        </div>
+        <div class="col-xs-7 col-md-8">
+          <div class="row">
+            <div class="col-sm-8">
+              <span class="nombre-tema" style="margin-left: 1.5em;"> {{temaNombre}} | </span>
+              {{(indicadores|filter:{ id_tema: temaElegido}:true).length}} Indicadores
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
-  <div class="panel-body" id="contenedorLista">
-    <a  class="btn btn-default btn-block" href="#!/detalleIndicador/{{indicador.id_indicador}}"
-    ng-repeat = "indicador in indicadores | filter:{ id_tema: temaElegido} : true "> <!-- | orderBy:'nombre' -->
-      <span ng-if="indicador.sistema_consulta == 1" class="izquierda"> <img ng-src="img/iconoPED.png" class="icono-texto"/> </span>
-      {{indicador.nombre}}
-    </a>
-  </div>
-</div>
+  <!-- </div> -->
+
+  <p style="font-size:110%; text-align: justify; color: #ee2e69">
+    Los indicadores identificados por el icono <span><img ng-src="img/logoPED.png" class="icono-texto" /></span> corresponen a aquellos publicados en el Plan Estatal de Desarrollo 2017 - 2021 que son indicativos para los procesos de evaluación.
+  </p>
+
+  <!-- <div class="panel-body" id="contenedorLista"> -->
+    <div class="panel panel-default" ng-repeat = "indicador in indicadores | filter:{ id_tema: temaElegido} : true ">
+      <div class="panel-body">
+        <div class="col-sm-1" style="background: #ee2e69; min-height:6ex"> </div>
+        <div class="col-sm-11">
+          <div class="panel-encabezado">
+            <div class="col-xs-1">
+              <span ng-if="indicador.sistema_consulta == 1" class="izquierda"> <img ng-src="img/iconoPED_blanco.png"  class="icono-texto" style="padding:0.25em;"/> </span>
+            </div>
+            <div class="col-xs-11">
+              <a  class="lnkIndicador" href="#!/detalleIndicador/{{indicador.id_indicador}}">{{indicador.nombre}}</a>
+            </div>
+          </div>
+          <div class="row" style="color: #a7a5a6; text-align:center">
+            <div class="col-sm-2">
+              Último valor
+            </div>
+            <div class="col-sm-2">
+              Unidad de<br>medida
+            </div>
+            <div class="col-sm-2">
+              Periodicidad
+            </div>
+            <div class="col-sm-2">
+              Reportado al:
+            </div>
+            <div class="col-sm-2" style="text-align: center;">
+              Tendencia <br>
+              Deseable | Reportada
+            </div>
+            <div class="col-sm-2">
+              Desagregado
+            </div>
+          </div>
+          <div class="row" style="color: #ee2e69; text-align:center; font-weight: bold;">
+            <div class="col-sm-2">
+              3,857
+            </div>
+            <div class="col-sm-2">
+              Personas
+            </div>
+            <div class="col-sm-2">
+              Anual
+            </div>
+            <div class="col-sm-2">
+              31-08-2017
+            </div>
+            <div class="col-sm-2" style="text-align: center;">
+              A | <span style="color:darkred;">D</span>
+            </div>
+            <div class="col-sm-2">
+              <div class="col-sm-6">
+                E
+              </div>
+              <div class="col-sm-6">
+                M
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  <!-- </div> -->
+<!-- </div> -->

@@ -113,7 +113,7 @@ class metasPed{
     <br>
     <div class="row">
     <div class="col-md-3"><label for="desc_avance">Descripción del avance:</label></div>
-    <div class="col-md-9"><textarea class="form-control" nombre="desc_avance" id="desc_avance">'.$Res[6].'</textarea></div>
+    <div class="col-md-9"><textarea class="form-control" nombre="desc_avance" id="desc_avance">'.stripslashes($Res[6]).'</textarea></div>
     </div>
     <br>
     <div class="row">
@@ -140,10 +140,10 @@ class metasPed{
     WHERE mp.id_meta = '.$i['idMeta'];
     $ExQuery = $conexion->query($Query) or die($conexion->error);
     $Res = $ExQuery->fetch_array(MYSQLI_NUM);
-    $query = "INSERT INTO metas_ped_modificaciones SET id_usuario = " . $_SESSION['idUser'] . ", id_meta = " . $i['idMeta'] . ", avance_anterior = " . $Res[2] . ", avance_nuevo = " . $i['avance'] . ", descripcion_avance_anterior = '" . $Res[1] . "', descripcion_avance_nueva = '" . $i['desc_avance']. "', fecha_modificacion = '" . $fecha_modificacion . "';";
+    $query = "INSERT INTO metas_ped_modificaciones SET id_usuario = " . $_SESSION['idUser'] . ", id_meta = " . $i['idMeta'] . ", avance_anterior = " . $Res[2] . ", avance_nuevo = " . $i['avance'] . ", descripcion_avance_anterior = '" . addslashes($Res[1]) . "', descripcion_avance_nueva = '" . $i['desc_avance']. "', fecha_modificacion = '" . $fecha_modificacion . "';";
     $ExQuery = $conexion->query($query) or die($conexion->error);
 
-    $query = 'UPDATE metas_ped SET avance = '.$i['avance'].', descripcion_avance = "'.$i['desc_avance'].'", fecha_actualizacion = "'.$i['fecha_actualizacion'].'" WHERE id_meta = '.$i['idMeta'];
+    $query = 'UPDATE metas_ped SET avance = '.$i['avance'].', descripcion_avance = "'.addslashes($i['desc_avance']).'", fecha_actualizacion = "'.$i['fecha_actualizacion'].'" WHERE id_meta = '.$i['idMeta'];
     if($conexion->query($query)){
       return "guardado";
     }else{
