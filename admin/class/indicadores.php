@@ -189,6 +189,15 @@ class indicador {
       if($conexion->query($query)){
         // Obtengo el último id generado
         $ultimo_id_indicador = $conexion -> insert_id;
+        if ( isset($i['nuevo_subtema']) && !empty($i['nuevo_subtema'])) {
+          $query = sprintf("INSERT INTO indicador_subtema SET id_indicador = %d, id_subtema = %d",$ultimo_id_indicador, $i['nuevo_tema']);
+          if ($conexion->query($query)) {
+            $msg = "continuar";
+          }
+          else {
+            $msg = $conexion->error . " " . $query;
+          }
+        }
         $query = sprintf("INSERT INTO indicador_tema SET id_indicador = %d, id_tema = %d",$ultimo_id_indicador, $i['nuevo_tema']);
         if ($conexion->query($query)) {
           $query = sprintf("INSERT INTO indicador_dependencia SET id_indicador = %d, id_dependencia = %d",$ultimo_id_indicador,$_SESSION['dependencia']);

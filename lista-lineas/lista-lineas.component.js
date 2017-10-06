@@ -39,33 +39,29 @@ component('listaLineas', {
     switch ($scope.ejeElegido) {
       case '1':
         $scope.nombreEje = 'Gobierno abierto y de resultados';
+        $scope.iconoEje = 'iconoEje1.png';
+        $scope.colorEje = '#b3df69';
         break;
       case '2':
         $scope.nombreEje = 'Seguridad humana';
+        $scope.iconoEje = 'iconoEje2.png';
+        $scope.colorEje = '#5dc8bb';
         break;
       case '3':
         $scope.nombreEje = 'Competitividad y prosperidad';
+        $scope.iconoEje = 'iconoEje3.png';
+        $scope.colorEje = '#f3702a';
         break;
       case '4':
         $scope.nombreEje = 'Medio ambiente';
+        $scope.iconoEje = 'iconoEje4.png';
+        $scope.colorEje = '#7047a7';
         break;
       default:
 
     }
-    console.log('Nombre eje: '+$scope.nombreEje);
-    $http.get('php/getMetas.php?i='+$scope.ejeElegido).
-    success(function(data) {
-      $scope.datosMetas = data;
-      //console.log($scope.datosMunicipales.municipio);
-      //console.log($scope.datos[2].resultado);
-      /*angular.forEach($scope.datos,function(value,key){
-        $scope.valor={"label":value['ejercicio'],"value":value['resultado']};
-        $scope.valores.push($scope.valor);*/
-        //console.log(value);
-        //console.log(key);
-      //});
-    }
-  );
+    // console.log('Nombre eje: '+$scope.nombreEje);
+
     $http.get('php/getLineas.php?i='+$scope.ejeElegido).
     success(function(data) {
       $scope.lineas = data;

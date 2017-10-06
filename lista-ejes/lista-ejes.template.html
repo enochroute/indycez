@@ -1,4 +1,4 @@
-  <ul class="nav sidebar-nav" id="barraLateralMetas">
+  <!-- <ul class="nav sidebar-nav" id="barraLateralMetas"> -->
   <!-- <ul id="barraLateralMetas"> -->
     <!-- <li class="sidebar-brand">
       <a href="#!/">
@@ -6,8 +6,10 @@
       </a>
     </li> -->
     <div id="ejes">
-      <li ng-repeat="eje in ejes">
-        <a href="#!/metas/{{eje.id_eje}}">{{eje.eje}}</a>
-      </li>
+        <div class="col-sm-6" ng-repeat="eje in ejes">
+            <!-- <button type="button" class="botonIndyce"> -->
+              <a type="button" class="botonIndyce" ng-style="{'background-color': '{{eje.color}}'}" href="#!/lineas/{{eje.id_eje}}"><span class="obscuro"><img ng-src="img/{{eje.icono}}" /></span><span class="numero">{{eje.id_eje}}.</span>&nbsp;{{eje.eje}}</a>
+            <!-- </button> -->
+      </div>
     </div>
-  </ul>
+  <!-- </ul> -->
