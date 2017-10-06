@@ -526,12 +526,12 @@ $conexion->set_charset("utf8");
                                                   </select>
                                                 </div>
                                               </div>
-                                              <div class="row">
+                                              <div class="row" id="divSubtemas" style="display: none">
                                                 <div class="col-md-3">
                                                   <label for="nuevo_subtema">Subtema Asociado:</label>
                                                 </div>
                                                 <div class="col-md-9">
-                                                  <select id="nuevo_subtema" name="nuevo_subtema" class="form-control" required="required"  disabled="disabled">
+                                                  <select id="nuevo_subtema" name="nuevo_subtema" class="form-control" required="required">
                                                     <option value=""> ..:: Elija un subtema asociado con el indicador ::.. </option>
                                                     <?php
                                                     $conexion = $conn->conectar();
@@ -1108,6 +1108,11 @@ $conexion->set_charset("utf8");
                           return false;
                         }
 
+                        if($('#nuevo_subtema').val() == ""){
+                          alert("Por favor elija un subtema asociado al indicador");
+                          return false;
+                        }
+
                         $.ajax({
                           method: "POST",
                           url: "class/indicadores.php",
@@ -1155,17 +1160,17 @@ $conexion->set_charset("utf8");
                       $('#sample_editable_1_new').on('click',function(e){
                         e.preventDefault();
                         $('#frm-nuevoIndicador')[0].reset();
-                        $('#nuevo_subtema').prop('disabled',true);
+                        $('#divSubtemas').hide();
                       });
 
                       $('#nuevo_tema').on('change',function(e){
                         e.preventDefault();
                         console.log($(this).val());
                         if ($(this).val() == 17) {
-                          $('#nuevo_subtema').prop('disabled',false);
+                          $('#divSubtemas').show();
                         }
                         else {
-                          $('#nuevo_subtema').prop('disabled',true);
+                          $('#divSubtemas').hide();
                         }
                       });
 

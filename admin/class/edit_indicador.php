@@ -616,375 +616,374 @@ unset($consulta);
           </div>
         </div>
       </div>
-    </div>
-    <div class="tab-pane fade" id="tab_1_3">
-      <?php
-      $conexion = $conn->conectar();
-      $conexion->set_charset("utf8");
-      $Query = "SELECT id_fuente FROM fuente_indicador WHERE id_indicador = ".$_POST['idIndicador'];
-      $ExConsulta = $conexion->query($Query);
-      unset($Query);
-      $x = 0;
-      while($res = $ExConsulta->fetch_array(MYSQLI_NUM)){
-        $array_fuentes[$x] = $res[0];
-        $x++;
-      }
-      unset($res);
-      unset($x);
-      if(count($array_fuentes) < 1){
-        $array_fuentes[0] = 0;
-      }
-      unset($ExConsulta);
-      $conexion->close();
-      ?>
-      <div class="row">
-        <div class="col-md-1"></div>
-        <div class="col-md-11">
-          <div class="row">
-            <div class="col-md-3">
-              <div class="form-group">
-                <div class="checkbox-list">
-                  <?php
-                  $conexion = $conn->conectar();
-                  $conexion->set_charset("utf8");
-                  $Query =  "SELECT id_fuente,fuente FROM fuentes LIMIT 14";
-                  $ExConsulta = $conexion->query($Query);
-                  unset($Query);
-                  while($Resultado = $ExConsulta->fetch_array(MYSQLI_NUM)){ ?>
-                    <label><input <?php echo "id='fuente".$Resultado[0]."'"; ?> type="checkbox" <?php if(in_array($Resultado[0],$array_fuentes)){ echo "checked"; }?>> <?php echo $Resultado[1]; ?></label>
-                    <?php
-                  }
-                  unset($Resultado);
-                  unset($ExConsulta);
-                  $conexion->close();
-                  ?>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-md-3">
-              <div class="form-group">
-                <div class="checkbox-list">
-                  <?php
-                  $conexion = $conn->conectar();
-                  $conexion->set_charset("utf8");
-                  $Query =  "SELECT id_fuente,fuente FROM fuentes LIMIT 14,14";
-
-                  $ExConsulta = $conexion->query($Query);
-                  unset($Query);
-                  while($Resultado = $ExConsulta->fetch_array(MYSQLI_NUM)){ ?>
-                    <label><input type="checkbox" <?php echo "id='fuente".$Resultado[0]."'"; ?> <?php if(in_array($Resultado[0],$array_fuentes)){ echo "checked"; }?>> <?php echo $Resultado[1]; ?></label>
-                    <?php
-                  }
-                  unset($Resultado);
-                  unset($ExConsulta);
-                  $conexion->close();
-                  ?>
-                </div>
-              </div>
-
-            </div>
-            <div class="col-md-3">
-              <div class="form-group">
-                <div class="checkbox-list">
-                  <?php
-                  $conexion = $conn->conectar();
-                  $conexion->set_charset("utf8");
-                  $Query =  "SELECT id_fuente,fuente FROM fuentes LIMIT 28,14";
-
-                  $ExConsulta = $conexion->query($Query);
-                  unset($Query);
-                  while($Resultado = $ExConsulta->fetch_array(MYSQLI_NUM)){ ?>
-                    <label><input type="checkbox" <?php echo "id='fuente".$Resultado[0]."'"; ?> <?php if(in_array($Resultado[0],$array_fuentes)){ echo "checked"; }?>> <?php echo $Resultado[1]; ?></label>
-                    <?php
-                  }
-                  unset($Resultado);
-                  unset($ExConsulta);
-                  $conexion->close();
-                  ?>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-3">
-              <div class="form-group">
-                <div class="checkbox-list">
-                  <?php
-                  $conexion = $conn->conectar();
-                  $conexion->set_charset("utf8");
-                  $Query =  "SELECT id_fuente,fuente FROM fuentes LIMIT 42,14";
-
-                  $ExConsulta = $conexion->query($Query);
-                  unset($Query);
-                  while($Resultado = $ExConsulta->fetch_array(MYSQLI_NUM)){ ?>
-                    <label><input type="checkbox" <?php echo "id='fuente".$Resultado[0]."'"; ?> <?php if(in_array($Resultado[0],$array_fuentes)){ echo "checked"; }?>> <?php echo $Resultado[1]; ?></label>
-                    <?php
-                  }
-                  unset($Resultado);
-                  unset($ExConsulta);
-                  $conexion->close();
-                  ?>
-                </div>
-              </div>
-            </div>
-
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="tab-pane fade" id="tab_1_4">
-      <?php
-      $conexion = $conn->conectar();
-      $conexion->set_charset("utf8");
-      $Query = "SELECT id_dependencia FROM indicador_dependencia WHERE id_indicador = ".$_POST['idIndicador'];
-      $ExConsulta = $conexion->query($Query);
-      unset($Query);
-      $i = 0;
-
-      while($res = $ExConsulta->fetch_array(MYSQLI_NUM)){
-        $array_dependencias[$i] = $res[0];
-        $i++;
-      }
-      if(count($array_dependencias) < 1){
-        $array_dependencias[0] = 0;
-      }
-      unset($i);
-      unset($res);
-      unset($ExConsulta);
-      $conexion->close();
-      ?>
-
-      <div class="row">
-        <div class="col-md-1"></div>
-        <div class="col-md-11">
-          <div class="row">
-            <div class="col-md-2">
-              <div class="form-group">
-                <div class="checkbox-list">
-                  <?php
-                  $conexion = $conn->conectar();
-                  $conexion->set_charset("utf8");
-                  $Query =  "SELECT id_dependencia,acronimo FROM dependencias LIMIT 11";
-                  $ExConsulta = $conexion->query($Query);
-                  unset($Query);
-
-                  while($Resultado = $ExConsulta->fetch_array(MYSQLI_NUM)){ ?>
-                    <label><input type="checkbox" id="dependencia<?php echo $Resultado[0]; ?>" <?php if(in_array($Resultado[0],$array_dependencias)){ echo "checked"; } if ($_SESSION['perfil']!=1) { echo " disabled='disabled'"; } ?> > <?php echo $Resultado[1]; ?></label>
-                    <?php
-
-                  }
-
-                  unset($Resultado);
-                  unset($ExConsulta);
-                  $conexion->close();
-                  ?>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-2">
-              <div class="form-group">
-                <div class="checkbox-list">
-                  <?php
-                  $conexion = $conn->conectar();
-                  $conexion->set_charset("utf8");
-                  $Query =  "SELECT id_dependencia,acronimo FROM dependencias LIMIT 11,11";
-
-                  $ExConsulta = $conexion->query($Query);
-                  unset($Query);
-                  while($Resultado = $ExConsulta->fetch_array(MYSQLI_NUM)){ ?>
-                    <label><input type="checkbox" id="dependencia<?php echo $Resultado[0]; ?>" <?php if(in_array($Resultado[0],$array_dependencias)){ echo "checked"; }if ($_SESSION['perfil']!=1) { echo " disabled='disabled'"; }?>> <?php echo $Resultado[1]; ?></label>
-                    <?php
-                  }
-                  unset($Resultado);
-                  unset($ExConsulta);
-                  $conexion->close();
-                  ?>
-                </div>
-              </div>
-
-            </div>
-            <div class="col-md-2">
-              <div class="form-group">
-                <div class="checkbox-list">
-                  <?php
-                  $conexion = $conn->conectar();
-                  $conexion->set_charset("utf8");
-                  $Query =  "SELECT id_dependencia,acronimo FROM dependencias LIMIT 22,11";
-
-                  $ExConsulta = $conexion->query($Query);
-                  unset($Query);
-                  while($Resultado = $ExConsulta->fetch_array(MYSQLI_NUM)){ ?>
-                    <label><input type="checkbox" id="dependencia<?php echo $Resultado[0]; ?>" <?php if(in_array($Resultado[0],$array_dependencias)){ echo "checked"; } if ($_SESSION['perfil']!=1) { echo " disabled='disabled'"; }?>> <?php echo $Resultado[1]; ?></label>
-                    <?php
-                  }
-                  unset($Resultado);
-                  unset($ExConsulta);
-                  $conexion->close();
-                  ?>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-2">
-              <div class="form-group">
-                <div class="checkbox-list">
-                  <?php
-                  $conexion = $conn->conectar();
-                  $conexion->set_charset("utf8");
-                  $Query =  "SELECT id_dependencia,acronimo FROM dependencias LIMIT 33,11";
-
-                  $ExConsulta = $conexion->query($Query);
-                  unset($Query);
-                  while($Resultado = $ExConsulta->fetch_array(MYSQLI_NUM)){ ?>
-                    <label><input type="checkbox" id="dependencia<?php echo $Resultado[0]; ?>" <?php if(in_array($Resultado[0],$array_dependencias)){ echo "checked"; }if ($_SESSION['perfil']!=1) { echo " disabled='disabled'"; }?>> <?php echo $Resultado[1]; ?></label>
-                    <?php
-
-                  }
-                  unset($Resultado);
-                  unset($ExConsulta);
-                  $conexion->close();
-                  ?>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-2">
-              <div class="form-group">
-                <div class="checkbox-list">
-                  <?php
-                  $conexion = $conn->conectar();
-                  $conexion->set_charset("utf8");
-                  $Query =  "SELECT id_dependencia,acronimo FROM dependencias LIMIT 44,11";
-
-                  $ExConsulta = $conexion->query($Query);
-                  unset($Query);
-                  while($Resultado = $ExConsulta->fetch_array(MYSQLI_NUM)){ ?>
-                    <label><input type="checkbox" id="dependencia<?php echo $Resultado[0]; ?>" <?php  if(in_array($Resultado[0],$array_dependencias)){ echo "checked"; } if ($_SESSION['perfil']!=1) { echo " disabled='disabled'"; }?>> <?php echo $Resultado[1]; ?></label>
-                    <?php
-
-                  }
-                  unset($Resultado);
-                  unset($ExConsulta);
-                  $conexion->close();
-                  ?>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-2">
-              <div class="form-group">
-                <div class="checkbox-list">
-                  <?php
-                  $conexion = $conn->conectar();
-                  $conexion->set_charset("utf8");
-                  $Query =  "SELECT id_dependencia,acronimo FROM dependencias LIMIT 55,11";
-
-                  $ExConsulta = $conexion->query($Query);
-                  unset($Query);
-                  while($Resultado = $ExConsulta->fetch_array(MYSQLI_NUM)){ ?>
-                    <label><input type="checkbox" id="dependencia<?php echo $Resultado[0]; ?>" <?php if(in_array($Resultado[0],$array_dependencias)){ echo "checked"; } if ($_SESSION['perfil']!=1) { echo " disabled='disabled'"; }?>> <?php echo $Resultado[1]; ?></label>
-                    <?php
-
-                  }
-                  unset($Resultado);
-                  unset($ExConsulta);
-                  $conexion->close();
-                  ?>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="tab-pane fade" id="tab_1_5">
-      <div class="btn-group">
-        <button type="button" class="btn btn-default" onclick="agregaResultadoRow();"><span class="text-success"><i class="fa fa-plus-circle"></i></span> Agregar Registro</button>
-        <button type="button" class="btn btn-default" id="xlsbtn" onclick="cargar_excel();" disabled><span class="text-success"><i class="fa fa-file-excel-o"></i></span> Agregar varios registros(xls)</button>
-        <form id="xlsForm">
-          <input type="file" id="fileXLS" name="fileXLS" onchange="habilitarBtn();" class="form-control">
-        </form>
-      </div>
-      <p>&nbsp;</p>
-
-      <table class="table table-striped table-bordered table-hover" id="resultadosIndicadorTabla">
-        <thead>
-          <tr>
-            <th> Periodo</th>
-            <th> Meta </th>
-            <th> Resultado </th>
-            <th> Municipio </th>
-            <th> Región </th>
-            <th> Ejercicio </th>
-            <th> </th>
-          </tr>
-        </thead>
-        <tbody>
-          <?php
-          $conexion = $conn->conectar();
-          $conexion->set_charset("utf8");
-          $ExConsulta = $conexion->query('SELECT
-            mr.periodo,
-            mr.meta,
-            mr.resultado,
-            mr.municipio,
-            mp.nombre,
-            mr.region,
-            r.nombre,
-            mr.ejercicio
-            FROM metas_resultados mr
-            inner join municipios mp on(mr.municipio = mp.id_municipio)
-            inner join regiones r on(mr.region = r.id_region)
-            where mr.id_indicador = '.$_POST['idIndicador']);
-            $conexion->close();
-            $n = 1;
-
-            while($Res = $ExConsulta->fetch_array(MYSQLI_NUM)){
-              ?>
-              <tr id="ResultadoFila<?php echo $n; ?>">
-                <td>
-
-                  <input class="form-control" type="text" id="ResultadoPeriodo<?php echo $n;?>" value="<?php echo $Res[0]; ?> " onchange="modificarRes(<?php echo $n?>);">
-                </td>
-                <td>
-                  <input class="form-control" type="text" id="ResultadoMeta<?php echo $n;?>"  value="<?php echo $Res[1]; ?>" onchange="modificarRes(<?php echo $n?>);">
-                </td>
-                <td>
-                  <input class="form-control" type="text" id="ResultadoRes<?php echo $n;?>"  value="<?php echo $Res[2]; ?>" onchange="modificarRes(<?php echo $n?>);">
-                </td>
-                <td>
-                  <select class="form-control" id="ResultadoMunicipio<?php echo $n; ?>" onchange="agrega_region(this.value,<?php echo $n?>);">
-                    <option value="<?php echo $Res[3]; ?>"><?php echo $Res[4]; ?></option>
+      <div class="tab-pane fade" id="tab_1_3">
+        <?php
+        $conexion = $conn->conectar();
+        $conexion->set_charset("utf8");
+        $Query = "SELECT id_fuente FROM fuente_indicador WHERE id_indicador = ".$_POST['idIndicador'];
+        $ExConsulta = $conexion->query($Query);
+        unset($Query);
+        $x = 0;
+        while($res = $ExConsulta->fetch_array(MYSQLI_NUM)){
+          $array_fuentes[$x] = $res[0];
+          $x++;
+        }
+        unset($res);
+        unset($x);
+        if(count($array_fuentes) < 1){
+          $array_fuentes[0] = 0;
+        }
+        unset($ExConsulta);
+        $conexion->close();
+        ?>
+        <div class="row">
+          <div class="col-md-1"></div>
+          <div class="col-md-11">
+            <div class="row">
+              <div class="col-md-3">
+                <div class="form-group">
+                  <div class="checkbox-list">
                     <?php
                     $conexion = $conn->conectar();
                     $conexion->set_charset("utf8");
-                    $ExConsultaMPIO = $conexion->query("SELECT id_municipio,nombre FROM municipios");
-                    unset($conexion);
-                    while($mpioR = $ExConsultaMPIO->fetch_array(MYSQLI_NUM)){
-                      echo  '<option value="'.$mpioR[0].'">'.$mpioR[1].'</option>';
+                    $Query =  "SELECT id_fuente,fuente FROM fuentes LIMIT 14";
+                    $ExConsulta = $conexion->query($Query);
+                    unset($Query);
+                    while($Resultado = $ExConsulta->fetch_array(MYSQLI_NUM)){ ?>
+                      <label><input <?php echo "id='fuente".$Resultado[0]."'"; ?> type="checkbox" <?php if(in_array($Resultado[0],$array_fuentes)){ echo "checked"; }?>> <?php echo $Resultado[1]; ?></label>
+                      <?php
                     }
-                    unset($ExConsultaMPIO);
-                    unset($mpioR);
+                    unset($Resultado);
+                    unset($ExConsulta);
+                    $conexion->close();
                     ?>
-                  </select>
-                </td>
+                  </div>
+                </div>
+              </div>
 
-                <td>
-                  <div id="region<?php echo $n;?>">
-                    <input type="hidden" id="ResultadoRegion<?php echo $n;?>" value="<?php echo $Res[5]; ?>" onchange="modificarRes(<?php echo $n?>);">
-                    <input type="text" id="RegionTxt<?php echo $n;?>" readonly value="<?php echo $Res[6]; ?>" class="form-control" >
+              <div class="col-md-3">
+                <div class="form-group">
+                  <div class="checkbox-list">
+                    <?php
+                    $conexion = $conn->conectar();
+                    $conexion->set_charset("utf8");
+                    $Query =  "SELECT id_fuente,fuente FROM fuentes LIMIT 14,14";
+
+                    $ExConsulta = $conexion->query($Query);
+                    unset($Query);
+                    while($Resultado = $ExConsulta->fetch_array(MYSQLI_NUM)){ ?>
+                      <label><input type="checkbox" <?php echo "id='fuente".$Resultado[0]."'"; ?> <?php if(in_array($Resultado[0],$array_fuentes)){ echo "checked"; }?>> <?php echo $Resultado[1]; ?></label>
+                      <?php
+                    }
+                    unset($Resultado);
+                    unset($ExConsulta);
+                    $conexion->close();
+                    ?>
                   </div>
-                </td>
-                <td>
-                  <input class="form-control" type="number" id="ResultadoEjercicio<?php echo $n;?>"  value="<?php echo $Res[7]; ?>">
-                </td>
-                <td>
-                  <div class="btn-group" id="ResultadoBtn<?php echo $n;?>">
-                    <button type="button" class="btn btn-default" onclick="eliminaPrev(<?php echo $n; ?>)"><span class="text-danger"><i class="fa fa-trash"></i></span> </button>
+                </div>
+
+              </div>
+              <div class="col-md-3">
+                <div class="form-group">
+                  <div class="checkbox-list">
+                    <?php
+                    $conexion = $conn->conectar();
+                    $conexion->set_charset("utf8");
+                    $Query =  "SELECT id_fuente,fuente FROM fuentes LIMIT 28,14";
+
+                    $ExConsulta = $conexion->query($Query);
+                    unset($Query);
+                    while($Resultado = $ExConsulta->fetch_array(MYSQLI_NUM)){ ?>
+                      <label><input type="checkbox" <?php echo "id='fuente".$Resultado[0]."'"; ?> <?php if(in_array($Resultado[0],$array_fuentes)){ echo "checked"; }?>> <?php echo $Resultado[1]; ?></label>
+                      <?php
+                    }
+                    unset($Resultado);
+                    unset($ExConsulta);
+                    $conexion->close();
+                    ?>
                   </div>
-                </td>
-              </tr>
-              <?php $n++; } ?>
-            </tbody>
-          </table>
-          <input type="hidden" id="numRowsTablaResultados" value="<?php echo $n; unset($n); ?>">
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="form-group">
+                  <div class="checkbox-list">
+                    <?php
+                    $conexion = $conn->conectar();
+                    $conexion->set_charset("utf8");
+                    $Query =  "SELECT id_fuente,fuente FROM fuentes LIMIT 42,14";
+
+                    $ExConsulta = $conexion->query($Query);
+                    unset($Query);
+                    while($Resultado = $ExConsulta->fetch_array(MYSQLI_NUM)){ ?>
+                      <label><input type="checkbox" <?php echo "id='fuente".$Resultado[0]."'"; ?> <?php if(in_array($Resultado[0],$array_fuentes)){ echo "checked"; }?>> <?php echo $Resultado[1]; ?></label>
+                      <?php
+                    }
+                    unset($Resultado);
+                    unset($ExConsulta);
+                    $conexion->close();
+                    ?>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="tab-pane fade" id="tab_1_4">
+        <?php
+        $conexion = $conn->conectar();
+        $conexion->set_charset("utf8");
+        $Query = "SELECT id_dependencia FROM indicador_dependencia WHERE id_indicador = ".$_POST['idIndicador'];
+        $ExConsulta = $conexion->query($Query);
+        unset($Query);
+        $i = 0;
+
+        while($res = $ExConsulta->fetch_array(MYSQLI_NUM)){
+          $array_dependencias[$i] = $res[0];
+          $i++;
+        }
+        if(count($array_dependencias) < 1){
+          $array_dependencias[0] = 0;
+        }
+        unset($i);
+        unset($res);
+        unset($ExConsulta);
+        $conexion->close();
+        ?>
+
+        <div class="row">
+          <div class="col-md-1"></div>
+          <div class="col-md-11">
+            <div class="row">
+              <div class="col-md-2">
+                <div class="form-group">
+                  <div class="checkbox-list">
+                    <?php
+                    $conexion = $conn->conectar();
+                    $conexion->set_charset("utf8");
+                    $Query =  "SELECT id_dependencia,acronimo FROM dependencias LIMIT 11";
+                    $ExConsulta = $conexion->query($Query);
+                    unset($Query);
+
+                    while($Resultado = $ExConsulta->fetch_array(MYSQLI_NUM)){ ?>
+                      <label><input type="checkbox" id="dependencia<?php echo $Resultado[0]; ?>" <?php if(in_array($Resultado[0],$array_dependencias)){ echo "checked"; } if ($_SESSION['perfil']!=1) { echo " disabled='disabled'"; } ?> > <?php echo $Resultado[1]; ?></label>
+                      <?php
+
+                    }
+
+                    unset($Resultado);
+                    unset($ExConsulta);
+                    $conexion->close();
+                    ?>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-2">
+                <div class="form-group">
+                  <div class="checkbox-list">
+                    <?php
+                    $conexion = $conn->conectar();
+                    $conexion->set_charset("utf8");
+                    $Query =  "SELECT id_dependencia,acronimo FROM dependencias LIMIT 11,11";
+
+                    $ExConsulta = $conexion->query($Query);
+                    unset($Query);
+                    while($Resultado = $ExConsulta->fetch_array(MYSQLI_NUM)){ ?>
+                      <label><input type="checkbox" id="dependencia<?php echo $Resultado[0]; ?>" <?php if(in_array($Resultado[0],$array_dependencias)){ echo "checked"; }if ($_SESSION['perfil']!=1) { echo " disabled='disabled'"; }?>> <?php echo $Resultado[1]; ?></label>
+                      <?php
+                    }
+                    unset($Resultado);
+                    unset($ExConsulta);
+                    $conexion->close();
+                    ?>
+                  </div>
+                </div>
+
+              </div>
+              <div class="col-md-2">
+                <div class="form-group">
+                  <div class="checkbox-list">
+                    <?php
+                    $conexion = $conn->conectar();
+                    $conexion->set_charset("utf8");
+                    $Query =  "SELECT id_dependencia,acronimo FROM dependencias LIMIT 22,11";
+
+                    $ExConsulta = $conexion->query($Query);
+                    unset($Query);
+                    while($Resultado = $ExConsulta->fetch_array(MYSQLI_NUM)){ ?>
+                      <label><input type="checkbox" id="dependencia<?php echo $Resultado[0]; ?>" <?php if(in_array($Resultado[0],$array_dependencias)){ echo "checked"; } if ($_SESSION['perfil']!=1) { echo " disabled='disabled'"; }?>> <?php echo $Resultado[1]; ?></label>
+                      <?php
+                    }
+                    unset($Resultado);
+                    unset($ExConsulta);
+                    $conexion->close();
+                    ?>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-2">
+                <div class="form-group">
+                  <div class="checkbox-list">
+                    <?php
+                    $conexion = $conn->conectar();
+                    $conexion->set_charset("utf8");
+                    $Query =  "SELECT id_dependencia,acronimo FROM dependencias LIMIT 33,11";
+
+                    $ExConsulta = $conexion->query($Query);
+                    unset($Query);
+                    while($Resultado = $ExConsulta->fetch_array(MYSQLI_NUM)){ ?>
+                      <label><input type="checkbox" id="dependencia<?php echo $Resultado[0]; ?>" <?php if(in_array($Resultado[0],$array_dependencias)){ echo "checked"; }if ($_SESSION['perfil']!=1) { echo " disabled='disabled'"; }?>> <?php echo $Resultado[1]; ?></label>
+                      <?php
+
+                    }
+                    unset($Resultado);
+                    unset($ExConsulta);
+                    $conexion->close();
+                    ?>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-2">
+                <div class="form-group">
+                  <div class="checkbox-list">
+                    <?php
+                    $conexion = $conn->conectar();
+                    $conexion->set_charset("utf8");
+                    $Query =  "SELECT id_dependencia,acronimo FROM dependencias LIMIT 44,11";
+
+                    $ExConsulta = $conexion->query($Query);
+                    unset($Query);
+                    while($Resultado = $ExConsulta->fetch_array(MYSQLI_NUM)){ ?>
+                      <label><input type="checkbox" id="dependencia<?php echo $Resultado[0]; ?>" <?php  if(in_array($Resultado[0],$array_dependencias)){ echo "checked"; } if ($_SESSION['perfil']!=1) { echo " disabled='disabled'"; }?>> <?php echo $Resultado[1]; ?></label>
+                      <?php
+
+                    }
+                    unset($Resultado);
+                    unset($ExConsulta);
+                    $conexion->close();
+                    ?>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-2">
+                <div class="form-group">
+                  <div class="checkbox-list">
+                    <?php
+                    $conexion = $conn->conectar();
+                    $conexion->set_charset("utf8");
+                    $Query =  "SELECT id_dependencia,acronimo FROM dependencias LIMIT 55,11";
+
+                    $ExConsulta = $conexion->query($Query);
+                    unset($Query);
+                    while($Resultado = $ExConsulta->fetch_array(MYSQLI_NUM)){ ?>
+                      <label><input type="checkbox" id="dependencia<?php echo $Resultado[0]; ?>" <?php if(in_array($Resultado[0],$array_dependencias)){ echo "checked"; } if ($_SESSION['perfil']!=1) { echo " disabled='disabled'"; }?>> <?php echo $Resultado[1]; ?></label>
+                      <?php
+
+                    }
+                    unset($Resultado);
+                    unset($ExConsulta);
+                    $conexion->close();
+                    ?>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="tab-pane fade" id="tab_1_5">
+        <div class="btn-group">
+          <button type="button" class="btn btn-default" onclick="agregaResultadoRow();"><span class="text-success"><i class="fa fa-plus-circle"></i></span> Agregar Registro</button>
+          <button type="button" class="btn btn-default" id="xlsbtn" onclick="cargar_excel();" disabled><span class="text-success"><i class="fa fa-file-excel-o"></i></span> Agregar varios registros(xls)</button>
+          <form id="xlsForm">
+            <input type="file" id="fileXLS" name="fileXLS" onchange="habilitarBtn();" class="form-control">
+          </form>
+        </div>
+        <p>&nbsp;</p>
+
+        <table class="table table-striped table-bordered table-hover" id="resultadosIndicadorTabla">
+          <thead>
+            <tr>
+              <th> Periodo</th>
+              <th> Meta </th>
+              <th> Resultado </th>
+              <th> Municipio </th>
+              <th> Región </th>
+              <th> Ejercicio </th>
+              <th> </th>
+            </tr>
+          </thead>
+          <tbody>
+            <?php
+            $conexion = $conn->conectar();
+            $conexion->set_charset("utf8");
+            $ExConsulta = $conexion->query('SELECT
+              mr.periodo,
+              mr.meta,
+              mr.resultado,
+              mr.municipio,
+              mp.nombre,
+              mr.region,
+              r.nombre,
+              mr.ejercicio
+              FROM metas_resultados mr
+              inner join municipios mp on(mr.municipio = mp.id_municipio)
+              inner join regiones r on(mr.region = r.id_region)
+              where mr.id_indicador = '.$_POST['idIndicador']);
+              $conexion->close();
+              $n = 1;
+
+              while($Res = $ExConsulta->fetch_array(MYSQLI_NUM)){
+                ?>
+                <tr id="ResultadoFila<?php echo $n; ?>">
+                  <td>
+
+                    <input class="form-control" type="text" id="ResultadoPeriodo<?php echo $n;?>" value="<?php echo $Res[0]; ?> " onchange="modificarRes(<?php echo $n?>);">
+                  </td>
+                  <td>
+                    <input class="form-control" type="text" id="ResultadoMeta<?php echo $n;?>"  value="<?php echo $Res[1]; ?>" onchange="modificarRes(<?php echo $n?>);">
+                  </td>
+                  <td>
+                    <input class="form-control" type="text" id="ResultadoRes<?php echo $n;?>"  value="<?php echo $Res[2]; ?>" onchange="modificarRes(<?php echo $n?>);">
+                  </td>
+                  <td>
+                    <select class="form-control" id="ResultadoMunicipio<?php echo $n; ?>" onchange="agrega_region(this.value,<?php echo $n?>);">
+                      <option value="<?php echo $Res[3]; ?>"><?php echo $Res[4]; ?></option>
+                      <?php
+                      $conexion = $conn->conectar();
+                      $conexion->set_charset("utf8");
+                      $ExConsultaMPIO = $conexion->query("SELECT id_municipio,nombre FROM municipios");
+                      unset($conexion);
+                      while($mpioR = $ExConsultaMPIO->fetch_array(MYSQLI_NUM)){
+                        echo  '<option value="'.$mpioR[0].'">'.$mpioR[1].'</option>';
+                      }
+                      unset($ExConsultaMPIO);
+                      unset($mpioR);
+                      ?>
+                    </select>
+                  </td>
+
+                  <td>
+                    <div id="region<?php echo $n;?>">
+                      <input type="hidden" id="ResultadoRegion<?php echo $n;?>" value="<?php echo $Res[5]; ?>" onchange="modificarRes(<?php echo $n?>);">
+                      <input type="text" id="RegionTxt<?php echo $n;?>" readonly value="<?php echo $Res[6]; ?>" class="form-control" >
+                    </div>
+                  </td>
+                  <td>
+                    <input class="form-control" type="number" id="ResultadoEjercicio<?php echo $n;?>"  value="<?php echo $Res[7]; ?>">
+                  </td>
+                  <td>
+                    <div class="btn-group" id="ResultadoBtn<?php echo $n;?>">
+                      <button type="button" class="btn btn-default" onclick="eliminaPrev(<?php echo $n; ?>)"><span class="text-danger"><i class="fa fa-trash"></i></span> </button>
+                    </div>
+                  </td>
+                </tr>
+                <?php $n++; } ?>
+              </tbody>
+            </table>
+            <input type="hidden" id="numRowsTablaResultados" value="<?php echo $n; unset($n); ?>">
+          </div>
         </div>
       </div>
     </div>
-  </div>
