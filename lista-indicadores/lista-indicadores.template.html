@@ -1,27 +1,90 @@
-<div class="panel separa-arriba">
-  <p style="padding-left:2em; font-size:110%; text-align: justify">
-    Los indicadores identificados por el icono <span><img ng-src="img/iconoPED.png" class="icono-texto" /></span> corresponen a aquellos publicados en el <strong>Plan Estatal de Desarrollo 2017 - 2021</strong> que son indicativos para los procesos de evaluación.
-  </p>
-  <div class="panel-indyce">
-    <div class="row">
-      <div class="col-xs-2 col-md-1">
-        <span><img class="icono-listado" ng-src="img/temas/{{temaIcono}}"/> </span>
+<!-- <div class="panel separa-arriba"> -->
+  <div class="panelE panel-indyce separa-arriba">
+    <div class="panel-body" style="padding: 0;" ng-style={"background-color":"{{temaColor}}"}>
+      <!-- <div class="row"> -->
+        <div class="col-xs-2 col-md-1" id="imgIndicador">
+          <span class="sombra"><img class="icono-listado" ng-src="img/temas/{{temaIcono}}" style="margin: 1em 0"/> </span>
+        </div>
+        <div class="col-xs-10 col-md-11">
+          <div class="row">
+            <div class="col-xs-10" style="margin: 1em 0;">
+              <span class="nombre-tema" style="margin-left: 1.5em;"> {{temaNombre}} | </span>
+              {{(indicadores|filter:{ id_tema: temaElegido}:true).length}} Indicadores
+            </div>
+            <div class="col-xs-2">
+              <div class="nav-header" style="float: right;">
+                <a href back-button>
+                  <span class="glyphicon glyphicon-chevron-left" style="margin: 1.5em 0 1.5em 0;" ></span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="col-xs-7 col-md-8">
-        <div class="row">
-          <div class="col-sm-8">
-            <span class="nombre-tema"> {{temaNombre}} | </span>
-            {{(indicadores|filter:{ id_tema: temaElegido}:true).length}} Indicadores
+    </div>
+  <!-- </div> -->
+
+  <p style="font-size:110%; text-align: justify; color: {{temaColor}}; font-weight:bold;">
+    Los indicadores identificados por el icono <span><img ng-src="img/iconoPED-t.png" style="background-color: {{temaColor}}" class="icono-texto" /></span> corresponen a aquellos publicados en el Plan Estatal de Desarrollo 2017 - 2021 que son indicativos para los procesos de evaluación.
+  </p>
+
+  <!-- <div class="panel-body" id="contenedorLista"> -->
+    <div class="panel panel-default" style="padding: 0;" ng-repeat = "indicador in indicadores | filter:{ id_tema: temaElegido} : true ">
+      <div class="panel-body" style="padding: 0; min-height:6em;">
+        <div class="col-sm-1" style="background: {{temaColor}}; height:100%; padding: 0;"> </div>
+        <div class="col-sm-11" style="padding: 0;">
+          <div class="panel-encabezado" >
+            <div class="col-xs-1">
+              <span ng-if="indicador.sistema_consulta == 1" class="izquierda"> <img ng-src="img/iconoPED_blanco.png"  class="icono-texto" style="padding:0.25em;"/> </span>
+            </div>
+            <div class="col-xs-11">
+              <a  class="lnkIndicador" href="#!/detalleIndicador/{{indicador.id_indicador}}">{{indicador.nombre}}</a>
+            </div>
+          </div>
+          <div class="row" style="color: #a7a5a6; text-align:center">
+            <div class="col-sm-2">
+              Último valor
+            </div>
+            <div class="col-sm-2">
+              Unidad de<br>medida
+            </div>
+            <div class="col-sm-2">
+              Periodicidad
+            </div>
+            <div class="col-sm-2">
+              Correspondiente a:
+            </div>
+            <div class="col-sm-2" style="text-align: center;">
+              Tendencia<br>deseable
+            </div>
+            <div class="col-sm-2">
+              Dependencia<br>responsable
+            </div>
+          </div>
+          <div class="row" style="color: {{temaColor}}; text-align:center; font-weight: bold;">
+            <div class="col-sm-2">
+              {{indicador.ultimoResultado|number}}
+            </div>
+            <div class="col-sm-2">
+              {{indicador.u_medida}}
+            </div>
+            <div class="col-sm-2">
+              {{indicador.peiodicidad}}
+            </div>
+            <div class="col-sm-2">
+              {{indicador.ultimoReporte}}
+            </div>
+            <div class="col-sm-2" style="text-align: center; font-size:1.5em">
+              <span ng-if="indicador.tendencia_deseable == 2" class="glyphicon glyphicon-arrow-up">  </span>
+              <span ng-if="indicador.tendencia_deseable == 3" class="glyphicon glyphicon-arrow-down">  </span>
+            </div>
+            <div class="col-sm-2">
+              {{indicador.acronimo}}
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-  <div class="panel-body" id="contenedorLista">
-    <a  class="btn btn-default btn-block" href="#!/detalleIndicador/{{indicador.id_indicador}}"
-    ng-repeat = "indicador in indicadores | filter:{ id_tema: temaElegido} : true "> <!-- | orderBy:'nombre' -->
-      <span ng-if="indicador.sistema_consulta == 1" class="izquierda"> <img ng-src="img/iconoPED.png" class="icono-texto"/> </span>
-      {{indicador.nombre}}
-    </a>
-  </div>
-</div>
+  <!-- </div> -->
+<!-- </div> -->

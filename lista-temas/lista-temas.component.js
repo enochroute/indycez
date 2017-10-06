@@ -9,7 +9,7 @@ module('MainModule').
       $http.get('php/gettemas.php').
       success(function(data) {
         $scope.temas = data;
-        //console.log($scope.temas);
+        // console.log($scope.temas);
       });
     }
   });

@@ -505,7 +505,7 @@ $conexion->set_charset("utf8");
                                             <div class="form-group">
                                               <div class="row">
                                                 <div class="col-md-3">
-                                                  <label for="origen">Tema Asociado:</label>
+                                                  <label for="nuevo_tema">Tema Asociado:</label>
                                                 </div>
                                                 <div class="col-md-9">
                                                   <select id="nuevo_tema" name="nuevo_tema" class="form-control" required="required">
@@ -514,6 +514,29 @@ $conexion->set_charset("utf8");
                                                     $conexion = $conn->conectar();
                                                     $conexion->set_charset("utf8");
                                                     $Query = "SELECT * FROM temas_interes";
+                                                    $ExConsulta = $conexion->query($Query);
+                                                    unset($Query);
+                                                    while($Resultado = $ExConsulta->fetch_array(MYSQLI_NUM)){
+                                                      echo "<option value='".$Resultado[0]."'>  ".$Resultado[1]."</option>";
+                                                    }
+                                                    unset($Resultado);
+                                                    unset($ExConsulta);
+                                                    $conexion->close();
+                                                    ?>
+                                                  </select>
+                                                </div>
+                                              </div>
+                                              <div class="row">
+                                                <div class="col-md-3">
+                                                  <label for="nuevo_subtema">Subtema Asociado:</label>
+                                                </div>
+                                                <div class="col-md-9">
+                                                  <select id="nuevo_subtema" name="nuevo_subtema" class="form-control" required="required"  disabled="disabled">
+                                                    <option value=""> ..:: Elija un subtema asociado con el indicador ::.. </option>
+                                                    <?php
+                                                    $conexion = $conn->conectar();
+                                                    $conexion->set_charset("utf8");
+                                                    $Query = "SELECT * FROM subtemas";
                                                     $ExConsulta = $conexion->query($Query);
                                                     unset($Query);
                                                     while($Resultado = $ExConsulta->fetch_array(MYSQLI_NUM)){
@@ -1132,6 +1155,18 @@ $conexion->set_charset("utf8");
                       $('#sample_editable_1_new').on('click',function(e){
                         e.preventDefault();
                         $('#frm-nuevoIndicador')[0].reset();
+                        $('#nuevo_subtema').prop('disabled',true);
+                      });
+
+                      $('#nuevo_tema').on('change',function(e){
+                        e.preventDefault();
+                        console.log($(this).val());
+                        if ($(this).val() == 17) {
+                          $('#nuevo_subtema').prop('disabled',false);
+                        }
+                        else {
+                          $('#nuevo_subtema').prop('disabled',true);
+                        }
                       });
 
 

@@ -7,6 +7,29 @@ var angularIndyce = angular.module('MainModule',[
   'ui.bootstrap',
   // 'countTo'
 ]);
+
+angularIndyce.factory('utilityService', function() {
+  return {
+    message: 'Nothing here...',
+    getTemaColor: function() {
+      return this.temaColor;
+    },
+    setTemaColor: function(msg) {
+      this.temaColor = msg;
+    }
+  };
+})
+
+angularIndyce.directive('backButton', ['$window', function($window) {
+        return {
+            restrict: 'A',
+            link: function (scope, elem, attrs) {
+                elem.bind('click', function () {
+                    $window.history.back();
+                });
+            }
+        };
+    }]);
 angularIndyce.config(function($locationProvider,$routeProvider) {
   $locationProvider.hashPrefix('!');
 
@@ -15,7 +38,8 @@ angularIndyce.config(function($locationProvider,$routeProvider) {
     templateUrl: 'paginas/pagina-inicio.template.html',
     //controller: 'mainController'
   }).
-  when('/indicadores/:idTema/icono/:iconoTema/tema/:nombreTema', {
+  // when('/indicadores/:idTema/icono/:iconoTema/tema/:nombreTema', {
+  when('/indicadores/:idTema', {
     template: '<lista-indicadores></lista-indicadores>',
     controller: 'IndicadoresCtrl',
     controllerAs: 'indicadores',
@@ -39,13 +63,37 @@ angularIndyce.config(function($locationProvider,$routeProvider) {
       id: 'idIndicador'
     }
   }).
-  when('/metas/:idEje', {
+  when('/lineas/:idEje', {
     template: '<lista-lineas></lista-lineas>',
     controller: 'LineasCtrl',
     controllerAs: 'lineas',
     params: {
       id: 'idEje'
     }
+  }).
+  when('/metas/:idLinea', {
+    template: '<lista-metas></lista-metas>',
+    controller: 'MetasCtrl',
+    controllerAs: 'metas',
+    params: {
+      id: 'idLinea'
+    }
+  }).
+  when('/temas/', {
+    templateUrl: 'paginas/pagina-temas.template.html',
+    // controller: 'TemasCtrl',
+    // controllerAs: 'temas',
+    // params: {
+    //   id: 'idEje'
+    // }
+  }).
+  when('/metas/', {
+    templateUrl: 'paginas/pagina-ejes.template.html',
+    // controller: 'TemasCtrl',
+    // controllerAs: 'temas',
+    // params: {
+    //   id: 'idEje'
+    // }
   }).
   otherwise({
     redirectTo: '/'
@@ -77,6 +125,16 @@ angularIndyce.controller('DesagregadoCtrl', ['$scope', '$routeParams', function 
 angularIndyce.controller('LineasCtrl', ['$scope', '$routeParams', function LineasCtrl($scope, $routeParams) {
   $scope.lineaID = $routeParams;
   // console.log($scope.lineaID);
+} ]);
+
+angularIndyce.controller('TemasCtrl', ['$scope', '$routeParams', function TemasCtrl($scope, $routeParams) {
+  $scope.temaID = $routeParams;
+  // console.log($scope.lineaID);
+} ]);
+
+angularIndyce.controller('MetasCtrl', ['$scope', '$routeParams', function MetasCtrl($scope, $routeParams) {
+  $scope.metaID = $routeParams;
+  // console.log($scope.metaID);
 } ]);
 
 // angularIndyce.controller('ItemController', ['$scope', function (scope) {

@@ -1,8 +1,4 @@
-<div class="separa-arriba">
-  <h2 style="text-align:center; color: #b32c28;">Metas | Eje {{ejeElegido}}. {{nombreEje}}</h2>
-</div>
-
-<div ng-controller="AccordionDemoCtrl">
+<!-- <div ng-controller="AccordionDemoCtrl">
   <script type="text/ng-template" id="group-template.html">
   <div class="panel-heading">
   <h4 class="panel-title" style="color:#fa39c3">
@@ -17,8 +13,8 @@
   <div class="panel-body" style="text-align: right" ng-transclude></div>
   </div>
   </script>
-</div>
-<div class="row separa-ambos" >
+</div> -->
+<div class="row" >
   <!-- <div class="notice notice-titulo">
   <strong>Nombre del indicador:</strong>
   <br>
@@ -26,8 +22,39 @@
 </div> -->
 <div class="col-md-12 " ng-controller="LineasCtrl">
 
+  <div class="panelEM panel-indyceM separa-arriba">
+    <div class="panel-body" style="background-color:{{colorEje}} !important;">
+      <!-- <div class="row"> -->
+        <div class="col-xs-2 col-md-1">
+          <span class="obscuro"><img class="icono-listado" ng-src="img/{{iconoEje}}"/> </span>
+        </div>
+        <div class="col-xs-10 col-md-11">
+          <div class="row">
+            <div class="col-sm-8" style="margin: 1em 0;">
+              <span class="nombre-tema" style="margin-left: 1.5em;"> METAS | </span>
+              Eje {{ejeElegido}}. {{nombreEje}}
+            </div>
+            <div class="col-sm-4">
+              <div class="nav-header" style="float: right;">
+                <a href back-button>
+                  <span class="glyphicon glyphicon-chevron-left" style="margin: 1.5em 0 1.5em 0;" ></span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  <div id="lineasE">
+    <div class="panelLM" ng-repeat="linea in lineas">
+      <!-- <div class="panel-body" style="padding: 0 !important; position: relative; min-height:10em;"> -->
+      <span style="background-color: {{colorEje}}">IMG</span><a href="#!/metas/{{linea.id_linea}}">{{linea.nombre}}</a>
+      <!-- </div> -->
+    </div>
+  </div>
 
-  <uib-accordion close-others=true ng-repeat="linea in lineas" class="junta-abajo">
+
+  <!-- <uib-accordion close-others=true ng-repeat="linea in lineas" class="junta-abajo">
     <div uib-accordion-group class="panel-default" is-open="status.open">
       <uib-accordion-heading>
         {{linea.nombre}} <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}"></i>
@@ -39,14 +66,14 @@
               <th class="col-sm-3" style="font-size: 0.95em">Nombre de la meta</th>
               <th class="col-sm-3" style="font-size: 0.95em">Dependencia responsable</th>
               <th class="col-sm-2" style="font-size: 0.95em">Avance (%)</th>
-              <th class="col-sm-4" style="font-size: 0.95em">Descripción del avance</th>
+              <th class="col-sm-4" style="font-size: 0.95em">Descripción del avance</th> -->
               <!-- <th style="text-align:center">Meta</th> -->
-            </tr>
+            <!-- </tr>
             <tr style="font-size:0.9em" ng-repeat="meta in datosMetas | filter:{ linea_estrategica: linea.id_linea } : true">
               <td>{{meta.meta_descripcion}}</td>
               <td>{{meta.dependencia}}</td>
               <td style="text-align:right"><div mensaje></div></td>
-              <td>{{meta.descripcion_avance}}</td>
+              <td>{{meta.descripcion_avance}}</td> -->
               <!-- <td>
                 <div ng-controller="ModalDemoCtrl as $ctrl" class="modal-demo">
 
@@ -70,13 +97,13 @@
                 </div>
               </td> -->
               <!-- <td style="text-align:right">{{meta.meta|number:"2"}}</td> -->
-            </tr>
+            <!-- </tr>
             </tr>
           </table>
         </div>
       </div>
     </div>
-  </uib-accordion>
+  </uib-accordion> -->
 </div>
 
 </div>

@@ -5,9 +5,9 @@ include 'conexion.php';
 if(isset($_GET['i']) && !empty($_GET['i']))
 {
 
-  $eje  = preg_replace('/[^0-9 ]/','',$_GET['i']);
+  $linea  = preg_replace('/[^0-9 ]/','',$_GET['i']);
 
-  if($eje  == '') return;
+  if($linea  == '') return;
 
 $query=
 "SELECT
@@ -24,7 +24,7 @@ FROM
     metas_ped AS mp
        JOIN
     linea AS l ON l.id_linea = mp.linea_estrategica
-    WHERE l.id_eje = $eje";
+    WHERE l.id_linea = $linea";
 
 
 $resultado=mysqli_query($con,$query);
