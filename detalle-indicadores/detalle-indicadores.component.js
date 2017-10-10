@@ -4,11 +4,15 @@ angular.
 module('MainModule').
 component('detalleIndicadores', {
     templateUrl: 'detalle-indicadores/detalle-indicadores.template.html',
-    controller: function DetalleIndicadoresController($scope, $rootScope, $http, $routeParams) {
+    controller: function DetalleIndicadoresController($scope, $rootScope, $http, $routeParams,coloresTemas) {
         $scope.indicadorElegido = $routeParams.idIndicador;
+        // $scope.temaIcono = coloresTemas.colour.tema[$scope.temaindicador-1].icono;
+        // $scope.temaNombre = coloresTemas.colour.tema[$scope.temaindicador-1].nombre;
+        // $scope.temaColor = coloresTemas.colour.tema[$scope.temaindicador-1].color;
         $http.get('php/getdetalleindicador.php?i=' + $scope.indicadorElegido).
         success(function (data) {
             $scope.metadatos = data;
+            $rootScope.temaIndicador = $scope.metadatos[0].id_tema;
             $rootScope.nombreIndicador = $scope.metadatos[0].nombre;
             $rootScope.etiqueta = $scope.metadatos[0].u_medida;
             $rootScope.periodicidad = $scope.metadatos[0].peiodicidad;
@@ -76,7 +80,7 @@ component('detalleIndicadores', {
                         }
                         minimal = Math.min.apply(null, resultados);
                         // minimal = resta(minimal);
-                        minimal = minimal*0.9;
+                        minimal = minimal*0.75;
 
                     },
                     async: false
@@ -156,8 +160,23 @@ component('detalleIndicadores', {
                 }
                 return $tipoGraph;
             };
+          function tema() {
+            var $id_tema = null;
+              $id_tema = $rootScope.temaIndicador;
+            return $id_tema
+          };
 
-        });
+          // console.log(tema());
+          // console.log(coloresTemas.colour.tema);
+          $scope.temaIcono = coloresTemas.colour.tema[tema()-1].icono;
+          $scope.temaNombre = coloresTemas.colour.tema[tema()-1]. nombre;
+          $scope.temaColor = coloresTemas.colour.tema[tema()-1].color;
+          // $scope.temaIcono = coloresTemas.colour.tema[$rootScope.temaIndicador-1].icono;
+          // $scope.temaNombre = coloresTemas.colour.tema[$rootScope.temaindicador-1].nombre;
+          // $scope.temaColor = coloresTemas.colour.tema[$rootScope.temaindicador-1].color;
+
+        }
+      );
 
         $http.get('php/getdatosindicador.php?i=' + $scope.indicadorElegido).
         success(function (data1) {

@@ -21,7 +21,7 @@ if(isset($_GET['i']) && !empty($_GET['i']))
 
   $query=
     "SELECT
-    i.id_indicador,
+    it.id_tema,
     i.nombre,
     i.definicion,
     i.cobertura_geografica,
@@ -52,6 +52,8 @@ FROM
     tendencias_deseables AS td ON td.id_tendencia = i.tendencia_deseable
     LEFT JOIN
     periodicidad_indicador AS p ON p.id_periodicidad = i.periodicidad
+    INNER JOIN
+    indicador_tema AS it ON it.id_indicador = i.id_indicador
 WHERE
     i.id_indicador = $indicador;";
   //  $query="select * from indicadores where id_eje='$nameindicador'";
