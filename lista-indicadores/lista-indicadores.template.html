@@ -75,6 +75,7 @@
               {{indicador.ultimoReporte}}
             </div>
             <div class="col-sm-2" style="text-align: center; font-size:1.5em">
+              <span ng-if="indicador.tendencia_deseable == 1" class="glyphicon glyphicon-arrow-right">  </span>
               <span ng-if="indicador.tendencia_deseable == 2" class="glyphicon glyphicon-arrow-up">  </span>
               <span ng-if="indicador.tendencia_deseable == 3" class="glyphicon glyphicon-arrow-down">  </span>
             </div>

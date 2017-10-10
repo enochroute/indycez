@@ -1,9 +1,28 @@
-<!-- <ul class="nav sidebar-nav" id="barraLateral"> -->
-  <!-- <li class="sidebar-brand">
-    <a href="#!/">
-      Temas
-    </a>
-  </li> -->
+<div class="panelE panel-indyce separa-arriba" style="background-color:{{metaColor}} !important">
+    <div class="panel-body" style="padding: 0;"}>
+    <!-- <div class="row"> -->
+      <div class="col-xs-2 col-md-1" id="imgIndicador">
+        <span class="sombra"><img class="icono-listado" ng-src="img/{{metaIcono}}" style="margin: 1em 0"/> </span>
+      </div>
+      <div class="col-xs-10 col-md-11">
+        <div class="row">
+          <div class="col-xs-10" style="margin: 1em 0;">
+            <span class="nombre-tema" style="margin-left: 1.5em;"> {{metaNombre}} | </span>
+            <!-- {{(indicadores|filter:{ id_tema: temaElegido}:true).length}} Indicadores -->
+          </div>
+          <div class="col-xs-2">
+            <div class="nav-header" style="float: right;">
+              <a href back-button>
+                <span class="glyphicon glyphicon-chevron-left" style="margin: 1.5em 0 1.5em 0;" ></span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
   <div id="metas">
     <table class="table">
       <tr>

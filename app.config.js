@@ -5,8 +5,45 @@ var angularIndyce = angular.module('MainModule',[
   'nvd3',
   'ngAnimate',
   'ui.bootstrap',
+  'ngCacheBuster'
   // 'countTo'
 ]);
+
+angularIndyce.factory('coloresMetas', function() {
+  return{
+    colour : {"meta":[
+        {"color" : "#b3df69", "icono": "iconoEje1.png", "nombre":"Gobierno abierto y de resultados"},
+        {"color" : "#5dc8bb", "icono": "iconoEje2.png", "nombre":"Seguridad humana"},
+        {"color" : "#f3702a", "icono": "iconoEje3.png", "nombre":"Competitividad y prosperidad"},
+        {"color" : "#7047a7", "icono": "iconoEje4.png", "nombre":"Medio ambiente"},
+    ]}
+  }
+});
+
+angularIndyce.factory('coloresTemas', function(){
+  return {
+    colour: {"tema":[
+      {"color":"#ee2e69","icono":"iconoGobierno.png","nombre":"Gobierno"},
+      {"color":"#75b196","icono":"iconoRezago.png","nombre":"Rezago social"},
+      {"color":"#75d2ea","icono":"iconoSalud.png","nombre":"Salud"},
+      {"color":"#89afad","icono":"iconoSeguridad.png","nombre":"Seguridad"},
+      {"color":"#ba38a3","icono":"iconoGenero.png","nombre":"Igualdad de género"},
+      {"color":"#8dc93d","icono":"iconoEducacion.png","nombre":"Eduación"},
+      {"color":"#f6845a","icono":"iconoInnovacion.png","nombre":"Innovación"},
+      {"color":"#f4c334","icono":"iconoEconomia.png","nombre":"Economía"},
+      {"color":"#847d6b","icono":"iconoInfraestructura.png","nombre":"Infraestructura"},
+      {"color":"#72ceae","icono":"iconoCampo.png","nombre":"Campo"},
+      {"color":"#f03981","icono":"iconoTurismo.png","nombre":"Turismo"},
+      {"color":"#37ab9c","icono":"iconoAmbiente.png","nombre":"Medio ambiente"},
+      {"color":"#424e5b","icono":"iconoUrbano.png","nombre":"Desarrollo urbano"},
+      {"color":"#ffffff","icono":"iconoCultura.png","nombre":"Cultura"},
+      {"color":"#f2516c","icono":"iconoPoblacion.png","nombre":"Población"},
+      {"color":"#4d4d4d","icono":"iconoMigracion.png","nombre":"Migración"},
+      {"color":"#0c8ac1","icono":"iconoODS.png","nombre":"ODS"}
+    ]}
+    }
+  }
+);
 
 angularIndyce.factory('utilityService', function() {
   return {
@@ -18,7 +55,11 @@ angularIndyce.factory('utilityService', function() {
       this.temaColor = msg;
     }
   };
-})
+});
+
+angularIndyce.config(function(httpRequestInterceptorCacheBusterProvider){
+    httpRequestInterceptorCacheBusterProvider.setMatchlist([/.*img.*/]);
+  });
 
 angularIndyce.directive('backButton', ['$window', function($window) {
         return {
@@ -109,21 +150,27 @@ this.$routeParams = $routeParams;
 }]);
 
 */
-angularIndyce.controller('IndicadoresCtrl', ['$scope','$routeParams', function IndicadoresCtrl($scope, $routeParams) {
+angularIndyce.controller('IndicadoresCtrl', ['$scope', 'coloresTemas', '$routeParams', function ($scope, $routeParams, coloresTemas) {
+  async: true;
   $scope.temaID = $routeParams;
+  $scope.coloresTemas = coloresTemas;
+  }
   //console.log("El tema seleccionado es: " + $scope.temaID);
-}]);
+]);
 
-angularIndyce.controller('DetallesCtrl', ['$scope', '$routeParams', '$rootScope', function DetallesCtrl($scope, $routeParams,$rootScope) {
+angularIndyce.controller('DetallesCtrl', ['$scope', '$routeParams', '$rootScope', 'coloresTemas', function ($scope, $routeParams,$rootScope,coloresTemas) {
+  async: true;
   $scope.indicadorID = $routeParams;
+  $scope.coloresTemas = coloresTemas;
 } ]);
 
 angularIndyce.controller('DesagregadoCtrl', ['$scope', '$routeParams', function DesagregadoCtrl($scope, $routeParams) {
   $scope.indicadorID = $routeParams;
 } ]);
 
-angularIndyce.controller('LineasCtrl', ['$scope', '$routeParams', function LineasCtrl($scope, $routeParams) {
+angularIndyce.controller('LineasCtrl', ['$scope', '$routeParams', 'coloresMetas', function LineasCtrl($scope, $routeParams,coloresMetas) {
   $scope.lineaID = $routeParams;
+  $scope.coloresMetas = coloresMetas;
   // console.log($scope.lineaID);
 } ]);
 
@@ -132,8 +179,10 @@ angularIndyce.controller('TemasCtrl', ['$scope', '$routeParams', function TemasC
   // console.log($scope.lineaID);
 } ]);
 
-angularIndyce.controller('MetasCtrl', ['$scope', '$routeParams', function MetasCtrl($scope, $routeParams) {
+angularIndyce.controller('MetasCtrl', ['$scope', '$routeParams', 'coloresMetas', function ($scope, $routeParams,coloresMetas) {
+  async: true;
   $scope.metaID = $routeParams;
+  $scope.coloresMetas = coloresMetas;
   // console.log($scope.metaID);
 } ]);
 

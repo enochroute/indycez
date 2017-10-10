@@ -1,14 +1,16 @@
 <div class="row separa-ambos" ng-repeat="metadato in metadatos">
-
+  <!-- <div>
+    El color que traigo {{temaColor}}
+  </div> -->
   <div class="panelE panel-indyce separa-arriba">
-    <div class="panel-body" style="padding: 0; background-color: #a1da72;">
+    <div class="panel-body" style="padding: 0; background-color: {{temaColor}};">
       <div class="col-xs-2 col-md-1" id="imgIndicador">
-        <!-- <span class="sombra"><img class="icono-listado" ng-src="img/temas/{{temaIcono}}" style="margin: 1em 0"/> </span> -->
+        <span class="sombra"><img class="icono-listado" ng-src="img/temas/{{temaIcono}}" style="margin: 1em 0"/> </span>
       </div>
       <div class="col-xs-10 col-md-11">
         <div class="row">
           <div class="col-xs-4" style="margin: 1em 0;">
-            <!-- <span class="nombre-tema" style="margin-left: 1.5em;"> {{temaNombre}} | </span> -->
+            <span class="nombre-tema" style="margin-left: 1.5em;"> {{temaNombre}} | </span>
             <!-- {{(indicadores|filter:{ id_tema: temaElegido}:true).length}} Indicadores -->
           </div>
           <div class="col-xs-7" style="font-size:0.9em">
@@ -37,8 +39,8 @@
         {{metadato.nombre}}
       </div> -->
 
-      <div class="notice notice-verde1">
-        <strong>Gráfica del indicador</strong><br><br>
+      <div class="notice" style="border-color: {{temaColor}} !important;">
+        <strong style="color: {{temaColor}} !important;">Gráfica del indicador</strong><br><br>
         <nvd3 options="options" data="data"></nvd3>
       </div>
     </div>
@@ -47,28 +49,28 @@
   <div class="row">
 
     <div class="col-md-6">
-      <div class="notice notice-verde1" ng-show="metadato.dependencia">
-        <strong>Dependencia</strong> <br>
+      <div class="notice" ng-show="metadato.dependencia" style="border-color: {{temaColor}}">
+        <strong style="color: {{temaColor}}">Dependencia</strong> <br>
         {{metadato.dependencia}}
       </div>
-      <div class="notice notice-verde1" ng-show="metadato.definicion">
-        <strong>Descripción</strong> <br>
+      <div class="notice" ng-show="metadato.definicion" style="border-color: {{temaColor}}">
+        <strong style="color: {{temaColor}}">Descripción</strong> <br>
         {{metadato.definicion}}
       </div>
-      <div class="notice notice-verde1" ng-show="metadato.u_medida">
-        <strong>Unidad de medida</strong><br>
+      <div class="notice" ng-show="metadato.u_medida" style="border-color: {{temaColor}}">
+        <strong style="color: {{temaColor}}">Unidad de medida</strong><br>
         {{metadato.u_medida}}
       </div>
-      <div class="notice notice-verde1" ng-show="metadato.tendencia">
-        <strong>Tendencia deseada</strong><br>
+      <div class="notice" ng-show="metadato.tendencia" style="border-color: {{temaColor}}">
+        <strong style="color: {{temaColor}}">Tendencia deseada</strong><br>
         {{metadato.tendencia}}
       </div>
-      <div class="notice notice-verde1" ng-show="metadato.peiodicidad">
-        <strong>Periodicidad</strong> <br>
+      <div class="notice" ng-show="metadato.peiodicidad" style="border-color: {{temaColor}}">
+        <strong style="color: {{temaColor}}">Periodicidad</strong> <br>
         {{metadato.peiodicidad}}
       </div>
-      <div class="notice notice-verde1" ng-show="metadato.fuente">
-        <strong>Fuente(s)</strong> <br>
+      <div class="notice" ng-show="metadato.fuente" style="border-color: {{temaColor}}">
+        <strong style="color: {{temaColor}}">Fuente(s)</strong> <br>
         {{metadato.fuente}}
       </div>
       <!--<div class="notice notice-verde1">
@@ -79,8 +81,8 @@
 
   <div class="col-md-6" ng-controller="DetallesCtrl">
 
-    <div class="notice notice-verde1">
-      <strong>Datos históricos</strong><br><br>
+    <div class="notice" style="border-color: {{temaColor}}">
+      <strong style="color: {{temaColor}}">Datos históricos</strong><br><br>
       <table class="table">
         <tr>
           <th>Año</th><th>Valor</th>

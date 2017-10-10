@@ -22,6 +22,7 @@
   <script src="bower_components/nvd3/build/nv.d3.min.js" charset="utf-8"></script>
   <script src="bower_components/angular-nvd3/dist/angular-nvd3.min.js"></script>
   <script src="bower_components/jquery-countTo/jquery.countTo.js"></script>
+  <script src="bower_components/angular-cache-buster/angular-cache-buster.js"></script>
   <script src="app.config.js" charset="utf-8"></script>
   <script src="lista-temas/lista-temas.module.js"></script>
   <script src="lista-temas/lista-temas.component.js"></script>
@@ -110,7 +111,7 @@
           <a type="button" class="indicadoresInactivo" ng-init="indicadoresActivo = 0;" ng-click="indicadoresActivo = 1; metasActivo = 0;" ng-class="{'indicadoresActivo' : indicadoresActivo}" ng-class="{'metasInactivo' : !metasActivo}" href="#!/temas"> <span><img ng-src="img/img-Indicadores.png" alt="" /></span> Indicadores <br> por tema</a>
         </div>
         <div class="col-sm-6">
-          <a type="button" class="metasInactivo" ng-init="metasActivo = 0;" ng-click="indicadoresActivo = 0; metasActivo = 1" ng-class="{'metasActivo' : metasActivo}" href="#!/metas"> <span><img src="img/img-Metas.png" alt="" /></span> Metas por eje <br>2016 - 2021 </a>
+          <a type="button" class="metasInactivo" ng-init="metasActivo = 0;" ng-click="indicadoresActivo = 0; metasActivo = 1" ng-class="{'metasActivo' : metasActivo}" href="#!/metas"> <span><img src="img/img-Metas.png" alt="" /></span> Metas por eje <br>2017 - 2021 </a>
         </div>
         <!-- <div class="col-sm-1"></div> -->
       <!-- </div> -->
