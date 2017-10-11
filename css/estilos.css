@@ -1577,7 +1577,7 @@ z-index: 1;
   text-decoration: none;
 }
 
-#imgIndicador span.sombra{
+.imgIndicador span.sombra{
   float: left;
   min-width: 100%;
   min-height: 100% !important;
@@ -1585,10 +1585,12 @@ z-index: 1;
   background-color: black;
   border-top-left-radius:4px;
   border-bottom-left-radius: 4px;
+  margin: 0;
 }
 
-#imgIndicador {
-  padding: 0;
+.imgIndicador {
+  padding: 0 !important;
+  width: 100%
 }
 
 .btn-indyce{
@@ -1921,3 +1923,35 @@ a[type="button"]:hover, a[type="button"]:active, a[type="button"]:link, a[type="
   border-top-left-radius:4px;
   border-bottom-left-radius: 4px;
 }
+
+.progress-wrapper{
+    position: relative;
+    margin:20px auto;
+    background-color: #fff !important;
+    border: none;
+}
+
+.progress{
+    position: absolute;
+    color: #bbb;
+    font-weight: 100;
+    line-height: 1;
+    background-color: #fff !important;
+    margin: 30% auto 0 25%;
+    font-size: 1.25em;
+    border: 1px solid #fff !important;
+}
+
+.container-progress{
+    width: 100%;
+    /*max-width: 650px;*/
+    margin: 40px auto 80px;
+    text-align: center;
+    /*padding: 40px;*/
+    background: #fff;
+    border: solid 0px #ccc;
+    border-radius: 4px;
+}
+
+.ng-cloak{
+    display: none;

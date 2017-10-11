@@ -11,7 +11,7 @@ if(isset($_GET['i']) && !empty($_GET['i']))
 
 $query=
 "SELECT
-    e.id_eje, mp.id_meta, mp.meta_descripcion, mp.linea_estrategica, mp.meta, mp.avance, mp.tendencia_deseable, mp.descripcion_avance,
+    e.id_eje, mp.id_meta, mp.meta_descripcion, mp.linea_estrategica, l.nombre, mp.meta, mp.avance, mp.tendencia_deseable, mp.descripcion_avance, mp.id_meta,
     (SELECT
             GROUP_CONCAT(' ', d.nombre)
         FROM

@@ -1,8 +1,7 @@
 <!-- <div class="panel separa-arriba"> -->
   <div class="panelE panel-indyce separa-arriba">
-    <div class="panel-body" style="padding: 0;" ng-style={"background-color":"{{temaColor}}"}>
-      <!-- <div class="row"> -->
-        <div class="col-xs-2 col-md-1" id="imgIndicador">
+    <div class="panel-body" style="padding: 0; background-color: {{temaColor}};">
+        <div class="col-xs-2 col-md-1 imgIndicador">
           <span class="sombra"><img class="icono-listado" ng-src="img/temas/{{temaIcono}}" style="margin: 1em 0"/> </span>
         </div>
         <div class="col-xs-10 col-md-11">
@@ -22,7 +21,6 @@
         </div>
       </div>
     </div>
-  <!-- </div> -->
 
   <p style="font-size:110%; text-align: justify; color: {{temaColor}}; font-weight:bold;">
     Los indicadores identificados por el icono <span><img ng-src="img/iconoPED-t.png" style="background-color: {{temaColor}}" class="icono-texto" /></span> corresponen a aquellos publicados en el Plan Estatal de Desarrollo 2017 - 2021 que son indicativos para los procesos de evaluación.
@@ -62,7 +60,7 @@
             </div>
           </div>
           <div class="row" style="color: {{temaColor}}; text-align:center; font-weight: bold;">
-            <div class="col-sm-2">
+            <div class="col-sm-2" style="font-size:2.25em; margin-top: -10pt; padding-top:0pt;">
               {{indicador.ultimoResultado|number}}
             </div>
             <div class="col-sm-2">

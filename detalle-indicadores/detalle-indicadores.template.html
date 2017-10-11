@@ -4,18 +4,18 @@
   </div> -->
   <div class="panelE panel-indyce separa-arriba">
     <div class="panel-body" style="padding: 0; background-color: {{temaColor}};">
-      <div class="col-xs-2 col-md-1" id="imgIndicador">
-        <span class="sombra"><img class="icono-listado" ng-src="img/temas/{{temaIcono}}" style="margin: 1em 0"/> </span>
+      <div class="col-xs-2 col-md-1 imgIndicador">
+        <span class="sombra" style="padding: 0;"><img class="icono-listado" ng-src="img/temas/{{temaIcono}}" style="margin: 1em 0"/> </span>
       </div>
       <div class="col-xs-10 col-md-11">
         <div class="row">
-          <div class="col-xs-4" style="margin: 1em 0;">
-            <span class="nombre-tema" style="margin-left: 1.5em;"> {{temaNombre}} | </span>
+          <div class="col-xs-11" style="margin: 1em 0;">
+            <span class="nombre-tema" style="margin-left: 1.5em;">{{temaNombre}} |&nbsp;</span><span style="font-size:0.9em">{{metadato.nombre}}</span>
             <!-- {{(indicadores|filter:{ id_tema: temaElegido}:true).length}} Indicadores -->
           </div>
-          <div class="col-xs-7" style="font-size:0.9em">
+          <!-- <div class="col-xs-7" style="font-size:0.9em">
             {{metadato.nombre}}
-          </div>
+          </div> -->
           <div class="col-xs-1">
             <div class="nav-header" style="float: right;">
               <a href back-button>

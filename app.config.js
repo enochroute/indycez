@@ -5,7 +5,9 @@ var angularIndyce = angular.module('MainModule',[
   'nvd3',
   'ngAnimate',
   'ui.bootstrap',
-  'ngCacheBuster'
+  'ngCacheBuster',
+  'angular-svg-round-progressbar',
+  // 'ngDialog'
   // 'countTo'
 ]);
 
@@ -45,18 +47,6 @@ angularIndyce.factory('coloresTemas', function(){
   }
 );
 
-angularIndyce.factory('utilityService', function() {
-  return {
-    message: 'Nothing here...',
-    getTemaColor: function() {
-      return this.temaColor;
-    },
-    setTemaColor: function(msg) {
-      this.temaColor = msg;
-    }
-  };
-});
-
 angularIndyce.config(function(httpRequestInterceptorCacheBusterProvider){
     httpRequestInterceptorCacheBusterProvider.setMatchlist([/.*img.*/]);
   });
@@ -71,6 +61,7 @@ angularIndyce.directive('backButton', ['$window', function($window) {
             }
         };
     }]);
+
 angularIndyce.config(function($locationProvider,$routeProvider) {
   $locationProvider.hashPrefix('!');
 
@@ -150,6 +141,54 @@ this.$routeParams = $routeParams;
 }]);
 
 */
+
+// angularIndyce.controller('MainCtrl', function ($scope, $rootScope, ngDialog, $timeout) {
+//     $rootScope.jsonData = '{"foo": "bar"}';
+//     $rootScope.theme = 'ngdialog-theme-default';
+//     console.log($rootScope.descripcion_avance);
+//     $scope.directivePreCloseCallback = function (value) {
+//         if(confirm('Close it? MainCtrl.Directive. (Value = ' + value + ')')) {
+//             return true;
+//         }
+//         return false;
+//     };
+//     $scope.preCloseCallbackOnScope = function (value) {
+//         if(confirm('Close it? MainCtrl.OnScope (Value = ' + value + ')')) {
+//             return true;
+//         }
+//         return false;
+//     };
+//     $scope.open = function() {
+//         var new_dialog = ngDialog.open({ id: 'fromAService', template: 'firstDialogId', controller: 'InsideCtrl', data: { foo: 'from a service' } });
+//         // example on checking whether created `new_dialog` is open
+//         $timeout(function() {
+//             console.log(ngDialog.isOpen(new_dialog.id));
+//         }, 2000)
+//     };
+//     $scope.openDefault = function () {
+//         ngDialog.open({
+//             template: 'firstDialogId',
+//             controller: 'InsideCtrl',
+//             className: 'ngdialog-theme-default'
+//         });
+//     };
+// });
+//
+// angularIndyce.controller('InsideCtrl', function ($scope, ngDialog) {
+//     // console.log($scope.id_meta);
+//     $scope.dialogModel = {
+//         message : $scope.descripcion_avance
+//     };
+//     $scope.openSecond = function () {
+//         ngDialog.open({
+//             template: '<h3><a href="" ng-click="closeSecond()">Close all by click here!</a></h3>',
+//             plain: true,
+//             closeByEscape: false,
+//             controller: 'SecondModalCtrl'
+//         });
+//     };
+// });
+
 angularIndyce.controller('IndicadoresCtrl', ['$scope', 'coloresTemas', '$routeParams', function ($scope, $routeParams, coloresTemas) {
   async: true;
   $scope.temaID = $routeParams;

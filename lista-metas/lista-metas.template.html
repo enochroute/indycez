@@ -1,60 +1,157 @@
-<div class="panelE panel-indyce separa-arriba" style="background-color:{{metaColor}} !important">
-    <div class="panel-body" style="padding: 0;"}>
+<div class="panelE panel-indyce separa-ambos" style="background-color:{{metaColor}} !important">
+  <div class="panel-body" style="padding: 0;"}>
     <!-- <div class="row"> -->
-      <div class="col-xs-2 col-md-1" id="imgIndicador">
-        <span class="sombra"><img class="icono-listado" ng-src="img/{{metaIcono}}" style="margin: 1em 0"/> </span>
-      </div>
-      <div class="col-xs-10 col-md-11">
-        <div class="row">
-          <div class="col-xs-10" style="margin: 1em 0;">
-            <span class="nombre-tema" style="margin-left: 1.5em;"> {{metaNombre}} | </span>
-            <!-- {{(indicadores|filter:{ id_tema: temaElegido}:true).length}} Indicadores -->
-          </div>
-          <div class="col-xs-2">
-            <div class="nav-header" style="float: right;">
-              <a href back-button>
-                <span class="glyphicon glyphicon-chevron-left" style="margin: 1.5em 0 1.5em 0;" ></span>
-              </a>
-            </div>
+    <div class="col-xs-2 imgIndicador">
+      <span class="sombra"><img class="icono-listado" ng-src="img/{{metaIcono}}" style="margin: 1em 0;"/> </span>
+    </div>
+    <div class="col-xs-10 ">
+      <div class="row">
+        <div class="col-xs-11" style="margin: 1em 0;">
+          <span class="nombre-tema" style="margin-left: 1.5em; font-size:1.15em"> {{metaNombre}} | </span>
+          <!-- {{(indicadores|filter:{ id_tema: temaElegido}:true).length}} Indicadores -->
+          <span style="font-size:0.85em">{{linea}}</span>
+        </div>
+        <div class="col-xs-1">
+          <div class="nav-header" style="float: right;">
+            <a href back-button>
+              <span class="glyphicon glyphicon-chevron-left" style="margin: 1.5em 0 1.5em 0;" ></span>
+            </a>
           </div>
         </div>
       </div>
     </div>
   </div>
+</div>
 
 
-  <div id="metas">
-    <table class="table">
-      <tr>
-        <th class="col-sm-3" style="font-size: 0.95em">Nombre de la meta</th>
-        <th class="col-sm-3" style="font-size: 0.95em">Dependencia responsable</th>
-        <th class="col-sm-2" style="font-size: 0.95em">Avance (%)</th>
-        <th class="col-sm-4" style="font-size: 0.95em">Descripción del avance</th>
-      </tr>
-      <tr style="font-size:0.9em" ng-repeat="meta in datosMetas">
-        <td>{{meta.meta_descripcion}}</td>
-        <td>{{meta.dependencia}}</td>
-        <td style="text-align:right"><div mensaje></div></td>
-        <td>{{meta.descripcion_avance}}</td>
+<div id="metas">
 
-        <!-- <div title="Tech Hours Progress" data-toggle="tooltip">
-          <td style="text-align:right">
-            {{meta.avance|number:"2"}}
-          </td>
-        </div> -->
-        <!-- <td>
-          <div class="progress" title="Tech Hours Progress" data-toggle="tooltip">
-            <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
-              {{meta.avance|number:"2"}} %
-            </div>
+  <div class="panelLM" ng-repeat="meta in datosMetas" style="background-color: #fff !important;">
+    <div class="panel-heading" style="background-color: {{metaColor}} !important; text-align:left;">
+      {{meta.meta_descripcion}}
+    </div>
+    <div class="panel-body" style="padding: 0 !important; position: relative; min-height:10em;">
+    <div class="row">
+
+
+      <div class="col-xs-2">
+        <div class="container-progress" >
+        <!-- <span class="sombra" style="background-color: #fff !important"> -->
+          <div class="progress-wrapper" style="border: 0 solid #000;">
+          <div class="progress" style="color: {{metaColor}} !important; margin-bottom: 0.2em">{{ meta.avance }}%</div>
+          <!-- <div class="progress ng-cloak" ng-style="getStyle()"></div> -->
+          <round-progress
+          max="100"
+          current="meta.avance"
+          color="{{metaColor}}"
+          bgcolor="#eaeaea"
+          radius="100"
+          stroke="20"
+          semi="true"
+          rounded="true"
+          clockwise="true"
+          responsive="true"
+          duration="800"
+          animation="easeInOutQuart"
+          animation-delay="0"></round-progress>
           </div>
-        </td> -->
-        <!-- <td style="text-align:right">{{meta.meta|number:"2"}}</td> -->
-      </tr>
-    </table>
-  </div>
-<!-- </ul>
+          </div>
+        <!-- </span> -->
+      </div>
+        <div class="col-xs-6" style="color: {{metaColor}};">
+        <div class="col-xs-12">Descripción del avance</div>
+        <div class="col-xs-12" style="text-align: justify; font-weight: normal;">{{meta.descripcion_avance}}</div>
+      </div>
+      <div class="col-xs-4" style="color: {{metaColor}};">
+        <div class="col-xs-12">Dependencia responsable:</div>
+        <div clss="col-xs-12" style="font-weight: normal;"> {{meta.dependencia}} </div>
+      </div>
 
-<div ng-repeat="tema in temas">
-  <a href="#!/indicadores/{{tema.id_tema}}/icono/{{tema.icono}}/tema/{{tema.nombre_tema}}"><span><img ng-src="img/temas/{{tema.icono}}" width="24px"/></span>&nbsp;{{tema.nombre_tema}}</a>
+
+    </div>
+  </div>
+</div>
+
+<!-- <div class="col-xs-2">
+  <button type="button" class="btn" style="background-color:{{metaColor}}; color: #fff;"
+  ng-click = "$rootScope.descripcion_avance = 5"
+  ng-dialog="firstDialogId"
+  ng-dialog-controller="InsideCtrl"
+  ng-dialog-data="{{jsonData}}"
+  ng-dialog-class="ngdialog-theme-default"
+ng-dialog-show-close="false">Ver detalles {{meta.id_meta}}</button>
+</div> -->
+<!-- <script type="text/ng-template" id="firstDialogId">
+    <div class="ngdialog-message">
+        <h3>ngDialog template</h3>
+        <p ng-show="theme">Test content for <code>{{theme}}</code></p>
+        <p ng-show="ngDialogId">Dialog Id: <code>{{ngDialogId}}</code></p>
+        <p class="data-passed-through" ng-show="ngDialogData.foo">Data passed through: <code>{{ngDialogData.foo}}</code></p>
+        <p ng-show="dialogModel.message">Scope passed through: <code>{{dialogModel.message}}</code></p>
+        <p>Close this dialog: <button class="inline close-this-dialog" ng-click="closeThisDialog()">Close</button></p>
+
+    </div>
+    <div class="ngdialog-buttons">
+        <button type="button" class="ngdialog-button ngdialog-button-secondary"
+            ng-dialog="secondDialogId"
+            ng-dialog-class="ngdialog-theme-default"
+            ng-dialog-controller="SecondModalCtrl"
+            ng-dialog-close-previous>Close and open</button>
+        <button type="button" class="ngdialog-button ngdialog-button-primary" ng-click="closeThisDialog()">Cerrar</button>
+    </div>
+</script> -->
+<!-- <div class="container-progress" ng-repeat="meta in datosMetas">
+
+<div class="progress-wrapper">
+<div class="progress ng-cloak" ng-style="getStyle()">{{ meta.avance }}/100</div>
+<round-progress
+max="100"
+current="meta.avance"
+color="{{metaColor}}"
+bgcolor="#eaeaea"
+radius="100"
+stroke="20"
+semi="true"
+rounded="true"
+clockwise="true"
+responsive="true"
+duration="800"
+animation="easeInOutQuart"
+animation-delay="0"></round-progress>
+</div>
+
+</div> -->
+
+<!-- </ul> -->
+<!-- <table class="table">
+<tr>
+<th class="col-sm-3" style="font-size: 0.95em">Nombre de la meta</th>
+<th class="col-sm-3" style="font-size: 0.95em">Dependencia responsable</th>
+<th class="col-sm-2" style="font-size: 0.95em">Avance (%)</th>
+<th class="col-sm-4" style="font-size: 0.95em">Descripción del avance</th>
+</tr>
+<tr style="font-size:0.9em" ng-repeat="meta in datosMetas">
+<td>{{meta.meta_descripcion}}</td>
+<td>{{meta.dependencia}}</td> -->
+<!-- <td style="text-align:right"><div mensaje></div></td> -->
+<!-- <td style="text-align:right"></td>
+<td>{{meta.descripcion_avance}}</td> -->
+
+<!-- <div title="Tech Hours Progress" data-toggle="tooltip">
+<td style="text-align:right">
+{{meta.avance|number:"2"}}
+</td>
+</div> -->
+<!-- <td>
+<div class="progress" title="Tech Hours Progress" data-toggle="tooltip">
+<div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
+{{meta.avance|number:"2"}} %
+</div>
+</div>
+</td> -->
+<!-- <td style="text-align:right">{{meta.meta|number:"2"}}</td> -->
+<!-- </tr>
+</table> -->
+<!-- <div ng-repeat="tema in temas">
+<a href="#!/indicadores/{{tema.id_tema}}/icono/{{tema.icono}}/tema/{{tema.nombre_tema}}"><span><img ng-src="img/temas/{{tema.icono}}" width="24px"/></span>&nbsp;{{tema.nombre_tema}}</a>
 </div> -->
