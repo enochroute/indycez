@@ -11,6 +11,17 @@ var angularIndyce = angular.module('MainModule',[
   // 'countTo'
 ]);
 
+angularIndyce.filter('strLimit', ['$filter', function($filter) {
+   return function(input, limit) {
+     if (! input) return;
+     if (input.length <= limit) {
+          return input;
+      }
+
+      return $filter('limitTo')(input, limit) + '...';
+   };
+}]);
+
 angularIndyce.factory('coloresMetas', function() {
   return{
     colour : {"meta":[
@@ -40,7 +51,7 @@ angularIndyce.factory('coloresTemas', function(){
       {"color":"#424e5b","icono":"iconoUrbano.png","nombre":"Desarrollo urbano"},
       {"color":"#ffffff","icono":"iconoCultura.png","nombre":"Cultura"},
       {"color":"#f2516c","icono":"iconoPoblacion.png","nombre":"Población"},
-      {"color":"#4d4d4d","icono":"iconoMigracion.png","nombre":"Migración"},
+      {"color":"#59340c","icono":"iconoMigracion.png","nombre":"Migración"},
       {"color":"#0c8ac1","icono":"iconoODS.png","nombre":"ODS"}
     ]}
     }
@@ -126,6 +137,9 @@ angularIndyce.config(function($locationProvider,$routeProvider) {
     // params: {
     //   id: 'idEje'
     // }
+  }).
+  when('/see/', {
+    templateUrl: 'paginas/pagina-see.template.html'
   }).
   otherwise({
     redirectTo: '/'

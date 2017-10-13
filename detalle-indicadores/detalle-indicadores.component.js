@@ -148,6 +148,9 @@ component('detalleIndicadores', {
             function tipoGrafica() {
                 var $tipoGraph = '';
                 switch ($rootScope.periodicidad) {
+                    case 'Semestral':
+                        $tipoGraph = 'multiBarChart';
+                        break;
                     case 'Trimestral':
                         $tipoGraph = 'multiBarChart';
                         break;

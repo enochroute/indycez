@@ -1108,9 +1108,11 @@ $conexion->set_charset("utf8");
                           return false;
                         }
 
-                        if($('#nuevo_subtema').val() == ""){
-                          alert("Por favor elija un subtema asociado al indicador");
-                          return false;
+                        if ( $('#nuevo_tema').val()==17) {
+                          if($('#nuevo_subtema').val() == ""){
+                            alert("Por favor elija un subtema asociado al indicador");
+                            return false;
+                            }
                         }
 
                         $.ajax({

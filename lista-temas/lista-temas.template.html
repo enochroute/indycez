@@ -5,7 +5,7 @@
     </a>
   </li> -->
   <div id="temas">
-      <div class="col-sm-3" ng-repeat="tema in temas" ng-init="indicadoresActivo=1">
+      <div class="col-xs-12 col-sm-6 col-md-3" ng-repeat="tema in temas" ng-init="indicadoresActivo=1">
           <!-- <button type="button" class="botonIndyce"> -->
             <!-- <a type="button" class="botonIndyce"  ng-style="{'background-color': '{{tema.color}}'}" href="#!/indicadores/{{tema.id_tema}}/icono/{{tema.icono}}/tema/{{tema.nombre_tema}}"><span class="obscuro"><img ng-src="img/temas/{{tema.icono}}" /></span>&nbsp;{{tema.nombre_tema}}</a> -->
             <a type="button" class="botonIndyce"  ng-style="{'background-color': '{{tema.color}}'}" href="#!/indicadores/{{tema.id_tema}}"><span class="obscuro"><img ng-src="img/temas/{{tema.icono}}" /></span>&nbsp;{{tema.nombre_tema}}</a>

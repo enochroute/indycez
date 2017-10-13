@@ -29,24 +29,6 @@
   </div>
 
   <div class="row">
-    <div class="col-xs-12 col-sm-12 col-md-12">
-      <!-- <div class="notice notice-titulo">
-        <strong>Nombre del indicador:</strong>
-        <div style="float:right"  ng-show="objetoMunicipal">
-          <a class="btn btn-success" href="#!/desagregado/{{indicadorElegido}}"> <span style="float:left; margin-top:0.5em;"> &nbsp; <img class="icono-texto" src="img/desagregado.png" alt="" /></span> &nbsp;  Desagregado <br> por municipio </a>
-        </div>
-        <br>
-        {{metadato.nombre}}
-      </div> -->
-
-      <div class="notice" style="border-color: {{temaColor}} !important;">
-        <strong style="color: {{temaColor}} !important;">Gráfica del indicador</strong><br><br>
-        <nvd3 options="options" data="data"></nvd3>
-      </div>
-    </div>
-  </div>
-
-  <div class="row">
 
     <div class="col-md-6">
       <div class="notice" ng-show="metadato.dependencia" style="border-color: {{temaColor}}">
@@ -79,6 +61,7 @@
     </div> -->
   </div>
 
+
   <div class="col-md-6" ng-controller="DetallesCtrl">
 
     <div class="notice" style="border-color: {{temaColor}}">
@@ -95,6 +78,24 @@
     </div>
   </div>
 
+</div>
+
+<div class="row">
+  <div class="col-xs-12 col-sm-12 col-md-12">
+    <!-- <div class="notice notice-titulo">
+      <strong>Nombre del indicador:</strong>
+      <div style="float:right"  ng-show="objetoMunicipal">
+        <a class="btn btn-success" href="#!/desagregado/{{indicadorElegido}}"> <span style="float:left; margin-top:0.5em;"> &nbsp; <img class="icono-texto" src="img/desagregado.png" alt="" /></span> &nbsp;  Desagregado <br> por municipio </a>
+      </div>
+      <br>
+      {{metadato.nombre}}
+    </div> -->
+
+    <div class="notice" style="border-color: {{temaColor}} !important;">
+      <strong style="color: {{temaColor}} !important;">Gráfica del indicador</strong><br><br>
+      <nvd3 options="options" data="data"></nvd3>
+    </div>
+  </div>
 </div>
 
 </div>

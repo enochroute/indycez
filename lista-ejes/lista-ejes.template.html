@@ -6,9 +6,9 @@
       </a>
     </li> -->
     <div id="ejes">
-        <div class="col-sm-6" ng-repeat="eje in ejes">
+        <div class="col-xs-12 col-sm-6" ng-repeat="eje in ejes">
             <!-- <button type="button" class="botonIndyce"> -->
-              <a type="button" class="botonIndyce" ng-style="{'background-color': '{{eje.color}}'}" href="#!/lineas/{{eje.id_eje}}"><span class="obscuro"><img ng-src="img/{{eje.icono}}" /></span><span class="numero">{{eje.id_eje}}.</span>&nbsp;{{eje.eje}}</a>
+              <a type="button" class="botonIndyce" ng-style="{'background-color': '{{eje.color}}'}" href="#!/lineas/{{eje.id_eje}}"><span class="obscuro"><img ng-src="img/{{eje.icono}}" /></span><span class="numero">{{eje.id_eje}}.</span>{{eje.eje}}</a>
             <!-- </button> -->
       </div>
     </div>
