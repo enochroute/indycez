@@ -1,0 +1,24 @@
+<div id="destacados">
+  <div class="col-xs-12 col-sm-6" ng-repeat="destacado in destacados">
+    <!-- <button type="button" class="botonIndyce"> -->
+    <div class="col-xs-12">
+      <div class="panelD" style="border:0.25rem solid {{destacado.color}};">
+        <span style="background-color:{{destacado.color}} !important;">
+          <a href="#!/detalleIndicador/{{destacado.id_indicador}}">
+            <img ng-src="img/indicadores/{{destacado.icono}}" alt=""/>
+          </a>
+        </span>
+        <div>
+          <a href="#!/detalleIndicador/{{destacado.id_indicador}}">
+            {{destacado.nombre|strLimit:45}}
+          </a>
+        </div>
+        <div >
+          Resumen
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- <a type="button" class="botonIndyce" ng-style="{'background-color': '{{destacado.color}}'}" href="#!/detalleIndicador/{{destacado.id_indicador}}"><span class="obscuro"><img ng-src="img/indicadores/{{destacado.icono}}" /></span>{{destacado.nombre}}</a> -->
+  <!-- </button> -->
+</div>

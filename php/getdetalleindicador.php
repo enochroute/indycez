@@ -25,6 +25,7 @@ if(isset($_GET['i']) && !empty($_GET['i']))
     i.nombre,
     i.definicion,
     i.cobertura_geografica,
+    i.notas,
     um.u_medida,
     td.tendencia,
     p.peiodicidad,

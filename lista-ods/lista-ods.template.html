@@ -1,0 +1,5 @@
+  <div id="ods">
+      <div class="col-xs-12 col-sm-6 col-md-3" ng-repeat="subtema in subtemas" ng-init="indicadoresActivo=1">
+            <a type="button" class="botonIndyce" ng-class="{'odsInactivo' : !{{subtema.activo}} }"  ng-style="{'background-color': '{{subtema.color_subtema}}'}" style="font-size: 0.8em" href="#!/indicadoresODS/{{subtema.id_subtema}}"><span class="obscuro"><img ng-src="img/subtemas/{{subtema.icono_subtema}}" alt="" /></span>&nbsp;{{subtema.nombre_subtema}}</a>
+    </div>
+  </div>

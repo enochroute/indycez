@@ -9,7 +9,37 @@ if(isset($_GET['i']) && !empty($_GET['i']))
 
   if($eje  == '') return;
 
-  $query="SELECT * FROM linea WHERE id_eje = $eje ORDER BY id_linea ASC";
+  $query="SELECT
+    l.*,
+    (SELECT
+            COUNT(*)
+        FROM
+            metas_ped
+        WHERE
+            linea_estrategica = l.id_linea) AS metas,
+	(SELECT
+            COUNT(*)
+        FROM
+            metas_ped
+        WHERE
+            linea_estrategica = l.id_linea AND avance > 75) AS nivel1,
+	(SELECT
+            COUNT(*)
+        FROM
+            metas_ped
+        WHERE
+            linea_estrategica = l.id_linea AND avance BETWEEN 50 AND 75) AS nivel2,
+	(SELECT
+            COUNT(*)
+        FROM
+            metas_ped
+        WHERE
+            linea_estrategica = l.id_linea AND avance < 50) AS nivel3
+FROM
+    linea AS l
+WHERE
+    id_eje = $eje
+ORDER BY id_linea ASC;";
 
 
   $resultado=mysqli_query($con,$query);

@@ -18,7 +18,7 @@ angularIndyce.filter('strLimit', ['$filter', function($filter) {
           return input;
       }
 
-      return $filter('limitTo')(input, limit) + '...';
+      return $filter('limitTo')(input, limit) + '[...]';
    };
 }]);
 
@@ -51,16 +51,44 @@ angularIndyce.factory('coloresTemas', function(){
       {"color":"#424e5b","icono":"iconoUrbano.png","nombre":"Desarrollo urbano"},
       {"color":"#ffffff","icono":"iconoCultura.png","nombre":"Cultura"},
       {"color":"#f2516c","icono":"iconoPoblacion.png","nombre":"Población"},
-      {"color":"#59340c","icono":"iconoMigracion.png","nombre":"Migración"},
-      {"color":"#0c8ac1","icono":"iconoODS.png","nombre":"ODS"}
+      {"color":"#ca5560","icono":"iconoMigracion.png","nombre":"Migración"},
+      {"color":"#0c8ac1","icono":"iconoODS.png","nombre":"Agenda 2030"}
     ]}
     }
   }
 );
 
-angularIndyce.config(function(httpRequestInterceptorCacheBusterProvider){
-    httpRequestInterceptorCacheBusterProvider.setMatchlist([/.*img.*/]);
-  });
+// angularIndyce.factory('coloresSubtemas', function(){
+//   return {
+//     colour: {"subtema":[
+//     	{'nombre' : "Fin de la pobreza", 'activo' : 1, 'icono' : NULL, 'color' : "#e5233d"},
+//     	{'nombre' : "Hambre cero", 'activo' : 1, 'icono' : NULL, 'color' : "#dda73a"},
+//     	{'nombre' : "Salud y bienestar", 'activo' : 1, 'icono' : NULL, 'color' : "#4ca146"},
+//     	{'nombre' : "Educación de calidad", 'activo' : 1, 'icono' : NULL, 'color' : "#c7212f"},
+//     	{'nombre' : "Igualdad de género", 'activo' : 1, 'icono' : NULL, 'color' : "#ef402d"},
+//     	{'nombre' : "Agua limpia y saneamiento", 'activo' : 1, 'icono' : NULL, 'color' : "#27bfe6"},
+//     	{'nombre' : "Energía asequible y no contaminante", 'activo' : 0, 'icono' : NULL, 'color' : "#fbc412"},
+//     	{'nombre' : "Trabajo decente y crecimiento económico", 'activo' : 1, 'icono' : NULL, 'color' : "#a31c44"},
+//     	{'nombre' : "Industria, innovación e infraestructura", 'activo' : 1, 'icono' : NULL, 'color' : "#f26a2e"},
+//     	{'nombre' : "Reducción de las desigualdades", 'activo' : 0, 'icono' : NULL, 'color' : "#de1768"},
+//     	{'nombre' : "Ciudades y comunidades sostenibles", 'activo' : 1, 'icono' : NULL, 'color' : "#f89d2a"},
+//     	{'nombre' : "Producción y consumo responsables", 'activo' : 0, 'icono' : NULL, 'color' : "#bf8d2c"},
+//     	{'nombre' : "Acción por el clima", 'activo' : 1, 'icono' : NULL, 'color' : "#407f46"},
+//     	{'nombre' : "Vida submarina", 'activo' : 0, 'icono' : NULL, 'color' : "#1f97d4"},
+//     	{'nombre' : "Vida de ecosistemas terrestres", 'activo' : 0, 'icono' : NULL 'color' : "#136a9f"},
+//     	{'nombre' : "Paz, justicia e instituciones sólidas", 'activo' : 1, 'icono' : NULL, 'color' : "#136a9f"},
+//     	{'nombre' : "Alianza para lograr los objetivos", 'activo' : 0, 'icono' : NULL, 'color' : "#14496b"}
+//     ]}
+//     }
+//   }
+// );
+
+
+
+//
+// angularIndyce.config(function(httpRequestInterceptorCacheBusterProvider){
+//     httpRequestInterceptorCacheBusterProvider.setMatchlist([/.*img.*/]);
+//   });
 
 angularIndyce.directive('backButton', ['$window', function($window) {
         return {
@@ -79,7 +107,7 @@ angularIndyce.config(function($locationProvider,$routeProvider) {
   $routeProvider.
   when('/', {
     templateUrl: 'paginas/pagina-inicio.template.html',
-    //controller: 'mainController'
+    controller: 'DestacadosCtrl'
   }).
   // when('/indicadores/:idTema/icono/:iconoTema/tema/:nombreTema', {
   when('/indicadores/:idTema', {
@@ -124,6 +152,14 @@ angularIndyce.config(function($locationProvider,$routeProvider) {
   }).
   when('/temas/', {
     templateUrl: 'paginas/pagina-temas.template.html',
+    // controller: 'TemasCtrl',
+    // controllerAs: 'temas',
+    // params: {
+    //   id: 'idEje'
+    // }
+  }).
+  when('/ods/', {
+    templateUrl: 'paginas/pagina-ods.template.html',
     // controller: 'TemasCtrl',
     // controllerAs: 'temas',
     // params: {
@@ -203,6 +239,11 @@ this.$routeParams = $routeParams;
 //     };
 // });
 
+angularIndyce.controller('DestacadosCtrl',['$scope','$routeParams', function($scope, $routeParams){
+  $scope.DestacadoID = $routeParams;
+  }
+]);
+
 angularIndyce.controller('IndicadoresCtrl', ['$scope', 'coloresTemas', '$routeParams', function ($scope, $routeParams, coloresTemas) {
   async: true;
   $scope.temaID = $routeParams;
@@ -231,6 +272,10 @@ angularIndyce.controller('TemasCtrl', ['$scope', '$routeParams', function TemasC
   $scope.temaID = $routeParams;
   // console.log($scope.lineaID);
 } ]);
+
+// angularIndyce.controller('OdsCtrl', ['$scope', '$routeParams', function OdsCtrl($scope, $routeParams) {
+//   $scope.subtemaID = $routeParams;
+// } ]);
 
 angularIndyce.controller('MetasCtrl', ['$scope', '$routeParams', 'coloresMetas', function ($scope, $routeParams,coloresMetas) {
   async: true;
