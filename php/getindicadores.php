@@ -2,6 +2,11 @@
 header("Access-Control-Allow-Origin: *");
 include 'conexion.php';
 
+$destacado = "";
+if(isset($_GET['i']) && !empty($_GET['i']) && $_GET['i']=1)
+{
+  $destacado = " AND destacado = 1 ";
+}
 
 $query=
 "SELECT
@@ -9,6 +14,8 @@ $query=
     TRIM(i.nombre) AS nombre,
     i.id_indicador,
     i.sistema_consulta,
+    i.icono,
+    ti.color,
     pi.peiodicidad,
     um.u_medida,
     i.tendencia_deseable,
@@ -40,6 +47,8 @@ FROM
         INNER JOIN
     indicador_tema AS it ON i.id_indicador = it.id_indicador
         INNER JOIN
+    temas_interes AS ti ON it.id_tema = ti.id_tema
+        INNER JOIN
     periodicidad_indicador AS pi ON i.periodicidad = pi.id_periodicidad
         INNER JOIN
     u_medida_indicadores AS um ON um.id_u_medida = i.u_medida
@@ -55,6 +64,7 @@ WHERE
         WHERE
             id_indicador = i.id_indicador) > 0
         AND i.activo = 1
+        " . $destacado ."
 ORDER BY nombre;";
 
 

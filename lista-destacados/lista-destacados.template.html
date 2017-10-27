@@ -2,20 +2,32 @@
   <div class="col-xs-12 col-sm-6" ng-repeat="destacado in destacados">
     <!-- <button type="button" class="botonIndyce"> -->
     <div class="col-xs-12">
-      <div class="panelD" style="border:0.25rem solid {{destacado.color}};">
-        <span style="background-color:{{destacado.color}} !important;">
+      <div class="panelD" style="border:0.35rem solid {{destacado.color}}; min-height: 10.75rem !important;">
+        <!-- <a href="#!/detalleIndicador/{{destacado.id_indicador}}"> -->
+        <span style="background-color:{{destacado.color}} !important; min-height: 10.4rem !important; margin-top:-0.23rem">
           <a href="#!/detalleIndicador/{{destacado.id_indicador}}">
             <img ng-src="img/indicadores/{{destacado.icono}}" alt=""/>
           </a>
         </span>
-        <div>
-          <a href="#!/detalleIndicador/{{destacado.id_indicador}}">
+        <div style="background-color: {{destacado.color}} !important;">
+          <a href="#!/detalleIndicador/{{destacado.id_indicador}}" style="color: #fff !important;">
             {{destacado.nombre|strLimit:45}}
           </a>
         </div>
         <div >
-          Resumen
+          <div class="col-xs-5">
+            <p style="font-size: 2.6rem; color: {{destacado.color}}">
+              {{destacado.ultimoResultado|number}}
+              <p style="margin-top:-2.2vh; font-size:1.3rem; color: {{destacado.color}}; font-weight: normal;">{{destacado.u_medida}}</p>
+            </p>
+          </div>
+          <div class="col-xs-4">
+            <p style="font-size: 1.3rem;">
+              <br>({{destacado.ultimoReporte}})
+            </p>
+          </div>
         </div>
+      <!-- </a> -->
       </div>
     </div>
   </div>
