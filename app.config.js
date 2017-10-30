@@ -7,6 +7,7 @@ var angularIndyce = angular.module('MainModule',[
   'ui.bootstrap',
   'ngCacheBuster',
   'angular-svg-round-progressbar',
+  // 'pdf'
   // 'ngDialog'
   // 'countTo'
 ]);
@@ -158,6 +159,11 @@ angularIndyce.config(function($locationProvider,$routeProvider) {
     //   id: 'idEje'
     // }
   }).
+  when('/ped/', {
+    templateUrl: 'paginas/pagina-pdf.template.html',
+    controller: 'DocCtrl',
+    // controllerAs: 'pdf'
+  }).
   when('/ods/', {
     templateUrl: 'paginas/pagina-ods.template.html',
     // controller: 'TemasCtrl',
@@ -176,6 +182,14 @@ angularIndyce.config(function($locationProvider,$routeProvider) {
   }).
   when('/see/', {
     templateUrl: 'paginas/pagina-see.template.html'
+  }).
+  when('/colegiados/:idOrgano', {
+    template: '<organos-colegiados></organos-colegiados>',
+    controller: 'OrganosCtrl',
+    controllerAs: 'organos',
+    params: {
+      id: 'idOrgano'
+    }
   }).
   otherwise({
     redirectTo: '/'
@@ -238,6 +252,16 @@ this.$routeParams = $routeParams;
 //         });
 //     };
 // });
+
+// angularIndyce.controller('DocCtrl', function($scope) {
+//   $scope.pdfName = 'Plan Estatal de Desarrollo 2017-2021';
+//   $scope.pdfUrl = '/pdf/PED_2017-2021.pdf';
+// });
+
+angularIndyce.controller('OrganosCtrl',['$scope','$routeParams', function($scope, $routeParams){
+  $scope.OrganosID = $routeParams;
+  }
+]);
 
 angularIndyce.controller('DestacadosCtrl',['$scope','$routeParams', function($scope, $routeParams){
   $scope.DestacadoID = $routeParams;

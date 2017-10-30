@@ -1,0 +1,53 @@
+<!-- <div class="panel separa-arriba"> -->
+  <div class="panelE panel-indyce separa-arriba">
+    <div class="panel-body" style="padding: 0; background-color: #a2c140;">
+        <div class="col-xs-2 col-md-1 imgIndicador">
+          <span class="sombra"><img class="icono-listado" ng-src="img/cuaderno.png" style="margin: 1rem 0"/> </span>
+        </div>
+        <div class="col-xs-10 col-md-11">
+          <div class="row">
+            <div class="col-xs-10" style="margin: 1rem 0;">
+              <span class="nombre-tema" style="margin-left: 1.5em;"> Comité Técnico </span>
+
+            </div>
+            <div class="col-xs-2">
+              <div class="nav-header" style="float: right;">
+                <a href back-button>
+                  <span class="glyphicon glyphicon-chevron-left" style="margin: 1.5rem 0 1.5rem 0;" ></span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- <div class="panel-body" id="contenedorLista"> -->
+
+    <!-- <div class="col-xs-1">
+    <span ng-if="indicador.sistema_consulta == 1" class="izquierda"> <img ng-src="img/iconoPED_blanco.png"  class="icono-texto" style="padding:0.25rem;"/> </span>
+  </div> -->
+
+  <div ng-repeat = "dato in data">
+
+  <div class="col-xs-2">
+    <img src="img/icon-person.png" alt="" class="img-circle rounded-circle" width="125rem" />
+  </div>
+  <div class="col-xs-10">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <span style="margin-left: 3em; font-weight: bold">{{dato.nombre_miembro}}</span>&nbsp; | &nbsp;  <span>{{dato.nombre_cargo}}</span>
+      </div>
+      <div class="panel-body">
+        {{dato.experiencia}}
+      </div>
+    </div>
+  </div>
+</div>
+        <!-- <div class="col-sm-12" style="padding: 0; ">
+          <div class="panel-encabezado" >
+          </div>
+        </div> -->
+  <!-- </div> -->
+  <!-- </div> -->
+<!-- </div> -->
