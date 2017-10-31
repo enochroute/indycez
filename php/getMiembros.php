@@ -12,6 +12,7 @@ $query=
     m.nombre_miembro,
     c.nombre_cargo,
     m.experiencia,
+    m.sector,
     m.foto
   FROM
     miembros AS m JOIN cargos AS c ON m.cargo = c.id_cargo

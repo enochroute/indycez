@@ -1756,6 +1756,28 @@ z-index: 1;
   border-radius:4px;
   /*padding-top: 15%;*/
 }
+
+.botonDocumentos{
+  margin:0 0 1.2rem 0;
+  font-family: inherit;
+  background: #f03981;
+  min-height: 7.5rem !important;
+  display:block;
+  width:100%;
+  min-width: 15rem;
+  /*padding-right:0;
+  padding-left:0;*/
+  font-size:1.75rem;
+  color: #fff;
+  font-weight: bolder;
+  text-transform: uppercase;
+  text-decoration: none;
+  text-align: center;
+  /*vertical-align: middle;*/
+  border-radius:4px;
+  position: relative;
+  /*padding-top: 15%;*/
+}
 .principal{
   font-size: 200%;
   color: #fff;
