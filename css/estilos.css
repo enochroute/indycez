@@ -1746,12 +1746,13 @@ z-index: 1;
   width:100%;
   /*padding-right:0;
   padding-left:0;*/
-  font-size:1.15vw;
-  color: #fff;
+  font-size:1.5rem;
+  color: #fff !important;
   font-weight: bolder;
   text-transform: uppercase;
   text-decoration: none;
   text-align: center;
+  bottom: 0;
   /*vertical-align: middle;*/
   border-radius:4px;
   /*padding-top: 15%;*/
