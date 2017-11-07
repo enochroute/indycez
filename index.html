@@ -109,7 +109,7 @@
         <div class="navbar-header">
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
           </button>
-          <a class="navbar-brand"  ng-click="indicadoresActivo=0; metasActivo=0;" href="#!/"><span class="glyphicon glyphicon-home"></span></a>
+          <a class="navbar-brand"  ng-click="indicadoresActivo=1; metasActivo=1;" href="#!/"><span class="glyphicon glyphicon-home"></span></a>
         </div>
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav">
@@ -129,10 +129,10 @@
           <a href="#!/temas"><img src="img/btnIndicadoresActivo.png" style="width:100%; float:left" alt="" /> </a>
         </div> -->
         <div class="col-sm-6">
-          <a type="button" class="indicadoresInactivo" ng-init="indicadoresActivo = 0;" ng-click="indicadoresActivo = 1; metasActivo = 0;" ng-class="{'indicadoresActivo' : indicadoresActivo}" ng-class="{'metasInactivo' : !metasActivo}" href="#!/temas"> <span><img ng-src="img/img-Indicadores.png" alt="" /></span>&nbsp;<div class="textoBoton"> Indicadores por tema</div></a>
+          <a type="button" class="indicadoresInactivo" ng-init="indicadoresActivo = 1;" ng-click="indicadoresActivo = 0; metasActivo = 1;" ng-class="{'indicadoresActivo' : indicadoresActivo}" ng-class="{'metasInactivo' : !metasActivo}" href="#!/temas"> <span><img ng-src="img/img-Indicadores.png" alt="" /></span>&nbsp;<div class="textoBoton"> Indicadores por tema</div></a>
         </div>
         <div class="col-sm-6">
-          <a type="button" class="metasInactivo" ng-init="metasActivo = 0;" ng-click="indicadoresActivo = 0; metasActivo = 1" ng-class="{'metasActivo' : metasActivo}" href="#!/metas"> <span><img src="img/img-Metas.png" alt="" /></span><div class="textoBoton"> Metas por eje 2017 - 2021</div> </a>
+          <a type="button" class="metasInactivo" ng-init="metasActivo = 1;" ng-click="indicadoresActivo = 1; metasActivo = 0" ng-class="{'metasActivo' : metasActivo}" href="#!/metas"> <span><img src="img/img-Metas.png" alt="" /></span><div class="textoBoton"> Metas por eje 2017 - 2021</div> </a>
         </div>
         <!-- <div class="col-sm-1"></div> -->
       <!-- </div> -->

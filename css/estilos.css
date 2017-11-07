@@ -1737,27 +1737,6 @@ z-index: 1;
 
 /* BOTONES */
 
-.botonIndyce{
-  margin:0 0 1.2rem 0;
-  font-family: inherit;
-  background: #f03981;
-  min-height: 7.5vh !important;
-  display:block;
-  width:100%;
-  /*padding-right:0;
-  padding-left:0;*/
-  font-size:1.5rem;
-  color: #fff !important;
-  font-weight: bolder;
-  text-transform: uppercase;
-  text-decoration: none;
-  text-align: center;
-  bottom: 0;
-  /*vertical-align: middle;*/
-  border-radius:4px;
-  /*padding-top: 15%;*/
-}
-
 .botonDocumentos{
   margin:0 0 1.2rem 0;
   font-family: inherit;
@@ -1785,6 +1764,26 @@ z-index: 1;
   hover: #fff;
   text-decoration: none;
 }
+.botonIndyce{
+  margin:0 0 1.2rem 0;
+  font-family: inherit;
+  background: #f03981;
+  min-height: 4.8rem !important;
+  display:block;
+  width:100%;
+  /*padding-right:0;
+  padding-left:0;*/
+  font-size:1.4rem;
+  color: #fff !important;
+  font-weight: bolder;
+  text-transform: uppercase;
+  text-decoration: none;
+  text-align: center;
+  bottom: 0;
+  /*vertical-align: middle;*/
+  border-radius:4px;
+  /*padding-top: 15%;*/
+}
 .botonIndyce a{
   line-height:normal;
   vertical-align: middle;
@@ -1802,9 +1801,9 @@ a[type="button"]:hover, a[type="button"]:active, a[type="button"]:link, a[type="
 
 .botonIndyce>span.obscuro{
   float: left;
-  min-width: 5.5vw;
+  min-width: 7.8rem;
   max-width: 100%;
-  min-height: 7.5vh !important;
+  min-height: 4.7rem !important;
   background-color: black;
   opacity: 0.3;
   border-top-left-radius:4px;
@@ -1812,10 +1811,10 @@ a[type="button"]:hover, a[type="button"]:active, a[type="button"]:link, a[type="
 }
 .botonIndyce>span.numero{
   float: left;
-  min-width: 6vw;
+  min-width: 9rem;
   /*min-height: 3.6em !important;*/
   opacity: 0.3;
-  font-size: 6.5vh !important;
+  font-size: 4.2rem !important;
   color: #000 !important;
   /*vertical-align: middle !important;*/
   /*margin-bottom: 5em !important;*/
@@ -1827,7 +1826,7 @@ a[type="button"]:hover, a[type="button"]:active, a[type="button"]:link, a[type="
   /*float: left;*/
   /*width: 5em;*/
   /*min-width: 10%;*/
-  max-height: 7vh !important;
+  max-height: 4.7rem !important;
   width: auto;
   /*max-width: 50%;*/
   z-index: 1000;
@@ -1933,7 +1932,7 @@ a[type="button"]:hover, a[type="button"]:active, a[type="button"]:link, a[type="
   text-shadow: 0px 1px #6c6c6c;
   background: #d3d2d2;
   font-size: 2.5rem;
-  color: #fff;
+  color: #70a733 !important;
   hover: #fff;
   margin:0 0 1.2em 0;
   font-family: inherit;
@@ -1944,11 +1943,12 @@ a[type="button"]:hover, a[type="button"]:active, a[type="button"]:link, a[type="
   text-transform: uppercase;
   text-align: center;
   border-radius:4px;
+  border: 2px solid #70a733 !important;
 }
 .metasActivo>span{
   float: left;
   min-width: 17.5%;
-  min-height: 3em !important;
+  min-height: 2.9em !important;
   background-color: black;
   opacity: 0.3;
   border-top-left-radius:4px;

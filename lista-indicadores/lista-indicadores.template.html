@@ -40,26 +40,40 @@
             </div>
           </div>
           <div class="row" style="color: #a7a5a6; text-align:center">
-            <div class="col-sm-2">
+            <div class="col-xs-12 col-sm-6 col-md-2">
               Último valor
+              <p style="margin-top:-1rem">&nbsp;</p>
+              <p style="color: {{temaColor}}; text-align:center; font-weight: bold; vertical-align: bottom; font-size:2.25rem;">{{indicador.ultimoResultado|number}}</p>
             </div>
-            <div class="col-sm-2">
+            <div class="col-xs-12 col-sm-6 col-md-2">
               Unidad de<br>medida
+              <p></p>
+              <p style="color: {{temaColor}}; text-align:center; font-weight: bold; vertical-align: bottom;">{{indicador.u_medida}}</p>
             </div>
-            <div class="col-sm-2">
+            <div class="col-xs-12 col-sm-6 col-md-2">
               Periodicidad
+              <p>&nbsp;</p>
+              <p style="color: {{temaColor}}; text-align:center; font-weight: bold; vertical-align: bottom;">{{indicador.peiodicidad}}</p>
             </div>
-            <div class="col-sm-2">
+            <div class="col-xs-12 col-sm-6 col-md-2">
               Correspondiente a:
+              <p>&nbsp;</p>
+              <p style="color: {{temaColor}}; text-align:center; font-weight: bold; vertical-align: bottom;">{{indicador.ultimoReporte}}</p>
             </div>
-            <div class="col-sm-2" style="text-align: center;">
+            <div class="col-xs-12 col-sm-6 col-md-2" style="text-align: center;">
               Tendencia<br>deseable
+              <p></p>
+              <p style="color: {{temaColor}}; text-align:center; font-weight: bold; vertical-align: bottom;"><span ng-if="indicador.tendencia_deseable == 1" class="glyphicon glyphicon-arrow-right">  </span>
+              <span ng-if="indicador.tendencia_deseable == 2" class="glyphicon glyphicon-arrow-up">  </span>
+              <span ng-if="indicador.tendencia_deseable == 3" class="glyphicon glyphicon-arrow-down">  </span></p>
             </div>
-            <div class="col-sm-2">
+            <div class="col-xs-12 col-sm-6 col-md-2">
               Dependencia<br>responsable
+              <p></p>
+              <p style="color: {{temaColor}}; text-align:center; font-weight: bold; vertical-align: bottom;">{{indicador.acronimo}}</p>
             </div>
           </div>
-          <div class="row" style="color: {{temaColor}}; text-align:center; font-weight: bold;">
+          <!-- <div class="row" style="color: {{temaColor}}; text-align:center; font-weight: bold;">
             <div class="col-sm-2" style="font-size:2.25rem; margin-top: -10pt; padding-top:0pt;">
               {{indicador.ultimoResultado|number}}
             </div>
@@ -80,7 +94,7 @@
             <div class="col-sm-2">
               {{indicador.acronimo}}
             </div>
-          </div>
+          </div> -->
         </div>
       </div>
     </div>
