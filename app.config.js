@@ -183,6 +183,9 @@ angularIndyce.config(function($locationProvider,$routeProvider) {
   when('/see/', {
     templateUrl: 'paginas/pagina-see.template.html'
   }).
+  when('/ped/', {
+    templateUrl: 'paginas/pagina-ped.template.html'
+  }).
   when('/colegiados/:idOrgano', {
     template: '<organos-colegiados></organos-colegiados>',
     controller: 'OrganosCtrl',
