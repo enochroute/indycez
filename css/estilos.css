@@ -126,48 +126,6 @@ background-color: #2d2366;
   color: #000000;
 
 }
-.button_search{
-  float: right;
-  margin-right: -46mm;
-  margin-top: -8mm;
-
-}
-.button_admin{
-  float: right;
-      margin-right: -60mm;
-      margin-top: -8mm;
-
-}
-.button_exit{
-  float: right;
-      margin-right: -72mm;
-      margin-top: -8mm;
-
-}
-.button_search a:hover{
-  background-color:#BA1414;
-
-  border-top: 10px solid #BA1414;
-  border-bottom: 10px solid #BA1414;
-  border-left:1px solid #BA1414;
-  border-right:5px solid #BA1414;
-}
-.button_admin a:hover{
-  background-color:#BA1414;
-
-  border-top: 10px solid #BA1414;
-  border-bottom: 10px solid #BA1414;
-  border-left:1px solid #BA1414;
-  border-right:5px solid #BA1414;
-}
-.button_exit a:hover{
-  background-color:#BA1414;
-
-  border-top: 10px solid #BA1414;
-  border-bottom: 10px solid #BA1414;
-  border-left:1px solid #BA1414;
-  border-right:5px solid #BA1414;
-}
 
 body
 {
@@ -188,47 +146,6 @@ footer{
 
 }
 
-.img_eje1{
-  width: 24%;
-  float:left;
-  margin-left: 1.5%;
-  margin-top:1%;
-
-}
-.img_eje2{
-  width: 24%;
-  float:left;
-  margin-left:.5%;
-  margin-top:1%;
-}
-.img_eje3{
-  width: 24%;
-  float:left;
-  margin-left:.5%;
-  margin-top:1%;
-
-}
-.img_eje4{
-  width: 24%;
-  float:left;
-  margin-left:.5%;
-  margin-top:1%;
-
-}
-.img_zacatecas{
-  width: 6%;
-
-
-}
-.ico_indicador{
-
-  width: 50px;
-  height: 25px;
-
-
-
-
-}
 
 
 .titulo_indicador {
@@ -239,66 +156,9 @@ footer{
 
 
 
-.tabsdemoDynamicHeight md-content {
-  background-color: transparent !important; }
-  .tabsdemoDynamicHeight md-content md-tabs {
-    background: #f6f6f6;
-    border: 1px solid #e1e1e1; }
-    .tabsdemoDynamicHeight md-content md-tabs md-tabs-wrapper {
-      background: white; }
-  .tabsdemoDynamicHeight md-content h1:first-child {
-    margin-top: 0; }
-
-    md-tabs.md-default-theme .md-tab, md-tabs .md-tab {
-    color: rgb(210, 172, 175);
-}
-md-tabs.md-default-theme md-ink-bar, md-tabs md-ink-bar {
-  color: #ff0000;
-  background: rgb(255, 51, 0);
-}
-
-    md-tabs.md-default-theme md-tabs-wrapper, md-tabs md-tabs-wrapper {
-      background-color: #860C16;
-      border-color: rgba(0,0,0,0.12);
-  }
-  md-tabs.md-default-theme .md-tab.md-active, md-tabs .md-tab.md-active, md-tabs.md-default-theme .md-tab.md-active md-icon, md-tabs .md-tab.md-active md-icon, md-tabs.md-default-theme .md-tab.md-focused, md-tabs .md-tab.md-focused, md-tabs.md-default-theme .md-tab.md-focused md-icon, md-tabs .md-tab.md-focused md-icon {
-    color: rgb(250,250,250);
-}
-md-content.md-default-theme, md-content {
-    color: rgba(0,0,0,0.87);
-    background-color: rgba(255,255,255,0.87);
-}
 
 .info_indicador{
   margin-left: 10%;
-  width: 40%;
-  float:left;
-}
-.table_municipios{
-  height: 80rem;
-  margin-left: 2%;
-  float:left;
-
-  width: 25rem;
-  overflow-y: auto;
-}
-.table_municipios_valor:nth-child(odd) td{
-  background-color: #ECEFF1;
-}
-.table_municipios_valor:nth-child(even) td{
-  background-color: #90A4AE;
-}
-.map_indicador{
-  margin-left: 2%;
-  width: 50%;
-  float:left;
-}
-.anos_indicador{
-  margin-left: 2%;
-}
-.grafica_avance{
-  margin-left: 4%;
-
   width: 40%;
   float:left;
 }
@@ -331,23 +191,6 @@ md-content.md-default-theme, md-content {
   height: auto;
   margin-left: 2rem;
 }
-.lista_temas1{
-  width: 40%;
-  height: 150px;
-  position: relative;
-  left: 8%;
-  float:left;
-}
-.lista_temas2{
-  width: 40%;
-  height: 150px;
-  position: relative;
-  left: 8%;
-  float:left;
-  margin-bottom: 2%;
-  margin-left: .5%;
-
-}
 
 .list_telefonos{
   list-style-type: none;
@@ -372,637 +215,6 @@ md-content.md-default-theme, md-content {
 	margin-right: auto;
 }
 
-body.md-default-theme, body, html.md-default-theme, html {
-    color: rgba(0,0,0,0.87);
-    background-color: rgba(255,255,255,0.87);
-}
-
-.lista2 div{
-
-width: 40%;
-display: inline-block;
-
-
-
-
-}
-.lista2 a{
-
-
-     text-decoration:none;
-     color:#bfe1f1;
-
-
-     position: relative;
-     left: 70%;
-}
-
-
-.a_listaseguridad1{
-
-      border-top: 10px solid #18a0c1;
-      border-bottom: 10px solid #18a0c1;
-
-      background-color:#18a0c1;
-
-}
-.a_listaseguridad2{
-
-      border-top: 10px solid #46c3d8;
-      border-bottom: 10px solid #46c3d8;
-
-      background-color:#46c3d8;
-
-}
-.a_listaseguridad3{
-
-      border-top: 10px solid #1e7499;
-      border-bottom: 10px solid #1e7499;
-
-      background-color:#1e7499;
-
-}
-.a_listaseguridad4{
-
-      border-top: 10px solid #244e6e;
-      border-bottom: 10px solid #244e6e;
-
-      background-color:#244e6e;
-
-}
-.a_listagobierno1{
-
-      border-top: 10px solid #a1da72;
-      border-bottom: 10px solid #a1da72;
-
-      background-color:#a1da72;
-
-}
-.a_listagobierno2{
-
-      border-top: 10px solid #82cf56;
-      border-bottom: 10px solid #82cf56;
-
-      background-color:#82cf56;
-
-}
-.a_listagobierno3{
-
-      border-top: 10px solid #59c143;
-      border-bottom: 10px solid #59c143;
-
-      background-color:#59c143;
-
-}
-.a_listagobierno4{
-
-      border-top: 10px solid #438748;
-      border-bottom: 10px solid #438748;
-
-      background-color:#438748;
-
-}
-.a_listacompetitividad1{
-
-      border-top: 10px solid #f5776d;
-      border-bottom: 10px solid #f5776d;
-
-      background-color:#f5776d;
-
-}
-.a_listacompetitividad2{
-
-      border-top: 10px solid #f1463a;
-      border-bottom: 10px solid #f1463a;
-
-      background-color:#f1463a;
-
-}
-.a_listacompetitividad3{
-
-      border-top: 10px solid #ee2e26;
-      border-bottom: 10px solid #ee2e26;
-
-      background-color:#ee2e26;
-
-}
-.a_listacompetitividad4{
-
-      border-top: 10px solid #b32c28;
-      border-bottom: 10px solid #b32c28;
-
-      background-color:#b32c28;
-
-}
-.a_listamedio1{
-
-      border-top: 10px solid #9e5db5;
-      border-bottom: 10px solid #9e5db5;
-
-      background-color:#9e5db5;
-
-}
-.a_listamedio2{
-
-      border-top: 10px solid #592c81;
-      border-bottom: 10px solid #592c81;
-
-      background-color:#592c81;
-
-}
-.a_listamedio3{
-
-      border-top: 10px solid #73339c;
-      border-bottom: 10px solid #73339c;
-
-      background-color:#73339c;
-
-}
-.a_listamedio4{
-
-      border-top: 10px solid #3c2758;
-      border-bottom: 10px solid #3c2758;
-
-      background-color:#3c2758;
-
-}
-.sublista1_1_seguridad a{
-
-  display:block;
-    width:100%;
-    height:auto;
-
-
-
-
-    padding-left:10px;
-    text-decoration:none;
-    font-family:Georgia,serif,Times;
-    font-size:18px;
-
-    color: white;
-
-}
-
-.sublista1_1_gobierno a{
-
-  display:block;
-    width:100%;
-    height:auto;
-
-
-
-
-
-    padding-left:10px;
-    text-decoration:none;
-    font-family:Georgia,serif,Times;
-    font-size:18px;
-
-    color: white;
-
-
-}
-.sublista1_1_competitividad a{
-
-  display:block;
-    width:100%;
-    height:auto;
-
-
-
-
-
-    padding-left:10px;
-    text-decoration:none;
-    font-family:Georgia,serif,Times;
-    font-size:18px;
-
-    color: white;
-
-
-}
-.sublista1_1_medio a{
-
-  display:block;
-    width:100%;
-    height:auto;
-
-
-
-
-    padding-left:10px;
-    text-decoration:none;
-    font-family:Georgia,serif,Times;
-    font-size:18px;
-
-    color: white;
-
-
-}
-
-
-.sublista1_2_seguridad1 a{
-
-  background: #18a0c1;
-  border-top: 10px solid #18a0c1;
-  border-bottom: 10px solid #18a0c1;
-  border-left:2px solid #18a0c1;
-  border-right:2px solid #18a0c1;
-
-}
-.sublista1_2_seguridad2 a{
-
-  background: #46c3d8;
-  border-top: 10px solid #46c3d8;
-  border-bottom: 10px solid #46c3d8;
-  border-left:2px solid #46c3d8;
-  border-right:2px solid #46c3d8;
-
-}
-.sublista1_2_seguridad3 a{
-
-  background: #1e7499;
-  border-top: 10px solid #1e7499;
-  border-bottom: 10px solid #1e7499;
-  border-left:2px solid #1e7499;
-  border-right:2px solid #1e7499;
-
-}
-.sublista1_2_seguridad4 a{
-
-  background: #244e6e;
-  border-top: 10px solid #244e6e;
-  border-bottom: 10px solid #244e6e;
-  border-left:2px solid #244e6e;
-  border-right:2px solid #244e6e;
-
-}
-.sublista1_2_gobierno1 a{
-
-
-  background: #a1da72;
-  border-top: 10px solid #a1da72;
-  border-bottom: 10px solid #a1da72;
-  border-left:2px solid #a1da72;
-  border-right:2px solid #a1da72;
-
-
-
-
-}
-.sublista1_2_gobierno2 a{
-
-
-  background: #82cf56;
-  border-top: 10px solid #82cf56;
-  border-bottom: 10px solid #82cf56;
-  border-left:2px solid #82cf56;
-  border-right:2px solid #82cf56;
-
-
-
-
-}
-.sublista1_2_gobierno3 a{
-
-
-  background: #59c143;
-  border-top: 10px solid #59c143;
-  border-bottom: 10px solid #59c143;
-  border-left:2px solid #59c143;
-  border-right:2px solid #59c143;
-
-
-
-
-}
-.sublista1_2_gobierno4 a{
-
-
-  background: #438748;
-  border-top: 10px solid #438748;
-  border-bottom: 10px solid #438748;
-  border-left:2px solid #438748;
-  border-right:2px solid #438748;
-
-
-
-
-}
-.sublista1_2_competitividad1 a{
-
-
-  background: #f5776d;
-  border-top: 10px solid #f5776d;
-  border-bottom: 10px solid #f5776d;
-  border-left:2px solid #f5776d;
-  border-right:2px solid #f5776d;
-
-
-
-
-}
-.sublista1_2_competitividad2 a{
-
-
-  background: #f1463a;
-  border-top: 10px solid #f1463a;
-  border-bottom: 10px solid #f1463a;
-  border-left:2px solid #f1463a;
-  border-right:2px solid #f1463a;
-
-
-
-
-}
-.sublista1_2_competitividad3 a{
-
-
-  background: #ee2e26;
-  border-top: 10px solid #ee2e26;
-  border-bottom: 10px solid #ee2e26;
-  border-left:2px solid #ee2e26;
-  border-right:2px solid #ee2e26;
-
-
-
-
-}
-.sublista1_2_competitividad4 a{
-
-
-  background: #b32c28;
-  border-top: 10px solid #b32c28;
-  border-bottom: 10px solid #b32c28;
-  border-left:2px solid #b32c28;
-  border-right:2px solid #b32c28;
-
-
-
-
-}
-.sublista1_2_medio1 a{
-
-
-  background: #9e5db5;
-  border-top: 10px solid #9e5db5;
-  border-bottom: 10px solid #9e5db5;
-  border-left:2px solid #9e5db5;
-  border-right:2px solid #9e5db5;
-}
-.sublista1_2_medio2 a{
-
-
-  background: #592c81;
-  border-top: 10px solid #592c81;
-  border-bottom: 10px solid #592c81;
-  border-left:2px solid #592c81;
-  border-right:2px solid #592c81;
-}
-.sublista1_2_medio3 a{
-
-
-  background: #73339c;
-  border-top: 10px solid #73339c;
-  border-bottom: 10px solid #73339c;
-  border-left:2px solid #73339c;
-  border-right:2px solid #73339c;
-}
-.sublista1_2_medio4 a{
-
-
-  background: #3c2758;
-  border-top: 10px solid #3c2758;
-  border-bottom: 10px solid #3c2758;
-  border-left:2px solid #3c2758;
-  border-right:2px solid #3c2758;
-}
-
-.sublista1_1_competitividad a:hover{
-  background-color:#2734CC;
-  border-top: 10px solid #2734CC;
-  border-bottom: 10px solid #2734CC;
-  border-left:5px solid #2734CC;
-  border-right:5px solid #2734CC;
-  margin-left: 2px;
-
-  -moz-box-shadow:10px 10px 20px #000000;
-  -webkit-box-shadow:10px 10px 20px #000000;
-
-}
-.sublista1_1_medio a:hover{
-  background-color:#2734CC;
-  border-top: 10px solid #2734CC;
-  border-bottom: 10px solid #2734CC;
-  border-left:5px solid #2734CC;
-  border-right:5px solid #2734CC;
-  margin-left: 2px;
-
-  -moz-box-shadow:10px 10px 20px #000000;
-  -webkit-box-shadow:10px 10px 20px #000000;
-
-}
-.sublista1_1_seguridad a:hover{
-  background-color:#2734CC;
-  border-top: 10px solid #2734CC;
-  border-bottom: 10px solid #2734CC;
-  border-left:5px solid #2734CC;
-  border-right:5px solid #2734CC;
-  margin-left: 2px;
-
-  -moz-box-shadow:10px 10px 20px #000000;
-  -webkit-box-shadow:10px 10px 20px #000000;
-
-}
-.sublista1_1_gobierno a:hover{
-  background-color:#2734CC;
-  border-top: 10px solid #2734CC;
-  border-bottom: 10px solid #2734CC;
-  border-left:5px solid #2734CC;
-  border-right:5px solid #2734CC;
-  margin-left: 2px;
-
-  -moz-box-shadow:10px 10px 20px #000000;
-  -webkit-box-shadow:10px 10px 20px #000000;
-
-}
-.sublista1_2_gobierno1 a:hover{
-  background-color:#2734CC;
-  border-top: 10px solid #2734CC;
-  border-bottom: 10px solid #2734CC;
-  border-left:2px solid #2734CC;
-  border-right:2px solid #2734CC;
-
-  -moz-box-shadow:10px 10px 20px #000000;
-  -webkit-box-shadow:10px 10px 20px #000000;
-
-}
-.sublista1_2_gobierno2 a:hover{
-  background-color:#2734CC;
-  border-top: 10px solid #2734CC;
-  border-bottom: 10px solid #2734CC;
-  border-left:2px solid #2734CC;
-  border-right:2px solid #2734CC;
-
-  -moz-box-shadow:10px 10px 20px #000000;
-  -webkit-box-shadow:10px 10px 20px #000000;
-
-}
-.sublista1_2_gobierno3 a:hover{
-  background-color:#2734CC;
-  border-top: 10px solid #2734CC;
-  border-bottom: 10px solid #2734CC;
-  border-left:2px solid #2734CC;
-  border-right:2px solid #2734CC;
-
-  -moz-box-shadow:10px 10px 20px #000000;
-  -webkit-box-shadow:10px 10px 20px #000000;
-
-}
-.sublista1_2_gobierno4 a:hover{
-  background-color:#2734CC;
-  border-top: 10px solid #2734CC;
-  border-bottom: 10px solid #2734CC;
-  border-left:2px solid #2734CC;
-  border-right:2px solid #2734CC;
-
-  -moz-box-shadow:10px 10px 20px #000000;
-  -webkit-box-shadow:10px 10px 20px #000000;
-
-}
-.sublista1_2_medio1 a:hover{
-  background-color:#2734CC;
-  border-top: 10px solid #2734CC;
-  border-bottom: 10px solid #2734CC;
-  border-left:2px solid #2734CC;
-  border-right:2px solid #2734CC;
-
-  -moz-box-shadow:10px 10px 20px #000000;
-  -webkit-box-shadow:10px 10px 20px #000000;
-
-}
-.sublista1_2_medio2 a:hover{
-  background-color:#2734CC;
-  border-top: 10px solid #2734CC;
-  border-bottom: 10px solid #2734CC;
-  border-left:2px solid #2734CC;
-  border-right:2px solid #2734CC;
-
-  -moz-box-shadow:10px 10px 20px #000000;
-  -webkit-box-shadow:10px 10px 20px #000000;
-
-}
-.sublista1_2_medio3 a:hover{
-  background-color:#2734CC;
-  border-top: 10px solid #2734CC;
-  border-bottom: 10px solid #2734CC;
-  border-left:2px solid #2734CC;
-  border-right:2px solid #2734CC;
-
-  -moz-box-shadow:10px 10px 20px #000000;
-  -webkit-box-shadow:10px 10px 20px #000000;
-
-}
-.sublista1_2_medio4 a:hover{
-  background-color:#2734CC;
-  border-top: 10px solid #2734CC;
-  border-bottom: 10px solid #2734CC;
-  border-left:2px solid #2734CC;
-  border-right:2px solid #2734CC;
-
-  -moz-box-shadow:10px 10px 20px #000000;
-  -webkit-box-shadow:10px 10px 20px #000000;
-
-}
-.sublista1_2_seguridad1 a:hover{
-  background-color:#2734CC;
-  border-top: 10px solid #2734CC;
-  border-bottom: 10px solid #2734CC;
-  border-left:2px solid #2734CC;
-  border-right:2px solid #2734CC;
-
-  -moz-box-shadow:10px 10px 20px #000000;
-  -webkit-box-shadow:10px 10px 20px #000000;
-
-}
-.sublista1_2_seguridad2 a:hover{
-  background-color:#2734CC;
-  border-top: 10px solid #2734CC;
-  border-bottom: 10px solid #2734CC;
-  border-left:2px solid #2734CC;
-  border-right:2px solid #2734CC;
-
-  -moz-box-shadow:10px 10px 20px #000000;
-  -webkit-box-shadow:10px 10px 20px #000000;
-
-}
-.sublista1_2_seguridad3 a:hover{
-  background-color:#2734CC;
-  border-top: 10px solid #2734CC;
-  border-bottom: 10px solid #2734CC;
-  border-left:2px solid #2734CC;
-  border-right:2px solid #2734CC;
-
-  -moz-box-shadow:10px 10px 20px #000000;
-  -webkit-box-shadow:10px 10px 20px #000000;
-
-}
-.sublista1_2_seguridad4 a:hover{
-  background-color:#2734CC;
-  border-top: 10px solid #2734CC;
-  border-bottom: 10px solid #2734CC;
-  border-left:2px solid #2734CC;
-  border-right:2px solid #2734CC;
-
-  -moz-box-shadow:10px 10px 20px #000000;
-  -webkit-box-shadow:10px 10px 20px #000000;
-
-}
-.sublista1_2_competitividad1 a:hover{
-  background-color:#2734CC;
-  border-top: 10px solid #2734CC;
-  border-bottom: 10px solid #2734CC;
-  border-left:2px solid #2734CC;
-  border-right:2px solid #2734CC;
-
-  -moz-box-shadow:10px 10px 20px #000000;
-  -webkit-box-shadow:10px 10px 20px #000000;
-
-}
-.sublista1_2_competitividad2 a:hover{
-  background-color:#2734CC;
-  border-top: 10px solid #2734CC;
-  border-bottom: 10px solid #2734CC;
-  border-left:2px solid #2734CC;
-  border-right:2px solid #2734CC;
-
-  -moz-box-shadow:10px 10px 20px #000000;
-  -webkit-box-shadow:10px 10px 20px #000000;
-
-}
-.sublista1_2_competitividad3 a:hover{
-  background-color:#2734CC;
-  border-top: 10px solid #2734CC;
-  border-bottom: 10px solid #2734CC;
-  border-left:2px solid #2734CC;
-  border-right:2px solid #2734CC;
-
-  -moz-box-shadow:10px 10px 20px #000000;
-  -webkit-box-shadow:10px 10px 20px #000000;
-
-}
-.sublista1_2_competitividad4 a:hover{
-  background-color:#2734CC;
-  border-top: 10px solid #2734CC;
-  border-bottom: 10px solid #2734CC;
-  border-left:2px solid #2734CC;
-  border-right:2px solid #2734CC;
-
-  -moz-box-shadow:10px 10px 20px #000000;
-  -webkit-box-shadow:10px 10px 20px #000000;
-
-}
 .button, .button:visited { /* botones genéricos */
 background: #222 url(URL_overlay.png) repeat-x;
 display: inline-block;
@@ -1054,67 +266,6 @@ padding: 8px 14px 9px;
 .red.button, .red.button:visited { background-color: #860C16; }
 .red.button:hover{ background-color: #CF2525; }
 
-label.filebutton {
-
-    margin-left: 45%;
-    width:10rem;
-    height:10rem;
-    overflow:hidden;
-    position:relative;
-    background-image:url(../img/excel.png);
-    background-repeat: no-repeat;
-    background-size:contain;
-    background-position:center;
-
-}
-
-label span input {
-    z-index: 999;
-    line-height: 0;
-    font-size: 40px;
-    position: absolute;
-    top: -2px;
-    left: -700px;
-    opacity: 0;
-    filter: alpha(opacity = 0);
-    -ms-filter: "alpha(opacity=0)";
-    cursor: pointer;
-    _cursor: hand;
-    margin: 0;
-    padding:0;
-}
-
-.vr-all {
-	padding:0px;
-	border-right:1px dotted #2D2D2D;
-}
-.vr-xs {
-	padding:0px;
-}
-.vr-md {
-	padding:0px;
-}
-.hrspacing { padding:0px; }
-.hrcolor {
-	border-color: #2D2D2D;
-	border-style: dotted;
-	border-bottom: 1px;
-	margin:0px;
-	padding:0px;
-}
-/* remove right vertical rule on small */
-@media(min-width:992px){
-	.vr-xs {
-		border-right:1px dotted #2D2D2D;
-	}
-	}
-
-
-.imagen{
-  height: 9ex;
-  margin:2ex auto;
-  text-align:center;
-}
 
 /*******************************************************************************************/
 
@@ -1525,7 +676,7 @@ z-index: 1;
   border:1px solid transparent;
   border-radius:4px;
   -webkit-box-shadow:0 1px 1px rgba(0,0,0,0.05);
-  box-shadow:0 1px 1px rgba(0,0,0,0.05)
+  box-shadow:0 1px 1px rgba(0,0,0,0.05);
 }
 
 .panelI{
@@ -1546,7 +697,7 @@ z-index: 1;
   border-top-right-radius:3px;
   color:#fff;
   background-color: #fff;
-  font-size: 2.6ex;
+  font-size: 2.6rem;
   /*border-color:#259434;*/
 }
 
@@ -1737,6 +888,27 @@ z-index: 1;
 
 /* BOTONES */
 
+.botonIndyce{
+  margin:0 0 1.2rem 0;
+  font-family: inherit;
+  background: #f03981;
+  min-height: 7.5vh !important;
+  display:block;
+  width:100%;
+  /*padding-right:0;
+  padding-left:0;*/
+  font-size:1.5rem;
+  color: #fff !important;
+  font-weight: bolder;
+  text-transform: uppercase;
+  text-decoration: none;
+  text-align: center;
+  bottom: 0;
+  /*vertical-align: middle;*/
+  border-radius:4px;
+  /*padding-top: 15%;*/
+}
+
 .botonDocumentos{
   margin:0 0 1.2rem 0;
   font-family: inherit;
@@ -1764,26 +936,6 @@ z-index: 1;
   hover: #fff;
   text-decoration: none;
 }
-.botonIndyce{
-  margin:0 0 1.2rem 0;
-  font-family: inherit;
-  background: #f03981;
-  min-height: 4.8rem !important;
-  display:block;
-  width:100%;
-  /*padding-right:0;
-  padding-left:0;*/
-  font-size:1.4rem;
-  color: #fff !important;
-  font-weight: bolder;
-  text-transform: uppercase;
-  text-decoration: none;
-  text-align: center;
-  bottom: 0;
-  /*vertical-align: middle;*/
-  border-radius:4px;
-  /*padding-top: 15%;*/
-}
 .botonIndyce a{
   line-height:normal;
   vertical-align: middle;
@@ -1801,9 +953,9 @@ a[type="button"]:hover, a[type="button"]:active, a[type="button"]:link, a[type="
 
 .botonIndyce>span.obscuro{
   float: left;
-  min-width: 7.8rem;
+  min-width: 5.5vw;
   max-width: 100%;
-  min-height: 4.7rem !important;
+  min-height: 7.5vh !important;
   background-color: black;
   opacity: 0.3;
   border-top-left-radius:4px;
@@ -1811,10 +963,10 @@ a[type="button"]:hover, a[type="button"]:active, a[type="button"]:link, a[type="
 }
 .botonIndyce>span.numero{
   float: left;
-  min-width: 9rem;
+  min-width: 6vw;
   /*min-height: 3.6em !important;*/
   opacity: 0.3;
-  font-size: 4.2rem !important;
+  font-size: 6.5vh !important;
   color: #000 !important;
   /*vertical-align: middle !important;*/
   /*margin-bottom: 5em !important;*/
@@ -1826,7 +978,7 @@ a[type="button"]:hover, a[type="button"]:active, a[type="button"]:link, a[type="
   /*float: left;*/
   /*width: 5em;*/
   /*min-width: 10%;*/
-  max-height: 4.7rem !important;
+  max-height: 7vh !important;
   width: auto;
   /*max-width: 50%;*/
   z-index: 1000;
@@ -1921,7 +1073,7 @@ a[type="button"]:hover, a[type="button"]:active, a[type="button"]:link, a[type="
 .metasInactivo>span{
   float: left;
   min-width: 17.5%;
-  min-height: 3em !important;
+  min-height: 2.9em !important;
   background-color: black;
   opacity: 0.3;
   border-top-left-radius:4px;
@@ -1932,7 +1084,7 @@ a[type="button"]:hover, a[type="button"]:active, a[type="button"]:link, a[type="
   text-shadow: 0px 1px #6c6c6c;
   background: #d3d2d2;
   font-size: 2.5rem;
-  color: #70a733 !important;
+  color: #fff;
   hover: #fff;
   margin:0 0 1.2em 0;
   font-family: inherit;
